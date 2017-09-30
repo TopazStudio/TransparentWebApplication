@@ -9,6 +9,10 @@ use Illuminate\Http\Request;
 trait HandlesImages
 {
 
+    protected $picType = 'defaultPic';
+
+    protected $picPath = 'public/defaultPic';
+
     public function handleImage(Request $request,$id){
         $fileName = explode('.',$request->file($this->picType)->getClientOriginalName());
         $extension = $request->file($this->picType)->getClientOriginalExtension();

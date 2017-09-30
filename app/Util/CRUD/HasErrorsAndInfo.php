@@ -6,7 +6,7 @@
  * Time: 9:51 AM
  */
 
-namespace App\Traits;
+namespace App\Util\CRUD;
 
 
 trait HasErrorsAndInfo

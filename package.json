@@ -15,7 +15,7 @@
         "jquery": "^3.1.1",
         "laravel-mix": "^1.0",
         "vue": "^2.1.10",
-	"element-ui": "^1.4.6"
+	    "element-ui": "^1.4.6"
     },
     "dependencies": {
         "camo": "^0.12.3",

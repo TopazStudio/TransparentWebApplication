@@ -9,13 +9,12 @@
 namespace App\Util\CRUD;
 
 
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 
 trait HandlesCRUD
 {
-    use HandlesImages;
+    use HandlesImages, HasErrorsAndInfo;
 
     /**
      * Fetch model's CRUD settings
@@ -31,7 +30,7 @@ trait HandlesCRUD
      * Fetch model according to the authorized parent
      *
      * @param $id
-     * @return bool
+     * @return Model|bool
      */
     private function getModelAccordingToParent($id){
         $model = call_user_func_array([$this->getModelType(),'where'],['id','=',$id]);
@@ -55,7 +54,7 @@ trait HandlesCRUD
      * the relevant ids of the foreign columns.
      *
      * @param Request $request
-     * @return bool
+     * @return array|bool
      */
     private function resolveRelations(Request $request){
         $rels = array();
@@ -82,7 +81,7 @@ trait HandlesCRUD
      * @param $key
      * @return bool
      */
-    private function resolveRelation(Request $request,$key){
+    /*private function resolveRelation(Request $request,$key){
         //1. Look in request
         if ($request->has($key))
             return $rels[$key] = $request->{$key};
@@ -91,7 +90,7 @@ trait HandlesCRUD
         else
             return ($this->fromSettings('relationships'))[$key];
 
-    }
+    }*/
 
     /**
      * Used to update a Cuisine owned by the current user,
@@ -178,7 +177,7 @@ trait HandlesCRUD
      * Fetch a Model without any restriction.
      *
      * @param $id
-     * @return Model
+     * @return array|Model
      */
     public function get($id){
         try{

@@ -33,7 +33,17 @@ class User extends Authenticatable implements CRUDable
 
     public static function crudSettings()
     {
-        // TODO: Implement crudSettings() method.
+        return[
+            'hasPicture'=>true,
+            'attributes' => [
+                'Name',
+                'Type'
+            ],
+            'relationships' => [
+                'restaurantId' => (\Redis::hgetall(SessionUtil::getRedisSession() . ':user:restaurant'))['id']
+            ],
+            'parentRel' => ['restaurantId' => (\Redis::hgetall(SessionUtil::getRedisSession() . ':user:restaurant'))['id']]
+        ];
     }
 
     //RELATIONSHIPS

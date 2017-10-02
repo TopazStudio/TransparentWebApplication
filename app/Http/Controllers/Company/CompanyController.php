@@ -20,12 +20,21 @@ class CompanyController extends Controller
     public function __construct(CompanyService $companyService){
         $this->CRUDService = $companyService;
 
-        $this->validationRules = [
+        $this->addValidationRules = [
             'name' => 'required|string|unique:companies',
             'businessNo' => 'required|string|unique:companies',
             'description' => 'nullable|string|max:800',
             'latitude' => 'required|numeric',
             'longitude' => 'required|numeric',
+            'image' => 'nullable|image'
+        ];
+
+        $this->updateValidationRules = [
+            'name' => 'nullable|string|unique:companies',
+            'businessNo' => 'nullable|string|unique:companies',
+            'description' => 'nullable|string|max:800',
+            'latitude' => 'nullable|numeric',
+            'longitude' => 'nullable|numeric',
             'image' => 'nullable|image'
         ];
     }

@@ -1,15 +1,7 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: erick
- * Date: 9/30/17
- * Time: 12:46 PM
- */
 
 namespace App\Services\Company;
 
-
-use App\Traits\HasErrorsAndInfo;
 use App\Util\CRUD\CRUDService;
 use App\Util\CRUD\HandlesCRUD;
 

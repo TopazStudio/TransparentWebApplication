@@ -27,22 +27,29 @@ trait HandlesCRUD
     }
 
     /**
-     * Fetch model according to the authorized parent
+     * Fetch model according to the authorized parent. Returns only one model.
      *
+     * @param Request $request
      * @param $id
-     * @return Model|bool
+     * @return bool|Model
      */
-    private function getModelAccordingToParent($id){
+    private function getModelAccordingToParent(Request $request, $id){
         $model = call_user_func_array([$this->getModelType(),'where'],['id','=',$id]);
 
+
         foreach ($this->fromSettings('parentRel') as $key => $value){
-            $model->where($key,'=',$value);
+            //If request has the parent relationship get it from there
+            if ($request->has($key)){
+                $model->where($key,'=',$request->{$key});
+            }else{
+                $model->where($key,'=',$value);
+            }
         }
 
-        $model->get();
+        $model = $model->get()->first();
 
         if(!$model){
-            $this->errors['delete']['Not Found'] = $id;
+            $this->errors['Not Found'] = $id;
             return false;
         }
 
@@ -131,7 +138,7 @@ trait HandlesCRUD
      * @return bool
      */
     public function update(Request $request,$id){
-        if($model = $this->getModelAccordingToParent($id)) {
+        if($model = $this->getModelAccordingToParent($request,$id)) {
             if ($model->update($request->only($this->fromSettings('attributes')))) {
                 $this->info['updated'] = $id;
             } else {
@@ -144,11 +151,12 @@ trait HandlesCRUD
     /**
      * Used to delete a Cuisine owned by the current user,
      *
+     * @param Request $request
      * @param $id
      * @return bool
      */
-    public function delete($id){
-        if($model = $this->getModelAccordingToParent($id)) {
+    public function delete(Request $request,$id){
+        if($model = $this->getModelAccordingToParent($request,$id)) {
             if ($model->delete()) {
                 $this->info['deleted'] = $id;
             } else {

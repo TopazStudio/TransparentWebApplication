@@ -38,4 +38,24 @@ Route::group(['prefix'=>'/company'],function (){
     Route::delete('/{id}', [
         'uses' => 'Company\CompanyController@delete',
     ]);
+
+    Route::get('/getAllReviews', [
+        'uses' => 'Company\ReviewController@getAll',
+    ]);
+
+    Route::get('/getReview/{id}', [
+        'uses' => 'Company\ReviewController@get',
+    ]);
+
+    Route::post('/makeReview', [
+        'uses' => 'Company\ReviewController@add',
+    ]);
+
+    Route::put('/updateReview/{id}', [
+        'uses' => 'Company\ReviewController@update',
+    ]);
+
+    Route::delete('/deleteReview/{id}', [
+        'uses' => 'Company\ReviewController@delete',
+    ]);
 });

@@ -17,7 +17,10 @@ trait HandlesCRUDRequest
 
     protected $CRUDService;
 
-    protected $validationRules;
+    //TODO: make dynamic adding and updating validation rules
+    protected $addValidationRules;
+    protected $updateValidationRules;
+
 
     /**
      * Fetch all Models without any restriction.
@@ -46,7 +49,7 @@ trait HandlesCRUDRequest
      * @return \Illuminate\Http\JsonResponse
      */
     public function add(Request $request){
-        $this->validate($request,$this->validationRules);
+        $this->validate($request,$this->addValidationRules);
 
         if($this->CRUDService->add($request)){
             return $this->successResponse($this->CRUDService->info);
@@ -64,7 +67,7 @@ trait HandlesCRUDRequest
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request,$this->validationRules);
+        $this->validate($request,$this->updateValidationRules);
 
         if($this->CRUDService->update($request,$id)){
             return $this->successResponse($this->CRUDService->info);
@@ -76,11 +79,12 @@ trait HandlesCRUDRequest
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param Request $request
+     * @param  int $id
      * @return \Illuminate\Http\JsonResponse
      */
-    public function delete($id){
-        if($this->CRUDService->delete($id)){
+    public function delete(Request $request,$id){
+        if($this->CRUDService->delete($request, $id)){
             return $this->successResponse($this->CRUDService->info);
         }else{
             return $this->errorResponse($this->CRUDService->errors,$this->CRUDService->info);

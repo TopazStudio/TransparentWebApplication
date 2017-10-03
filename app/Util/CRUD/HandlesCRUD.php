@@ -114,7 +114,7 @@ trait HandlesCRUD
                       );
 
         //Add hook before creating
-        if(!$this->beforeCreate($request,$attributes,$this->info,$this->errors))
+        if(!$this->beforeCreate($request,$attributes))
             return empty($this->errors);
 
         $model = call_user_func([$this->getModelType(),'create'],$attributes);
@@ -134,7 +134,7 @@ trait HandlesCRUD
         }
 
         //Add hook after creating
-        if(!$this->afterCreate($request,$model,$this->info,$this->errors))
+        if(!$this->afterCreate($request,$model))
             return empty($this->errors);
 
         return empty($this->errors);
@@ -149,7 +149,7 @@ trait HandlesCRUD
      */
     public function update(Request $request,$id){
         //Add hook before update
-        if(!$this->beforeUpdate($request,$id,$this->info,$this->errors))
+        if(!$this->beforeUpdate($request,$id))
             return empty($this->errors);
 
         if($model = $this->getModelAccordingToParent($request,$id)) {
@@ -161,7 +161,7 @@ trait HandlesCRUD
         }
 
         //Add hook after update
-        if(!$this->afterUpdate($request,$model,$this->info,$this->errors))
+        if(!$this->afterUpdate($request,$model))
             return empty($this->errors);
 
         return empty($this->errors);
@@ -176,7 +176,7 @@ trait HandlesCRUD
      */
     public function delete(Request $request,$id){
         //Add hook before delete
-        if(!$this->beforeDelete($request,$id,$this->info,$this->errors))
+        if(!$this->beforeDelete($request,$id))
             return empty($this->errors);
 
         if($model = $this->getModelAccordingToParent($request,$id)) {
@@ -188,7 +188,7 @@ trait HandlesCRUD
         }
 
         //Add hook after creating
-        if(!$this->afterDelete($request,$model,$this->info,$this->errors))
+        if(!$this->afterDelete($request,$model))
             return empty($this->errors);
 
         return empty($this->errors);

@@ -104,3 +104,4 @@ Route::group(['prefix'=>'/topic'],function (){
     ]);
 });
 
+\App\Util\CRUD\RouteUtils::dynamicAddRoutes('/blog','Blog\BlogController');

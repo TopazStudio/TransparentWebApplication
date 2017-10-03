@@ -6,6 +6,7 @@ namespace App\Traits;
 
 trait DoesResponses
 {
+    //TODO: change from "message" to "status"
     /**
      * Return an error response
      *

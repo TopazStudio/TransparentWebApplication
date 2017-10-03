@@ -3,9 +3,38 @@
 namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Util\CRUD\CRUDable;
 
-class Topic extends Model
+
+class Topic extends Model implements CRUDable
 {
+    protected $fillable = [
+        'description',
+        'likes',
+        'dislikes',
+        'ownerId',
+    ];
+
+    //Company and User are loaded from frontend
+    public static function crudSettings()
+    {
+        return[
+            'hasPicture'=>false,
+            'attributes' => [
+                'description',
+                'likes',
+                'dislikes',
+                'ownerId',
+            ],
+            'relationships' => [
+                'ownerId' => null,
+            ],
+            'parentRel' => [
+                'ownerId' => null
+            ]
+        ];
+    }
+
     //RELATIONSHIP
 
     //user

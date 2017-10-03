@@ -59,3 +59,26 @@ Route::group(['prefix'=>'/company'],function (){
         'uses' => 'Company\ReviewController@delete',
     ]);
 });
+
+Route::group(['prefix'=>'/topic'],function (){
+    Route::get('/getAll', [
+        'uses' => 'Topic\TopicController@getAll',
+    ]);
+
+    Route::get('/get/{id}', [
+        'uses' => 'Topic\TopicController@get',
+    ]);
+
+    Route::post('/add', [
+        'uses' => 'Topic\TopicController@add',
+    ]);
+
+    Route::put('/{id}', [
+        'uses' => 'Topic\TopicController@update',
+    ]);
+
+    Route::delete('/{id}', [
+        'uses' => 'Topic\TopicController@delete',
+    ]);
+});
+

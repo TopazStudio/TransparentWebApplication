@@ -49,7 +49,7 @@ trait HandlesCRUD
         $model = $model->get()->first();
 
         if(!$model){
-            $this->errors['Not Found'] = $id;
+            $this->errors['Not Authorized'] = $id;
             return false;
         }
 
@@ -103,22 +103,28 @@ trait HandlesCRUD
      * Used to update a Cuisine owned by the current user,
      *
      * @param Request $request
+     * @internal Model $model
      * @return bool
      */
     public function add(Request $request){
+        $model = null;
         $attributes = array_merge(
                         $request->only($this->fromSettings('attributes')),
                         $this->resolveRelations($request)
                       );
 
-        $model = call_user_func([$this->getModelType(),'create'],$attributes);
+        //Add hook before creating
+        if(!$this->beforeCreate($request,$attributes,$this->info,$this->errors))
+            return empty($this->errors);
 
+        $model = call_user_func([$this->getModelType(),'create'],$attributes);
         if($model){
-            $this->info['added'] = $model->id;
+            $this->info['added'][] = $model->id;
         }else{
             $this->errors['Add']['Add Failed'] = $model->id;
         }
 
+        //Handle images
         if ($this->fromSettings('hasPicture')){
             if($request->hasFile('image')){
                 $this->handleImage($request,$model->id);
@@ -126,6 +132,10 @@ trait HandlesCRUD
                 $this->defaultImage($model->id);
             }
         }
+
+        //Add hook after creating
+        if(!$this->afterCreate($request,$model,$this->info,$this->errors))
+            return empty($this->errors);
 
         return empty($this->errors);
     }
@@ -138,6 +148,10 @@ trait HandlesCRUD
      * @return bool
      */
     public function update(Request $request,$id){
+        //Add hook before update
+        if(!$this->beforeUpdate($request,$id,$this->info,$this->errors))
+            return empty($this->errors);
+
         if($model = $this->getModelAccordingToParent($request,$id)) {
             if ($model->update($request->only($this->fromSettings('attributes')))) {
                 $this->info['updated'] = $id;
@@ -145,6 +159,11 @@ trait HandlesCRUD
                 $this->errors['Update']['Not Updated'] = $id;
             }
         }
+
+        //Add hook after update
+        if(!$this->afterUpdate($request,$model,$this->info,$this->errors))
+            return empty($this->errors);
+
         return empty($this->errors);
     }
 
@@ -156,6 +175,10 @@ trait HandlesCRUD
      * @return bool
      */
     public function delete(Request $request,$id){
+        //Add hook before delete
+        if(!$this->beforeDelete($request,$id,$this->info,$this->errors))
+            return empty($this->errors);
+
         if($model = $this->getModelAccordingToParent($request,$id)) {
             if ($model->delete()) {
                 $this->info['deleted'] = $id;
@@ -163,6 +186,11 @@ trait HandlesCRUD
                 $this->errors['Delete']['Delete Failed'] = $id;
             }
         }
+
+        //Add hook after creating
+        if(!$this->afterDelete($request,$model,$this->info,$this->errors))
+            return empty($this->errors);
+
         return empty($this->errors);
     }
 
@@ -196,4 +224,34 @@ trait HandlesCRUD
         }
     }
 
+    //HOOKS
+    public function beforeCreate($request,$attributes){
+        //
+        return true;
+    }
+
+    public function afterCreate($request,$model){
+        //
+        return true;
+    }
+
+    public function beforeUpdate($request,$attributes){
+        //
+        return true;
+    }
+
+    public function afterUpdate($request,$model){
+        //
+        return true;
+    }
+
+    public function beforeDelete($request,$attributes){
+        //
+        return true;
+    }
+
+    public function afterDelete($request,$model){
+        //
+        return true;
+    }
 }

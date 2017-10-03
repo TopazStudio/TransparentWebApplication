@@ -61,6 +61,7 @@ Route::group(['prefix'=>'/company'],function (){
 });
 
 Route::group(['prefix'=>'/topic'],function (){
+    //topic
     Route::get('/getAll', [
         'uses' => 'Topic\TopicController@getAll',
     ]);
@@ -79,6 +80,27 @@ Route::group(['prefix'=>'/topic'],function (){
 
     Route::delete('/{id}', [
         'uses' => 'Topic\TopicController@delete',
+    ]);
+
+    //Comments
+    Route::get('/getAllComments', [
+        'uses' => 'Topic\CommentController@getAll',
+    ]);
+
+    Route::get('/getComment/{id}', [
+        'uses' => 'Topic\CommentController@get',
+    ]);
+
+    Route::post('/makeComment', [
+        'uses' => 'Topic\CommentController@add',
+    ]);
+
+    Route::put('/updateComment/{id}', [
+        'uses' => 'Topic\CommentController@update',
+    ]);
+
+    Route::delete('/deleteComment/{id}', [
+        'uses' => 'Topic\CommentController@delete',
     ]);
 });
 

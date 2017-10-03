@@ -20,7 +20,7 @@ class Review extends Model implements CRUDable
     public static function crudSettings()
     {
         return[
-            'hasPicture'=>true,
+            'hasPicture'=>false,
             'attributes' => [
                 'content',
                 'likes',

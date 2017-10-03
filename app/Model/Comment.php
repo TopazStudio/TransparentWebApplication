@@ -2,10 +2,40 @@
 
 namespace App\Model;
 
+use App\Util\CRUD\CRUDable;
 use Illuminate\Database\Eloquent\Model;
 
-class Comment extends Model
+class Comment extends Model implements CRUDable
 {
+
+    protected $fillable = [
+        'content',
+        'likes',
+        'dislikes',
+        'topicId',
+        'userId',
+    ];
+
+    //Company and User are loaded from frontend
+    public static function crudSettings()
+    {
+        return[
+            'hasPicture'=>false,
+            'attributes' => [
+                'content',
+                'likes',
+                'dislikes',
+
+            ],
+            'relationships' => [
+                'topicId'=> null,
+                'userId' => null,
+            ],
+            'parentRel' => [
+                'userId' => null
+            ]
+        ];
+    }
 
     //RELATIONSHIPS
 

@@ -2,10 +2,40 @@
 
 namespace App\Model;
 
+use App\Util\CRUD\CRUDable;
 use Illuminate\Database\Eloquent\Model;
 
-class Reply extends Model
+class Reply extends Model implements CRUDable
 {
+
+    //TODO:: add userId column
+    protected $fillable = [
+        'content',
+        'like',
+        'dislikes',
+        'commentId',
+        'userId'
+    ];
+
+    public static function crudSettings()
+    {
+        return[
+            'hasPicture'=>false,
+            'attributes' => [
+                'content',
+                'like',
+                'dislikes',
+            ],
+            'relationships' => [
+                'commentId' => null,
+                'userId'=> null
+            ],
+            'parentRel' => [
+                'userId' => null
+            ]
+        ];
+    }
+
     //RELATIONSHIPS
 
     //reply

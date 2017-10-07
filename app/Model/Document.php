@@ -2,10 +2,42 @@
 
 namespace App\Model;
 
+use App\Util\CRUD\CRUDable;
 use Illuminate\Database\Eloquent\Model;
 
-class Document extends Model
+class Document extends Model implements CRUDable
 {
+    protected $fillable = [
+        'location',
+        'name',
+        'description',
+        'type',
+        'size',
+        'companyId',
+        'userId'
+    ];
+
+    public static function crudSettings()
+    {
+        return[
+            'hasPicture'=>false,
+            'attributes' => [
+                'location',
+                'name',
+                'description',
+                'type',
+                'size',
+            ],
+            'relationships' => [
+                'companyId' => null,
+                'userId' => null
+            ],
+            'parentRel' => [
+                'userId' => null
+            ]
+        ];
+    }
+
     //RELATIONSHIPS
 
     //user

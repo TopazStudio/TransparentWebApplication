@@ -4,21 +4,19 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCompanyRelatedBlogsTable extends Migration
+class CreateTagsTable extends Migration
 {
     /**
      * Run the migrations.
-     *bl
+     *
      * @return void
      */
     public function up()
     {
-        Schema::create('company_related_blogs', function (Blueprint $table) {
+        Schema::create('tags', function (Blueprint $table) {
             $table->increments('id');
-
-            //relationship
-            $table->unsignedInteger('blogId');
-            $table->unsignedInteger('companyId');
+            $table->string('name')->unique();
+            $table->unsignedInteger('hits')->default(0);
 
             $table->timestamps();
         });
@@ -31,6 +29,6 @@ class CreateCompanyRelatedBlogsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('company_related_blogs');
+        Schema::dropIfExists('tags');
     }
 }

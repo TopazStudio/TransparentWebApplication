@@ -19,3 +19,4 @@ use Illuminate\Http\Request;
 \App\Util\CRUD\RouteUtils::dynamicAddRoutes('/company','Company\CompanyController');
 \App\Util\CRUD\RouteUtils::dynamicAddRoutes('/review','Company\ReviewController');
 \App\Util\CRUD\RouteUtils::dynamicAddRoutes('/reply','Topic\ReplyController');
+\App\Util\CRUD\RouteUtils::dynamicAddRoutes('/tag','TagController');

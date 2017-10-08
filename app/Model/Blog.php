@@ -51,4 +51,9 @@ class Blog extends Model implements CRUDable
     public function topic(){
         return $this->belongsTo('App\Model\Topic','topicId');
     }
+
+    //tags
+    public function tags(){
+        return $this->morphToMany('App\Model\Tag', 'taggable');
+    }
 }

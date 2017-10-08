@@ -16,9 +16,6 @@ class CreateReviewsTable extends Migration
         Schema::create('reviews', function (Blueprint $table) {
             $table->increments('id');
             $table->text('content');
-            $table->integer('likes');
-            $table->integer('dislikes');
-
 
             //relationships
             $table->unsignedInteger('companyId');

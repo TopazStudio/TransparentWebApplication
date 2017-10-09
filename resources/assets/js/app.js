@@ -1,10 +1,10 @@
 import Vue from 'vue';
 import router from './Router';
 import store from './Store';
+import ElementUI from 'element-ui';
 
-try {
-    window.$ = window.jQuery = require('jquery');
-} catch (e) {}
+//Jquery
+window.$ = window.jQuery = require('jquery');
 
 //Axios
 window.axios = require('axios');
@@ -19,10 +19,10 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 
 
-
 Vue.use(ElementUI);
 Vue.config.productionTip = false;
 new Vue({
     router,
     store,
+    template: `<router-view></router-view>`
 }).$mount('#app');

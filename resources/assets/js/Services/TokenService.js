@@ -1,4 +1,4 @@
-import Token from '../models/Token';
+// import Token from '../Models/Token';
 import Service from './Service';
 
 export default class TokenService extends Service{

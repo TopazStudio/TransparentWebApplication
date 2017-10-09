@@ -13,6 +13,8 @@ use Illuminate\Http\Request;
 |
 */
 
+Auth::routes();
+
 \App\Util\CRUD\RouteUtils::dynamicAddRoutes('/blog','Blog\BlogController');
 \App\Util\CRUD\RouteUtils::dynamicAddRoutes('/topic','Topic\TopicController');
 \App\Util\CRUD\RouteUtils::dynamicAddRoutes('/comment','Topic\CommentController');

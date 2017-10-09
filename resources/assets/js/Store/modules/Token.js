@@ -1,7 +1,3 @@
-import TokenService from './../../services/TokenService';
-
-let tokenService = new TokenService();
-
 const state = {
     Token: ''
 };
@@ -13,11 +9,14 @@ const mutations = {
 };
 
 const actions = {
-    async attemptLogin({commit},form){
-        commit({
-            type: 'SET_TOKEN',
-            token: await tokenService.login(form)
-        });
+    attemptLogin({commit},form){
+        axios.post('http://laradev.dev/api/user/signin',form)
+            .then((response)=>{
+                commit({
+                    type: 'SET_TOKEN',
+                    token: response.data.token
+                });
+            });
     },
 };
 

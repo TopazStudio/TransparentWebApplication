@@ -20,6 +20,7 @@ class TopicController extends Controller
         $this->CRUDService = $companyService;
 
         $this->addValidationRules = [
+            'name' => 'required|string|unique:topics',
             'description' => 'required|string|max:800',
             'likes'=>'nullable|integer',
             'dislikes'=>'nullable|integer',
@@ -27,6 +28,7 @@ class TopicController extends Controller
         ];
 
         $this->updateValidationRules = [
+            'name' => 'nullable|string|unique:topics',
             'description' => 'nullable|string|max:800',
             'likes'=>'nullable|integer',
             'dislikes'=>'nullable|integer',

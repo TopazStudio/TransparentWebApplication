@@ -16,16 +16,12 @@ class ReviewController extends Controller
 
         $this->addValidationRules = [
             'content' => 'required|string|max:8000',
-            'likes'=>'nullable|integer',
-            'dislikes'=>'nullable|integer',
             'userId'=>'required|integer',
             'companyId'=>'required|integer'
         ];
 
         $this->updateValidationRules = [
             'content' => 'nullable|string|max:8000',
-            'likes'=>'nullable|integer',
-            'dislikes'=>'nullable|integer',
             'userId'=>'nullable|integer',
             'companyId'=>'nullable|integer'
         ];

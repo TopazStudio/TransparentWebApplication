@@ -13,9 +13,12 @@ use Illuminate\Http\Request;
 |
 */
 
+Auth::routes();
+
 \App\Util\CRUD\RouteUtils::dynamicAddRoutes('/blog','Blog\BlogController');
 \App\Util\CRUD\RouteUtils::dynamicAddRoutes('/topic','Topic\TopicController');
 \App\Util\CRUD\RouteUtils::dynamicAddRoutes('/comment','Topic\CommentController');
 \App\Util\CRUD\RouteUtils::dynamicAddRoutes('/company','Company\CompanyController');
 \App\Util\CRUD\RouteUtils::dynamicAddRoutes('/review','Company\ReviewController');
 \App\Util\CRUD\RouteUtils::dynamicAddRoutes('/reply','Topic\ReplyController');
+\App\Util\CRUD\RouteUtils::dynamicAddRoutes('/tag','TagController');

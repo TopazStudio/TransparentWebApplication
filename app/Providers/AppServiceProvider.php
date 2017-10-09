@@ -20,6 +20,9 @@ class AppServiceProvider extends ServiceProvider
             'userPic' => 'App\Model\User',
             'companyPic' => 'App\Model\Shop',
             'documentPic' => 'App\Model\Food',
+
+            'topicTag' => 'App\Model\Topic',
+            'blogTag' => 'App\Model\Blog',
         ]);
     }
 

@@ -16,8 +16,8 @@ class CreateCommentsTable extends Migration
         Schema::create('comments', function (Blueprint $table) {
             $table->increments('id');
             $table->string('content');
-            $table->unsignedInteger('likes');
-            $table->unsignedInteger('dislikes');
+            $table->unsignedInteger('likes')->default(0);
+            $table->unsignedInteger('dislikes')->default(0);
 
             //relationships
             $table->unsignedInteger('topicId');

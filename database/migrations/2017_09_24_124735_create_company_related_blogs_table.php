@@ -17,8 +17,8 @@ class CreateCompanyRelatedBlogsTable extends Migration
             $table->increments('id');
 
             //relationship
-            $table->integer('blogId')->unsigned();
-            $table->integer('companyId')->unsigned();
+            $table->unsignedInteger('blogId');
+            $table->unsignedInteger('companyId');
 
             $table->timestamps();
         });

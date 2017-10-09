@@ -9,6 +9,7 @@ use App\Util\CRUD\CRUDable;
 class Topic extends Model implements CRUDable
 {
     protected $fillable = [
+        'name',
         'description',
         'likes',
         'dislikes',
@@ -21,6 +22,7 @@ class Topic extends Model implements CRUDable
         return[
             'hasPicture'=>false,
             'attributes' => [
+                'name',
                 'description',
                 'likes',
                 'dislikes',
@@ -60,5 +62,10 @@ class Topic extends Model implements CRUDable
     //blogs
     public function blogs(){
         return $this->hasMany('App\Model\Blog','topicId');
+    }
+
+    //tags
+    public function tags(){
+        return $this->morphToMany('App\Model\Tag', 'taggable');
     }
 }

@@ -15,10 +15,17 @@
         "jquery": "^3.1.1",
         "laravel-mix": "^1.0",
         "vue": "^2.1.10",
-	    "element-ui": "^1.4.6"
+        "element-ui": "^1.4.6"
     },
     "dependencies": {
         "camo": "^0.12.3",
-        "nedb": "^1.8.0"
+        "dns": "^0.2.2",
+        "fs": "0.0.1-security",
+        "nedb": "^1.8.0",
+        "net": "^1.0.2",
+        "node-sass": "^4.5.3",
+        "tls": "0.0.1",
+        "vue-router": "^2.7.0",
+        "vuex": "^2.4.1"
     }
 }

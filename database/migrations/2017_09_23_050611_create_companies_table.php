@@ -18,8 +18,10 @@ class CreateCompaniesTable extends Migration
             $table->string('name');
             $table->string('businessNo')->nullable();
             $table->string('description');
-            $table->string('latitude');
-            $table->string('longitude');
+            $table->double('latitude');
+            $table->double('longitude');
+
+            //TODO: more company details
 
 
             $table->timestamps();

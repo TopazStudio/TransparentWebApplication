@@ -10,8 +10,6 @@ class Review extends Model implements CRUDable
 
     protected $fillable = [
         'content',
-        'likes',
-        'dislikes',
         'userId',
         'companyId'
     ];
@@ -23,8 +21,6 @@ class Review extends Model implements CRUDable
             'hasPicture'=>false,
             'attributes' => [
                 'content',
-                'likes',
-                'dislikes',
             ],
             'relationships' => [
                 'userId' => null,

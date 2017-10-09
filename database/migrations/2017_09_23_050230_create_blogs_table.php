@@ -15,10 +15,11 @@ class CreateBlogsTable extends Migration
     {
         Schema::create('blogs', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('url');
+            $table->string('url',200);
 
-            $table->string('heading');
-            $table->string('content');
+            //TODO: put a word limit to heading and content
+            $table->string('heading',200);
+            $table->text('content');
 
             //relationships
             $table->unsignedInteger('topicId');

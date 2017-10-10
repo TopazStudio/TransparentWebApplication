@@ -168,6 +168,7 @@ return [
          * Package Service Providers...
          */
         willvincent\Feeds\FeedsServiceProvider::class,
+        Tymon\JWTAuth\Providers\JWTAuthServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -228,6 +229,8 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
 
         'Feeds' => willvincent\Feeds\Facades\FeedsFacade::class,
+        'JWTAuth' => Tymon\JWTAuth\Facades\JWTAuth::class,
+        'JWTFactory' => Tymon\JWTAuth\Facades\JWTFactory::class
     ],
 
 ];

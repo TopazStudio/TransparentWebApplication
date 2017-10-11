@@ -19,15 +19,16 @@ Route::group(['prefix'=>'/auth', 'middleware'=>['web']],function () {
         'uses' => 'Auth\LoginController@login',
     ]);
 
-    Route::post('/register', [
-        'uses' => 'Auth\RegisterController@register',
-    ]);
-
     Route::post('/logout', [
         'uses' => 'Auth\LoginController@logout',
     ]);
 
+    Route::post('/register', [
+        'uses' => 'Auth\RegisterController@add',
+    ]);
+
 });
+//\App\Util\CRUD\RouteUtils::dynamicAddRoutes('/user','Blog\BlogController',['auth.jwt']);
 \App\Util\CRUD\RouteUtils::dynamicAddRoutes('/blog','Blog\BlogController',['auth.jwt']);
 \App\Util\CRUD\RouteUtils::dynamicAddRoutes('/topic','Topic\TopicController',['auth.jwt']);
 \App\Util\CRUD\RouteUtils::dynamicAddRoutes('/comment','Topic\CommentController',['auth.jwt']);

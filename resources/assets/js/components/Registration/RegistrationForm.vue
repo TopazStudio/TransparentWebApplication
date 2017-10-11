@@ -3,7 +3,7 @@
         <div slot="header" class="clearfix">
             <span style="line-height: 36px;">REGISTRATION</span>
         </div>
-        <el-form ref="registerForm1" :model="form" :rules="rules">
+        <el-form ref="registerForm" :model="form" :rules="rules">
             <div class="register-content">
                 <div id="reg-part1">
                     <el-form-item class="input-field col s12" prop="name">
@@ -20,7 +20,7 @@
                     </el-form-item>
                     <div class="register-footer">
                         <el-button :plain="true" type="danger" @click="cancel">CANCEL</el-button>
-                        <el-button :plain="true" type="success"  @click="goForward" icon="d-arrow-right">NEXT</el-button>
+                        <el-button type="info"  @click="register" icon="d-arrow-right">NEXT</el-button>
                     </div>
                 </div>
                 <div class="reg-part2" v-if="part2">
@@ -51,7 +51,7 @@
                     password: '',
                     password_confirmation: '',
                     role: 'normal',
-                    image: ''
+                    image: null
                 },
                 part2: false,
                 rules:{
@@ -66,7 +66,11 @@
                     ],
                     password_confirmation:[
                         { required: true, message: 'Please repeat the password', trigger: 'blur' }
+                    ],
+                    image:[
+                        { required: false }
                     ]
+
                 }
             }
         },
@@ -78,7 +82,7 @@
                 this.$loading({
                     target: this.$refs.registerCard.$el,
                     lock: true,
-                    text: "Logging In...",
+                    text: "Please Wait...",
                     customClass: "preLoader"
                 });
             },
@@ -102,7 +106,7 @@
                                 this.stopLoading();
                                 this.$notify.error({
                                     title: 'AN ERROR OCCURED',
-                                    message: error.toString(),
+                                    message: error.response.data.message,
                                     duration: 0
                                 });
                             });
@@ -153,6 +157,7 @@
             .register-footer {
                 border-bottom-color: darkgrey;
                 border-top-width: 1px;
+                text-align: right;
             }
         }
     }

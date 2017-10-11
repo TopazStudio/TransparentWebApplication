@@ -36,13 +36,13 @@ class User extends Authenticatable implements CRUDable
         return[
             'hasPicture'=>true,
             'attributes' => [
-                'Name',
-                'Type'
+                'name',
+                'email',
+                'password',
+                'role'
             ],
-            'relationships' => [
-                'restaurantId' => (\Redis::hgetall(SessionUtil::getRedisSession() . ':user:restaurant'))['id']
-            ],
-            'parentRel' => ['restaurantId' => (\Redis::hgetall(SessionUtil::getRedisSession() . ':user:restaurant'))['id']]
+            'relationships' => [],
+            'parentRel' => []
         ];
     }
 

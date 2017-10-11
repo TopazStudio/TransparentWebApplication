@@ -3,12 +3,16 @@
         <el-menu-item index="1" class="brand">
             TRANSPARENT
         </el-menu-item>
-        <el-menu-item v-if="!authenticated" index="2">Login</el-menu-item>
-        <el-menu-item v-if="!authenticated" index="3" @click="normalRegistration">Register</el-menu-item>
+        <div class="right-nav">
+            <el-menu-item v-if="!Authenticated" index="2">Login</el-menu-item>
+            <el-menu-item v-if="!Authenticated" index="3" @click="normalRegistration">Register</el-menu-item>
+            <el-menu-item v-else-if="Authenticated" index="3" @click="normalRegistration">LOGOUT</el-menu-item>
+        </div>
     </el-menu>
 </template>
 <script>
     import { mapState } from 'vuex';
+    import { mapActions } from 'vuex';
 
     export default {
         data(){
@@ -18,10 +22,13 @@
         },
         computed:{
             ...mapState('Auth',[
-                'authenticated',
+                'Authenticated',
             ])
         },
         methods: {
+            ...mapActions('Auth',[
+                'logout',
+            ]),
             normalRegistration(){
                 this.$router.replace({path: '/register/user'});
             }
@@ -34,6 +41,10 @@
 
     .app-toolbar{
         height: $app-toolbar-height !important;
+        .right-nav{
+            text-align: right;
+        }
     }
+
 
 </style>

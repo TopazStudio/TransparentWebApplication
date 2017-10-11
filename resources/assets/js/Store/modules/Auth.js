@@ -1,7 +1,7 @@
 const state = {
     Token: '',
     User: '',
-    Authenticated: false
+    Authenticated: ''
 };
 
 const mutations = {
@@ -12,28 +12,33 @@ const mutations = {
     },
     SET_AUTHENTICATED({Authenticated},{status}){
         Authenticated = status;
+    },
+    LOGOUT(state){
+        state.Authenticated = false;
+        state.User = null;
+        state.Token = null;
     }
 };
 
 const actions = {
-    attemptLogin({commit},form){
-        axios.post('http://laravel.dev/api/auth/login',form)
-            .then((response)=>{
-                commit({
-                    type: 'SET_AUTH',
-                    info: response.data.info
-                });
-                commit({
-                    type: 'SET_AUTHENTICATED',
-                    status: true
-                });
-            });
+    async attemptLogin({commit},form){
+        console.log(form);
+        let response = await axios.post('http://laravel.dev/api/auth/login',form);
+        commit({
+            type: 'SET_AUTH',
+            info: response.data.info
+        });
+        commit({
+            type: 'SET_AUTHENTICATED',
+            status: true
+        });
     },
-    attemptRegistry(state,form){
-        axios.post('http://laravel.dev/api/auth/register',form)
-            .then((response)=>{
-                this.attemptLogin(state,form);
-            });
+    async attemptRegistry({state,dispatch},form){
+        await axios.post('http://laravel.dev/api/auth/register',form);
+        await dispatch('attemptLogin',form)
+    },
+    logout({commit}){
+        commit('LOGOUT');
     }
 };
 

@@ -29,7 +29,7 @@ const actions = {
                 });
             });
     },
-    register(state,form){
+    attemptRegistry(state,form){
         axios.post('http://laravel.dev/api/auth/register',form)
             .then((response)=>{
                 this.attemptLogin(state,form);

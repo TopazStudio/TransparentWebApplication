@@ -14,6 +14,15 @@ let mix = require('laravel-mix');
 mix.js('resources/assets/js/app.js', 'public/js')
     .sass('resources/assets/sass/app.scss', 'public/css')
     // .copyDirectory('node-modules/element-ui/lib/theme-default/fonts', 'public/fonts')
+    .webpackConfig({
+        resolve: {
+            alias: {
+                'sass': path.resolve(__dirname, './resources/assets/sass'),
+                '@': path.resolve(__dirname, './resources/assets/js'),
+            }
+        }
+
+    })
     .options({
         processCssUrls: false
     });

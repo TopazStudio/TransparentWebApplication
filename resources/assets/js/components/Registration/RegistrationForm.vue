@@ -3,23 +3,37 @@
         <div slot="header" class="clearfix">
             <span style="line-height: 36px;">REGISTRATION</span>
         </div>
-        <el-form ref="registerForm" :model="form" :rules="rules">
+        <el-form ref="registerForm1" :model="form" :rules="rules">
             <div class="register-content">
-                <el-form-item class="input-field col s12" prop="name">
-                    <el-input type="email" placeholder="Email" v-model="form.authNo" auto-complete="off"></el-input>
-                </el-form-item>
-                <el-form-item class="input-field col s12" prop="email">
-                    <el-input type="password" placeholder="Password" v-model="form.password" auto-complete="off"></el-input>
-                </el-form-item>
-                <el-form-item class="input-field col s12" prop="password">
-                    <el-input type="password" placeholder="Password" v-model="form.password" auto-complete="off"></el-input>
-                </el-form-item>
-                <el-form-item class="input-field col s12" prop="password_confirmation">
-                    <el-input type="password" placeholder="Password" v-model="form.password" auto-complete="off"></el-input>
-                </el-form-item>
-                <div class="register-footer">
-                    <el-button :plain="true" type="danger" @click="cancel">CANCEL</el-button>
-                    <el-button :plain="true" type="success"  @click="nextCard" icon="d-arrow-right">NEXT</el-button>
+                <div id="reg-part1">
+                    <el-form-item class="input-field col s12" prop="name">
+                        <el-input type="text" placeholder="Full name" v-model="form.name" auto-complete="off"></el-input>
+                    </el-form-item>
+                    <el-form-item class="input-field col s12" prop="email">
+                        <el-input type="email" placeholder="Email" v-model="form.email" auto-complete="off"></el-input>
+                    </el-form-item>
+                    <el-form-item class="input-field col s12" prop="password">
+                        <el-input type="password" placeholder="Password" v-model="form.password" auto-complete="off"></el-input>
+                    </el-form-item>
+                    <el-form-item class="input-field col s12" prop="password_confirmation">
+                        <el-input type="password" placeholder="Retype Password" v-model="form.password_confirmation" auto-complete="off"></el-input>
+                    </el-form-item>
+                    <div class="register-footer">
+                        <el-button :plain="true" type="danger" @click="cancel">CANCEL</el-button>
+                        <el-button :plain="true" type="success"  @click="goForward" icon="d-arrow-right">NEXT</el-button>
+                    </div>
+                </div>
+                <div class="reg-part2" v-if="part2">
+                    <div class="photo-view">
+                        <!--TODO: Upload and show preview of photo-->
+                    </div>
+                    <el-form-item class="input-field col s12" prop="image">
+                        <el-input type="file" placeholder="Your photo" v-model="form.image" auto-complete="off"></el-input>
+                    </el-form-item>
+                    <div class="register-footer">
+                        <el-button :plain="true" type="danger" @click="goBack">BACK</el-button>
+                        <el-button :plain="true" type="success"  @click="register">SIGN UP</el-button>
+                    </div>
                 </div>
             </div>
         </el-form>
@@ -37,7 +51,9 @@
                     password: '',
                     password_confirmation: '',
                     role: 'normal',
+                    image: ''
                 },
+                part2: false,
                 rules:{
                     name:[
                         { required: true, message: 'Please input your name', trigger: 'blur' },
@@ -56,11 +72,11 @@
         },
         methods:{
             ...mapActions('Auth',[
-                'register',
+                'attemptRegistry',
             ]),
             startLoading(){
                 this.$loading({
-                    target: this.$refs.loginCard.$el,
+                    target: this.$refs.registerCard.$el,
                     lock: true,
                     text: "Logging In...",
                     customClass: "preLoader"
@@ -69,11 +85,14 @@
             stopLoading(){
                 $('.preLoader').remove();
             },
+            goForward(){
+                //TODO: slide reg-part2 in
+            },
             register(){
                 this.startLoading();
                 this.validateForm()
                     .then(()=>{
-                        this.register(this.form)
+                        this.attemptRegistry(this.form)
                             .then(()=>{
                                 this.stopLoading();
                                 this.push({ path: 'landing-page' });
@@ -95,13 +114,16 @@
             },
             validateForm(){
                 return new Promise((resolve,reject) =>{
-                    this.$refs['loginForm'].validate((valid) => {
+                    this.$refs['registerForm'].validate((valid) => {
                         if (valid) resolve(); else reject();
                     })
                 })
             },
             cancel(){
-                this.$refs['loginForm'].resetFields();
+                this.$refs['registerForm'].resetFields();
+            },
+            goBack(){
+                //TODO: slide reg-part1 in
             },
             push(location){
                 this.$router.replace(location);
@@ -113,7 +135,7 @@
     .registerCard{
         position:relative;
         width: 400px;
-        height: 300px;
+        height: 400px;
         border-bottom-color: darkgrey;
         border-width: 1px;
         border-radius: 4px;

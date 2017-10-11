@@ -12,17 +12,17 @@ export default new Router({
       {
           path: '/',
           name: 'landing-page',
-          component: require('../components/LandingPage.vue')
+          component: require('@/components/LandingPage.vue')
       },
       {
           path: '/register/company',
           name: 'company-registeration',
-          component: require('../components/Registration.vue')
+          component: require('@/components/Registration.vue')
       },
       {
           path: '/register/user',
           name: 'normal-registeration',
-          component: require('../components/Registration.vue')
+          component: require('@/components/Registration.vue')
       }
   ]
 })

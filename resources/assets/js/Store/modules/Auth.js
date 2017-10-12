@@ -10,8 +10,8 @@ const mutations = {
         state.User = info.user;
 
     },
-    SET_AUTHENTICATED({Authenticated},{status}){
-        Authenticated = status;
+    SET_AUTHENTICATED(state,{status}){
+        state.Authenticated = status;
     },
     LOGOUT(state){
         state.Authenticated = false;

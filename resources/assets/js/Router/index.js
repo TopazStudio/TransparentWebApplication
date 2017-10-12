@@ -16,12 +16,12 @@ export default new Router({
       },
       {
           path: '/register/company',
-          name: 'company-registeration',
+          name: 'company-registration',
           component: require('@/components/Registration.vue')
       },
       {
           path: '/register/user',
-          name: 'normal-registeration',
+          name: 'normal-registration',
           component: require('@/components/Registration.vue')
       }
   ]

@@ -143,7 +143,6 @@
         border-bottom-color: darkgrey;
         border-width: 1px;
         border-radius: 4px;
-        opacity: 0.8;
         .clearfix:before,
         .clearfix:after {
             display: table;

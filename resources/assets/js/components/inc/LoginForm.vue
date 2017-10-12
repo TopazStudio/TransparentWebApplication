@@ -1,12 +1,9 @@
 <template>
-    <el-card class="loginCard" ref="loginCard">
-        <div slot="header" class="clearfix">
-            <span style="line-height: 36px;">LOGIN</span>
-        </div>
+    <div class="loginCard" ref="loginCard">
         <el-form ref="loginForm" :model="form" :rules="rules">
             <div class="login-content">
                 <el-form-item class="input-field col s12" prop="email">
-                    <el-input type="email" placeholder="Email" v-model="form.authNo" auto-complete="off"></el-input>
+                    <el-input type="email" placeholder="Email" v-model="form.email" auto-complete="off"></el-input>
                 </el-form-item>
                 <el-form-item class="input-field col s12" prop="password">
                     <el-input type="password" placeholder="Password" v-model="form.password" auto-complete="off"></el-input>
@@ -17,7 +14,7 @@
                 </div>
             </div>
         </el-form>
-    </el-card>
+    </div>
 </template>
 <script>
     import { mapActions } from 'vuex';
@@ -30,7 +27,7 @@
                     password: '',
                 },
                 rules:{
-                    authNo:[
+                    email:[
                         { required: true, message: 'Please input your email', trigger: 'blur' },
                     ],
                     password:[
@@ -61,7 +58,7 @@
                         this.attemptLogin(this.form)
                             .then(()=>{
                                 this.stopLoading();
-                                this.push({ path: 'shop-management' });
+                                this.push({ path: 'landing-page' });
                             })
                             .catch((error)=>{
                                 this.cancel();
@@ -98,24 +95,12 @@
     .loginCard{
         position:relative;
         width: 400px;
-        height: 300px;
-        border-bottom-color: darkgrey;
-        border-width: 1px;
-        border-radius: 4px;
-        opacity: 0.8;
-        .clearfix:before,
-        .clearfix:after {
-            display: table;
-            content: "";
-        }
-        .clearfix:after {
-            clear: both
-        }
         .login-content {
             padding: 10px;
             .login-footer {
-                border-bottom-color: darkgrey;
-                border-top-width: 1px;
+                text-align: center;
+                padding-left: 20px;
+                padding-right: 20px;
             }
         }
     }

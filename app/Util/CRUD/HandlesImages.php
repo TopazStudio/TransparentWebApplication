@@ -22,8 +22,10 @@ trait HandlesImages
 
         $request->file($this->picType)->storeAs($this->picPath,$fileNameToStore);
 
+        $path = $this->picPath . '/' . $fileNameToStore;
+
         Picture::create([
-            'location' => $fileNameToStore,
+            'location' => $path,
             'picturable_id' => $id,
             'picturable_type' => $this->picType
         ]);
@@ -31,7 +33,7 @@ trait HandlesImages
 
     public function defaultImage($id){
         Picture::create([
-            'location' => 'placeHolder.jpg',
+            'location' => $this->picPath .'/'. 'placeHolder.jpg',
             'picturable_id' => $id,
             'picturable_type' => $this->picType
         ]);

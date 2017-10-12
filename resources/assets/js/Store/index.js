@@ -3,6 +3,7 @@ import Vuex from 'vuex';
 import VuexPersist from 'vuex-persist';
 import * as Cookies from 'js-cookie';
 import modules from './modules';
+
 Vue.use(Vuex);
 
 /**

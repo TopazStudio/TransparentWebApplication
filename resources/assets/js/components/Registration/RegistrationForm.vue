@@ -5,36 +5,48 @@
         </div>
         <el-form ref="registerForm" :model="form" :rules="rules">
             <div class="register-content">
-                <div id="reg-part1">
-                    <el-form-item class="input-field col s12" prop="name">
-                        <el-input type="text" placeholder="Full name" v-model="form.name" auto-complete="off"></el-input>
-                    </el-form-item>
-                    <el-form-item class="input-field col s12" prop="email">
-                        <el-input type="email" placeholder="Email" v-model="form.email" auto-complete="off"></el-input>
-                    </el-form-item>
-                    <el-form-item class="input-field col s12" prop="password">
-                        <el-input type="password" placeholder="Password" v-model="form.password" auto-complete="off"></el-input>
-                    </el-form-item>
-                    <el-form-item class="input-field col s12" prop="password_confirmation">
-                        <el-input type="password" placeholder="Retype Password" v-model="form.password_confirmation" auto-complete="off"></el-input>
-                    </el-form-item>
-                    <div class="register-footer">
-                        <el-button :plain="true" type="danger" @click="cancel">CANCEL</el-button>
-                        <el-button type="info"  @click="register" icon="d-arrow-right">NEXT</el-button>
+                <transition
+                        v-on:enter="twoPartSlideRight"
+                        v-on:leave="twoPartSlideLeft">
+                    <div v-if="!part2" index="1">
+                        <el-form-item class="input-field col s12" prop="name">
+                            <el-input type="text" placeholder="Full name" v-model="form.name" auto-complete="off"></el-input>
+                        </el-form-item>
+                        <el-form-item class="input-field col s12" prop="email">
+                            <el-input type="email" placeholder="Email" v-model="form.email" auto-complete="off"></el-input>
+                        </el-form-item>
+                        <el-form-item class="input-field col s12" prop="password">
+                            <el-input type="password" placeholder="Password" v-model="form.password" auto-complete="off"></el-input>
+                        </el-form-item>
+                        <el-form-item class="input-field col s12" prop="password_confirmation">
+                            <el-input type="password" placeholder="Retype Password" v-model="form.password_confirmation" auto-complete="off"></el-input>
+                        </el-form-item>
+                        <div class="register-footer" style="text-align: right">
+                            <el-button :plain="true" type="danger" @click="cancel">CANCEL</el-button>
+                            <el-button type="info"  @click="goForward" icon="d-arrow-right">NEXT</el-button>
+                        </div>
                     </div>
-                </div>
-                <div class="reg-part2" v-if="part2">
-                    <div class="photo-view">
-                        <!--TODO: Upload and show preview of photo-->
+                </transition>
+                <transition
+                        v-on:enter="twoPartSlideLeft"
+                        v-on:leave="twoPartSlideRight">
+                    <div v-if="part2" index="2" style="text-align: center">
+                        <el-upload
+                                class="avatar-uploader"
+                                :action="actionUrl"
+                                :show-file-list="false"
+                                :on-success="handleAvatarSuccess"
+                                :before-upload="beforeAvatarUpload">
+                            <img v-if="tempImageUrl" :src="tempImageUrl" class="avatar">
+                            <i class="el-icon-plus avatar-uploader-icon" v-else></i>
+                        </el-upload>
+                        <div class="register-footer" style="text-align: left">
+                            <el-button type="danger" @click="goBack" icon="d-arrow-left">BACK</el-button>
+                            <el-button :plain="true" type="success"  @click="register">FINISH</el-button>
+                        </div>
+
                     </div>
-                    <el-form-item class="input-field col s12" prop="image">
-                        <el-input type="file" placeholder="Your photo" v-model="form.image" auto-complete="off"></el-input>
-                    </el-form-item>
-                    <div class="register-footer">
-                        <el-button :plain="true" type="danger" @click="goBack">BACK</el-button>
-                        <el-button :plain="true" type="success"  @click="register">SIGN UP</el-button>
-                    </div>
-                </div>
+                </transition>
             </div>
         </el-form>
     </el-card>
@@ -43,6 +55,9 @@
     import { mapActions } from 'vuex';
 
     export default{
+        created(){
+            this.actionUrl = 'https://laravel.dev/api/user/avatar';
+        },
         data(){
             return{
                 form:{
@@ -53,7 +68,6 @@
                     role: 'normal',
                     image: null
                 },
-                part2: false,
                 rules:{
                     name:[
                         { required: true, message: 'Please input your name', trigger: 'blur' },
@@ -71,7 +85,10 @@
                         { required: false }
                     ]
 
-                }
+                },
+                part2: false,
+                tempImageUrl: '',
+                actionUrl: ''
             }
         },
         methods:{
@@ -89,9 +106,37 @@
             stopLoading(){
                 $('.preLoader').remove();
             },
-            goForward(){
-                //TODO: slide reg-part2 in
+
+            //Uploading Avatar
+            handleAvatarSuccess(res, file) {
+                //store the temp location
+                this.form.image = res.data.info.location;
+
+                //store the temp url
+                this.tempImageUrl = URL.createObjectURL(file.raw);
             },
+            beforeAvatarUpload(file) {
+                const isJPG = file.type === 'image/jpeg';
+                const isLt2M = file.size / 1024 / 1024 < 2;
+
+                if (!isJPG) {
+                    this.$message.error('Avatar picture must be JPG format!');
+                }
+                if (!isLt2M) {
+                    this.$message.error('Avatar picture size can not exceed 2MB!');
+                }
+                return isJPG && isLt2M;
+            },
+
+            //Navigation
+            goForward(){
+                this.part2 = true;
+            },
+            goBack(){
+                this.part2 = false;
+            },
+
+            //Form
             register(){
                 this.startLoading();
                 this.validateForm()
@@ -126,9 +171,6 @@
             cancel(){
                 this.$refs['registerForm'].resetFields();
             },
-            goBack(){
-                //TODO: slide reg-part1 in
-            },
             push(location){
                 this.$router.replace(location);
             }
@@ -153,12 +195,32 @@
         }
         .register-content {
             padding: 10px;
-            .register-footer {
-                border-bottom-color: darkgrey;
-                border-top-width: 1px;
-                text-align: right;
-            }
         }
+    }
+
+    .avatar-uploader .el-upload {
+        border: 1px dashed #000000;
+        border-radius: 6px;
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+        margin: 20px;
+    }
+    .avatar-uploader .el-upload:hover {
+        border-color: #20a0ff;
+    }
+    .avatar-uploader-icon {
+        font-size: 28px;
+        color: #8c939d;
+        width: 200px;
+        height: 200px;
+        line-height: 200px;
+        text-align: center;
+    }
+    .avatar {
+        width: 200px;
+        height: 200px;
+        display: block;
     }
 
 </style>

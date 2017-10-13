@@ -37,12 +37,10 @@
                                 action="http://laravel.dev/api/temp/image"
                                 :headers="headers"
                                 :show-file-list="false"
-                                :on-remove="handleRemove"
-                                :on-preview="handlePreview"
                                 :on-success="handleSuccess"
                                 :before-upload="beforeUpload">
                             <img v-if="tempImageUrl" :src="tempImageUrl" class="avatar">
-                            <i class="el-icon-plus avatar-uploader-icon" v-else></i>
+                            <i ref="avatar-uploader-icon" class="el-icon-plus avatar-uploader-icon" v-else></i>
                             <div slot="tip" class="el-upload__tip">jpg/png files with a size less than 2mb</div>
                         </el-upload>
                         <div class="register-footer" style="text-align: left">
@@ -100,19 +98,7 @@
             ...mapActions('Auth',[
                 'attemptRegistry',
             ]),
-            startLoading(){
-                this.$loading({
-                    target: this.$refs.registerCard.$el,
-                    lock: true,
-                    text: "Please Wait...",
-                    customClass: "preLoader"
-                });
-            },
-            stopLoading(){
-                $('.preLoader').remove();
-            },
 
-            //Uploading Avatar
             /**
              * Store temp image so as to display in the preview while storing
              * the location in the form module which will be used to correctly
@@ -123,11 +109,14 @@
              * */
             handleSuccess(res, file) {
 
+                this.stopLoading();
+
                 //store the temp location
                 this.form.image = res.info.location;
 
                 //store the temp url
                 this.tempImageUrl = URL.createObjectURL(file.raw);
+
             },
 
             /**
@@ -136,6 +125,8 @@
              * @param file - file object being uploaded.
              * */
             beforeUpload(file) {
+                this.startLoading(this.$refs['avatar-uploader-icon'].$el);
+
                 const isJPG = file.type === 'image/jpeg' || file.type === 'image/png';
                 const isLt2M = file.size / 1024 / 1024 < 2;
 
@@ -147,35 +138,24 @@
                 }
                 return isJPG && isLt2M;
             },
-            handlePreview(){
 
-            },
             /**
-             * Remove temp image from preview and also on server
+             * Validate and send registration request. If valid return to
+             * landing page
              * */
-            handleRemove(){
-                this.tempImageUrl = '';
-                //
-            },
-
-            //Form
             register(){
-                this.startLoading();
-                this.validateForm()
+                this.startLoading(this.$refs.registerCard.$el);
+                this.validateForm(this.$refs.registerForm)
                     .then(()=>{
                         this.attemptRegistry(this.form)
                             .then(()=>{
                                 this.stopLoading();
-                                this.push({ path: 'landing-page' });
+                                this.$router.replace({ path: 'landing-page' });
                             })
                             .catch((error)=>{
                                 this.cancel();
                                 this.stopLoading();
-                                this.$notify.error({
-                                    title: 'AN ERROR OCCURED',
-                                    message: error.response.data.message,
-                                    duration: 0
-                                });
+                                this.notifyError(error);
                             });
                     })
                     .catch(()=>{
@@ -183,19 +163,9 @@
                         this.$message.error('Please enter valid input');
                     });
             },
-            validateForm(){
-                return new Promise((resolve,reject) =>{
-                    this.$refs['registerForm'].validate((valid) => {
-                        if (valid) resolve(); else reject();
-                    })
-                })
-            },
             cancel(){
                 this.$refs['registerForm'].resetFields();
             },
-            push(location){
-                this.$router.replace(location);
-            }
         }
     }
 </script>

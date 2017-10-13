@@ -18859,6 +18859,8 @@ exports.default = {
         getImage: function getImage(src) {
             if (src === undefined) {
                 src = 'userPics/placeholder.png';
+            } else if (src.location) {
+                src = src.location;
             }
 
             return 'http://laravel.dev/storage/' + src;
@@ -20276,7 +20278,7 @@ var render = function() {
                         _c("img", {
                           staticClass: "nav-avatar",
                           attrs: {
-                            src: _vm.getImage(_vm.User.pictures[0].location),
+                            src: _vm.getImage(_vm.User.pictures[0]),
                             alt: "avatar"
                           }
                         }),
@@ -20532,10 +20534,6 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _promise = __webpack_require__(33);
-
-var _promise2 = _interopRequireDefault(_promise);
-
 var _extends2 = __webpack_require__(26);
 
 var _extends3 = _interopRequireDefault(_extends2);
@@ -20573,23 +20571,17 @@ exports.default = {
     },
 
     methods: (0, _extends3.default)({}, (0, _vuex.mapActions)('Auth', ['attemptRegistry']), {
-        startLoading: function startLoading() {
-            this.$loading({
-                target: this.$refs.registerCard.$el,
-                lock: true,
-                text: "Please Wait...",
-                customClass: "preLoader"
-            });
-        },
-        stopLoading: function stopLoading() {
-            $('.preLoader').remove();
-        },
         handleSuccess: function handleSuccess(res, file) {
+
+            this.stopLoading();
+
             this.form.image = res.info.location;
 
             this.tempImageUrl = URL.createObjectURL(file.raw);
         },
         beforeUpload: function beforeUpload(file) {
+            this.startLoading(this.$refs['avatar-uploader-icon'].$el);
+
             var isJPG = file.type === 'image/jpeg' || file.type === 'image/png';
             var isLt2M = file.size / 1024 / 1024 < 2;
 
@@ -20601,46 +20593,26 @@ exports.default = {
             }
             return isJPG && isLt2M;
         },
-        handlePreview: function handlePreview() {},
-        handleRemove: function handleRemove() {
-            this.tempImageUrl = '';
-        },
         register: function register() {
             var _this = this;
 
-            this.startLoading();
-            this.validateForm().then(function () {
+            this.startLoading(this.$refs.registerCard.$el);
+            this.validateForm(this.$refs.registerForm).then(function () {
                 _this.attemptRegistry(_this.form).then(function () {
                     _this.stopLoading();
-                    _this.push({ path: 'landing-page' });
+                    _this.$router.replace({ path: 'landing-page' });
                 }).catch(function (error) {
                     _this.cancel();
                     _this.stopLoading();
-                    _this.$notify.error({
-                        title: 'AN ERROR OCCURED',
-                        message: error.response.data.message,
-                        duration: 0
-                    });
+                    _this.notifyError(error);
                 });
             }).catch(function () {
                 _this.stopLoading();
                 _this.$message.error('Please enter valid input');
             });
         },
-        validateForm: function validateForm() {
-            var _this2 = this;
-
-            return new _promise2.default(function (resolve, reject) {
-                _this2.$refs['registerForm'].validate(function (valid) {
-                    if (valid) resolve();else reject();
-                });
-            });
-        },
         cancel: function cancel() {
             this.$refs['registerForm'].resetFields();
-        },
-        push: function push(location) {
-            this.$router.replace(location);
         }
     })
 };
@@ -20856,8 +20828,6 @@ var render = function() {
                                 action: "http://laravel.dev/api/temp/image",
                                 headers: _vm.headers,
                                 "show-file-list": false,
-                                "on-remove": _vm.handleRemove,
-                                "on-preview": _vm.handlePreview,
                                 "on-success": _vm.handleSuccess,
                                 "before-upload": _vm.beforeUpload
                               }
@@ -20869,6 +20839,7 @@ var render = function() {
                                     attrs: { src: _vm.tempImageUrl }
                                   })
                                 : _c("i", {
+                                    ref: "avatar-uploader-icon",
                                     staticClass:
                                       "el-icon-plus avatar-uploader-icon"
                                   }),
@@ -58447,6 +58418,10 @@ function isDef(val) {
 "use strict";
 
 
+var _promise = __webpack_require__(33);
+
+var _promise2 = _interopRequireDefault(_promise);
+
 var _TweenMax = __webpack_require__(193);
 
 var _vue = __webpack_require__(2);
@@ -58651,6 +58626,39 @@ _vue2.default.mixin({
                 scale: 0,
                 ease: Power4.easeOut,
                 onComplete: done
+            });
+        },
+        notifyError: function notifyError(error, excuse) {
+            if (error.response) {
+                this.$notify.error({
+                    title: 'AN ERROR OCCURED',
+                    message: error.response.data.message,
+                    duration: 0
+                });
+            } else {
+                this.$notify.error({
+                    title: 'AN ERROR OCCURED',
+                    message: excuse,
+                    duration: 0
+                });
+            }
+        },
+        startLoading: function startLoading(target) {
+            this.$loading({
+                target: target,
+                lock: true,
+                text: "Please Wait...",
+                customClass: "preLoader"
+            });
+        },
+        stopLoading: function stopLoading() {
+            $('.preLoader').remove();
+        },
+        validateForm: function validateForm(target) {
+            return new _promise2.default(function (resolve, reject) {
+                target.validate(function (valid) {
+                    if (valid) resolve();else reject();
+                });
             });
         }
     }

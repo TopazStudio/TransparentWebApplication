@@ -24,7 +24,7 @@
             <el-menu-item v-else index="4">
                 <el-dropdown trigger="click" :hide-on-click="true" @command="handleCommand">
                     <div class="el-dropdown-link">
-                        <img :src="getImage(User.image)" alt="avatar" class="nav-avatar">
+                        <img :src="getImage(User.pictures[0].location)" alt="avatar" class="nav-avatar">
                         {{User.name}}
                         <i class="el-icon-caret-bottom el-icon--right"></i>
                     </div>
@@ -70,6 +70,7 @@
                 if (src === undefined){
                     src = 'userPics/placeholder.png';
                 }
+
                 return 'http://laravel.dev/storage/' + src;
             }
 
@@ -94,8 +95,8 @@
         .nav-avatar{
             position: relative;
             border-radius: 50px;
-            height: 50px;
-            width: 50px;
+            height: 40px;
+            width: 40px;
         }
     }
 

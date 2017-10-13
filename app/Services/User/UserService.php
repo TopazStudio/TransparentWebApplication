@@ -19,6 +19,16 @@ class UserService implements CRUDService
 {
     use HandlesCRUD;
 
+    /**
+     * Initialize pic-path and pic-type
+     */
+    public function __construct(){
+
+        $this->picType = 'userPic';
+
+        $this->picPath = 'userPics';
+    }
+
     public function getModelType()
     {
         return 'App\Model\User';
@@ -37,11 +47,6 @@ class UserService implements CRUDService
             $this->resolveRelations($request)
         );
 
-        //Add hook before creating
-        if(!$this->beforeCreate($request,$attributes))
-            return empty($this->errors);
-
-        //TODO: add custom adding of attributes
         $model = call_user_func([$this->getModelType(),'create'],[
             'name' => $attributes['name'],
             'email' => $attributes['email'],
@@ -57,16 +62,12 @@ class UserService implements CRUDService
 
         //Handle images
         if ($this->fromSettings('hasPicture')){
-            if($request->hasFile('image')){
-                $this->handleImage($request,$model->id);
+            if($request->has('image')){
+                $this->saveImageFromTemp($request,$model->id);
             } else {
                 $this->defaultImage($model->id);
             }
         }
-
-        //Add hook after creating
-        if(!$this->afterCreate($request,$model))
-            return empty($this->errors);
 
         return empty($this->errors);
     }

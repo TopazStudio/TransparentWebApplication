@@ -54,6 +54,6 @@ class LoginController extends Controller
      */
     protected function authenticated(Request $request, $user)
     {
-        return $this->successResponse(['token'=>$this->token,'user'=>$user]);
+        return $this->successResponse(['token'=>$this->token,'user'=>$user->load('pictures')]);
     }
 }

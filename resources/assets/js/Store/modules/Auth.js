@@ -22,7 +22,6 @@ const mutations = {
 
 const actions = {
     async attemptLogin({commit},form){
-        console.log(form);
         let response = await axios.post('http://laravel.dev/api/auth/login',form);
         commit({
             type: 'SET_AUTH',

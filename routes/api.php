@@ -28,6 +28,10 @@ Route::group(['prefix'=>'/auth', 'middleware'=>['web']],function () {
     ]);
 
 });
+
+Route::post('/temp/image',[
+    'uses' => 'TempController@storeTempPic',
+]);
 //\App\Util\CRUD\RouteUtils::dynamicAddRoutes('/user','Blog\BlogController',['auth.jwt']);
 \App\Util\CRUD\RouteUtils::dynamicAddRoutes('/blog','Blog\BlogController',['auth.jwt']);
 \App\Util\CRUD\RouteUtils::dynamicAddRoutes('/topic','Topic\TopicController',['auth.jwt']);

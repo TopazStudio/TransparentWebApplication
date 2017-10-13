@@ -198,6 +198,41 @@ Vue.mixin({
                 ease: Power4.easeOut,
                 onComplete: done
             });
-        }
+        },
+
+        //Form Utils
+        notifyError(error,excuse){
+            if (error.response){
+                this.$notify.error({
+                    title: 'AN ERROR OCCURED',
+                    message: error.response.data.message,
+                    duration: 0
+                });
+            }else {
+                this.$notify.error({
+                    title: 'AN ERROR OCCURED',
+                    message: excuse,
+                    duration: 0
+                });
+            }
+        },
+        startLoading(target){
+            this.$loading({
+                target,
+                lock: true,
+                text: "Please Wait...",
+                customClass: "preLoader"
+            });
+        },
+        stopLoading(){
+            $('.preLoader').remove();
+        },
+        validateForm(target){
+            return new Promise((resolve,reject) =>{
+                target.validate((valid) => {
+                    if (valid) resolve(); else reject();
+                })
+            })
+        },
     }
 });

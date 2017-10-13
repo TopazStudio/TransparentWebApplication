@@ -13,12 +13,30 @@ use Illuminate\Http\Request;
 |
 */
 
-Auth::routes();
+//Auth::routes();
+Route::group(['prefix'=>'/auth', 'middleware'=>['web']],function () {
+    Route::post('/login', [
+        'uses' => 'Auth\LoginController@login',
+    ]);
 
-\App\Util\CRUD\RouteUtils::dynamicAddRoutes('/blog','Blog\BlogController');
-\App\Util\CRUD\RouteUtils::dynamicAddRoutes('/topic','Topic\TopicController');
-\App\Util\CRUD\RouteUtils::dynamicAddRoutes('/comment','Topic\CommentController');
-\App\Util\CRUD\RouteUtils::dynamicAddRoutes('/company','Company\CompanyController');
-\App\Util\CRUD\RouteUtils::dynamicAddRoutes('/review','Company\ReviewController');
-\App\Util\CRUD\RouteUtils::dynamicAddRoutes('/reply','Topic\ReplyController');
-\App\Util\CRUD\RouteUtils::dynamicAddRoutes('/tag','TagController');
+    Route::post('/logout', [
+        'uses' => 'Auth\LoginController@logout',
+    ]);
+
+    Route::post('/register', [
+        'uses' => 'Auth\RegisterController@add',
+    ]);
+
+});
+
+Route::post('/temp/image',[
+    'uses' => 'TempController@storeTempPic',
+]);
+//\App\Util\CRUD\RouteUtils::dynamicAddRoutes('/user','Blog\BlogController',['auth.jwt']);
+\App\Util\CRUD\RouteUtils::dynamicAddRoutes('/blog','Blog\BlogController',['auth.jwt']);
+\App\Util\CRUD\RouteUtils::dynamicAddRoutes('/topic','Topic\TopicController',['auth.jwt']);
+\App\Util\CRUD\RouteUtils::dynamicAddRoutes('/comment','Topic\CommentController',['auth.jwt']);
+\App\Util\CRUD\RouteUtils::dynamicAddRoutes('/company','Company\CompanyController',['auth.jwt']);
+\App\Util\CRUD\RouteUtils::dynamicAddRoutes('/review','Company\ReviewController',['auth.jwt']);
+\App\Util\CRUD\RouteUtils::dynamicAddRoutes('/reply','Topic\ReplyController',['auth.jwt']);
+\App\Util\CRUD\RouteUtils::dynamicAddRoutes('/tag','TagController',['auth.jwt']);

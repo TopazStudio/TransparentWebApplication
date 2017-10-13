@@ -12,8 +12,8 @@ use Route;
 
 class RouteUtils
 {
-    public static function dynamicAddRoutes($prefix,$controller){
-        Route::group(['prefix'=>$prefix],function () use($controller) {
+    public static function dynamicAddRoutes($prefix,$controller,$middleware){
+        Route::group(['prefix'=>$prefix,'middleware'=>$middleware],function () use($controller) {
             Route::get('/getAll', [
                 'uses' => $controller .'@getAll',
             ]);

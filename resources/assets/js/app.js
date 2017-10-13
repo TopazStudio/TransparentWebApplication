@@ -2,6 +2,7 @@ import Vue from 'vue';
 import router from './Router';
 import store from './Store';
 import ElementUI from 'element-ui';
+require('./Mixins'); //Vue Mixins
 
 //Jquery
 window.$ = window.jQuery = require('jquery');
@@ -16,7 +17,6 @@ if (token) {
 }
 window.axios.defaults.headers.common['Content-Type'] = 'application/json';
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
-
 
 
 Vue.use(ElementUI);

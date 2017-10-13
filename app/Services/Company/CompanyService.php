@@ -11,7 +11,7 @@ class CompanyService implements CRUDService
 
     public function __construct(){
         $this->picType = 'companyPic';
-        $this->picPath = 'public/companyPic';
+        $this->picPath = 'companyPic';
     }
 
     public function getModelType()

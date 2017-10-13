@@ -13,7 +13,34 @@ let mix = require('laravel-mix');
 
 mix.js('resources/assets/js/app.js', 'public/js')
     .sass('resources/assets/sass/app.scss', 'public/css')
-    // .copyDirectory('node-modules/element-ui/lib/theme-default/fonts', 'public/fonts')
+    /**
+     * ---------------------
+     * Element UI icons
+     * ---------------------
+     * */
+    .copyDirectory('./node_modules/element-ui/lib/theme-default/fonts', 'public/css/fonts')
+    /**
+     * ----------------------
+     * Custom WebpackConfig
+     * ----------------------
+     * Add aliases to help resolve paths used in the app.
+     * */
+    .webpackConfig({
+        resolve: {
+            alias: {
+                'sass': path.resolve(__dirname, './resources/assets/sass'),
+                '@': path.resolve(__dirname, './resources/assets/js'),
+            }
+        }
+
+    })
+    /**
+     * ----------------------
+     * Options
+     * ----------------------
+     * Remove auto processing of urls to prevent coping of files to wrong
+     * directories, especially once in node modules
+     * */
     .options({
         processCssUrls: false
     });

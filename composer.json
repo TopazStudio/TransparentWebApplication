@@ -13,6 +13,8 @@
         "predis/predis": "^1.1",
         "simplepie/simplepie": "1.4.*",
         "tymon/jwt-auth": "^0.5.12",
+        "webonyx/graphql-php": "^0.9",
+        "nuwave/lighthouse": "^1.0",
         "willvincent/feeds": "1.1.*"
     },
     "require-dev": {

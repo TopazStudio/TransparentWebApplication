@@ -2,13 +2,16 @@
 
 namespace App\Http\GraphQL\Queries;
 
-use App\Model\User;
 use GraphQL;
+use JWTAuth;
+use App\Model\User;
 use GraphQL\Type\Definition\Type;
 use Nuwave\Lighthouse\Support\Definition\GraphQLQuery;
 
 class ViewerQuery extends GraphQLQuery
 {
+
+    private $auth;
 
     /**
      * Type query returns.
@@ -35,6 +38,16 @@ class ViewerQuery extends GraphQLQuery
         ];
     }
 
+    public function authorize(array $args = [])
+    {
+        try {
+            $this->auth = JWTAuth::parseToken()->authenticate();
+        } catch (\Exception $e) {
+            $this->auth = null;
+        }
+        return (boolean) $this->auth;
+    }
+
     /**
      * Resolve the query.
      *
@@ -44,6 +57,6 @@ class ViewerQuery extends GraphQLQuery
      */
     public function resolve($root, array $args)
     {
-        return User::find($args['id']);
+        return $this->authorize() ? User::find($args['id']) : null;
     }
 }

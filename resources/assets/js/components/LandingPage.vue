@@ -1,20 +1,23 @@
 <template>
     <main id="app">
         <app-nav></app-nav>
-        <div class="flex-center position-ref full-height">
+        <div class="flex-center position-ref full-height" ref="workspace">
             <div class="content">
                 <div class="title m-b-md">
-                    TRANSPARENT
+                    WELCOME
                 </div>
             </div>
         </div>
     </main>
 </template>
 <script>
-    import Nav from './inc/nav.vue'
+    import Nav from './inc/nav.vue';
     export default {
         components:{
             'app-nav':Nav
-        }
+        },
     }
 </script>
+<style>
+
+</style>

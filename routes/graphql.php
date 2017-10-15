@@ -23,9 +23,11 @@ GraphQL::schema()->group(['namespace' => 'App\\Http\\GraphQL'], function (){
     GraphQL::schema()->type('tag', 'Types\\TagType');
     GraphQL::schema()->type('topic', 'Types\\TopicType');
     GraphQL::schema()->type('user', 'Types\\UserType');
+    GraphQL::schema()->type('signInUserPayload', 'Types\\SignInUserPayload');
 //    GraphQL::schema()->type('paginator', 'Types\\Paginators\\Paginator');
 
 
 
-    GraphQL::schema()->query('viewer', 'Queries\\ViewerQuery');
+    GraphQL::schema()->query('viewerQuery', 'Queries\\ViewerQuery');
+    GraphQL::schema()->query('viewerLogin', 'Queries\\ViewerLogin');
 });

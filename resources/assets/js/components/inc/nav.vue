@@ -24,7 +24,7 @@
             <el-menu-item v-else index="4">
                 <el-dropdown trigger="click" :hide-on-click="true" @command="handleCommand">
                     <div class="el-dropdown-link">
-                        <img :src="getImage(User.pictures[0])" alt="avatar" class="nav-avatar">
+                        <img :src="getImage()" alt="avatar" class="nav-avatar">
                         {{User.name}}
                         <i class="el-icon-caret-bottom el-icon--right"></i>
                     </div>
@@ -66,13 +66,13 @@
             handleCommand(command){
                 this.executeFunctionByName(command,this);
             },
-            getImage(src){
-                if (src === undefined){
+            getImage(){
+                let src = null;
+                if (this.User === undefined || this.User.pictures === undefined){
                     src = 'userPics/placeholder.png';
-                }else if(src.location){
-                    src = src.location;
+                }else if(this.User.pictures[0].location){
+                    src = this.User.pictures[0].location;
                 }
-
                 return 'http://laravel.dev/storage/' + src;
             }
 

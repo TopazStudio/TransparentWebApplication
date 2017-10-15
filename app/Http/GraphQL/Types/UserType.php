@@ -102,7 +102,7 @@ class UserType extends GraphQLType implements RelayType
                 'type' => Type::listOf(GraphQL::type('picture')),
                 'description' => 'Users review on a company.',
                 'resolve' => function($user,array $args){
-                    return $user->picture;
+                    return $user->pictures;
                 }
             ],
 

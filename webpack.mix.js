@@ -28,8 +28,8 @@ mix.js('resources/assets/js/app.js', 'public/js')
     .webpackConfig({
         resolve: {
             alias: {
-                'sass': path.resolve(__dirname, './resources/assets/sass'),
                 '@': path.resolve(__dirname, './resources/assets/js'),
+                'sass': path.resolve(__dirname, './resources/assets/sass'),
             }
         }
 

@@ -4,7 +4,7 @@
         <div class="flex-center position-ref full-height" ref="workspace">
             <div class="content">
                 <div class="title m-b-md">
-                    WELCOME
+                    COMING SOON
                 </div>
             </div>
         </div>
@@ -18,6 +18,6 @@
         },
     }
 </script>
-<style>
+<style lang="scss">
 
 </style>

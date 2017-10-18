@@ -1,16 +1,18 @@
 
 // Body
-$body-bg: #f5f8fa;
+$body-font: 'Raleway',sans-serif;
+$body-font-color: #636b6f;
+$body-background-color: #b0b3b5;
 
 // Borders
-$laravel-border-color: darken($body-bg, 10%);
-$list-group-border: $laravel-border-color;
-$navbar-default-border: $laravel-border-color;
-$panel-default-border: $laravel-border-color;
-$panel-inner-border: $laravel-border-color;
+$border-color: darken($body-background-color, 10%);
+$list-group-border: $border-color;
+$navbar-default-border: $border-color;
+$panel-default-border: $border-color;
+$panel-inner-border: $border-color;
 
 // Brands
-$brand-primary: #3097D1;
+$brand-primary: #101010;
 $brand-info: #8eb4cb;
 $brand-success: #2ab27b;
 $brand-warning: #cbb956;
@@ -34,8 +36,5 @@ $input-border: lighten($text-color, 40%);
 $input-border-focus: lighten($brand-primary, 25%);
 $input-color-placeholder: lighten($text-color, 30%);
 
-// Panels
-$panel-default-heading-bg: #fff;
-
 //Toolbar
-$app-toolbar-height: 60px;
+$app-toolbar-height: 100px;

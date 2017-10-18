@@ -52,8 +52,9 @@ const actions = {
         await dispatch('storeAuth',response.data.viewerLogin);
     },
     async attemptRegistry({state,dispatch},form){
+        //TODO: allow registration to return a token instead of doing to steps when registering
         await axios.post('http://laravel.dev/api/auth/register',form);
-        await dispatch('storeAuth',payload)
+        await dispatch('attemptLogin',form);
     },
     logout({commit}){
         commit('LOGOUT');

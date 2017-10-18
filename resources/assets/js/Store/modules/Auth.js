@@ -34,7 +34,7 @@ const actions = {
         });
 
         networkInterface.use([{
-            applyBatchMiddleware (req, next) {
+            applyMiddleware (req, next) {
                 if (!req.options.headers) {
                     req.options.headers = {}
                 }
@@ -51,7 +51,7 @@ const actions = {
                             });
         await dispatch('storeAuth',response.data.viewerLogin);
     },
-    async attemptRegistry({state,dispatch},form){
+    async attemptRegistry({dispatch},form){
         //TODO: allow registration to return a token instead of doing to steps when registering
         await axios.post('http://laravel.dev/api/auth/register',form);
         await dispatch('attemptLogin',form);

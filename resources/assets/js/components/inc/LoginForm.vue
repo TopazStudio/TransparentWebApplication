@@ -53,7 +53,7 @@
                                 this.$router.replace({ path: 'landing-page' });
                             })
                             .catch((error)=>{
-//                                this.$refs['loginForm'].resetFields();
+                                this.cancel();
                                 this.stopLoading();
                                 this.notifyError(error)
                             });

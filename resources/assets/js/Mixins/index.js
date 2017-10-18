@@ -202,8 +202,7 @@ Vue.mixin({
 
         //Form Utils
         notifyError(error,excuse){
-            console.log(error.response);
-        if (error.response){
+            if (error.response){
                 this.$notify.error({
                         title: 'AN ERROR OCCURED',
                         message: error.response.data.message,

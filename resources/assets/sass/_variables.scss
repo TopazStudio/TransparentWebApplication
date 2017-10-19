@@ -17,6 +17,7 @@ $brand-info: #8eb4cb;
 $brand-success: #2ab27b;
 $brand-warning: #cbb956;
 $brand-danger: #bf5329;
+$brand-accent: rgba(24, 0, 255, 0.41);
 
 // Typography
 $icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
@@ -37,4 +38,7 @@ $input-border-focus: lighten($brand-primary, 25%);
 $input-color-placeholder: lighten($text-color, 30%);
 
 //Toolbar
-$app-toolbar-height: 100px;
+$fly-navbar-height: 60px;
+$fly-navbar-color: #f5f5f5;
+
+

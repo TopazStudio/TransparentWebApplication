@@ -83,13 +83,13 @@
     @import "~bourbon/app/assets/stylesheets/bourbon";
 
     .fly-nav{
-        height: $app-toolbar-height !important;
-        background-color: #fff;
+        height: $fly-navbar-height !important;
+        background-color: $fly-navbar-color;
         transition: 1s all ease-out;
         z-index: 1;
         .el-menu-item{
-            height: 100px;
-            line-height: 100px;
+            height: $fly-navbar-height;
+            line-height: $fly-navbar-height;
             color: black;
             border-bottom: 0;
         }
@@ -97,6 +97,7 @@
             background-color: $brand-primary;
             color: white;
             position: relative;
+            height: 100px;
             .fly-brand-content{
                 font-family: monoton,sans-serif;
                 line-height: 100px;
@@ -107,15 +108,15 @@
                 background-color: #000 !important;
                 border-bottom: 0;
             }
-        }
-        .fly-brand:before{
-            @include position(absolute,0);
-            @include size(100%);
-            content: '';
-            z-index: -1;
-            background-color: inherit;
-            transform-origin: bottom right;
-            transform: sKewX(-10deg);
+            &:before{
+                @include position(absolute,0);
+                @include size(100%);
+                content: '';
+                z-index: -1;
+                background-color: inherit;
+                transform-origin: bottom right;
+                transform: sKewX(-10deg);
+            }
         }
         .right-nav{
             float: right;

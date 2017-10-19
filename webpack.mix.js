@@ -14,11 +14,17 @@ let mix = require('laravel-mix');
 mix.js('resources/assets/js/app.js', 'public/js')
     .sass('resources/assets/sass/app.scss', 'public/css')
     /**
-     * ---------------------
-     * Element UI icons
-     * ---------------------
+     * BrowserSync
+     *
+     * Note: Domain name refers to url of application. It can be
+     * localhost.
+     * */
+    // .browserSync('laravel.dev')
+    /**
+     * Element UI icons and images
      * */
     .copyDirectory('./node_modules/element-ui/lib/theme-default/fonts', 'public/css/fonts')
+    .copyDirectory('./resources/assets/img', 'public/img')
     /**
      * ----------------------
      * Custom WebpackConfig
@@ -28,8 +34,9 @@ mix.js('resources/assets/js/app.js', 'public/js')
     .webpackConfig({
         resolve: {
             alias: {
-                'sass': path.resolve(__dirname, './resources/assets/sass'),
                 '@': path.resolve(__dirname, './resources/assets/js'),
+                'img': path.resolve(__dirname, './resources/assets/img'),
+                'sass': path.resolve(__dirname, './resources/assets/sass'),
             }
         }
 
@@ -42,5 +49,6 @@ mix.js('resources/assets/js/app.js', 'public/js')
      * directories, especially once in node modules
      * */
     .options({
-        processCssUrls: false
+        processCssUrls: false,
+        extractVueStyles: false
     });

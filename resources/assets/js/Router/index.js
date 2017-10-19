@@ -24,5 +24,6 @@ export default new Router({
           name: 'normal-registration',
           component: require('@/components/Registration.vue')
       }
-  ]
+  ],
+    mode: 'history'
 })

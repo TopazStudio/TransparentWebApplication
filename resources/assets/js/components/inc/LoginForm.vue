@@ -18,6 +18,8 @@
 </template>
 <script>
     import { mapActions } from 'vuex';
+    import { LOGIN_VIEWER_QUERY } from '@/Apollo/constants';
+
 
     export default{
         data(){
@@ -38,36 +40,22 @@
         },
         methods:{
             ...mapActions('Auth',[
-                'attemptLogin',
+                'storeAuth',
+                'attemptLogin'
             ]),
-            startLoading(){
-                this.$loading({
-                    target: this.$refs.loginCard.$el,
-                    lock: true,
-                    text: "Logging In...",
-                    customClass: "preLoader"
-                });
-            },
-            stopLoading(){
-                $('.preLoader').remove();
-            },
-            login(){
-                this.startLoading();
-                this.validateForm()
+            async login(){
+                this.startLoading(this.$refs.loginCard.$el);
+                this.validateForm(this.$refs['loginForm'])
                     .then(()=>{
                         this.attemptLogin(this.form)
                             .then(()=>{
                                 this.stopLoading();
-                                this.push({ path: 'landing-page' });
+                                this.$router.replace({ path: 'landing-page' });
                             })
                             .catch((error)=>{
                                 this.cancel();
                                 this.stopLoading();
-                                this.$notify.error({
-                                    title: 'AN ERROR OCCURED',
-                                    message: error.toString(),
-                                    duration: 0
-                                });
+                                this.notifyError(error)
                             });
                     })
                     .catch(()=>{
@@ -75,19 +63,9 @@
                         this.$message.error('Please enter valid input');
                     });
             },
-            validateForm(){
-                return new Promise((resolve,reject) =>{
-                    this.$refs['loginForm'].validate((valid) => {
-                        if (valid) resolve(); else reject();
-                    })
-                })
-            },
             cancel(){
                 this.$refs['loginForm'].resetFields();
             },
-            push(location){
-                this.$router.replace(location);
-            }
         }
     }
 </script>

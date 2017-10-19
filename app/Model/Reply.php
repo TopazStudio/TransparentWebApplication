@@ -42,4 +42,8 @@ class Reply extends Model implements CRUDable
     public function comment(){
         return $this->belongsTo('App\Model\Comment','commentId');
     }
+
+    public function user(){
+        return $this->belongsTo('App\Model\User','userId');
+    }
 }

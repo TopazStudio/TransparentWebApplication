@@ -5,8 +5,8 @@ namespace App\Model;
 use App\Util\CRUD\CRUDable;
 use Illuminate\Database\Eloquent\Model;
 
-class Tag extends Model implements CRUDable
-{
+class
+Tag extends Model implements CRUDable{
     //TODO:avoid orphaning of tags
     protected $fillable = [
         'name'

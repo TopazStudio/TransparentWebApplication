@@ -34,7 +34,7 @@ class Company extends Model implements CRUDable
 //RELATIONSHIPS
 
     //review
-    public function review(){
+    public function reviews(){
         return $this->hasMany('App\Model\Review','companyId');
     }
 

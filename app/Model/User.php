@@ -5,10 +5,11 @@ namespace App\Model;
 use App\Util\CRUD\CRUDable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Nuwave\Lighthouse\Support\Traits\RelayConnection;
 
 class User extends Authenticatable implements CRUDable
 {
-    use Notifiable;
+    use Notifiable,RelayConnection;
 
     /**
      * The attributes that are mass assignable.
@@ -60,7 +61,7 @@ class User extends Authenticatable implements CRUDable
 
     //topics
     public function topics(){
-        return $this->hasMany('App\Model\Topic','userId');
+        return $this->hasMany('App\Model\Topic','ownerId');
     }
 
     //user

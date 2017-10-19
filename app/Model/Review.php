@@ -4,9 +4,11 @@ namespace App\Model;
 
 use App\Util\CRUD\CRUDable;
 use Illuminate\Database\Eloquent\Model;
+use Nuwave\Lighthouse\Support\Traits\RelayConnection;
 
 class Review extends Model implements CRUDable
 {
+    use RelayConnection;
 
     protected $fillable = [
         'content',

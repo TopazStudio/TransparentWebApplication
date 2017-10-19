@@ -117,6 +117,7 @@
                 //store the temp url
                 this.tempImageUrl = URL.createObjectURL(file.raw);
 
+                this.$message.success('Photo uploaded successfully');
             },
 
             /**

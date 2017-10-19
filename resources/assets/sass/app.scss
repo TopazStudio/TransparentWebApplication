@@ -1,61 +1,62 @@
 
 // Fonts
-@import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600");
+@import url('https://fonts.googleapis.com/css?family=Libre+Barcode+39+Text|Megrim|Monoton|Playfair+Display+SC|Raleway:300,400,600');
 
 // Variables
 @import "variables";
 
 //Element UI
-@import "~element-ui/lib/theme-default/index.css";
+@import "./plugins/element/index.css";
 
-//landing page
+//bourbon
+@import "~bourbon/app/assets/stylesheets/bourbon";
+
 html, body {
-  background-color: #fff;
-  color: #636b6f;
-  font-family: 'Raleway', sans-serif;
+  background: $body-background-color url("../img/hypnotize.png");
+  font-family: $body-font;
+  color: $body-font-color;
   font-weight: 100;
   height: 100vh;
   margin: 0;
 }
 
-.full-height {
-  height: 100vh;
+.overlay{
+  @include position(absolute,0);
 }
 
-.flex-center {
-  align-items: center;
-  display: flex;
-  justify-content: center;
-}
-
-.position-ref {
+.item {
   position: relative;
+
+  border: 1px solid #333;
+  margin: 2%;
+  overflow: hidden;
+  width: 540px;
+}
+.item img {
+  max-width: 100%;
+
+  -moz-transition: all 0.3s;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+.item:hover img {
+  -moz-transform: scale(1.1);
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1);
 }
 
-.top-right {
-  position: absolute;
-  right: 10px;
-  top: 18px;
+//CLEARFIX
+.clearfix:before,
+.clearfix:after {
+  display: table;
+  content: "";
+}
+.clearfix:after {
+  clear: both
 }
 
-.content {
-  text-align: center;
-}
-
-.title {
-  font-size: 84px;
-}
-
-.links > a {
-  color: #636b6f;
-  padding: 0 25px;
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: .1rem;
-  text-decoration: none;
-  text-transform: uppercase;
-}
-
-.m-b-md {
-  margin-bottom: 30px;
+//IMAGES
+.fly-search-pane-inner{
+  background: url("../img/handshake.jpg") no-repeat center;
+  background-size: cover;
 }

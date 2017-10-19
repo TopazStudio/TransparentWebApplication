@@ -169,6 +169,7 @@ return [
          */
         willvincent\Feeds\FeedsServiceProvider::class,
         Tymon\JWTAuth\Providers\JWTAuthServiceProvider::class,
+        Nuwave\Lighthouse\LaravelServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -230,7 +231,8 @@ return [
 
         'Feeds' => willvincent\Feeds\Facades\FeedsFacade::class,
         'JWTAuth' => Tymon\JWTAuth\Facades\JWTAuth::class,
-        'JWTFactory' => Tymon\JWTAuth\Facades\JWTFactory::class
+        'JWTFactory' => Tymon\JWTAuth\Facades\JWTFactory::class,
+        'GraphQL' => Nuwave\Lighthouse\Support\Facades\GraphQLFacade::class,
     ],
 
 ];

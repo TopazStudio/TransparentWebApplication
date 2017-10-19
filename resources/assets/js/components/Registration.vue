@@ -29,7 +29,7 @@
     #registration {
         position: absolute;
         display: flex;
-        top: $app-toolbar-height;
+        top: $fly-navbar-height;
         right: 0;
         bottom: 0;
         left: 0;

@@ -3,14 +3,15 @@
 namespace App\Model;
 
 use App\Util\CRUD\CRUDable;
+use Elasticquent\ElasticquentTrait;
 use Illuminate\Database\Eloquent\Model;
 use Nuwave\Lighthouse\Support\Traits\RelayConnection;
 
-
 class Comment extends Model implements CRUDable
 {
-    use RelayConnection;
+    use RelayConnection,ElasticquentTrait;
 
+//CRUD
     protected $fillable = [
         'content',
         'likes',
@@ -40,8 +41,56 @@ class Comment extends Model implements CRUDable
         ];
     }
 
-    //RELATIONSHIPS
+//INDEXING
 
+    /**
+     * Model's index type
+     *
+     * @var string
+     */
+    public $docTypeName;
+
+    public static $types = null;
+
+    function getIndexName()
+    {
+        return 'comments';
+    }
+
+    function getTypeName()
+    {
+        return $this->docTypeName;
+    }
+
+    protected $mappingProperties = array(
+        'content' => [
+            'type' => 'string',
+            "analyzer" => "standard",
+        ]
+    );
+
+    public static function index(){
+        if (self::$types)
+            foreach (self::$types as $type){
+                $models = self::where('Type','=',$type)->get();
+                if(!empty($models)){
+                    foreach ($models as $model){
+                        $model->docTypeName = $type;
+                    }
+                    $models->addToIndex();
+                }
+            }
+        else{
+            self::createIndex($shards = null, $replicas = null);
+
+            self::putMapping($ignoreConflicts = true);
+
+            self::addAllToIndex();
+        }
+        return true;
+    }
+
+//RELATIONSHIPS
     //User
     public function user(){
         return $this->belongsTo('App\Model\User','userId');

@@ -3,11 +3,13 @@
 namespace App\Model;
 
 use App\Util\CRUD\CRUDable;
+use Elasticquent\ElasticquentTrait;
 use Illuminate\Database\Eloquent\Model;
 
 class Reply extends Model implements CRUDable
 {
 
+//CRUD
     //TODO:: add userId column
     protected $fillable = [
         'content',
@@ -36,8 +38,7 @@ class Reply extends Model implements CRUDable
         ];
     }
 
-    //RELATIONSHIPS
-
+//RELATIONSHIPS
     //reply
     public function comment(){
         return $this->belongsTo('App\Model\Comment','commentId');

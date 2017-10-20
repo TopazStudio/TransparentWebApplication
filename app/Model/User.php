@@ -3,14 +3,16 @@
 namespace App\Model;
 
 use App\Util\CRUD\CRUDable;
+use Elasticquent\ElasticquentTrait;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Nuwave\Lighthouse\Support\Traits\RelayConnection;
 
 class User extends Authenticatable implements CRUDable
 {
-    use Notifiable,RelayConnection;
+    use Notifiable,RelayConnection, ElasticquentTrait;
 
+//CRUD
     /**
      * The attributes that are mass assignable.
      *
@@ -47,8 +49,70 @@ class User extends Authenticatable implements CRUDable
         ];
     }
 
-    //RELATIONSHIPS
+//INDEXING
 
+    /**
+     * Model's index type
+     *
+     * @var string
+     */
+    public $docTypeName;
+
+    //TODO: make this its own table then create a relationship
+    public static $types = [
+        'normal',
+        'manager',
+        'agent',
+    ];
+
+    function getIndexName()
+    {
+        return 'users';
+    }
+
+    function getTypeName()
+    {
+        return $this->docTypeName;
+    }
+
+    protected $mappingProperties = array(
+        'name' => [
+            'type' => 'string',
+            "analyzer" => "standard",
+        ],
+        'email' => [
+            'type' => 'string',
+            "analyzer" => "standard",
+        ],
+        'role' => [
+            'type' => 'string',
+            "analyzer" => "standard",
+        ],
+    );
+
+    public static function index(){
+        if (self::$types)
+            foreach (self::$types as $type){
+                $models = self::where('Type','=',$type)->get();
+                if(!empty($models)){
+                    foreach ($models as $model){
+                        $model->docTypeName = $type;
+                    }
+                    $models->addToIndex();
+                }
+            }
+        else{
+            self::createIndex($shards = null, $replicas = null);
+
+            self::putMapping($ignoreConflicts = true);
+
+            self::addAllToIndex();
+        }
+        return true;
+    }
+
+
+//RELATIONSHIPS
     //review
     public function review(){
         return $this->hasOne('App\Model\Review','userId');

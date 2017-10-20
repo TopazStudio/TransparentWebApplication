@@ -4,6 +4,7 @@ namespace App\Http\GraphQL\Types;
 
 use App\Http\GraphQL\Connections\UserCommentsConnection;
 use App\Http\GraphQL\Connections\UserReviewsConnection;
+use App\Http\GraphQL\Types\Paginators\Paginator;
 use App\Model\User;
 use GraphQL;
 use GraphQL\Type\Definition\Type;

@@ -2,12 +2,15 @@
 
 namespace App\Model;
 
+use Elasticquent\ElasticquentTrait;
 use Illuminate\Database\Eloquent\Model;
 use App\Util\CRUD\CRUDable;
 
 
 class Topic extends Model implements CRUDable
 {
+    use ElasticquentTrait;
+//CRUD
     protected $fillable = [
         'name',
         'description',
@@ -37,8 +40,60 @@ class Topic extends Model implements CRUDable
         ];
     }
 
-    //RELATIONSHIP
+//INDEXING
 
+    /**
+     * Model's index type
+     *
+     * @var string
+     */
+    public $docTypeName;
+
+    public static $types = null;
+
+    function getIndexName()
+    {
+        return 'topics';
+    }
+
+    function getTypeName()
+    {
+        return $this->docTypeName;
+    }
+
+    protected $mappingProperties = array(
+        'name' => [
+            'type' => 'string',
+            "analyzer" => "standard",
+        ],
+        'description' => [
+            'type' => 'string',
+            "analyzer" => "standard",
+        ],
+    );
+
+    public static function index(){
+        if (self::$types)
+            foreach (self::$types as $type){
+                $models = self::where('Type','=',$type)->get();
+                if(!empty($models)){
+                    foreach ($models as $model){
+                        $model->docTypeName = $type;
+                    }
+                    $models->addToIndex();
+                }
+            }
+        else{
+            self::createIndex($shards = null, $replicas = null);
+
+            self::putMapping($ignoreConflicts = true);
+
+            self::addAllToIndex();
+        }
+        return true;
+    }
+
+//RELATIONSHIP
     //user
     public function owner(){
         return $this->belongsTo('App\Model\User','ownerId');

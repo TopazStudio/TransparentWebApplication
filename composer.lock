@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "5ac63bcf78a7721205cd6df223dba77c",
+    "content-hash": "e675d34f1f65f5258c3c9ee10cc5feae",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -219,27 +219,28 @@
         },
         {
             "name": "elasticquent/elasticquent",
-            "version": "v1.0.6",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/elasticquent/Elasticquent.git",
-                "reference": "96811af5af96e6e38c636dd67e8f0890babb1d34"
+                "reference": "46c838bc1de1f0a2e3e4d28254700171aa51df03"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/elasticquent/Elasticquent/zipball/96811af5af96e6e38c636dd67e8f0890babb1d34",
-                "reference": "96811af5af96e6e38c636dd67e8f0890babb1d34",
+                "url": "https://api.github.com/repos/elasticquent/Elasticquent/zipball/46c838bc1de1f0a2e3e4d28254700171aa51df03",
+                "reference": "46c838bc1de1f0a2e3e4d28254700171aa51df03",
                 "shasum": ""
             },
             "require": {
-                "elasticsearch/elasticsearch": ">1.0 <2.1",
+                "elasticsearch/elasticsearch": ">1.0 <2.2",
                 "illuminate/config": "~4.2|^5",
                 "illuminate/database": "~4.2|^5",
                 "nesbot/carbon": "~1.0",
                 "php": ">=5.4.0"
             },
             "require-dev": {
-                "phpunit/phpunit": "~5.0"
+                "mockery/mockery": "^0.9.4",
+                "phpunit/phpunit": "~4.2|~5.0"
             },
             "type": "library",
             "extra": {
@@ -270,7 +271,7 @@
                 "eloquent",
                 "laravel"
             ],
-            "time": "2016-01-28T04:23:05+00:00"
+            "time": "2017-09-06 03:22:37"
         },
         {
             "name": "elasticsearch/elasticsearch",
@@ -4619,7 +4620,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "elasticquent/elasticquent": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {

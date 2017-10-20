@@ -93,7 +93,7 @@ class User extends Authenticatable implements CRUDable
     public static function index(){
         if (self::$types)
             foreach (self::$types as $type){
-                $models = self::where('Type','=',$type)->get();
+                $models = self::where('role','=',$type)->get();
                 if(!empty($models)){
                     foreach ($models as $model){
                         $model->docTypeName = $type;

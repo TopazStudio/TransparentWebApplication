@@ -3,13 +3,10 @@
 namespace App\Model;
 
 use App\Util\CRUD\CRUDable;
-use Elasticquent\ElasticquentTrait;
 use Illuminate\Database\Eloquent\Model;
-use Nuwave\Lighthouse\Support\Traits\RelayConnection;
 
 class Review extends Model implements CRUDable
 {
-    use RelayConnection;
 
 //CRUD
     protected $fillable = [

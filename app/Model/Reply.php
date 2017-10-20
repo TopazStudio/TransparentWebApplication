@@ -3,7 +3,6 @@
 namespace App\Model;
 
 use App\Util\CRUD\CRUDable;
-use Elasticquent\ElasticquentTrait;
 use Illuminate\Database\Eloquent\Model;
 
 class Reply extends Model implements CRUDable

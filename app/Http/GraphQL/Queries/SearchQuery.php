@@ -28,14 +28,6 @@ class SearchQuery extends GraphQLQuery
     public function args()
     {
         return [
-            'entity' =>[
-                'type' => Type::string(),
-                'rules' => ['required']
-            ],
-            'type' =>[
-                'type' => Type::string(),
-                'rules' => ['nullable']
-            ],
 
         ];
     }
@@ -49,7 +41,6 @@ class SearchQuery extends GraphQLQuery
      */
     public function resolve($root, array $args)
     {
-        //FOR TESTING
-        return new SearchBody();
+       return true;
     }
 }

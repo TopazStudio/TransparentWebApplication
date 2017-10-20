@@ -4,11 +4,11 @@ namespace App\Model;
 
 use App\Util\CRUD\CRUDable;
 use Illuminate\Database\Eloquent\Model;
-use Elasticquent\ElasticquentTrait;
+use Sleimanx2\Plastic\Searchable;
 
 class Blog extends Model implements CRUDable
 {
-    use ElasticquentTrait;
+    use Searchable;
 //CRUD
 
     protected $fillable = [
@@ -41,57 +41,25 @@ class Blog extends Model implements CRUDable
 
 //INDEXING
 
-    /**
-     * Model's index type
-     *
-     * @var string
-     */
-    public $docTypeName;
+    public $documentIndex =  'blogs';
 
     public static $types = null;
-
-    function getIndexName()
-    {
-        return 'blogs';
-    }
-
-    function getTypeName()
-    {
-        return $this->docTypeName;
-    }
-
-    protected $mappingProperties = array(
-        'url' => [
-            'type' => 'string',
-            "analyzer" => "standard",
-        ],
-        'heading' => [
-            'type' => 'string',
-            "analyzer" => "standard",
-        ],
-        'content' => [
-            'type' => 'string',
-            "analyzer" => "standard",
-        ],
-    );
 
     public static function index(){
         if (self::$types)
             foreach (self::$types as $type){
-                $models = self::where('Type','=',$type)->get();
+                $models = self::where('type','=',$type)->get();
                 if(!empty($models)){
                     foreach ($models as $model){
-                        $model->docTypeName = $type;
+                        $model->documentType = $type;
+                        $model->document()->save();
                     }
-                    $models->addToIndex();
                 }
             }
         else{
-            self::createIndex($shards = null, $replicas = null);
-
-            self::putMapping($ignoreConflicts = true);
-
-            self::addAllToIndex();
+            foreach (static::all() as $model){
+                $model->document()->save();
+            }
         }
         return true;
     }

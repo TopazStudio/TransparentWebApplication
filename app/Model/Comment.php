@@ -3,13 +3,12 @@
 namespace App\Model;
 
 use App\Util\CRUD\CRUDable;
-use Elasticquent\ElasticquentTrait;
 use Illuminate\Database\Eloquent\Model;
-use Nuwave\Lighthouse\Support\Traits\RelayConnection;
+use Sleimanx2\Plastic\Searchable;
 
 class Comment extends Model implements CRUDable
 {
-    use RelayConnection,ElasticquentTrait;
+    use Searchable;
 
 //CRUD
     protected $fillable = [
@@ -43,49 +42,25 @@ class Comment extends Model implements CRUDable
 
 //INDEXING
 
-    /**
-     * Model's index type
-     *
-     * @var string
-     */
-    public $docTypeName;
+    public $documentIndex =  'comments';
 
     public static $types = null;
-
-    function getIndexName()
-    {
-        return 'comments';
-    }
-
-    function getTypeName()
-    {
-        return $this->docTypeName;
-    }
-
-    protected $mappingProperties = array(
-        'content' => [
-            'type' => 'string',
-            "analyzer" => "standard",
-        ]
-    );
 
     public static function index(){
         if (self::$types)
             foreach (self::$types as $type){
-                $models = self::where('Type','=',$type)->get();
+                $models = self::where('type','=',$type)->get();
                 if(!empty($models)){
                     foreach ($models as $model){
-                        $model->docTypeName = $type;
+                        $model->documentType = $type;
+                        $model->document()->save();
                     }
-                    $models->addToIndex();
                 }
             }
         else{
-            self::createIndex($shards = null, $replicas = null);
-
-            self::putMapping($ignoreConflicts = true);
-
-            self::addAllToIndex();
+            foreach (static::all() as $model){
+                $model->document()->save();
+            }
         }
         return true;
     }

@@ -3,14 +3,15 @@
 namespace App\Model;
 
 use App\Util\CRUD\CRUDable;
-use Elasticquent\ElasticquentTrait;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Nuwave\Lighthouse\Support\Traits\RelayConnection;
+use Sleimanx2\Plastic\Facades\Plastic;
+use Sleimanx2\Plastic\Searchable;
 
 class User extends Authenticatable implements CRUDable
 {
-    use Notifiable,RelayConnection, ElasticquentTrait;
+    use Notifiable,RelayConnection,Searchable;
 
 //CRUD
     /**
@@ -51,12 +52,7 @@ class User extends Authenticatable implements CRUDable
 
 //INDEXING
 
-    /**
-     * Model's index type
-     *
-     * @var string
-     */
-    public $docTypeName;
+    public $documentIndex =  'users';
 
     //TODO: make this its own table then create a relationship
     public static $types = [
@@ -65,48 +61,21 @@ class User extends Authenticatable implements CRUDable
         'agent',
     ];
 
-    function getIndexName()
-    {
-        return 'users';
-    }
-
-    function getTypeName()
-    {
-        return $this->docTypeName;
-    }
-
-    protected $mappingProperties = array(
-        'name' => [
-            'type' => 'string',
-            "analyzer" => "standard",
-        ],
-        'email' => [
-            'type' => 'string',
-            "analyzer" => "standard",
-        ],
-        'role' => [
-            'type' => 'string',
-            "analyzer" => "standard",
-        ],
-    );
-
     public static function index(){
         if (self::$types)
             foreach (self::$types as $type){
                 $models = self::where('role','=',$type)->get();
                 if(!empty($models)){
                     foreach ($models as $model){
-                        $model->docTypeName = $type;
+                        $model->documentType = $type;
+                        $model->document()->save();
                     }
-                    $models->addToIndex();
                 }
             }
         else{
-            self::createIndex($shards = null, $replicas = null);
-
-            self::putMapping($ignoreConflicts = true);
-
-            self::addAllToIndex();
+            foreach (static::all() as $model){
+                $model->document()->save();
+            }
         }
         return true;
     }

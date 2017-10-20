@@ -10,6 +10,9 @@ namespace App\Http\Controllers;
 
 
 use Illuminate\Http\Request;
+use Sleimanx2\Plastic\Facades\Plastic;
+use Sleimanx2\Plastic\Fillers\EloquentFiller;
+use Sleimanx2\Plastic\PlasticResult;
 
 class SearchController extends Controller
 {
@@ -35,12 +38,19 @@ class SearchController extends Controller
      * @return \Illuminate\Http\JsonResponse
      */
     public function complex($entity,Request $request){
-        if ($foods = call_user_func(['App\\Model\\' . $entity,'complexSearch'],$request->all())){
-            return response()->json([
-                'took' => $foods->took(),
-                'totalHits' => $foods->totalHits(),
-                'hits'=>$foods->all(),
-                'aggr' => $foods->getAggregations(),
+        $results = Plastic::getClient()->search(json_decode($request->raw));
+        $results = new PlasticResult($results);
+        $filler = new EloquentFiller();
+
+        //TODO: dynamic creation of new object from module classes
+        $filler->fill($entity(), $results);
+        if ($results){
+            return $this->successResponse([
+                'took' => $results->took(),
+                'totalHits' => $results->totalHits(),
+                'maxScore' => $results->maxScore(),
+                'aggr' => $results->aggregations(),
+                'hits'=>$results->hits(),
             ]);
         }
         return $this->errorResponse();
@@ -55,11 +65,16 @@ class SearchController extends Controller
      */
     public function simple($entity,$term){
         //TODO: fix simple search
-        if ($foods = call_user_func(['App\\Model\\' . $entity,'search'],$term)){
-            return response()->json([
-                'took' => $foods->took(),
-                'totalHits' => $foods->totalHits(),
-                'hits'=>$foods->all(),
+        $results = call_user_func(['App\\Model\\' . $entity,'search'])
+            ->match('name',$term)
+            ->get();
+        if ($results){
+            return $this->successResponse([
+                'took' => $results->took(),
+                'totalHits' => $results->totalHits(),
+                'maxScore' => $results->maxScore(),
+                'aggr' => $results->aggregations(),
+                'hits'=>$results->hits(),
             ]);
         }
         return $this->errorResponse();

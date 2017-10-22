@@ -119,6 +119,7 @@
             }
         }
         .right-nav{
+            @include position(relative,0 20px 0 0);
             float: right;
             display: flex;
             @include size(null 100%);

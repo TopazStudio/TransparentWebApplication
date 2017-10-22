@@ -2,9 +2,7 @@
     <section class="fly-search-pane">
         <div class="fly-search-pane-inner">
             <el-col :xs="24" :sm="24" :md="12" :lg="12" style="margin: auto;">
-                <div class="content">
-                    <p>{{promoMessage}}</p>
-                </div>
+                <span class="content">{{promoMessage}}</span>
             </el-col>
             <el-col :xs="24" :sm="24" :md="12" :lg="12" style="margin: auto;">
                 <search-input></search-input>
@@ -33,12 +31,12 @@
 
     .fly-search-pane{
         position: relative;
-        height: 370px;
         .fly-search-pane-inner{
             position: relative;
             display: flex;
             z-index: 0;
             padding: 20px;
+            height: 300px;
             .content{
                 font-family: Megrim,sans-serif;
                 font-weight: 400;

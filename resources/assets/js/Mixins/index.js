@@ -211,7 +211,7 @@ Vue.mixin({
             }else {
                 this.$notify.error({
                         title: 'AN ERROR OCCURED',
-                        message: excuse,
+                        message: excuse? excuse : error.toString(),
                         duration: 0
                 });
             }

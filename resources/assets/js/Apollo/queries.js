@@ -1,20 +1,8 @@
 import gql from 'graphql-tag';
 
-
-export const GET_VIEWER_QUERY = gql`
-query GET_VIEWER_QUERY {
-  viewerQuery(id: 1) {
-    id
-    name
-    role
-    email
-  }
-}`
-;
-
 export const GET_USER_QUERY = gql`
 query GET_USER_QUERY($id: Int) {
-  viewerQuery(id: $id) {
+  viewer(id: $id) {
     name
     role
     email
@@ -27,7 +15,7 @@ query GET_USER_QUERY($id: Int) {
 
 export const LOGIN_VIEWER_QUERY = gql`
 query LOGIN_VIEWER_QUERY($email: String,$password: String) {
-  viewerLogin(email: $email,password: $password) {
+  login(email: $email,password: $password) {
     token
     user{
       name

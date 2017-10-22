@@ -24,6 +24,7 @@
     "dependencies": {
         "apollo-client": "^1.9.3",
         "axios": "^0.16.2",
+        "bodybuilder": "^2.2.6",
         "bourbon": "^4.3.4",
         "camo": "^0.12.3",
         "element-ui": "^1.4.6",

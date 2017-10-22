@@ -13,7 +13,7 @@
     </div>
 </template>
 <script>
-    import Nav from './inc/nav.vue'
+    import Nav from './inc/NavBar.vue'
     import RegistrationForm from './Registration/RegistrationForm.vue';
     export default {
         components:{

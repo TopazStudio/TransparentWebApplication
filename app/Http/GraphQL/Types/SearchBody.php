@@ -40,10 +40,14 @@ class SearchBody extends GraphQLType
                     'raw' => [
                         'type' => Type::string(),
                         'rules' => ['required']
+                    ],
+                    'type' => [
+                        'type' => Type::string(),
+                        'rules' => ['required']
                     ]
                 ],
                 'resolve' => function($payload,array $args){
-                    return $this->rawSearch(new Blog(),$args)->hits();
+                    return $this->rawSearch(new Blog(),$args,'blogs')->hits();
                 }
             ],
             'company'  => [
@@ -52,10 +56,14 @@ class SearchBody extends GraphQLType
                     'raw' => [
                         'type' => Type::string(),
                         'rules' => ['required']
+                    ],
+                    'type' => [
+                        'type' => Type::string(),
+                        'rules' => ['required']
                     ]
                 ],
                 'resolve' => function($payload,array $args){
-                    return $this->rawSearch(new Company(),$args)->hits();
+                    return $this->rawSearch(new Company(),$args,'companies')->hits();
                 }
             ],
             'comment' => [
@@ -64,10 +72,14 @@ class SearchBody extends GraphQLType
                     'raw' => [
                         'type' => Type::string(),
                         'rules' => ['required']
+                    ],
+                    'type' => [
+                        'type' => Type::string(),
+                        'rules' => ['required']
                     ]
                 ],
                 'resolve' => function($payload,array $args){
-                    return $this->rawSearch(new Comment(),$args)->hits();
+                    return $this->rawSearch(new Comment(),$args,'comments')->hits();
                 }
             ],
             'document'  => [
@@ -76,10 +88,14 @@ class SearchBody extends GraphQLType
                     'raw' => [
                         'type' => Type::string(),
                         'rules' => ['required']
+                    ],
+                    'type' => [
+                        'type' => Type::string(),
+                        'rules' => ['required']
                     ]
                 ],
                 'resolve' => function($payload,array $args){
-                    return $this->rawSearch(new Document(),$args)->hits();
+                    return $this->rawSearch(new Document(),$args,'documents')->hits();
                 }
             ],
             'tag'  => [
@@ -88,10 +104,14 @@ class SearchBody extends GraphQLType
                     'raw' => [
                         'type' => Type::string(),
                         'rules' => ['required']
+                    ],
+                    'type' => [
+                        'type' => Type::string(),
+                        'rules' => ['required']
                     ]
                 ],
                 'resolve' => function($payload,array $args){
-                    return $this->rawSearch(new Tag(),$args)->hits();
+                    return $this->rawSearch(new Tag(),$args,'tags')->hits();
                 }
             ],
             'topic'  => [
@@ -100,10 +120,14 @@ class SearchBody extends GraphQLType
                     'raw' => [
                         'type' => Type::string(),
                         'rules' => ['required']
+                    ],
+                    'type' => [
+                        'type' => Type::string(),
+                        'rules' => ['required']
                     ]
                 ],
                 'resolve' => function($payload,array $args){
-                    return $this->rawSearch(new Topic(),$args)->hits();
+                    return $this->rawSearch(new Topic(),$args,'companies')->hits();
                 }
             ],
             'user' => [
@@ -112,19 +136,31 @@ class SearchBody extends GraphQLType
                     'raw' => [
                         'type' => Type::string(),
                         'rules' => ['required']
+                    ],
+                    'type' => [
+                        'type' => Type::string(),
+                        'rules' => ['required']
                     ]
                 ],
                 'resolve' => function($payload,array $args) {
-                    return $this->rawSearch(new User(),$args)->hits();
+                    return $this->rawSearch(new User(),$args,'users')->hits();
                 }
             ]
         ];
     }
 
-    protected function rawSearch(Model $model,$args){
-        $results = new PlasticResult(Plastic::getClient()->search(json_decode($args['raw'])));
+    protected function rawSearch(Model $model,$args,$index){
+        $query['index'] = $index;
+        $query['type'] = $args['type'] ?? $model->getTable();
+        $query['body'] = json_decode($args['raw']);
+
+        $results = Plastic::getClient()->search($query);
+
+        $results = new PlasticResult($results);
+
         $filler = new EloquentFiller();
         $filler->fill($model, $results);
+
         return $results;
     }
 }

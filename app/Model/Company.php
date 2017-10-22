@@ -69,7 +69,7 @@ class Company extends Model implements CRUDable
 
     //picture
     public function pictures(){
-        return $this->morphMany('App\Model\Picture','pic');
+        return $this->morphMany('App\Model\Picture','picturable');
     }
 
     //document

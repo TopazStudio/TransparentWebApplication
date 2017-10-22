@@ -8,7 +8,7 @@
     </div>
 </template>
 <script>
-    import Nav from './inc/nav.vue';
+    import Nav from './inc/NavBar.vue';
     import SearchPane from './LandingPage/SearchPane.vue';
     import FrontView from './LandingPage/FrontView.vue';
     export default {

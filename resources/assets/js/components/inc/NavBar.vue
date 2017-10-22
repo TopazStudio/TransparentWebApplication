@@ -51,10 +51,10 @@
                 'logout',
             ]),
             normalRegistration(){
-                this.$router.replace({path: '/register/user'});
+                this.$router.push({path: '/register/user'});
             },
             companyRegistration(){
-                this.$router.replace({path: '/register/company'});
+                this.$router.push({path: '/register/company'});
             },
             handleCommand(command){
                 this.executeFunctionByName(command,this);

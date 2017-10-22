@@ -7,27 +7,21 @@
                 </div>
             </el-col>
             <el-col :xs="24" :sm="24" :md="12" :lg="12" style="margin: auto;">
-                <div class="search">
-                    <el-input placeholder="Please input" v-model="searchTerm" size="large">
-                        <el-select v-model="searchSelect" slot="prepend" placeholder="Select" style=" width: 110px;">
-                            <el-option label="Restaurant" value="1"></el-option>
-                            <el-option label="Order No." value="2"></el-option>
-                            <el-option label="Tel" value="3"></el-option>
-                        </el-select>
-                        <el-button slot="append" icon="search"></el-button>
-                    </el-input>
-                </div>
+                <search-input></search-input>
             </el-col>
         </div>
     </section>
 </template>
 <script>
+    import SearchInput from '../inc/SearchInput.vue';
+
     export default {
+        components:{
+            SearchInput
+        },
         data(){
             return{
                 promoMessage: 'All the info you need to make that next big step',
-                searchTerm: '',
-                searchSelect: ['Documents','Topics','Campanies']
             }
         }
     }
@@ -61,8 +55,7 @@
                 content: '';
             }
         }
-        /*.fly-search-pane-overlay{
-
-        }*/
     }
+
+
 </style>

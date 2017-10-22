@@ -5,6 +5,7 @@ import ElementUI from 'element-ui';
 import {apolloProvider} from './Apollo';
 require('./Mixins'); //Vue Mixins
 require('./Util');
+require('./components/global');
 
 
 Vue.use(ElementUI);

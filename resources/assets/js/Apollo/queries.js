@@ -47,7 +47,7 @@ query LOGIN_VIEWER_QUERY($email: String,$password: String) {
  *
  * @return {string}
  * */
-export function RESULT_LIST_OF(type) {
+export function RESULTS_WANTED_OF(type) {
     switch (type){
         case 'company':
             return `

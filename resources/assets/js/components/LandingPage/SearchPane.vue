@@ -26,7 +26,6 @@
 </script>
 <style lang="scss">
     //noinspection CssUnknownTarget
-    @import "~sass/variables";
     @import "~bourbon/app/assets/stylesheets/bourbon";
 
     .fly-search-pane{

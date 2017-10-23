@@ -19375,56 +19375,7 @@ function getLocation(source, position) {
  */
 
 /***/ }),
-/* 135 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-function injectStyle (ssrContext) {
-  if (disposed) return
-  __webpack_require__(302)
-}
-var normalizeComponent = __webpack_require__(7)
-/* script */
-var __vue_script__ = __webpack_require__(304)
-/* template */
-var __vue_template__ = __webpack_require__(310)
-/* styles */
-var __vue_styles__ = injectStyle
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources/assets/js/components/Registration.vue"
-if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
-if (Component.options.functional) {console.error("[vue-loader] Registration.vue: functional components are not supported with templates, they should use render functions.")}
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-2ab6c710", Component.options)
-  } else {
-    hotAPI.reload("data-v-2ab6c710", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
+/* 135 */,
 /* 136 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -24253,6 +24204,10 @@ var _elementUi2 = _interopRequireDefault(_elementUi);
 
 var _Apollo = __webpack_require__(82);
 
+var _Layout = __webpack_require__(582);
+
+var _Layout2 = _interopRequireDefault(_Layout);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 __webpack_require__(532);
@@ -24261,11 +24216,13 @@ __webpack_require__(560);
 
 _vue2.default.use(_elementUi2.default);
 _vue2.default.config.productionTip = false;
+
 new _vue2.default({
+    components: { App: _Layout2.default },
     apolloProvider: _Apollo.apolloProvider,
     router: _Router2.default,
     store: _Store2.default,
-    template: '<router-view></router-view>'
+    template: '<app></app>'
 }).$mount('#app');
 
 /***/ }),
@@ -24298,15 +24255,22 @@ exports.default = new _vueRouter2.default({
     }, {
         path: '/',
         name: 'landing-page',
-        component: __webpack_require__(207)
+        component: __webpack_require__(568)
     }, {
-        path: '/register/company',
-        name: 'company-registration',
-        component: __webpack_require__(135)
-    }, {
-        path: '/register/user',
-        name: 'normal-registration',
-        component: __webpack_require__(135)
+        path: '/register',
+        component: __webpack_require__(567),
+        children: [{
+            path: '',
+            component: __webpack_require__(576)
+        }, {
+            path: '/register/user',
+            name: 'user-registration',
+            component: __webpack_require__(576)
+        }, {
+            path: '/register/company',
+            name: 'company-registration',
+            component: __webpack_require__(585)
+        }]
     }],
     mode: 'history'
 });
@@ -26825,96 +26789,9 @@ if (inBrowser && window.Vue) {
 
 
 /***/ }),
-/* 207 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-function injectStyle (ssrContext) {
-  if (disposed) return
-  __webpack_require__(208)
-}
-var normalizeComponent = __webpack_require__(7)
-/* script */
-var __vue_script__ = __webpack_require__(211)
-/* template */
-var __vue_template__ = __webpack_require__(301)
-/* styles */
-var __vue_styles__ = injectStyle
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources/assets/js/components/LandingPage.vue"
-if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
-if (Component.options.functional) {console.error("[vue-loader] LandingPage.vue: functional components are not supported with templates, they should use render functions.")}
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-34e9f657", Component.options)
-  } else {
-    hotAPI.reload("data-v-34e9f657", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 208 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(209);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(11)("7916385a", content, false);
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-34e9f657\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/sass-loader/lib/loader.js!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./LandingPage.vue", function() {
-     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-34e9f657\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/sass-loader/lib/loader.js!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./LandingPage.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 209 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(10)(undefined);
-// imports
-
-
-// module
-exports.push([module.i, "\n#landingPage {\n  position: absolute;\n  top: 60px;\n  right: 0;\n  bottom: 0;\n  left: 0;\n  margin: 0 40px;\n}\n", ""]);
-
-// exports
-
-
-/***/ }),
+/* 207 */,
+/* 208 */,
+/* 209 */,
 /* 210 */
 /***/ (function(module, exports) {
 
@@ -26948,39 +26825,7 @@ module.exports = function listToStyles (parentId, list) {
 
 
 /***/ }),
-/* 211 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _NavBar = __webpack_require__(112);
-
-var _NavBar2 = _interopRequireDefault(_NavBar);
-
-var _SearchPane = __webpack_require__(277);
-
-var _SearchPane2 = _interopRequireDefault(_SearchPane);
-
-var _FrontView = __webpack_require__(292);
-
-var _FrontView2 = _interopRequireDefault(_FrontView);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = {
-    components: {
-        'app-nav': _NavBar2.default,
-        SearchPane: _SearchPane2.default,
-        FrontView: _FrontView2.default
-    }
-};
-
-/***/ }),
+/* 211 */,
 /* 212 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -27015,7 +26860,7 @@ exports = module.exports = __webpack_require__(10)(undefined);
 
 
 // module
-exports.push([module.i, "\n.fly-nav {\n  height: 60px !important;\n  background-color: #f5f5f5;\n  transition: 1s all ease-out;\n  z-index: 1;\n}\n.fly-nav .el-menu-item {\n    height: 60px;\n    line-height: 60px;\n    color: black;\n    border-bottom: 0;\n}\n.fly-nav .fly-brand {\n    background-color: #101010;\n    color: white;\n    position: relative;\n    height: 100px;\n}\n.fly-nav .fly-brand .fly-brand-content {\n      font-family: monoton,sans-serif;\n      line-height: 100px;\n      font-size: 40px;\n      z-index: 10;\n}\n.fly-nav .fly-brand:hover {\n      background-color: #000 !important;\n      border-bottom: 0;\n}\n.fly-nav .fly-brand:before {\n      position: absolute;\n      top: 0;\n      right: 0;\n      bottom: 0;\n      left: 0;\n      height: 100%;\n      width: 100%;\n      content: '';\n      z-index: -1;\n      background-color: inherit;\n      transform-origin: bottom right;\n      transform: sKewX(-10deg);\n}\n.fly-nav .right-nav {\n    float: right;\n    display: flex;\n    height: 100%;\n}\n.fly-nav .right-nav .fly-nav-dropdown {\n      margin: auto;\n}\n.fly-nav .right-nav .fly-nav-link {\n      cursor: pointer;\n      margin: 0 10px;\n}\n.fly-nav .right-nav .fly-nav-link:hover {\n        border-bottom: 5px black;\n}\n.fly-nav .nav-avatar {\n    position: relative;\n    border-radius: 50px;\n    height: 50px;\n    width: 50px;\n    margin-left: 10px;\n}\n", ""]);
+exports.push([module.i, "\n.fly-nav {\n  height: 60px !important;\n  background-color: #f5f5f5;\n  transition: 1s all ease-out;\n  z-index: 1;\n  border-bottom: 1px solid black;\n}\n.fly-nav .el-menu-item {\n    height: 60px;\n    line-height: 60px;\n    color: black;\n    border-bottom: 0;\n}\n.fly-nav .fly-brand {\n    background-color: #101010;\n    color: white;\n    position: relative;\n    height: 100px;\n}\n.fly-nav .fly-brand .fly-brand-content {\n      font-family: monoton,sans-serif;\n      line-height: 100px;\n      font-size: 40px;\n      z-index: 10;\n}\n.fly-nav .fly-brand:hover {\n      background-color: #000 !important;\n      border-bottom: 0;\n}\n.fly-nav .fly-brand:before {\n      position: absolute;\n      top: 0;\n      right: 0;\n      bottom: 0;\n      left: 0;\n      height: 100%;\n      width: 100%;\n      content: '';\n      z-index: -1;\n      background-color: inherit;\n      transform-origin: bottom right;\n      transform: sKewX(-10deg);\n}\n.fly-nav .right-nav {\n    position: relative;\n    top: 0;\n    right: 20px;\n    bottom: 0;\n    left: 0;\n    float: right;\n    display: flex;\n    height: 100%;\n}\n.fly-nav .right-nav .fly-nav-dropdown {\n      margin: auto;\n}\n.fly-nav .right-nav .fly-nav-link {\n      cursor: pointer;\n      margin: 0 10px;\n}\n.fly-nav .right-nav .fly-nav-link:hover {\n        border-bottom: 5px black;\n}\n.fly-nav .nav-avatar {\n    position: relative;\n    border-radius: 50px;\n    height: 50px;\n    width: 50px;\n    margin-left: 10px;\n}\n", ""]);
 
 // exports
 
@@ -27384,7 +27229,7 @@ exports.default = {
         };
     },
 
-    methods: (0, _extends3.default)({}, (0, _vuex.mapActions)('Auth', ['storeAuth', 'attemptLogin']), {
+    methods: (0, _extends3.default)({}, (0, _vuex.mapActions)('Auth', ['attemptLogin']), {
         login: function login() {
             var _this = this;
 
@@ -31439,7 +31284,7 @@ exports = module.exports = __webpack_require__(10)(undefined);
 
 
 // module
-exports.push([module.i, "\n.fly-search-pane {\n  position: relative;\n  height: 370px;\n}\n.fly-search-pane .fly-search-pane-inner {\n    position: relative;\n    display: flex;\n    z-index: 0;\n    padding: 20px;\n}\n.fly-search-pane .fly-search-pane-inner .content {\n      font-family: Megrim,sans-serif;\n      font-weight: 400;\n      font-size: 60px;\n      text-align: left;\n      color: #ffffff;\n      z-index: 10;\n}\n.fly-search-pane .fly-search-pane-inner:before {\n      position: absolute;\n      top: 0;\n      right: 0;\n      bottom: 0;\n      left: 0;\n      height: 100%;\n      width: 100%;\n      background-color: rgba(24, 0, 255, 0.41);\n      z-index: -1;\n      content: '';\n}\n", ""]);
+exports.push([module.i, "\n.fly-search-pane {\n  position: relative;\n}\n.fly-search-pane .fly-search-pane-inner {\n    position: relative;\n    display: flex;\n    z-index: 0;\n    padding: 20px;\n    height: 300px;\n}\n.fly-search-pane .fly-search-pane-inner .content {\n      font-family: Megrim,sans-serif;\n      font-weight: 400;\n      font-size: 60px;\n      text-align: left;\n      color: #ffffff;\n      z-index: 10;\n}\n.fly-search-pane .fly-search-pane-inner:before {\n      position: absolute;\n      top: 0;\n      right: 0;\n      bottom: 0;\n      left: 0;\n      height: 100%;\n      width: 100%;\n      background-color: rgba(24, 0, 255, 0.41);\n      z-index: -1;\n      content: '';\n}\n", ""]);
 
 // exports
 
@@ -31877,8 +31722,8 @@ var render = function() {
             attrs: { xs: 24, sm: 24, md: 12, lg: 12 }
           },
           [
-            _c("div", { staticClass: "content" }, [
-              _c("p", [_vm._v(_vm._s(_vm.promoMessage))])
+            _c("span", { staticClass: "content" }, [
+              _vm._v(_vm._s(_vm.promoMessage))
             ])
           ]
         ),
@@ -32182,654 +32027,16 @@ if (false) {
 }
 
 /***/ }),
-/* 301 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { attrs: { id: "app" } },
-    [
-      _c("app-nav"),
-      _vm._v(" "),
-      _c(
-        "main",
-        { ref: "landingPage", attrs: { id: "landingPage" } },
-        [_c("search-pane"), _vm._v(" "), _c("front-view")],
-        1
-      )
-    ],
-    1
-  )
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-34e9f657", module.exports)
-  }
-}
-
-/***/ }),
-/* 302 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(303);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(11)("8fbda0ac", content, false);
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-2ab6c710\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/sass-loader/lib/loader.js!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Registration.vue", function() {
-     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-2ab6c710\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/sass-loader/lib/loader.js!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Registration.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 303 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(10)(undefined);
-// imports
-
-
-// module
-exports.push([module.i, "\n#registration {\n  position: absolute;\n  display: flex;\n  top: 60px;\n  right: 0;\n  bottom: 0;\n  left: 0;\n}\n#registration .loginRow {\n    flex: 1 0;\n    margin: auto;\n}\n", ""]);
-
-// exports
-
-
-/***/ }),
-/* 304 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _NavBar = __webpack_require__(112);
-
-var _NavBar2 = _interopRequireDefault(_NavBar);
-
-var _RegistrationForm = __webpack_require__(305);
-
-var _RegistrationForm2 = _interopRequireDefault(_RegistrationForm);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = {
-    components: {
-        'app-nav': _NavBar2.default,
-        'reg-form': _RegistrationForm2.default
-    }
-};
-
-/***/ }),
-/* 305 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-function injectStyle (ssrContext) {
-  if (disposed) return
-  __webpack_require__(306)
-}
-var normalizeComponent = __webpack_require__(7)
-/* script */
-var __vue_script__ = __webpack_require__(308)
-/* template */
-var __vue_template__ = __webpack_require__(309)
-/* styles */
-var __vue_styles__ = injectStyle
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources/assets/js/components/Registration/RegistrationForm.vue"
-if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
-if (Component.options.functional) {console.error("[vue-loader] RegistrationForm.vue: functional components are not supported with templates, they should use render functions.")}
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-6c12cbb8", Component.options)
-  } else {
-    hotAPI.reload("data-v-6c12cbb8", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 306 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(307);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(11)("0a6c8132", content, false);
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-6c12cbb8\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/sass-loader/lib/loader.js!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./RegistrationForm.vue", function() {
-     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-6c12cbb8\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/sass-loader/lib/loader.js!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./RegistrationForm.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 307 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(10)(undefined);
-// imports
-
-
-// module
-exports.push([module.i, "\n.registerCard {\n  position: relative;\n  width: 400px;\n  height: 400px;\n  border-bottom-color: darkgrey;\n  border-width: 1px;\n  border-radius: 4px;\n}\n.registerCard .clearfix:before,\n  .registerCard .clearfix:after {\n    display: table;\n    content: \"\";\n}\n.registerCard .clearfix:after {\n    clear: both;\n}\n.registerCard .register-content {\n    padding: 10px;\n}\n.avatar-uploader .el-upload {\n  border: 1px dashed #000000;\n  border-radius: 6px;\n  cursor: pointer;\n  position: relative;\n  overflow: hidden;\n  /*margin: 20px;*/\n}\n.avatar-uploader .el-upload:hover {\n  border-color: #20a0ff;\n}\n.avatar-uploader-icon {\n  font-size: 28px;\n  color: #8c939d;\n  width: 200px;\n  height: 200px;\n  line-height: 200px;\n  text-align: center;\n}\n.avatar {\n  width: 200px;\n  height: 200px;\n  display: block;\n}\n", ""]);
-
-// exports
-
-
-/***/ }),
-/* 308 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _extends2 = __webpack_require__(48);
-
-var _extends3 = _interopRequireDefault(_extends2);
-
-var _vuex = __webpack_require__(36);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = {
-    data: function data() {
-        return {
-            form: {
-                name: '',
-                email: '',
-                password: '',
-                password_confirmation: '',
-                role: 'normal',
-                image: null
-            },
-            rules: {
-                name: [{ required: true, message: 'Please input your name', trigger: 'blur' }],
-                email: [{ required: true, message: 'Please input your email', trigger: 'blur' }],
-                password: [{ required: true, message: 'Please input your password', trigger: 'blur' }],
-                password_confirmation: [{ required: true, message: 'Please repeat the password', trigger: 'blur' }],
-                image: [{ required: false }]
-
-            },
-            headers: {
-                'X-CSRF-TOKEN': axios.defaults.headers.common['X-CSRF-TOKEN'],
-                'X-Requested-With': axios.defaults.headers.common['X-Requested-With']
-            },
-            part2: false,
-            tempImageUrl: ''
-        };
-    },
-
-    methods: (0, _extends3.default)({}, (0, _vuex.mapActions)('Auth', ['attemptRegistry']), {
-        handleSuccess: function handleSuccess(res, file) {
-
-            this.stopLoading();
-
-            this.form.image = res.info.location;
-
-            this.tempImageUrl = URL.createObjectURL(file.raw);
-
-            this.$message.success('Photo uploaded successfully');
-        },
-        beforeUpload: function beforeUpload(file) {
-            this.startLoading(this.$refs['avatar-uploader-icon'].$el);
-
-            var isJPG = file.type === 'image/jpeg' || file.type === 'image/png';
-            var isLt2M = file.size / 1024 / 1024 < 2;
-
-            if (!isJPG) {
-                this.$message.error('Avatar picture must be JPG or PNG format!');
-            }
-            if (!isLt2M) {
-                this.$message.error('Avatar picture size can not exceed 2MB!');
-            }
-            return isJPG && isLt2M;
-        },
-        register: function register() {
-            var _this = this;
-
-            this.startLoading(this.$refs.registerCard.$el);
-            this.validateForm(this.$refs.registerForm).then(function () {
-                _this.attemptRegistry(_this.form).then(function () {
-                    _this.stopLoading();
-                    _this.$router.replace({ path: 'landing-page' });
-                }).catch(function (error) {
-                    _this.cancel();
-                    _this.stopLoading();
-                    _this.notifyError(error);
-                });
-            }).catch(function () {
-                _this.stopLoading();
-                _this.$message.error('Please enter valid input');
-            });
-        },
-        cancel: function cancel() {
-            this.$refs['registerForm'].resetFields();
-        }
-    })
-};
-
-/***/ }),
-/* 309 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "el-card",
-    { ref: "registerCard", staticClass: "registerCard" },
-    [
-      _c(
-        "div",
-        { staticClass: "clearfix", attrs: { slot: "header" }, slot: "header" },
-        [
-          _c("span", { staticStyle: { "line-height": "36px" } }, [
-            _vm._v("REGISTRATION")
-          ])
-        ]
-      ),
-      _vm._v(" "),
-      _c(
-        "el-form",
-        { ref: "registerForm", attrs: { model: _vm.form, rules: _vm.rules } },
-        [
-          _c(
-            "div",
-            { staticClass: "register-content" },
-            [
-              _c(
-                "transition",
-                {
-                  on: {
-                    enter: _vm.twoPartSlideRight,
-                    leave: _vm.twoPartSlideLeft
-                  }
-                },
-                [
-                  !_vm.part2
-                    ? _c(
-                        "div",
-                        { attrs: { index: "1" } },
-                        [
-                          _c(
-                            "el-form-item",
-                            {
-                              staticClass: "input-field col s12",
-                              attrs: { prop: "name" }
-                            },
-                            [
-                              _c("el-input", {
-                                attrs: {
-                                  type: "text",
-                                  placeholder: "Full name",
-                                  "auto-complete": "off"
-                                },
-                                model: {
-                                  value: _vm.form.name,
-                                  callback: function($$v) {
-                                    _vm.form.name = $$v
-                                  },
-                                  expression: "form.name"
-                                }
-                              })
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "el-form-item",
-                            {
-                              staticClass: "input-field col s12",
-                              attrs: { prop: "email" }
-                            },
-                            [
-                              _c("el-input", {
-                                attrs: {
-                                  type: "email",
-                                  placeholder: "Email",
-                                  "auto-complete": "off"
-                                },
-                                model: {
-                                  value: _vm.form.email,
-                                  callback: function($$v) {
-                                    _vm.form.email = $$v
-                                  },
-                                  expression: "form.email"
-                                }
-                              })
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "el-form-item",
-                            {
-                              staticClass: "input-field col s12",
-                              attrs: { prop: "password" }
-                            },
-                            [
-                              _c("el-input", {
-                                attrs: {
-                                  type: "password",
-                                  placeholder: "Password",
-                                  "auto-complete": "off"
-                                },
-                                model: {
-                                  value: _vm.form.password,
-                                  callback: function($$v) {
-                                    _vm.form.password = $$v
-                                  },
-                                  expression: "form.password"
-                                }
-                              })
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "el-form-item",
-                            {
-                              staticClass: "input-field col s12",
-                              attrs: { prop: "password_confirmation" }
-                            },
-                            [
-                              _c("el-input", {
-                                attrs: {
-                                  type: "password",
-                                  placeholder: "Retype Password",
-                                  "auto-complete": "off"
-                                },
-                                model: {
-                                  value: _vm.form.password_confirmation,
-                                  callback: function($$v) {
-                                    _vm.form.password_confirmation = $$v
-                                  },
-                                  expression: "form.password_confirmation"
-                                }
-                              })
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "div",
-                            {
-                              staticClass: "register-footer",
-                              staticStyle: { "text-align": "right" }
-                            },
-                            [
-                              _c(
-                                "el-button",
-                                {
-                                  attrs: { plain: true, type: "danger" },
-                                  on: { click: _vm.cancel }
-                                },
-                                [_vm._v("CANCEL")]
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "el-button",
-                                {
-                                  attrs: {
-                                    type: "info",
-                                    icon: "d-arrow-right"
-                                  },
-                                  on: {
-                                    click: function($event) {
-                                      _vm.part2 = true
-                                    }
-                                  }
-                                },
-                                [_vm._v("NEXT")]
-                              )
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      )
-                    : _vm._e()
-                ]
-              ),
-              _vm._v(" "),
-              _c(
-                "transition",
-                {
-                  on: {
-                    enter: _vm.twoPartSlideLeft,
-                    leave: _vm.twoPartSlideRight
-                  }
-                },
-                [
-                  _vm.part2
-                    ? _c(
-                        "div",
-                        {
-                          staticStyle: { "text-align": "center" },
-                          attrs: { index: "2" }
-                        },
-                        [
-                          _c(
-                            "el-upload",
-                            {
-                              staticClass: "avatar-uploader",
-                              attrs: {
-                                name: "tempImage",
-                                action: "http://laravel.dev/api/temp/image",
-                                headers: _vm.headers,
-                                "show-file-list": false,
-                                "on-success": _vm.handleSuccess,
-                                "before-upload": _vm.beforeUpload
-                              }
-                            },
-                            [
-                              _vm.tempImageUrl
-                                ? _c("img", {
-                                    staticClass: "avatar",
-                                    attrs: { src: _vm.tempImageUrl }
-                                  })
-                                : _c("i", {
-                                    ref: "avatar-uploader-icon",
-                                    staticClass:
-                                      "el-icon-plus avatar-uploader-icon"
-                                  }),
-                              _vm._v(" "),
-                              _c(
-                                "div",
-                                {
-                                  staticClass: "el-upload__tip",
-                                  attrs: { slot: "tip" },
-                                  slot: "tip"
-                                },
-                                [
-                                  _vm._v(
-                                    "jpg/png files with a size less than 2mb"
-                                  )
-                                ]
-                              )
-                            ]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "div",
-                            {
-                              staticClass: "register-footer",
-                              staticStyle: { "text-align": "left" }
-                            },
-                            [
-                              _c(
-                                "el-button",
-                                {
-                                  attrs: {
-                                    type: "danger",
-                                    icon: "d-arrow-left"
-                                  },
-                                  on: {
-                                    click: function($event) {
-                                      _vm.part2 = false
-                                    }
-                                  }
-                                },
-                                [_vm._v("BACK")]
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "el-button",
-                                {
-                                  attrs: { plain: true, type: "success" },
-                                  on: { click: _vm.register }
-                                },
-                                [_vm._v("FINISH")]
-                              )
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      )
-                    : _vm._e()
-                ]
-              )
-            ],
-            1
-          )
-        ]
-      )
-    ],
-    1
-  )
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-6c12cbb8", module.exports)
-  }
-}
-
-/***/ }),
-/* 310 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { attrs: { id: "app" } },
-    [
-      _c("app-nav"),
-      _vm._v(" "),
-      _c(
-        "main",
-        { attrs: { id: "registration" } },
-        [
-          _c(
-            "el-row",
-            {
-              staticClass: "loginRow",
-              attrs: { type: "flex", justify: "end" }
-            },
-            [
-              _c(
-                "el-col",
-                { attrs: { xs: 24, sm: 24, md: 12, lg: 12 } },
-                [
-                  _c(
-                    "el-col",
-                    { attrs: { span: 12, offset: 6 } },
-                    [_c("reg-form")],
-                    1
-                  )
-                ],
-                1
-              )
-            ],
-            1
-          )
-        ],
-        1
-      )
-    ],
-    1
-  )
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-2ab6c710", module.exports)
-  }
-}
-
-/***/ }),
+/* 301 */,
+/* 302 */,
+/* 303 */,
+/* 304 */,
+/* 305 */,
+/* 306 */,
+/* 307 */,
+/* 308 */,
+/* 309 */,
+/* 310 */,
 /* 311 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -33226,7 +32433,7 @@ var _asyncToGenerator3 = _interopRequireDefault(_asyncToGenerator2);
 
 var _index = __webpack_require__(82);
 
-var _constants = __webpack_require__(130);
+var _queries = __webpack_require__(362);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -33306,14 +32513,14 @@ var actions = {
                         case 0:
                             _context2.next = 2;
                             return _index.apolloClient.query({
-                                query: _constants.LOGIN_VIEWER_QUERY,
+                                query: _queries.LOGIN_VIEWER_QUERY,
                                 variables: form
                             });
 
                         case 2:
                             response = _context2.sent;
                             _context2.next = 5;
-                            return dispatch('storeAuth', response.data.viewerLogin);
+                            return dispatch('storeAuth', response.data.login);
 
                         case 5:
                         case 'end':
@@ -40432,15 +39639,14 @@ $export($export.S + $export.F * !__webpack_require__(22), 'Object', { defineProp
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.LOGIN_VIEWER_QUERY = exports.GET_USER_QUERY = exports.GET_VIEWER_QUERY = undefined;
+exports.LOGIN_VIEWER_QUERY = exports.GET_USER_QUERY = undefined;
 
 var _taggedTemplateLiteral2 = __webpack_require__(131);
 
 var _taggedTemplateLiteral3 = _interopRequireDefault(_taggedTemplateLiteral2);
 
-var _templateObject = (0, _taggedTemplateLiteral3.default)(['\nquery GET_VIEWER_QUERY {\n  viewerQuery(id: 1) {\n    id\n    name\n    role\n    email\n  }\n}'], ['\nquery GET_VIEWER_QUERY {\n  viewerQuery(id: 1) {\n    id\n    name\n    role\n    email\n  }\n}']),
-    _templateObject2 = (0, _taggedTemplateLiteral3.default)(['\nquery GET_USER_QUERY($id: Int) {\n  viewerQuery(id: $id) {\n    name\n    role\n    email\n    pictures{\n      location\n    }\n  }\n}'], ['\nquery GET_USER_QUERY($id: Int) {\n  viewerQuery(id: $id) {\n    name\n    role\n    email\n    pictures{\n      location\n    }\n  }\n}']),
-    _templateObject3 = (0, _taggedTemplateLiteral3.default)(['\nquery LOGIN_VIEWER_QUERY($email: String,$password: String) {\n  viewerLogin(email: $email,password: $password) {\n    token\n    user{\n      name\n      email\n      role\n      pictures{\n        location\n      }\n    }\n  }\n}\n'], ['\nquery LOGIN_VIEWER_QUERY($email: String,$password: String) {\n  viewerLogin(email: $email,password: $password) {\n    token\n    user{\n      name\n      email\n      role\n      pictures{\n        location\n      }\n    }\n  }\n}\n']);
+var _templateObject = (0, _taggedTemplateLiteral3.default)(['\nquery GET_USER_QUERY($id: Int) {\n  viewer(id: $id) {\n    name\n    role\n    email\n    pictures{\n      location\n    }\n  }\n}'], ['\nquery GET_USER_QUERY($id: Int) {\n  viewer(id: $id) {\n    name\n    role\n    email\n    pictures{\n      location\n    }\n  }\n}']),
+    _templateObject2 = (0, _taggedTemplateLiteral3.default)(['\nquery LOGIN_VIEWER_QUERY($email: String,$password: String) {\n  login(email: $email,password: $password) {\n    token\n    user{\n      name\n      email\n      role\n      pictures{\n        location\n      }\n    }\n  }\n}\n'], ['\nquery LOGIN_VIEWER_QUERY($email: String,$password: String) {\n  login(email: $email,password: $password) {\n    token\n    user{\n      name\n      email\n      role\n      pictures{\n        location\n      }\n    }\n  }\n}\n']);
 
 exports.RESULTS_WANTED_OF = RESULTS_WANTED_OF;
 
@@ -40450,11 +39656,9 @@ var _graphqlTag2 = _interopRequireDefault(_graphqlTag);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var GET_VIEWER_QUERY = exports.GET_VIEWER_QUERY = (0, _graphqlTag2.default)(_templateObject);
+var GET_USER_QUERY = exports.GET_USER_QUERY = (0, _graphqlTag2.default)(_templateObject);
 
-var GET_USER_QUERY = exports.GET_USER_QUERY = (0, _graphqlTag2.default)(_templateObject2);
-
-var LOGIN_VIEWER_QUERY = exports.LOGIN_VIEWER_QUERY = (0, _graphqlTag2.default)(_templateObject3);
+var LOGIN_VIEWER_QUERY = exports.LOGIN_VIEWER_QUERY = (0, _graphqlTag2.default)(_templateObject2);
 
 function RESULTS_WANTED_OF(type) {
     switch (type) {
@@ -81623,7 +80827,7 @@ _vue2.default.mixin({
             } else {
                 this.$notify.error({
                     title: 'AN ERROR OCCURED',
-                    message: excuse,
+                    message: excuse ? excuse : error.toString(),
                     duration: 0
                 });
             }
@@ -100890,6 +100094,7689 @@ module.exports = function (isEntries) {
     } return result;
   };
 };
+
+
+/***/ }),
+/* 567 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(573)
+}
+var normalizeComponent = __webpack_require__(7)
+/* script */
+var __vue_script__ = null
+/* template */
+var __vue_template__ = __webpack_require__(581)
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/Pages/Registration.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] Registration.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-20e5918e", Component.options)
+  } else {
+    hotAPI.reload("data-v-20e5918e", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 568 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(569)
+}
+var normalizeComponent = __webpack_require__(7)
+/* script */
+var __vue_script__ = __webpack_require__(571)
+/* template */
+var __vue_template__ = __webpack_require__(572)
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/Pages/LandingPage.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] LandingPage.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-8a69f2fe", Component.options)
+  } else {
+    hotAPI.reload("data-v-8a69f2fe", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 569 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(570);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(11)("75a50daa", content, false);
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-8a69f2fe\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/sass-loader/lib/loader.js!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./LandingPage.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-8a69f2fe\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/sass-loader/lib/loader.js!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./LandingPage.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 570 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(10)(undefined);
+// imports
+
+
+// module
+exports.push([module.i, "\n#landingPage {\n  margin: 0 40px;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 571 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _NavBar = __webpack_require__(112);
+
+var _NavBar2 = _interopRequireDefault(_NavBar);
+
+var _SearchPane = __webpack_require__(277);
+
+var _SearchPane2 = _interopRequireDefault(_SearchPane);
+
+var _FrontView = __webpack_require__(292);
+
+var _FrontView2 = _interopRequireDefault(_FrontView);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = {
+    components: {
+        'app-nav': _NavBar2.default,
+        SearchPane: _SearchPane2.default,
+        FrontView: _FrontView2.default
+    }
+};
+
+/***/ }),
+/* 572 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "main",
+    { staticClass: "workspace", attrs: { id: "landingPage" } },
+    [_c("search-pane"), _vm._v(" "), _c("front-view")],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-8a69f2fe", module.exports)
+  }
+}
+
+/***/ }),
+/* 573 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(574);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(11)("9f6747f2", content, false);
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-20e5918e\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/sass-loader/lib/loader.js!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Registration.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-20e5918e\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/sass-loader/lib/loader.js!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Registration.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 574 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(10)(undefined);
+// imports
+
+
+// module
+exports.push([module.i, "\n#registration {\n  display: flex;\n}\n#registration .formRow {\n    flex: 1 0;\n    margin: auto;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 575 */,
+/* 576 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(577)
+}
+var normalizeComponent = __webpack_require__(7)
+/* script */
+var __vue_script__ = __webpack_require__(579)
+/* template */
+var __vue_template__ = __webpack_require__(580)
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/Registration/UserForm.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] UserForm.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-02ec6b94", Component.options)
+  } else {
+    hotAPI.reload("data-v-02ec6b94", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 577 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(578);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(11)("0a7e358e", content, false);
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-02ec6b94\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/sass-loader/lib/loader.js!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./UserForm.vue", function() {
+     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-02ec6b94\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/sass-loader/lib/loader.js!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./UserForm.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 578 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(10)(undefined);
+// imports
+
+
+// module
+exports.push([module.i, "\n.user-reg-card {\n  width: 400px;\n  height: 400px;\n  margin: auto;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 579 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _extends2 = __webpack_require__(48);
+
+var _extends3 = _interopRequireDefault(_extends2);
+
+var _vuex = __webpack_require__(36);
+
+var _ImageUploader = __webpack_require__(590);
+
+var _ImageUploader2 = _interopRequireDefault(_ImageUploader);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = {
+    data: function data() {
+        return {
+            form: {
+                name: '',
+                email: '',
+                password: '',
+                password_confirmation: '',
+                role: 'normal',
+                image: null
+            },
+            rules: {
+                name: [{ required: true, message: 'Please input your name', trigger: 'blur' }],
+                email: [{ required: true, message: 'Please input your email', trigger: 'blur' }],
+                password: [{ required: true, message: 'Please input your password', trigger: 'blur' }],
+                password_confirmation: [{ required: true, message: 'Please repeat the password', trigger: 'blur' }],
+                image: [{ required: false }]
+
+            },
+            part2: false
+        };
+    },
+
+    methods: (0, _extends3.default)({}, (0, _vuex.mapActions)('Auth', ['attemptRegistry']), {
+        handleOnUploaded: function handleOnUploaded(url) {
+            this.form.image = url;
+        },
+        register: function register() {
+            var _this = this;
+
+            this.startLoading(this.$refs.registerCard.$el);
+            this.validateForm(this.$refs.registerForm).then(function () {
+                _this.attemptRegistry(_this.form).then(function () {
+                    _this.stopLoading();
+                    _this.$router.replace({ path: 'landing-page' });
+                }).catch(function (error) {
+                    _this.cancel();
+                    _this.stopLoading();
+                    _this.notifyError(error);
+                });
+            }).catch(function () {
+                _this.stopLoading();
+                _this.$message.error('Please enter valid input');
+            });
+        },
+        cancel: function cancel() {
+            this.$refs['registerForm'].resetFields();
+        }
+    }),
+    components: {
+        ImageUploader: _ImageUploader2.default
+    }
+};
+
+/***/ }),
+/* 580 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticStyle: { position: "relative", width: "100%", height: "100%" } },
+    [
+      _c("el-col", { attrs: { xs: 24, sm: 24, md: 12, lg: 12 } }, [
+        _c("div", { staticClass: "reg-promotion" })
+      ]),
+      _vm._v(" "),
+      _c(
+        "el-col",
+        { attrs: { xs: 24, sm: 24, md: 12, lg: 12 } },
+        [
+          _c(
+            "el-card",
+            { ref: "registerCard", staticClass: "fly-card user-reg-card" },
+            [
+              _c(
+                "div",
+                {
+                  staticClass: "clearfix",
+                  attrs: { slot: "header" },
+                  slot: "header"
+                },
+                [
+                  _c("span", { staticStyle: { "line-height": "36px" } }, [
+                    _vm._v("SIGN UP")
+                  ])
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "el-form",
+                {
+                  ref: "registerForm",
+                  attrs: { model: _vm.form, rules: _vm.rules }
+                },
+                [
+                  _c(
+                    "div",
+                    { staticClass: "fly-card-content" },
+                    [
+                      _c(
+                        "transition",
+                        {
+                          on: {
+                            enter: _vm.twoPartSlideRight,
+                            leave: _vm.twoPartSlideLeft
+                          }
+                        },
+                        [
+                          !_vm.part2
+                            ? _c(
+                                "div",
+                                { attrs: { index: "1" } },
+                                [
+                                  _c(
+                                    "el-form-item",
+                                    {
+                                      staticClass: "input-field col s12",
+                                      attrs: { prop: "name" }
+                                    },
+                                    [
+                                      _c("el-input", {
+                                        attrs: {
+                                          type: "text",
+                                          placeholder: "Full name",
+                                          "auto-complete": "off"
+                                        },
+                                        model: {
+                                          value: _vm.form.name,
+                                          callback: function($$v) {
+                                            _vm.form.name = $$v
+                                          },
+                                          expression: "form.name"
+                                        }
+                                      })
+                                    ],
+                                    1
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "el-form-item",
+                                    {
+                                      staticClass: "input-field col s12",
+                                      attrs: { prop: "email" }
+                                    },
+                                    [
+                                      _c("el-input", {
+                                        attrs: {
+                                          type: "email",
+                                          placeholder: "Email",
+                                          "auto-complete": "off"
+                                        },
+                                        model: {
+                                          value: _vm.form.email,
+                                          callback: function($$v) {
+                                            _vm.form.email = $$v
+                                          },
+                                          expression: "form.email"
+                                        }
+                                      })
+                                    ],
+                                    1
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "el-form-item",
+                                    {
+                                      staticClass: "input-field col s12",
+                                      attrs: { prop: "password" }
+                                    },
+                                    [
+                                      _c("el-input", {
+                                        attrs: {
+                                          type: "password",
+                                          placeholder: "Password",
+                                          "auto-complete": "off"
+                                        },
+                                        model: {
+                                          value: _vm.form.password,
+                                          callback: function($$v) {
+                                            _vm.form.password = $$v
+                                          },
+                                          expression: "form.password"
+                                        }
+                                      })
+                                    ],
+                                    1
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "el-form-item",
+                                    {
+                                      staticClass: "input-field col s12",
+                                      attrs: { prop: "password_confirmation" }
+                                    },
+                                    [
+                                      _c("el-input", {
+                                        attrs: {
+                                          type: "password",
+                                          placeholder: "Retype Password",
+                                          "auto-complete": "off"
+                                        },
+                                        model: {
+                                          value: _vm.form.password_confirmation,
+                                          callback: function($$v) {
+                                            _vm.form.password_confirmation = $$v
+                                          },
+                                          expression:
+                                            "form.password_confirmation"
+                                        }
+                                      })
+                                    ],
+                                    1
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "div",
+                                    {
+                                      staticClass: "fly-card-footer",
+                                      staticStyle: { "text-align": "right" }
+                                    },
+                                    [
+                                      _c(
+                                        "el-button",
+                                        {
+                                          attrs: {
+                                            plain: true,
+                                            type: "danger"
+                                          },
+                                          on: { click: _vm.cancel }
+                                        },
+                                        [_vm._v("CANCEL")]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "el-button",
+                                        {
+                                          attrs: {
+                                            type: "info",
+                                            icon: "d-arrow-right"
+                                          },
+                                          on: {
+                                            click: function($event) {
+                                              _vm.part2 = true
+                                            }
+                                          }
+                                        },
+                                        [_vm._v("NEXT")]
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              )
+                            : _vm._e()
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "transition",
+                        {
+                          on: {
+                            enter: _vm.twoPartSlideLeft,
+                            leave: _vm.twoPartSlideRight
+                          }
+                        },
+                        [
+                          _vm.part2
+                            ? _c(
+                                "div",
+                                {
+                                  staticStyle: { "text-align": "center" },
+                                  attrs: { index: "2" }
+                                },
+                                [
+                                  _c("image-uploader", {
+                                    on: { Uploaded: _vm.handleOnUploaded }
+                                  }),
+                                  _vm._v(" "),
+                                  _c(
+                                    "div",
+                                    {
+                                      staticClass: "fly-card-footer",
+                                      staticStyle: { "text-align": "left" }
+                                    },
+                                    [
+                                      _c(
+                                        "el-button",
+                                        {
+                                          attrs: {
+                                            type: "danger",
+                                            icon: "d-arrow-left"
+                                          },
+                                          on: {
+                                            click: function($event) {
+                                              _vm.part2 = false
+                                            }
+                                          }
+                                        },
+                                        [_vm._v("BACK")]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "el-button",
+                                        {
+                                          attrs: {
+                                            plain: true,
+                                            type: "success"
+                                          },
+                                          on: { click: _vm.register }
+                                        },
+                                        [_vm._v("FINISH")]
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              )
+                            : _vm._e()
+                        ]
+                      )
+                    ],
+                    1
+                  )
+                ]
+              )
+            ],
+            1
+          )
+        ],
+        1
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-02ec6b94", module.exports)
+  }
+}
+
+/***/ }),
+/* 581 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "main",
+    { staticClass: "workspace", attrs: { id: "registration" } },
+    [
+      _c(
+        "el-row",
+        { staticClass: "formRow", attrs: { type: "flex" } },
+        [_c("router-view")],
+        1
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-20e5918e", module.exports)
+  }
+}
+
+/***/ }),
+/* 582 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(7)
+/* script */
+var __vue_script__ = __webpack_require__(583)
+/* template */
+var __vue_template__ = __webpack_require__(584)
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/Pages/Layout.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] Layout.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-7eea153f", Component.options)
+  } else {
+    hotAPI.reload("data-v-7eea153f", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 583 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _NavBar = __webpack_require__(112);
+
+var _NavBar2 = _interopRequireDefault(_NavBar);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = {
+    components: {
+        NavBar: _NavBar2.default
+    }
+};
+
+/***/ }),
+/* 584 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { attrs: { id: "app" } },
+    [_c("nav-bar"), _vm._v(" "), _c("router-view")],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-7eea153f", module.exports)
+  }
+}
+
+/***/ }),
+/* 585 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(586)
+}
+var normalizeComponent = __webpack_require__(7)
+/* script */
+var __vue_script__ = __webpack_require__(589)
+/* template */
+var __vue_template__ = __webpack_require__(588)
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/Registration/CompanyForm.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] CompanyForm.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-5bd9c2ac", Component.options)
+  } else {
+    hotAPI.reload("data-v-5bd9c2ac", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 586 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(587);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(11)("85a57b82", content, false);
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-5bd9c2ac\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/sass-loader/lib/loader.js!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./CompanyForm.vue", function() {
+     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-5bd9c2ac\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/sass-loader/lib/loader.js!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./CompanyForm.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 587 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(10)(undefined);
+// imports
+
+
+// module
+exports.push([module.i, "\n.company-reg-card {\n  width: 900px;\n  margin: auto;\n}\n.company-reg-card .fly-card-content form {\n    display: grid;\n    grid-template-columns: 1fr 1fr;\n    grid-gap: 20px;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 588 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "el-card",
+    { ref: "companyRegCard", staticClass: "fly-card company-reg-card" },
+    [
+      _c(
+        "div",
+        { staticClass: "clearfix", attrs: { slot: "header" }, slot: "header" },
+        [
+          _c("span", { staticStyle: { "line-height": "36px" } }, [
+            _vm._v("COMPANY/BUSINESS REGISTRATION")
+          ])
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "fly-card-content" },
+        [
+          _c(
+            "el-form",
+            {
+              ref: "companyRegForm",
+              attrs: { model: _vm.form, rules: _vm.rules }
+            },
+            [
+              _c(
+                "div",
+                { staticClass: "form-group" },
+                [
+                  _c(
+                    "el-form-item",
+                    {
+                      staticClass: "input-field col s12",
+                      attrs: { prop: "name" }
+                    },
+                    [
+                      _c("el-input", {
+                        attrs: {
+                          type: "text",
+                          placeholder: "Business name",
+                          "auto-complete": "off"
+                        },
+                        model: {
+                          value: _vm.form.name,
+                          callback: function($$v) {
+                            _vm.form.name = $$v
+                          },
+                          expression: "form.name"
+                        }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "el-form-item",
+                    {
+                      staticClass: "input-field col s12",
+                      attrs: { prop: "businessNo" }
+                    },
+                    [
+                      _c("el-input", {
+                        attrs: {
+                          type: "number",
+                          placeholder: "Business number(optional)",
+                          "auto-complete": "off"
+                        },
+                        model: {
+                          value: _vm.form.businessNo,
+                          callback: function($$v) {
+                            _vm.form.businessNo = $$v
+                          },
+                          expression: "form.businessNo"
+                        }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "el-form-item",
+                    {
+                      staticClass: "input-field col s12",
+                      attrs: { prop: "description" }
+                    },
+                    [
+                      _c("el-input", {
+                        attrs: {
+                          type: "email",
+                          placeholder: "Small description of the business",
+                          "auto-complete": "off"
+                        },
+                        model: {
+                          value: _vm.form.description,
+                          callback: function($$v) {
+                            _vm.form.description = $$v
+                          },
+                          expression: "form.description"
+                        }
+                      })
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "form-group" },
+                [
+                  _c("image-uploader", {
+                    on: { Uploaded: _vm.handleOnUploaded }
+                  })
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass: "form-group",
+                  staticStyle: { "grid-column": "1/4" }
+                },
+                [_c("map-component")],
+                1
+              )
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "fly-card-footer",
+              staticStyle: { "text-align": "right" }
+            },
+            [
+              _c(
+                "el-button",
+                {
+                  attrs: { plain: true, type: "danger" },
+                  on: { click: _vm.cancel }
+                },
+                [_vm._v("CANCEL")]
+              ),
+              _vm._v(" "),
+              _c(
+                "el-button",
+                {
+                  attrs: { type: "info", icon: "d-arrow-right" },
+                  on: { click: _vm.register }
+                },
+                [_vm._v("REGISTER")]
+              )
+            ],
+            1
+          )
+        ],
+        1
+      )
+    ]
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-5bd9c2ac", module.exports)
+  }
+}
+
+/***/ }),
+/* 589 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _extends2 = __webpack_require__(48);
+
+var _extends3 = _interopRequireDefault(_extends2);
+
+var _vuex = __webpack_require__(36);
+
+var _ImageUploader = __webpack_require__(590);
+
+var _ImageUploader2 = _interopRequireDefault(_ImageUploader);
+
+var _Map = __webpack_require__(595);
+
+var _Map2 = _interopRequireDefault(_Map);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = {
+    data: function data() {
+        return {
+            form: {
+                name: '',
+                businessNo: '',
+                description: '',
+                latitude: '',
+                longitude: '',
+                image: null
+            },
+            rules: {
+                name: [{ required: true, message: 'Please input your name', trigger: 'blur' }],
+                description: [{ required: true, message: 'Please input a small description', trigger: 'blur' }],
+                latitude: [{ required: true, message: 'Please pin point the location of the business', trigger: 'blur' }],
+                longitude: [{ required: true, message: 'Please pin point the location of the business', trigger: 'blur' }],
+                image: [{ required: false }]
+
+            }
+        };
+    },
+
+    methods: (0, _extends3.default)({}, (0, _vuex.mapActions)('Auth', ['attemptRegistry']), {
+        handleOnUploaded: function handleOnUploaded(url) {
+            this.form.image = url;
+        },
+        register: function register() {
+            var _this = this;
+
+            this.startLoading(this.$refs.companyRegCard.$el);
+            this.validateForm(this.$refs.companyRegForm).then(function () {
+                _this.attemptRegistry(_this.form).then(function () {
+                    _this.stopLoading();
+                    _this.$router.replace({ path: 'landing-page' });
+                }).catch(function (error) {
+                    _this.cancel();
+                    _this.stopLoading();
+                    _this.notifyError(error);
+                });
+            }).catch(function () {
+                _this.stopLoading();
+                _this.$message.error('Please enter valid input');
+            });
+        },
+        cancel: function cancel() {
+            this.$refs['companyRegForm'].resetFields();
+        }
+    }),
+    components: {
+        ImageUploader: _ImageUploader2.default,
+        MapComponent: _Map2.default
+    }
+};
+
+/***/ }),
+/* 590 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(591)
+}
+var normalizeComponent = __webpack_require__(7)
+/* script */
+var __vue_script__ = __webpack_require__(593)
+/* template */
+var __vue_template__ = __webpack_require__(594)
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/inc/ImageUploader.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] ImageUploader.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-4bddb1c9", Component.options)
+  } else {
+    hotAPI.reload("data-v-4bddb1c9", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 591 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(592);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(11)("0a9c0f11", content, false);
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-4bddb1c9\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ImageUploader.vue", function() {
+     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-4bddb1c9\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ImageUploader.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 592 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(10)(undefined);
+// imports
+
+
+// module
+exports.push([module.i, "\n.image-uploader .el-upload {\n    border: 1px dashed #000000;\n    border-radius: 6px;\n    cursor: pointer;\n    position: relative;\n    overflow: hidden;\n    /*margin: 20px;*/\n}\n.image-uploader .el-upload:hover {\n    border-color: #20a0ff;\n}\n.image-uploader-icon {\n    font-size: 28px;\n    color: #8c939d;\n    width: 200px;\n    height: 200px;\n    line-height: 200px;\n    text-align: center;\n}\n.image-preview {\n    width: 200px;\n    height: 200px;\n    display: block;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 593 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.default = {
+    data: function data() {
+        return {
+            headers: {
+                'X-CSRF-TOKEN': axios.defaults.headers.common['X-CSRF-TOKEN'],
+                'X-Requested-With': axios.defaults.headers.common['X-Requested-With']
+            },
+            tempImageUrl: ''
+        };
+    },
+
+    methods: {
+        handleSuccess: function handleSuccess(res, file) {
+
+            this.stopLoading();
+
+            this.$emit('Uploaded', res.info.location);
+
+            this.tempImageUrl = URL.createObjectURL(file.raw);
+
+            this.$message.success('Photo uploaded successfully');
+        },
+        beforeUpload: function beforeUpload(file) {
+            this.startLoading(this.$refs['avatar-uploader-icon'].$el);
+
+            var isJPG = file.type === 'image/jpeg' || file.type === 'image/png';
+            var isLt2M = file.size / 1024 / 1024 < 2;
+
+            if (!isJPG) {
+                this.$message.error('Avatar picture must be JPG or PNG format!');
+            }
+            if (!isLt2M) {
+                this.$message.error('Avatar picture size can not exceed 2MB!');
+            }
+            return isJPG && isLt2M;
+        }
+    }
+};
+
+/***/ }),
+/* 594 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "el-upload",
+    {
+      staticClass: "image-uploader",
+      attrs: {
+        name: "tempImage",
+        action: "http://laravel.dev/api/temp/image",
+        headers: _vm.headers,
+        "show-file-list": false,
+        "on-success": _vm.handleSuccess,
+        "before-upload": _vm.beforeUpload
+      }
+    },
+    [
+      _vm.tempImageUrl
+        ? _c("img", {
+            staticClass: "image-preview",
+            attrs: { src: _vm.tempImageUrl }
+          })
+        : _c("i", {
+            ref: "image-uploader-icon",
+            staticClass: "el-icon-plus image-uploader-icon"
+          }),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "el-upload__tip", attrs: { slot: "tip" }, slot: "tip" },
+        [_vm._v("jpg/png files with a size less than 2mb")]
+      )
+    ]
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-4bddb1c9", module.exports)
+  }
+}
+
+/***/ }),
+/* 595 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(709)
+}
+var normalizeComponent = __webpack_require__(7)
+/* script */
+var __vue_script__ = __webpack_require__(598)
+/* template */
+var __vue_template__ = __webpack_require__(599)
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/inc/Map.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] Map.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-e311c288", Component.options)
+  } else {
+    hotAPI.reload("data-v-e311c288", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 596 */,
+/* 597 */,
+/* 598 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _promise = __webpack_require__(120);
+
+var _promise2 = _interopRequireDefault(_promise);
+
+var _regenerator = __webpack_require__(52);
+
+var _regenerator2 = _interopRequireDefault(_regenerator);
+
+var _asyncToGenerator2 = __webpack_require__(53);
+
+var _asyncToGenerator3 = _interopRequireDefault(_asyncToGenerator2);
+
+var _vue = __webpack_require__(1);
+
+var _vue2 = _interopRequireDefault(_vue);
+
+var _vue2GoogleMaps = __webpack_require__(637);
+
+var VueGoogleMaps = _interopRequireWildcard(_vue2GoogleMaps);
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var API_KEY = 'AIzaSyBixSBMVXJ-a_8a7VNzXttqmCIm7GP1WbU';
+
+_vue2.default.use(VueGoogleMaps, {
+    installComponents: true,
+    load: {
+        key: API_KEY,
+        libraries: 'places'
+    }
+});
+
+exports.default = {
+    data: function data() {
+        return {
+            center: { lat: 0, lng: 0 },
+            zoom: 7,
+            address: '',
+            currentLatitude: '',
+            currentLongitude: '',
+            markerPosition: { lat: 0, lng: 0 }
+        };
+    },
+    created: function created() {
+        var _this = this;
+
+        return (0, _asyncToGenerator3.default)(_regenerator2.default.mark(function _callee() {
+            return _regenerator2.default.wrap(function _callee$(_context) {
+                while (1) {
+                    switch (_context.prev = _context.next) {
+                        case 0:
+                            _context.next = 2;
+                            return VueGoogleMaps.loaded;
+
+                        case 2:
+                            _this.geolocate().then(function (_ref) {
+                                var _ref$data$location = _ref.data.location,
+                                    lat = _ref$data$location.lat,
+                                    lng = _ref$data$location.lng;
+
+                                _this.center = _this.markerPosition = { lat: lat, lng: lng };
+                            });
+
+                        case 3:
+                        case 'end':
+                            return _context.stop();
+                    }
+                }
+            }, _callee, _this);
+        }))();
+    },
+
+    methods: {
+        setLocation: function setLocation(LatLng, pan) {
+            this.markerPosition = LatLng;
+            this.currentLatitude = LatLng.lat;
+            this.currentLongitude = LatLng.lng;
+
+            if (pan) {
+                this.$refs.map.panTo(LatLng);
+                this.zoom = 10;
+            }
+        },
+        geolocate: function geolocate(props) {
+            return new _promise2.default(function (res, rej) {
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(function (position) {
+                        res(position.coords);
+                    }, function (error) {
+                        axios.post('https://www.googleapis.com/geolocation/v1/geolocate?key=' + API_KEY).then(function (response) {
+                            res(response);
+                        }).catch(function (error) {
+                            console.log(error);
+                        });
+                    });
+                }
+            });
+        },
+        handleClick: function handleClick(_ref2) {
+            var _ref2$latLng = _ref2.latLng,
+                lat = _ref2$latLng.lat,
+                lng = _ref2$latLng.lng;
+
+            this.setLocation({ lat: lat(), lng: lng() }, true);
+        },
+        handlePlaceChange: function handlePlaceChange(_ref3) {
+            var _ref3$geometry$locati = _ref3.geometry.location,
+                lat = _ref3$geometry$locati.lat,
+                lng = _ref3$geometry$locati.lng;
+
+            this.setLocation({ lat: lat(), lng: lng() }, true);
+        }
+    }
+};
+
+/***/ }),
+/* 599 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticStyle: { position: "relative" } },
+    [
+      _c("p", [_vm._v("Just to get a clear view of where you are.")]),
+      _vm._v(" "),
+      _c(
+        "div",
+        { attrs: { id: "locQuery" } },
+        [
+          _c("gmap-autocomplete", {
+            attrs: {
+              placeholder: "Enter the location here",
+              selectFirstOnEnter: true
+            },
+            on: { place_changed: _vm.handlePlaceChange },
+            model: {
+              value: _vm.address,
+              callback: function($$v) {
+                _vm.address = $$v
+              },
+              expression: "address"
+            }
+          })
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "gmap-map",
+        {
+          ref: "map",
+          attrs: {
+            id: "map",
+            center: _vm.center,
+            zoom: _vm.zoom,
+            "map-type-id": "roadmap"
+          },
+          on: { click: _vm.handleClick }
+        },
+        [
+          _c("gmap-marker", {
+            attrs: {
+              position: _vm.markerPosition,
+              clickable: true,
+              draggable: true
+            }
+          })
+        ],
+        1
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-e311c288", module.exports)
+  }
+}
+
+/***/ }),
+/* 600 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _forEach2 = __webpack_require__(446);
+
+var _forEach3 = _interopRequireDefault(_forEach2);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/* vim: set softtabstop=2 shiftwidth=2 expandtab : */
+
+function capitalizeFirstLetter(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
+exports.default = function (vueElement, googleMapsElement, props, options) {
+  options = options || {};
+  var _options = options,
+      afterModelChanged = _options.afterModelChanged;
+
+  (0, _forEach3.default)(props, function (_ref, attribute) {
+    var twoWay = _ref.twoWay,
+        type = _ref.type,
+        trackProperties = _ref.trackProperties;
+
+    var setMethodName = 'set' + capitalizeFirstLetter(attribute);
+    var getMethodName = 'get' + capitalizeFirstLetter(attribute);
+    var eventName = attribute.toLowerCase() + '_changed';
+    var initialValue = vueElement[attribute];
+
+    if (typeof googleMapsElement[setMethodName] === 'undefined') {
+      throw new Error(setMethodName + ' is not a method of (the Maps object corresponding to) ' + vueElement.$options._componentTag);
+    }
+
+    // We need to avoid an endless
+    // propChanged -> event emitted -> propChanged -> event emitted loop
+    // although this may really be the user's responsibility
+    var timesSet = 0;
+    if (type !== Object || !trackProperties) {
+      // Track the object deeply
+      vueElement.$watch(attribute, function () {
+        var attributeValue = vueElement[attribute];
+
+        timesSet++;
+        googleMapsElement[setMethodName](attributeValue);
+        if (afterModelChanged) {
+          afterModelChanged(attribute, attributeValue);
+        }
+      }, {
+        immediate: typeof initialValue !== 'undefined',
+        deep: type === Object
+      });
+    } else if (type === Object && trackProperties) {
+      // I can watch multiple properties, but the danger is that each of
+      // them triggers the event handler multiple times
+      // This ensures that the event handler will only be fired once
+      var tick = 0,
+          expectedTick = 0;
+
+      var raiseExpectation = function raiseExpectation() {
+        expectedTick += 1;
+      };
+
+      var updateTick = function updateTick() {
+        tick = Math.max(expectedTick, tick + 1);
+      };
+
+      var respondToChange = function respondToChange() {
+        if (tick < expectedTick) {
+          googleMapsElement[setMethodName](vueElement[attribute]);
+
+          if (afterModelChanged) {
+            afterModelChanged(attribute, attributeValue);
+          }
+
+          updateTick();
+        }
+      };
+
+      trackProperties.forEach(function (propName) {
+        // When any props change -- assume they change on the same tick
+        vueElement.$watch(attribute + '.' + propName, function () {
+          raiseExpectation();
+          vueElement.$nextTick(respondToChange);
+        }, {
+          immediate: typeof initialValue !== 'undefined'
+        });
+      });
+    }
+
+    if (twoWay) {
+      googleMapsElement.addListener(eventName, function (ev) {
+        // eslint-disable-line no-unused-vars
+        /* Check for type === Object because we're quite happy
+          when primitive types change -- the change detection is cheap
+        */
+        if (type === Object && timesSet > 0) {
+          timesSet--;
+          return;
+        } else {
+          vueElement.$emit(eventName, googleMapsElement[getMethodName]());
+        }
+      });
+    }
+  });
+};
+
+/***/ }),
+/* 601 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _mapValues2 = __webpack_require__(625);
+
+var _mapValues3 = _interopRequireDefault(_mapValues2);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = {
+  methods: {
+    getPropsValues: function getPropsValues() {
+      var _this = this;
+
+      return (0, _mapValues3.default)(this.$options.props, function (v, k) {
+        return _this[k];
+      });
+    }
+  }
+};
+
+/***/ }),
+/* 602 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var store  = __webpack_require__(665)('wks')
+  , uid    = __webpack_require__(666)
+  , Symbol = __webpack_require__(606).Symbol;
+module.exports = function(name){
+  return store[name] || (store[name] =
+    Symbol && Symbol[name] || (Symbol || uid)('Symbol.' + name));
+};
+
+/***/ }),
+/* 603 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _forEach2 = __webpack_require__(446);
+
+var _forEach3 = _interopRequireDefault(_forEach2);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/* vim: set softtabstop=2 shiftwidth=2 expandtab : */
+
+exports.default = function (vueElement, googleMapObject, events) {
+  (0, _forEach3.default)(events, function (eventName) {
+    var exposedName = eventName;
+    googleMapObject.addListener(eventName, function (ev) {
+      vueElement.$emit(exposedName, ev);
+    });
+  });
+};
+
+/***/ }),
+/* 604 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var baseClone = __webpack_require__(429);
+
+/** Used to compose bitmasks for cloning. */
+var CLONE_SYMBOLS_FLAG = 4;
+
+/**
+ * Creates a shallow clone of `value`.
+ *
+ * **Note:** This method is loosely based on the
+ * [structured clone algorithm](https://mdn.io/Structured_clone_algorithm)
+ * and supports cloning arrays, array buffers, booleans, date objects, maps,
+ * numbers, `Object` objects, regexes, sets, strings, symbols, and typed
+ * arrays. The own enumerable properties of `arguments` objects are cloned
+ * as plain objects. An empty object is returned for uncloneable values such
+ * as error objects, functions, DOM nodes, and WeakMaps.
+ *
+ * @static
+ * @memberOf _
+ * @since 0.1.0
+ * @category Lang
+ * @param {*} value The value to clone.
+ * @returns {*} Returns the cloned value.
+ * @see _.cloneDeep
+ * @example
+ *
+ * var objects = [{ 'a': 1 }, { 'b': 2 }];
+ *
+ * var shallow = _.clone(objects);
+ * console.log(shallow[0] === objects[0]);
+ * // => true
+ */
+function clone(value) {
+  return baseClone(value, CLONE_SYMBOLS_FLAG);
+}
+
+module.exports = clone;
+
+
+/***/ }),
+/* 605 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _deferredReady = __webpack_require__(614);
+
+/**
+ * @class MapElementMixin @mixins DeferredReadyMixin
+ *
+ * Extends components to include the following fields:
+ *
+ * @property $map        The Google map (valid only after the promise returns)
+ *
+ *
+ * */
+exports.default = {
+
+  mixins: [_deferredReady.DeferredReadyMixin],
+
+  created: function created() {
+    var _this = this;
+
+    /* Search for the Map component in the parent */
+    var search = this.$findAncestor(function (ans) {
+      return ans.$mapCreated;
+    });
+
+    if (!search) {
+      throw new Error(this.constructor.name + ' component must be used within a <Map>');
+    }
+
+    this.$mapPromise = search.$mapCreated.then(function (map) {
+      _this.$map = map;
+    });
+    // FIXME: This is a hack to ensure correct loading
+    // when the map has already be instantiated.
+    if (search.$mapObject) {
+      this.$map = search.$mapObject;
+    }
+    this.$MapElementMixin = search;
+    this.$map = null;
+  },
+  beforeDeferredReady: function beforeDeferredReady() {
+    return this.$mapPromise;
+  },
+
+
+  methods: {
+    $findAncestor: function $findAncestor(condition) {
+      var search = this.$parent;
+
+      while (search) {
+        if (condition(search)) {
+          return search;
+        }
+        search = search.$parent;
+      }
+      return null;
+    }
+  }
+
+}; /* vim: set softtabstop=2 shiftwidth=2 expandtab : */
+
+/***/ }),
+/* 606 */
+/***/ (function(module, exports) {
+
+// https://github.com/zloirock/core-js/issues/86#issuecomment-115759028
+var global = module.exports = typeof window != 'undefined' && window.Math == Math
+  ? window : typeof self != 'undefined' && self.Math == Math ? self : Function('return this')();
+if(typeof __g == 'number')__g = global; // eslint-disable-line no-undef
+
+/***/ }),
+/* 607 */
+/***/ (function(module, exports) {
+
+var $Object = Object;
+module.exports = {
+  create:     $Object.create,
+  getProto:   $Object.getPrototypeOf,
+  isEnum:     {}.propertyIsEnumerable,
+  getDesc:    $Object.getOwnPropertyDescriptor,
+  setDesc:    $Object.defineProperty,
+  setDescs:   $Object.defineProperties,
+  getKeys:    $Object.keys,
+  getNames:   $Object.getOwnPropertyNames,
+  getSymbols: $Object.getOwnPropertySymbols,
+  each:       [].forEach
+};
+
+/***/ }),
+/* 608 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var arrayMap = __webpack_require__(167),
+    baseClone = __webpack_require__(429),
+    baseUnset = __webpack_require__(642),
+    castPath = __webpack_require__(98),
+    copyObject = __webpack_require__(25),
+    customOmitClone = __webpack_require__(645),
+    flatRest = __webpack_require__(646),
+    getAllKeysIn = __webpack_require__(435);
+
+/** Used to compose bitmasks for cloning. */
+var CLONE_DEEP_FLAG = 1,
+    CLONE_FLAT_FLAG = 2,
+    CLONE_SYMBOLS_FLAG = 4;
+
+/**
+ * The opposite of `_.pick`; this method creates an object composed of the
+ * own and inherited enumerable property paths of `object` that are not omitted.
+ *
+ * **Note:** This method is considerably slower than `_.pick`.
+ *
+ * @static
+ * @since 0.1.0
+ * @memberOf _
+ * @category Object
+ * @param {Object} object The source object.
+ * @param {...(string|string[])} [paths] The property paths to omit.
+ * @returns {Object} Returns the new object.
+ * @example
+ *
+ * var object = { 'a': 1, 'b': '2', 'c': 3 };
+ *
+ * _.omit(object, ['a', 'c']);
+ * // => { 'b': '2' }
+ */
+var omit = flatRest(function(object, paths) {
+  var result = {};
+  if (object == null) {
+    return result;
+  }
+  var isDeep = false;
+  paths = arrayMap(paths, function(path) {
+    path = castPath(path, object);
+    isDeep || (isDeep = path.length > 1);
+    return path;
+  });
+  copyObject(object, getAllKeysIn(object), result);
+  if (isDeep) {
+    result = baseClone(result, CLONE_DEEP_FLAG | CLONE_FLAT_FLAG | CLONE_SYMBOLS_FLAG, customOmitClone);
+  }
+  var length = paths.length;
+  while (length--) {
+    baseUnset(result, paths[length]);
+  }
+  return result;
+});
+
+module.exports = omit;
+
+
+/***/ }),
+/* 609 */
+/***/ (function(module, exports) {
+
+var core = module.exports = {version: '1.2.6'};
+if(typeof __e == 'number')__e = core; // eslint-disable-line no-undef
+
+/***/ }),
+/* 610 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+/* vim: set softtabstop=2 shiftwidth=2 expandtab : */
+
+var setUp = false;
+
+var loaded = exports.loaded = new Promise(function (resolve, reject) {
+  // eslint-disable-line no-unused-vars
+  if (typeof window === 'undefined') {
+    // Do nothing if run from server-side
+    return;
+  }
+  window['vueGoogleMapsInit'] = resolve;
+});
+
+/**
+ * @param apiKey    API Key, or object with the URL parameters. For example
+ *                  to use Google Maps Premium API, pass
+ *                    `{ client: <YOUR-CLIENT-ID> }`.
+ *                  You may pass the libraries and/or version (as `v`) parameter into
+ *                  this parameter and skip the next two parameters
+ * @param version   Google for Maps version
+ * @param libraries Libraries to load (@see
+ *                  https://developers.google.com/maps/documentation/javascript/libraries)
+ * @param loadCn    Boolean. If set to true, the map will be loaded form goole maps China
+ *                  (@see https://developers.google.com/maps/documentation/javascript/basics#GoogleMapsChina)
+ *
+ * Example:
+ * ```
+ *      import {load} from 'vue-google-maps'
+ *
+ *      load(<YOUR-API-KEY>)
+ *
+ *      load({
+ *              key: <YOUR-API-KEY>,
+ *      })
+ *
+ *      load({
+ *              client: <YOUR-CLIENT-ID>,
+ *              channel: <YOUR CHANNEL>
+ *      })
+ * ```
+ */
+var load = exports.load = function load(apiKey, version, libraries, loadCn) {
+  if (typeof document === 'undefined') {
+    // Do nothing if run from server-side
+    return;
+  }
+  if (!setUp) {
+    var googleMapScript = document.createElement('SCRIPT');
+
+    // Allow apiKey to be an object.
+    // This is to support more esoteric means of loading Google Maps,
+    // such as Google for business
+    // https://developers.google.com/maps/documentation/javascript/get-api-key#premium-auth
+    var options = {};
+    if (typeof apiKey == 'string') {
+      options.key = apiKey;
+    } else if ((typeof apiKey === 'undefined' ? 'undefined' : _typeof(apiKey)) == 'object') {
+      for (var k in apiKey) {
+        // transfer values in apiKey to options
+        options[k] = apiKey[k];
+      }
+    } else {
+      throw new Error('apiKey should either be a string or an object');
+    }
+
+    // libraries
+    var librariesPath = '';
+    if (libraries && libraries.length > 0) {
+      librariesPath = libraries.join(',');
+      options['libraries'] = librariesPath;
+    } else if (Array.prototype.isPrototypeOf(options.libraries)) {
+      options.libraries = options.libraries.join(',');
+    }
+    options['callback'] = 'vueGoogleMapsInit';
+
+    var baseUrl = 'https://maps.googleapis.com/';
+
+    if (typeof loadCn == 'boolean' && loadCn === true) {
+      baseUrl = 'http://maps.google.cn/';
+    }
+
+    var url = baseUrl + 'maps/api/js?' + Object.keys(options).map(function (key) {
+      return encodeURIComponent(key) + '=' + encodeURIComponent(options[key]);
+    }).join('&');
+
+    if (version) {
+      url = url + '&v=' + version;
+    }
+
+    googleMapScript.setAttribute('src', url);
+    googleMapScript.setAttribute('async', '');
+    googleMapScript.setAttribute('defer', '');
+    document.body.appendChild(googleMapScript);
+  } else {
+    throw new Error('You already started the loading of google maps');
+  }
+};
+
+/***/ }),
+/* 611 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// optional / simple context binding
+var aFunction = __webpack_require__(619);
+module.exports = function(fn, that, length){
+  aFunction(fn);
+  if(that === undefined)return fn;
+  switch(length){
+    case 1: return function(a){
+      return fn.call(that, a);
+    };
+    case 2: return function(a, b){
+      return fn.call(that, a, b);
+    };
+    case 3: return function(a, b, c){
+      return fn.call(that, a, b, c);
+    };
+  }
+  return function(/* ...args */){
+    return fn.apply(that, arguments);
+  };
+};
+
+/***/ }),
+/* 612 */
+/***/ (function(module, exports) {
+
+module.exports = {};
+
+/***/ }),
+/* 613 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var isObject = __webpack_require__(616);
+module.exports = function(it){
+  if(!isObject(it))throw TypeError(it + ' is not an object!');
+  return it;
+};
+
+/***/ }),
+/* 614 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+/**
+ * 1. Create a DeferredReady plugin.
+ *
+ * a. Updates options.configMergeStrategies to handle our new hook correctly (using Promise.all!)
+ *
+ * 2. VueGoogleMaps uses a DeferredReady mixin.
+ *
+ *     a. Each component checks for ancestors that are also DeferredReady (via dispatch/emit)
+ *     b. If no, then run DeferredReady after ready.
+ *     c. If yes, then run DeferredReady after parent's deferredReady.
+ *
+ *
+ * Say we have the following inheritance:
+ *
+ * --> == 'child of'
+ *
+ * A --> B --> C
+ *
+ * ready is called in the following order:
+ *
+ * A.ready, B.ready, C.ready
+ *
+ * C.ready -- no further ancestors supporting mixin, so in ready() we run+
+ *
+   **/
+
+var DeferredReady = exports.DeferredReady = {
+  install: function install(Vue, options) {
+    // eslint-disable-line no-unused-vars
+    // Use the same merge strategy as regular hooks
+    Vue.config.optionMergeStrategies.deferredReady = Vue.config.optionMergeStrategies.created;
+    Vue.config.optionMergeStrategies.beforeDeferredReady = Vue.config.optionMergeStrategies.beforeDeferredReady;
+  }
+};
+
+function runHooks(vm) {
+  var hooks = vm.$options.deferredReady || [];
+
+  // Run the beforeDeferredReady methods first
+  var beforePromise = vm.beforeDeferredReady ? typeof vm.beforeDeferredReady.then === 'function' ? vm.beforeDeferredReady : Promise.all(vm.beforeDeferredReady) : Promise.resolve(null);
+
+  beforePromise.then(function () {
+    if (typeof hooks === 'function') {
+      hooks = [hooks];
+    }
+    return Promise.all(hooks.map(function (x) {
+      try {
+        return x.apply(vm);
+      } catch (err) {
+        console.error(err.stack); // eslint-disable-line no-console
+      }
+    }));
+    // execute all handlers, expecting them to return promises
+    // wait for the promises to complete, before allowing child to execute
+  }).then(function () {
+    vm.$deferredReadyPromiseResolve();
+  });
+}
+
+var DeferredReadyMixin = exports.DeferredReadyMixin = {
+  /* Resolved after the deferredReady has been called
+    and the (optional) promise it returns has been
+    resolved */
+  $deferredReadyPromise: false,
+  $deferredReadyPromiseResolve: false,
+  $deferredReadyAncestor: false,
+
+  created: function created() {
+    var _this = this;
+
+    this.$deferredReadyPromise = new Promise(function (resolve, reject) {
+      // eslint-disable-line no-unused-vars
+      _this.$deferredReadyPromiseResolve = resolve;
+    });
+
+    var search = this.$parent;
+    while (search) {
+      if (search.$deferredReadyPromise) {
+        this.$deferredReadyAncestor = search;
+        break;
+      }
+      search = search.$parent;
+    }
+  },
+  mounted: function mounted() {
+    var _this2 = this;
+
+    // Execute the hooks only if this is the first
+    // ancestor that is a DeferredReady
+    // this.$deferredReadyMountedPromiseResolve();
+
+    if (!this.$deferredReadyAncestor) {
+      runHooks(this);
+    } else {
+      this.$deferredReadyAncestor.$deferredReadyPromise.then(function () {
+        runHooks(_this2);
+      });
+    }
+  }
+};
+
+/***/ }),
+/* 615 */
+/***/ (function(module, exports) {
+
+var toString = {}.toString;
+
+module.exports = function(it){
+  return toString.call(it).slice(8, -1);
+};
+
+/***/ }),
+/* 616 */
+/***/ (function(module, exports) {
+
+module.exports = function(it){
+  return typeof it === 'object' ? it !== null : typeof it === 'function';
+};
+
+/***/ }),
+/* 617 */
+/***/ (function(module, exports) {
+
+// 7.2.1 RequireObjectCoercible(argument)
+module.exports = function(it){
+  if(it == undefined)throw TypeError("Can't call method on  " + it);
+  return it;
+};
+
+/***/ }),
+/* 618 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var global    = __webpack_require__(606)
+  , core      = __webpack_require__(609)
+  , ctx       = __webpack_require__(611)
+  , PROTOTYPE = 'prototype';
+
+var $export = function(type, name, source){
+  var IS_FORCED = type & $export.F
+    , IS_GLOBAL = type & $export.G
+    , IS_STATIC = type & $export.S
+    , IS_PROTO  = type & $export.P
+    , IS_BIND   = type & $export.B
+    , IS_WRAP   = type & $export.W
+    , exports   = IS_GLOBAL ? core : core[name] || (core[name] = {})
+    , target    = IS_GLOBAL ? global : IS_STATIC ? global[name] : (global[name] || {})[PROTOTYPE]
+    , key, own, out;
+  if(IS_GLOBAL)source = name;
+  for(key in source){
+    // contains in native
+    own = !IS_FORCED && target && key in target;
+    if(own && key in exports)continue;
+    // export native or passed
+    out = own ? target[key] : source[key];
+    // prevent global pollution for namespaces
+    exports[key] = IS_GLOBAL && typeof target[key] != 'function' ? source[key]
+    // bind timers to global for call from export context
+    : IS_BIND && own ? ctx(out, global)
+    // wrap global constructors for prevent change them in library
+    : IS_WRAP && target[key] == out ? (function(C){
+      var F = function(param){
+        return this instanceof C ? new C(param) : C(param);
+      };
+      F[PROTOTYPE] = C[PROTOTYPE];
+      return F;
+    // make static versions for prototype methods
+    })(out) : IS_PROTO && typeof out == 'function' ? ctx(Function.call, out) : out;
+    if(IS_PROTO)(exports[PROTOTYPE] || (exports[PROTOTYPE] = {}))[key] = out;
+  }
+};
+// type bitmap
+$export.F = 1;  // forced
+$export.G = 2;  // global
+$export.S = 4;  // static
+$export.P = 8;  // proto
+$export.B = 16; // bind
+$export.W = 32; // wrap
+module.exports = $export;
+
+/***/ }),
+/* 619 */
+/***/ (function(module, exports) {
+
+module.exports = function(it){
+  if(typeof it != 'function')throw TypeError(it + ' is not a function!');
+  return it;
+};
+
+/***/ }),
+/* 620 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var $          = __webpack_require__(607)
+  , createDesc = __webpack_require__(631);
+module.exports = __webpack_require__(621) ? function(object, key, value){
+  return $.setDesc(object, key, createDesc(1, value));
+} : function(object, key, value){
+  object[key] = value;
+  return object;
+};
+
+/***/ }),
+/* 621 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// Thank's IE8 for his funny defineProperty
+module.exports = !__webpack_require__(632)(function(){
+  return Object.defineProperty({}, 'a', {get: function(){ return 7; }}).a != 7;
+});
+
+/***/ }),
+/* 622 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var def = __webpack_require__(607).setDesc
+  , has = __webpack_require__(633)
+  , TAG = __webpack_require__(602)('toStringTag');
+
+module.exports = function(it, tag, stat){
+  if(it && !has(it = stat ? it : it.prototype, TAG))def(it, TAG, {configurable: true, value: tag});
+};
+
+/***/ }),
+/* 623 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = { "default": __webpack_require__(690), __esModule: true };
+
+/***/ }),
+/* 624 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+/*
+Mixin for objects that are mounted by Google Maps
+Javascript API.
+
+These are objects that are sensitive to element resize
+operations so it exposes a property which accepts a bus
+
+*/
+
+exports.default = {
+  props: ['resizeBus'],
+
+  data: function data() {
+    return {
+      _actualResizeBus: null
+    };
+  },
+  created: function created() {
+    if (typeof this.resizeBus === 'undefined') {
+      this.$data._actualResizeBus = this.$gmapDefaultResizeBus;
+    } else {
+      this.$data._actualResizeBus = this.resizeBus;
+    }
+  },
+
+
+  methods: {
+    _resizeCallback: function _resizeCallback() {
+      this.resize();
+    },
+    _delayedResizeCallback: function _delayedResizeCallback() {
+      var _this = this;
+
+      this.$nextTick(function () {
+        return _this._resizeCallback();
+      });
+    }
+  },
+
+  watch: {
+    resizeBus: function resizeBus(newVal, oldVal) {
+      // eslint-disable-line no-unused-vars
+      this.$data._actualResizeBus = newVal;
+    },
+    '$data._actualResizeBus': function $data_actualResizeBus(newVal, oldVal) {
+      if (oldVal) {
+        oldVal.$off('resize', this._delayedResizeCallback);
+      }
+      if (newVal) {
+        newVal.$on('resize', this._delayedResizeCallback);
+      }
+    }
+  },
+
+  destroyed: function destroyed() {
+    if (this.$data._actualResizeBus) {
+      this.$data._actualResizeBus.$off('resize', this._delayedResizeCallback);
+    }
+  }
+};
+
+/***/ }),
+/* 625 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var baseAssignValue = __webpack_require__(93),
+    baseForOwn = __webpack_require__(448),
+    baseIteratee = __webpack_require__(182);
+
+/**
+ * Creates an object with the same keys as `object` and values generated
+ * by running each own enumerable string keyed property of `object` thru
+ * `iteratee`. The iteratee is invoked with three arguments:
+ * (value, key, object).
+ *
+ * @static
+ * @memberOf _
+ * @since 2.4.0
+ * @category Object
+ * @param {Object} object The object to iterate over.
+ * @param {Function} [iteratee=_.identity] The function invoked per iteration.
+ * @returns {Object} Returns the new mapped object.
+ * @see _.mapKeys
+ * @example
+ *
+ * var users = {
+ *   'fred':    { 'user': 'fred',    'age': 40 },
+ *   'pebbles': { 'user': 'pebbles', 'age': 1 }
+ * };
+ *
+ * _.mapValues(users, function(o) { return o.age; });
+ * // => { 'fred': 40, 'pebbles': 1 } (iteration order is not guaranteed)
+ *
+ * // The `_.property` iteratee shorthand.
+ * _.mapValues(users, 'age');
+ * // => { 'fred': 40, 'pebbles': 1 } (iteration order is not guaranteed)
+ */
+function mapValues(object, iteratee) {
+  var result = {};
+  iteratee = baseIteratee(iteratee, 3);
+
+  baseForOwn(object, function(value, key, object) {
+    baseAssignValue(result, key, iteratee(value, key, object));
+  });
+  return result;
+}
+
+module.exports = mapValues;
+
+
+/***/ }),
+/* 626 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = { "default": __webpack_require__(660), __esModule: true };
+
+/***/ }),
+/* 627 */
+/***/ (function(module, exports) {
+
+// 7.1.4 ToInteger
+var ceil  = Math.ceil
+  , floor = Math.floor;
+module.exports = function(it){
+  return isNaN(it = +it) ? 0 : (it > 0 ? floor : ceil)(it);
+};
+
+/***/ }),
+/* 628 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var LIBRARY        = __webpack_require__(629)
+  , $export        = __webpack_require__(618)
+  , redefine       = __webpack_require__(630)
+  , hide           = __webpack_require__(620)
+  , has            = __webpack_require__(633)
+  , Iterators      = __webpack_require__(612)
+  , $iterCreate    = __webpack_require__(664)
+  , setToStringTag = __webpack_require__(622)
+  , getProto       = __webpack_require__(607).getProto
+  , ITERATOR       = __webpack_require__(602)('iterator')
+  , BUGGY          = !([].keys && 'next' in [].keys()) // Safari has buggy iterators w/o `next`
+  , FF_ITERATOR    = '@@iterator'
+  , KEYS           = 'keys'
+  , VALUES         = 'values';
+
+var returnThis = function(){ return this; };
+
+module.exports = function(Base, NAME, Constructor, next, DEFAULT, IS_SET, FORCED){
+  $iterCreate(Constructor, NAME, next);
+  var getMethod = function(kind){
+    if(!BUGGY && kind in proto)return proto[kind];
+    switch(kind){
+      case KEYS: return function keys(){ return new Constructor(this, kind); };
+      case VALUES: return function values(){ return new Constructor(this, kind); };
+    } return function entries(){ return new Constructor(this, kind); };
+  };
+  var TAG        = NAME + ' Iterator'
+    , DEF_VALUES = DEFAULT == VALUES
+    , VALUES_BUG = false
+    , proto      = Base.prototype
+    , $native    = proto[ITERATOR] || proto[FF_ITERATOR] || DEFAULT && proto[DEFAULT]
+    , $default   = $native || getMethod(DEFAULT)
+    , methods, key;
+  // Fix native
+  if($native){
+    var IteratorPrototype = getProto($default.call(new Base));
+    // Set @@toStringTag to native iterators
+    setToStringTag(IteratorPrototype, TAG, true);
+    // FF fix
+    if(!LIBRARY && has(proto, FF_ITERATOR))hide(IteratorPrototype, ITERATOR, returnThis);
+    // fix Array#{values, @@iterator}.name in V8 / FF
+    if(DEF_VALUES && $native.name !== VALUES){
+      VALUES_BUG = true;
+      $default = function values(){ return $native.call(this); };
+    }
+  }
+  // Define iterator
+  if((!LIBRARY || FORCED) && (BUGGY || VALUES_BUG || !proto[ITERATOR])){
+    hide(proto, ITERATOR, $default);
+  }
+  // Plug for library
+  Iterators[NAME] = $default;
+  Iterators[TAG]  = returnThis;
+  if(DEFAULT){
+    methods = {
+      values:  DEF_VALUES  ? $default : getMethod(VALUES),
+      keys:    IS_SET      ? $default : getMethod(KEYS),
+      entries: !DEF_VALUES ? $default : getMethod('entries')
+    };
+    if(FORCED)for(key in methods){
+      if(!(key in proto))redefine(proto, key, methods[key]);
+    } else $export($export.P + $export.F * (BUGGY || VALUES_BUG), NAME, methods);
+  }
+  return methods;
+};
+
+/***/ }),
+/* 629 */
+/***/ (function(module, exports) {
+
+module.exports = true;
+
+/***/ }),
+/* 630 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(620);
+
+/***/ }),
+/* 631 */
+/***/ (function(module, exports) {
+
+module.exports = function(bitmap, value){
+  return {
+    enumerable  : !(bitmap & 1),
+    configurable: !(bitmap & 2),
+    writable    : !(bitmap & 4),
+    value       : value
+  };
+};
+
+/***/ }),
+/* 632 */
+/***/ (function(module, exports) {
+
+module.exports = function(exec){
+  try {
+    return !!exec();
+  } catch(e){
+    return true;
+  }
+};
+
+/***/ }),
+/* 633 */
+/***/ (function(module, exports) {
+
+var hasOwnProperty = {}.hasOwnProperty;
+module.exports = function(it, key){
+  return hasOwnProperty.call(it, key);
+};
+
+/***/ }),
+/* 634 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// fallback for non-array-like ES3 and non-enumerable old V8 strings
+var cof = __webpack_require__(615);
+module.exports = Object('z').propertyIsEnumerable(0) ? Object : function(it){
+  return cof(it) == 'String' ? it.split('') : Object(it);
+};
+
+/***/ }),
+/* 635 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// getting tag from 19.1.3.6 Object.prototype.toString()
+var cof = __webpack_require__(615)
+  , TAG = __webpack_require__(602)('toStringTag')
+  // ES3 wrong here
+  , ARG = cof(function(){ return arguments; }()) == 'Arguments';
+
+module.exports = function(it){
+  var O, T, B;
+  return it === undefined ? 'Undefined' : it === null ? 'Null'
+    // @@toStringTag case
+    : typeof (T = (O = Object(it))[TAG]) == 'string' ? T
+    // builtinTag case
+    : ARG ? cof(O)
+    // ES3 arguments fallback
+    : (B = cof(O)) == 'Object' && typeof O.callee == 'function' ? 'Arguments' : B;
+};
+
+/***/ }),
+/* 636 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+//This piece of code was orignally written by amirnissim and can be seen here
+//http://stackoverflow.com/a/11703018/2694653
+//This has been ported to Vanilla.js by GuillaumeLeclerc
+exports.default = function (input) {
+  var _addEventListener = input.addEventListener ? input.addEventListener : input.attachEvent;
+
+  function addEventListenerWrapper(type, listener) {
+    // Simulate a 'down arrow' keypress on hitting 'return' when no pac suggestion is selected,
+    // and then trigger the original listener.
+    if (type == 'keydown') {
+      var orig_listener = listener;
+      listener = function listener(event) {
+        var suggestion_selected = document.getElementsByClassName('pac-item-selected').length > 0;
+        if (event.which == 13 && !suggestion_selected) {
+          var simulatedEvent = document.createEvent('Event');
+          simulatedEvent.keyCode = 40;
+          simulatedEvent.which = 40;
+          orig_listener.apply(input, [simulatedEvent]);
+        }
+        orig_listener.apply(input, [event]);
+      };
+    }
+    _addEventListener.apply(input, [type, listener]);
+  }
+
+  input.addEventListener = addEventListenerWrapper;
+  input.attachEvent = addEventListenerWrapper;
+};
+
+/***/ }),
+/* 637 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.MountableMixin = exports.Autocomplete = exports.MapElementMixin = exports.PlaceInput = exports.Map = exports.InfoWindow = exports.Rectangle = exports.Circle = exports.Polygon = exports.Polyline = exports.Cluster = exports.Marker = exports.loaded = exports.load = undefined;
+exports.install = install;
+
+var _manager = __webpack_require__(610);
+
+var _marker = __webpack_require__(638);
+
+var _marker2 = _interopRequireDefault(_marker);
+
+var _cluster = __webpack_require__(639);
+
+var _cluster2 = _interopRequireDefault(_cluster);
+
+var _polyline = __webpack_require__(641);
+
+var _polyline2 = _interopRequireDefault(_polyline);
+
+var _polygon = __webpack_require__(650);
+
+var _polygon2 = _interopRequireDefault(_polygon);
+
+var _circle = __webpack_require__(651);
+
+var _circle2 = _interopRequireDefault(_circle);
+
+var _rectangle = __webpack_require__(652);
+
+var _rectangle2 = _interopRequireDefault(_rectangle);
+
+var _infoWindow = __webpack_require__(653);
+
+var _infoWindow2 = _interopRequireDefault(_infoWindow);
+
+var _map = __webpack_require__(656);
+
+var _map2 = _interopRequireDefault(_map);
+
+var _streetViewPanorama = __webpack_require__(695);
+
+var _streetViewPanorama2 = _interopRequireDefault(_streetViewPanorama);
+
+var _placeInput = __webpack_require__(700);
+
+var _placeInput2 = _interopRequireDefault(_placeInput);
+
+var _autocomplete = __webpack_require__(703);
+
+var _autocomplete2 = _interopRequireDefault(_autocomplete);
+
+var _mapElementMixin = __webpack_require__(605);
+
+var _mapElementMixin2 = _interopRequireDefault(_mapElementMixin);
+
+var _mountableMixin = __webpack_require__(624);
+
+var _mountableMixin2 = _interopRequireDefault(_mountableMixin);
+
+var _deferredReady = __webpack_require__(614);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+// export everything
+
+
+// Vue component imports
+exports.load = _manager.load;
+exports.loaded = _manager.loaded;
+exports.Marker = _marker2.default;
+exports.Cluster = _cluster2.default;
+exports.Polyline = _polyline2.default;
+exports.Polygon = _polygon2.default;
+exports.Circle = _circle2.default;
+exports.Rectangle = _rectangle2.default;
+exports.InfoWindow = _infoWindow2.default;
+exports.Map = _map2.default;
+exports.PlaceInput = _placeInput2.default;
+exports.MapElementMixin = _mapElementMixin2.default;
+exports.Autocomplete = _autocomplete2.default;
+exports.MountableMixin = _mountableMixin2.default;
+function install(Vue, options) {
+  options = Object.assign({}, {
+    installComponents: true
+  }, options);
+
+  Vue.use(_deferredReady.DeferredReady);
+
+  var defaultResizeBus = new Vue();
+  Vue.$gmapDefaultResizeBus = defaultResizeBus;
+  Vue.mixin({
+    created: function created() {
+      this.$gmapDefaultResizeBus = defaultResizeBus;
+    }
+  });
+
+  if (options.load) {
+    (0, _manager.load)(options.load);
+  }
+
+  if (options.installComponents) {
+    Vue.component('GmapMap', _map2.default);
+    Vue.component('GmapMarker', _marker2.default);
+    Vue.component('GmapCluster', _cluster2.default);
+    Vue.component('GmapInfoWindow', _infoWindow2.default);
+    Vue.component('GmapPolyline', _polyline2.default);
+    Vue.component('GmapPolygon', _polygon2.default);
+    Vue.component('GmapCircle', _circle2.default);
+    Vue.component('GmapRectangle', _rectangle2.default);
+    Vue.component('GmapAutocomplete', _autocomplete2.default);
+    Vue.component('GmapPlaceInput', _placeInput2.default);
+    Vue.component('GmapStreetViewPanorama', _streetViewPanorama2.default);
+  }
+}
+
+/***/ }),
+/* 638 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _mapValues2 = __webpack_require__(625);
+
+var _mapValues3 = _interopRequireDefault(_mapValues2);
+
+var _eventsBinder = __webpack_require__(603);
+
+var _eventsBinder2 = _interopRequireDefault(_eventsBinder);
+
+var _propsBinder = __webpack_require__(600);
+
+var _propsBinder2 = _interopRequireDefault(_propsBinder);
+
+var _getPropsValuesMixin = __webpack_require__(601);
+
+var _getPropsValuesMixin2 = _interopRequireDefault(_getPropsValuesMixin);
+
+var _mapElementMixin = __webpack_require__(605);
+
+var _mapElementMixin2 = _interopRequireDefault(_mapElementMixin);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var props = {
+  animation: {
+    twoWay: true,
+    type: Number
+  },
+  attribution: {
+    type: Object
+  },
+  clickable: {
+    type: Boolean,
+    twoWay: true,
+    default: true
+  },
+  cursor: {
+    type: String,
+    twoWay: true
+  },
+  draggable: {
+    type: Boolean,
+    twoWay: true,
+    default: false
+  },
+  icon: {
+    twoWay: true
+  },
+  label: {},
+  opacity: {
+    type: Number,
+    default: 1
+  },
+  options: {
+    type: Object
+  },
+  place: {
+    type: Object
+  },
+  position: {
+    type: Object,
+    twoWay: true
+  },
+  shape: {
+    type: Object,
+    twoWay: true
+  },
+  title: {
+    type: String,
+    twoWay: true
+  },
+  zIndex: {
+    type: Number,
+    twoWay: true
+  },
+  visible: {
+    twoWay: true,
+    default: true
+  }
+};
+
+var events = ['click', 'rightclick', 'dblclick', 'drag', 'dragstart', 'dragend', 'mouseup', 'mousedown', 'mouseover', 'mouseout'];
+
+/**
+ * @class Marker
+ *
+ * Marker class with extra support for
+ *
+ * - Embedded info windows
+ * - Clustered markers
+ *
+ * Support for clustered markers is for backward-compatability
+ * reasons. Otherwise we should use a cluster-marker mixin or
+ * subclass.
+ */
+exports.default = {
+  mixins: [_mapElementMixin2.default, _getPropsValuesMixin2.default],
+  props: props,
+
+  render: function render(h) {
+    if (!this.$slots.default || this.$slots.default.length == 0) {
+      return '';
+    } else if (this.$slots.default.length == 1) {
+      // So that infowindows can have a marker parent
+      return this.$slots.default[0];
+    } else {
+      return h('div', this.$slots.default);
+    }
+  },
+  destroyed: function destroyed() {
+    if (!this.$markerObject) return;
+
+    if (this.$clusterObject) {
+      this.$clusterObject.removeMarker(this.$markerObject);
+    } else {
+      this.$markerObject.setMap(null);
+    }
+  },
+  deferredReady: function deferredReady() {
+    var _this = this;
+
+    var options = (0, _mapValues3.default)(props, function (value, prop) {
+      return _this[prop];
+    });
+    options.map = this.$map;
+    delete options.options;
+    Object.assign(options, this.options);
+
+    // search ancestors for cluster object
+    var search = this.$findAncestor(function (ans) {
+      return ans.$clusterObject;
+    });
+
+    this.$clusterObject = search ? search.$clusterObject : null;
+    this.createMarker(options);
+  },
+
+
+  methods: {
+    createMarker: function createMarker(options) {
+      this.$markerObject = new google.maps.Marker(options);
+      (0, _propsBinder2.default)(this, this.$markerObject, props);
+      (0, _eventsBinder2.default)(this, this.$markerObject, events);
+
+      if (this.$clusterObject) {
+        this.$clusterObject.addMarker(this.$markerObject);
+      }
+    }
+  }
+};
+
+/***/ }),
+/* 639 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _clone2 = __webpack_require__(604);
+
+var _clone3 = _interopRequireDefault(_clone2);
+
+var _eventsBinder = __webpack_require__(603);
+
+var _eventsBinder2 = _interopRequireDefault(_eventsBinder);
+
+var _propsBinder = __webpack_require__(600);
+
+var _propsBinder2 = _interopRequireDefault(_propsBinder);
+
+var _mapElementMixin = __webpack_require__(605);
+
+var _mapElementMixin2 = _interopRequireDefault(_mapElementMixin);
+
+var _getPropsValuesMixin = __webpack_require__(601);
+
+var _getPropsValuesMixin2 = _interopRequireDefault(_getPropsValuesMixin);
+
+var _markerClustererPlus = __webpack_require__(640);
+
+var _markerClustererPlus2 = _interopRequireDefault(_markerClustererPlus);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var props = {
+  maxZoom: {
+    type: Number,
+    twoWay: false
+  },
+  calculator: {
+    type: Function,
+    twoWay: false
+  },
+  gridSize: {
+    type: Number,
+    twoWay: false
+  },
+  styles: {
+    type: Array,
+    twoWay: false
+  }
+}; /* vim: set softtabstop=2 shiftwidth=2 expandtab : */
+
+/**
+  * @class Cluster
+  * @prop $clusterObject -- Exposes the marker clusterer to
+        descendent Marker classes. Override this if you area
+        extending the class
+**/
+
+var events = ['click', 'rightclick', 'dblclick', 'drag', 'dragstart', 'dragend', 'mouseup', 'mousedown', 'mouseover', 'mouseout'];
+
+exports.default = {
+  mixins: [_mapElementMixin2.default, _getPropsValuesMixin2.default],
+  props: props,
+
+  render: function render(h) {
+    // <div><slot></slot></div>
+    return h('div', this.$slots.default);
+  },
+  deferredReady: function deferredReady() {
+    var _this = this;
+
+    var options = (0, _clone3.default)(this.getPropsValues());
+
+    if (typeof _markerClustererPlus2.default === 'undefined') {
+      /* eslint-disable no-console */
+      console.error('MarkerClusterer is not installed! require() it or include it from https://cdnjs.cloudflare.com/ajax/libs/js-marker-clusterer/1.0.0/markerclusterer.js');
+      throw new Error('MarkerClusterer is not installed! require() it or include it from https://cdnjs.cloudflare.com/ajax/libs/js-marker-clusterer/1.0.0/markerclusterer.js');
+    }
+
+    this.$clusterObject = new _markerClustererPlus2.default(this.$map, [], options);
+
+    (0, _propsBinder2.default)(this, this.$clusterObject, props, {
+      afterModelChanged: function afterModelChanged(a, v) {
+        // eslint-disable-line no-unused-vars
+        var oldMarkers = _this.$clusterObject.getMarkers();
+        _this.$clusterObject.clearMarkers();
+        _this.$clusterObject.addMarkers(oldMarkers);
+      }
+    });
+    (0, _eventsBinder2.default)(this, this.$clusterObject, events);
+  },
+  beforeDestroy: function beforeDestroy() {
+    var _this2 = this;
+
+    /* Performance optimization when destroying a large number of markers */
+    this.$children.forEach(function (marker) {
+      if (marker.$clusterObject === _this2.$clusterObject) {
+        marker.$clusterObject = null;
+      }
+    });
+    if (this.$clusterObject) {
+      this.$clusterObject.clearMarkers();
+    }
+  }
+};
+
+/***/ }),
+/* 640 */
+/***/ (function(module, exports) {
+
+/**
+ * @name MarkerClustererPlus for Google Maps V3
+ * @version 2.1.2 [May 28, 2014]
+ * @author Gary Little
+ * @fileoverview
+ * The library creates and manages per-zoom-level clusters for large amounts of markers.
+ * <p>
+ * This is an enhanced V3 implementation of the
+ * <a href="http://gmaps-utility-library-dev.googlecode.com/svn/tags/markerclusterer/"
+ * >V2 MarkerClusterer</a> by Xiaoxi Wu. It is based on the
+ * <a href="http://google-maps-utility-library-v3.googlecode.com/svn/tags/markerclusterer/"
+ * >V3 MarkerClusterer</a> port by Luke Mahe. MarkerClustererPlus was created by Gary Little.
+ * <p>
+ * v2.0 release: MarkerClustererPlus v2.0 is backward compatible with MarkerClusterer v1.0. It
+ *  adds support for the <code>ignoreHidden</code>, <code>title</code>, <code>batchSizeIE</code>,
+ *  and <code>calculator</code> properties as well as support for four more events. It also allows
+ *  greater control over the styling of the text that appears on the cluster marker. The
+ *  documentation has been significantly improved and the overall code has been simplified and
+ *  polished. Very large numbers of markers can now be managed without causing Javascript timeout
+ *  errors on Internet Explorer. Note that the name of the <code>clusterclick</code> event has been
+ *  deprecated. The new name is <code>click</code>, so please change your application code now.
+ */
+
+/**
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+
+/**
+ * @name ClusterIconStyle
+ * @class This class represents the object for values in the <code>styles</code> array passed
+ *  to the {@link MarkerClusterer} constructor. The element in this array that is used to
+ *  style the cluster icon is determined by calling the <code>calculator</code> function.
+ *
+ * @property {string} url The URL of the cluster icon image file. Required.
+ * @property {number} height The display height (in pixels) of the cluster icon. Required.
+ * @property {number} width The display width (in pixels) of the cluster icon. Required.
+ * @property {Array} [anchorText] The position (in pixels) from the center of the cluster icon to
+ *  where the text label is to be centered and drawn. The format is <code>[yoffset, xoffset]</code>
+ *  where <code>yoffset</code> increases as you go down from center and <code>xoffset</code>
+ *  increases to the right of center. The default is <code>[0, 0]</code>.
+ * @property {Array} [anchorIcon] The anchor position (in pixels) of the cluster icon. This is the
+ *  spot on the cluster icon that is to be aligned with the cluster position. The format is
+ *  <code>[yoffset, xoffset]</code> where <code>yoffset</code> increases as you go down and
+ *  <code>xoffset</code> increases to the right of the top-left corner of the icon. The default
+ *  anchor position is the center of the cluster icon.
+ * @property {string} [textColor="black"] The color of the label text shown on the
+ *  cluster icon.
+ * @property {number} [textSize=11] The size (in pixels) of the label text shown on the
+ *  cluster icon.
+ * @property {string} [textDecoration="none"] The value of the CSS <code>text-decoration</code>
+ *  property for the label text shown on the cluster icon.
+ * @property {string} [fontWeight="bold"] The value of the CSS <code>font-weight</code>
+ *  property for the label text shown on the cluster icon.
+ * @property {string} [fontStyle="normal"] The value of the CSS <code>font-style</code>
+ *  property for the label text shown on the cluster icon.
+ * @property {string} [fontFamily="Arial,sans-serif"] The value of the CSS <code>font-family</code>
+ *  property for the label text shown on the cluster icon.
+ * @property {string} [backgroundPosition="0 0"] The position of the cluster icon image
+ *  within the image defined by <code>url</code>. The format is <code>"xpos ypos"</code>
+ *  (the same format as for the CSS <code>background-position</code> property). You must set
+ *  this property appropriately when the image defined by <code>url</code> represents a sprite
+ *  containing multiple images. Note that the position <i>must</i> be specified in px units.
+ */
+/**
+ * @name ClusterIconInfo
+ * @class This class is an object containing general information about a cluster icon. This is
+ *  the object that a <code>calculator</code> function returns.
+ *
+ * @property {string} text The text of the label to be shown on the cluster icon.
+ * @property {number} index The index plus 1 of the element in the <code>styles</code>
+ *  array to be used to style the cluster icon.
+ * @property {string} title The tooltip to display when the mouse moves over the cluster icon.
+ *  If this value is <code>undefined</code> or <code>""</code>, <code>title</code> is set to the
+ *  value of the <code>title</code> property passed to the MarkerClusterer.
+ */
+/**
+ * A cluster icon.
+ *
+ * @constructor
+ * @extends google.maps.OverlayView
+ * @param {Cluster} cluster The cluster with which the icon is to be associated.
+ * @param {Array} [styles] An array of {@link ClusterIconStyle} defining the cluster icons
+ *  to use for various cluster sizes.
+ * @private
+ */
+function ClusterIcon(cluster, styles) {
+  cluster.getMarkerClusterer().extend(ClusterIcon, google.maps.OverlayView);
+
+  this.cluster_ = cluster;
+  this.className_ = cluster.getMarkerClusterer().getClusterClass();
+  this.styles_ = styles;
+  this.center_ = null;
+  this.div_ = null;
+  this.sums_ = null;
+  this.visible_ = false;
+
+  this.setMap(cluster.getMap()); // Note: this causes onAdd to be called
+}
+
+
+/**
+ * Adds the icon to the DOM.
+ */
+ClusterIcon.prototype.onAdd = function () {
+  var cClusterIcon = this;
+  var cMouseDownInCluster;
+  var cDraggingMapByCluster;
+
+  this.div_ = document.createElement("div");
+  this.div_.className = this.className_;
+  if (this.visible_) {
+    this.show();
+  }
+
+  this.getPanes().overlayMouseTarget.appendChild(this.div_);
+
+  // Fix for Issue 157
+  this.boundsChangedListener_ = google.maps.event.addListener(this.getMap(), "bounds_changed", function () {
+    cDraggingMapByCluster = cMouseDownInCluster;
+  });
+
+  google.maps.event.addDomListener(this.div_, "mousedown", function () {
+    cMouseDownInCluster = true;
+    cDraggingMapByCluster = false;
+  });
+
+  google.maps.event.addDomListener(this.div_, "click", function (e) {
+    cMouseDownInCluster = false;
+    if (!cDraggingMapByCluster) {
+      var theBounds;
+      var mz;
+      var mc = cClusterIcon.cluster_.getMarkerClusterer();
+      /**
+       * This event is fired when a cluster marker is clicked.
+       * @name MarkerClusterer#click
+       * @param {Cluster} c The cluster that was clicked.
+       * @event
+       */
+      google.maps.event.trigger(mc, "click", cClusterIcon.cluster_);
+      google.maps.event.trigger(mc, "clusterclick", cClusterIcon.cluster_); // deprecated name
+
+      // The default click handler follows. Disable it by setting
+      // the zoomOnClick property to false.
+      if (mc.getZoomOnClick()) {
+        // Zoom into the cluster.
+        mz = mc.getMaxZoom();
+        theBounds = cClusterIcon.cluster_.getBounds();
+        mc.getMap().fitBounds(theBounds);
+        // There is a fix for Issue 170 here:
+        setTimeout(function () {
+          mc.getMap().fitBounds(theBounds);
+          // Don't zoom beyond the max zoom level
+          if (mz !== null && (mc.getMap().getZoom() > mz)) {
+            mc.getMap().setZoom(mz + 1);
+          }
+        }, 100);
+      }
+
+      // Prevent event propagation to the map:
+      e.cancelBubble = true;
+      if (e.stopPropagation) {
+        e.stopPropagation();
+      }
+    }
+  });
+
+  google.maps.event.addDomListener(this.div_, "mouseover", function () {
+    var mc = cClusterIcon.cluster_.getMarkerClusterer();
+    /**
+     * This event is fired when the mouse moves over a cluster marker.
+     * @name MarkerClusterer#mouseover
+     * @param {Cluster} c The cluster that the mouse moved over.
+     * @event
+     */
+    google.maps.event.trigger(mc, "mouseover", cClusterIcon.cluster_);
+  });
+
+  google.maps.event.addDomListener(this.div_, "mouseout", function () {
+    var mc = cClusterIcon.cluster_.getMarkerClusterer();
+    /**
+     * This event is fired when the mouse moves out of a cluster marker.
+     * @name MarkerClusterer#mouseout
+     * @param {Cluster} c The cluster that the mouse moved out of.
+     * @event
+     */
+    google.maps.event.trigger(mc, "mouseout", cClusterIcon.cluster_);
+  });
+};
+
+
+/**
+ * Removes the icon from the DOM.
+ */
+ClusterIcon.prototype.onRemove = function () {
+  if (this.div_ && this.div_.parentNode) {
+    this.hide();
+    google.maps.event.removeListener(this.boundsChangedListener_);
+    google.maps.event.clearInstanceListeners(this.div_);
+    this.div_.parentNode.removeChild(this.div_);
+    this.div_ = null;
+  }
+};
+
+
+/**
+ * Draws the icon.
+ */
+ClusterIcon.prototype.draw = function () {
+  if (this.visible_) {
+    var pos = this.getPosFromLatLng_(this.center_);
+    this.div_.style.top = pos.y + "px";
+    this.div_.style.left = pos.x + "px";
+  }
+};
+
+
+/**
+ * Hides the icon.
+ */
+ClusterIcon.prototype.hide = function () {
+  if (this.div_) {
+    this.div_.style.display = "none";
+  }
+  this.visible_ = false;
+};
+
+
+/**
+ * Positions and shows the icon.
+ */
+ClusterIcon.prototype.show = function () {
+  if (this.div_) {
+    var img = "";
+    // NOTE: values must be specified in px units
+    var bp = this.backgroundPosition_.split(" ");
+    var spriteH = parseInt(bp[0].replace(/^\s+|\s+$/g, ""), 10);
+    var spriteV = parseInt(bp[1].replace(/^\s+|\s+$/g, ""), 10);
+    var pos = this.getPosFromLatLng_(this.center_);
+    this.div_.style.cssText = this.createCss(pos);
+    img = "<img src='" + this.url_ + "' style='position: absolute; top: " + spriteV + "px; left: " + spriteH + "px; ";
+    if (!this.cluster_.getMarkerClusterer().enableRetinaIcons_) {
+      img += "clip: rect(" + (-1 * spriteV) + "px, " + ((-1 * spriteH) + this.width_) + "px, " +
+          ((-1 * spriteV) + this.height_) + "px, " + (-1 * spriteH) + "px);";
+    }
+    img += "'>";
+    this.div_.innerHTML = img + "<div style='" +
+        "position: absolute;" +
+        "top: " + this.anchorText_[0] + "px;" +
+        "left: " + this.anchorText_[1] + "px;" +
+        "color: " + this.textColor_ + ";" +
+        "font-size: " + this.textSize_ + "px;" +
+        "font-family: " + this.fontFamily_ + ";" +
+        "font-weight: " + this.fontWeight_ + ";" +
+        "font-style: " + this.fontStyle_ + ";" +
+        "text-decoration: " + this.textDecoration_ + ";" +
+        "text-align: center;" +
+        "width: " + this.width_ + "px;" +
+        "line-height:" + this.height_ + "px;" +
+        "'>" + this.sums_.text + "</div>";
+    if (typeof this.sums_.title === "undefined" || this.sums_.title === "") {
+      this.div_.title = this.cluster_.getMarkerClusterer().getTitle();
+    } else {
+      this.div_.title = this.sums_.title;
+    }
+    this.div_.style.display = "";
+  }
+  this.visible_ = true;
+};
+
+
+/**
+ * Sets the icon styles to the appropriate element in the styles array.
+ *
+ * @param {ClusterIconInfo} sums The icon label text and styles index.
+ */
+ClusterIcon.prototype.useStyle = function (sums) {
+  this.sums_ = sums;
+  var index = Math.max(0, sums.index - 1);
+  index = Math.min(this.styles_.length - 1, index);
+  var style = this.styles_[index];
+  this.url_ = style.url;
+  this.height_ = style.height;
+  this.width_ = style.width;
+  this.anchorText_ = style.anchorText || [0, 0];
+  this.anchorIcon_ = style.anchorIcon || [parseInt(this.height_ / 2, 10), parseInt(this.width_ / 2, 10)];
+  this.textColor_ = style.textColor || "black";
+  this.textSize_ = style.textSize || 11;
+  this.textDecoration_ = style.textDecoration || "none";
+  this.fontWeight_ = style.fontWeight || "bold";
+  this.fontStyle_ = style.fontStyle || "normal";
+  this.fontFamily_ = style.fontFamily || "Arial,sans-serif";
+  this.backgroundPosition_ = style.backgroundPosition || "0 0";
+};
+
+
+/**
+ * Sets the position at which to center the icon.
+ *
+ * @param {google.maps.LatLng} center The latlng to set as the center.
+ */
+ClusterIcon.prototype.setCenter = function (center) {
+  this.center_ = center;
+};
+
+
+/**
+ * Creates the cssText style parameter based on the position of the icon.
+ *
+ * @param {google.maps.Point} pos The position of the icon.
+ * @return {string} The CSS style text.
+ */
+ClusterIcon.prototype.createCss = function (pos) {
+  var style = [];
+  style.push("cursor: pointer;");
+  style.push("position: absolute; top: " + pos.y + "px; left: " + pos.x + "px;");
+  style.push("width: " + this.width_ + "px; height: " + this.height_ + "px;");
+  return style.join("");
+};
+
+
+/**
+ * Returns the position at which to place the DIV depending on the latlng.
+ *
+ * @param {google.maps.LatLng} latlng The position in latlng.
+ * @return {google.maps.Point} The position in pixels.
+ */
+ClusterIcon.prototype.getPosFromLatLng_ = function (latlng) {
+  var pos = this.getProjection().fromLatLngToDivPixel(latlng);
+  pos.x -= this.anchorIcon_[1];
+  pos.y -= this.anchorIcon_[0];
+  pos.x = parseInt(pos.x, 10);
+  pos.y = parseInt(pos.y, 10);
+  return pos;
+};
+
+
+/**
+ * Creates a single cluster that manages a group of proximate markers.
+ *  Used internally, do not call this constructor directly.
+ * @constructor
+ * @param {MarkerClusterer} mc The <code>MarkerClusterer</code> object with which this
+ *  cluster is associated.
+ */
+function Cluster(mc) {
+  this.markerClusterer_ = mc;
+  this.map_ = mc.getMap();
+  this.gridSize_ = mc.getGridSize();
+  this.minClusterSize_ = mc.getMinimumClusterSize();
+  this.averageCenter_ = mc.getAverageCenter();
+  this.markers_ = [];
+  this.center_ = null;
+  this.bounds_ = null;
+  this.clusterIcon_ = new ClusterIcon(this, mc.getStyles());
+}
+
+
+/**
+ * Returns the number of markers managed by the cluster. You can call this from
+ * a <code>click</code>, <code>mouseover</code>, or <code>mouseout</code> event handler
+ * for the <code>MarkerClusterer</code> object.
+ *
+ * @return {number} The number of markers in the cluster.
+ */
+Cluster.prototype.getSize = function () {
+  return this.markers_.length;
+};
+
+
+/**
+ * Returns the array of markers managed by the cluster. You can call this from
+ * a <code>click</code>, <code>mouseover</code>, or <code>mouseout</code> event handler
+ * for the <code>MarkerClusterer</code> object.
+ *
+ * @return {Array} The array of markers in the cluster.
+ */
+Cluster.prototype.getMarkers = function () {
+  return this.markers_;
+};
+
+
+/**
+ * Returns the center of the cluster. You can call this from
+ * a <code>click</code>, <code>mouseover</code>, or <code>mouseout</code> event handler
+ * for the <code>MarkerClusterer</code> object.
+ *
+ * @return {google.maps.LatLng} The center of the cluster.
+ */
+Cluster.prototype.getCenter = function () {
+  return this.center_;
+};
+
+
+/**
+ * Returns the map with which the cluster is associated.
+ *
+ * @return {google.maps.Map} The map.
+ * @ignore
+ */
+Cluster.prototype.getMap = function () {
+  return this.map_;
+};
+
+
+/**
+ * Returns the <code>MarkerClusterer</code> object with which the cluster is associated.
+ *
+ * @return {MarkerClusterer} The associated marker clusterer.
+ * @ignore
+ */
+Cluster.prototype.getMarkerClusterer = function () {
+  return this.markerClusterer_;
+};
+
+
+/**
+ * Returns the bounds of the cluster.
+ *
+ * @return {google.maps.LatLngBounds} the cluster bounds.
+ * @ignore
+ */
+Cluster.prototype.getBounds = function () {
+  var i;
+  var bounds = new google.maps.LatLngBounds(this.center_, this.center_);
+  var markers = this.getMarkers();
+  for (i = 0; i < markers.length; i++) {
+    bounds.extend(markers[i].getPosition());
+  }
+  return bounds;
+};
+
+
+/**
+ * Removes the cluster from the map.
+ *
+ * @ignore
+ */
+Cluster.prototype.remove = function () {
+  this.clusterIcon_.setMap(null);
+  this.markers_ = [];
+  delete this.markers_;
+};
+
+
+/**
+ * Adds a marker to the cluster.
+ *
+ * @param {google.maps.Marker} marker The marker to be added.
+ * @return {boolean} True if the marker was added.
+ * @ignore
+ */
+Cluster.prototype.addMarker = function (marker) {
+  var i;
+  var mCount;
+  var mz;
+
+  if (this.isMarkerAlreadyAdded_(marker)) {
+    return false;
+  }
+
+  if (!this.center_) {
+    this.center_ = marker.getPosition();
+    this.calculateBounds_();
+  } else {
+    if (this.averageCenter_) {
+      var l = this.markers_.length + 1;
+      var lat = (this.center_.lat() * (l - 1) + marker.getPosition().lat()) / l;
+      var lng = (this.center_.lng() * (l - 1) + marker.getPosition().lng()) / l;
+      this.center_ = new google.maps.LatLng(lat, lng);
+      this.calculateBounds_();
+    }
+  }
+
+  marker.isAdded = true;
+  this.markers_.push(marker);
+
+  mCount = this.markers_.length;
+  mz = this.markerClusterer_.getMaxZoom();
+  if (mz !== null && this.map_.getZoom() > mz) {
+    // Zoomed in past max zoom, so show the marker.
+    if (marker.getMap() !== this.map_) {
+      marker.setMap(this.map_);
+    }
+  } else if (mCount < this.minClusterSize_) {
+    // Min cluster size not reached so show the marker.
+    if (marker.getMap() !== this.map_) {
+      marker.setMap(this.map_);
+    }
+  } else if (mCount === this.minClusterSize_) {
+    // Hide the markers that were showing.
+    for (i = 0; i < mCount; i++) {
+      this.markers_[i].setMap(null);
+    }
+  } else {
+    marker.setMap(null);
+  }
+
+  this.updateIcon_();
+  return true;
+};
+
+
+/**
+ * Determines if a marker lies within the cluster's bounds.
+ *
+ * @param {google.maps.Marker} marker The marker to check.
+ * @return {boolean} True if the marker lies in the bounds.
+ * @ignore
+ */
+Cluster.prototype.isMarkerInClusterBounds = function (marker) {
+  return this.bounds_.contains(marker.getPosition());
+};
+
+
+/**
+ * Calculates the extended bounds of the cluster with the grid.
+ */
+Cluster.prototype.calculateBounds_ = function () {
+  var bounds = new google.maps.LatLngBounds(this.center_, this.center_);
+  this.bounds_ = this.markerClusterer_.getExtendedBounds(bounds);
+};
+
+
+/**
+ * Updates the cluster icon.
+ */
+Cluster.prototype.updateIcon_ = function () {
+  var mCount = this.markers_.length;
+  var mz = this.markerClusterer_.getMaxZoom();
+
+  if (mz !== null && this.map_.getZoom() > mz) {
+    this.clusterIcon_.hide();
+    return;
+  }
+
+  if (mCount < this.minClusterSize_) {
+    // Min cluster size not yet reached.
+    this.clusterIcon_.hide();
+    return;
+  }
+
+  var numStyles = this.markerClusterer_.getStyles().length;
+  var sums = this.markerClusterer_.getCalculator()(this.markers_, numStyles);
+  this.clusterIcon_.setCenter(this.center_);
+  this.clusterIcon_.useStyle(sums);
+  this.clusterIcon_.show();
+};
+
+
+/**
+ * Determines if a marker has already been added to the cluster.
+ *
+ * @param {google.maps.Marker} marker The marker to check.
+ * @return {boolean} True if the marker has already been added.
+ */
+Cluster.prototype.isMarkerAlreadyAdded_ = function (marker) {
+  var i;
+  if (this.markers_.indexOf) {
+    return this.markers_.indexOf(marker) !== -1;
+  } else {
+    for (i = 0; i < this.markers_.length; i++) {
+      if (marker === this.markers_[i]) {
+        return true;
+      }
+    }
+  }
+  return false;
+};
+
+
+/**
+ * @name MarkerClustererOptions
+ * @class This class represents the optional parameter passed to
+ *  the {@link MarkerClusterer} constructor.
+ * @property {number} [gridSize=60] The grid size of a cluster in pixels. The grid is a square.
+ * @property {number} [maxZoom=null] The maximum zoom level at which clustering is enabled or
+ *  <code>null</code> if clustering is to be enabled at all zoom levels.
+ * @property {boolean} [zoomOnClick=true] Whether to zoom the map when a cluster marker is
+ *  clicked. You may want to set this to <code>false</code> if you have installed a handler
+ *  for the <code>click</code> event and it deals with zooming on its own.
+ * @property {boolean} [averageCenter=false] Whether the position of a cluster marker should be
+ *  the average position of all markers in the cluster. If set to <code>false</code>, the
+ *  cluster marker is positioned at the location of the first marker added to the cluster.
+ * @property {number} [minimumClusterSize=2] The minimum number of markers needed in a cluster
+ *  before the markers are hidden and a cluster marker appears.
+ * @property {boolean} [ignoreHidden=false] Whether to ignore hidden markers in clusters. You
+ *  may want to set this to <code>true</code> to ensure that hidden markers are not included
+ *  in the marker count that appears on a cluster marker (this count is the value of the
+ *  <code>text</code> property of the result returned by the default <code>calculator</code>).
+ *  If set to <code>true</code> and you change the visibility of a marker being clustered, be
+ *  sure to also call <code>MarkerClusterer.repaint()</code>.
+ * @property {string} [title=""] The tooltip to display when the mouse moves over a cluster
+ *  marker. (Alternatively, you can use a custom <code>calculator</code> function to specify a
+ *  different tooltip for each cluster marker.)
+ * @property {function} [calculator=MarkerClusterer.CALCULATOR] The function used to determine
+ *  the text to be displayed on a cluster marker and the index indicating which style to use
+ *  for the cluster marker. The input parameters for the function are (1) the array of markers
+ *  represented by a cluster marker and (2) the number of cluster icon styles. It returns a
+ *  {@link ClusterIconInfo} object. The default <code>calculator</code> returns a
+ *  <code>text</code> property which is the number of markers in the cluster and an
+ *  <code>index</code> property which is one higher than the lowest integer such that
+ *  <code>10^i</code> exceeds the number of markers in the cluster, or the size of the styles
+ *  array, whichever is less. The <code>styles</code> array element used has an index of
+ *  <code>index</code> minus 1. For example, the default <code>calculator</code> returns a
+ *  <code>text</code> value of <code>"125"</code> and an <code>index</code> of <code>3</code>
+ *  for a cluster icon representing 125 markers so the element used in the <code>styles</code>
+ *  array is <code>2</code>. A <code>calculator</code> may also return a <code>title</code>
+ *  property that contains the text of the tooltip to be used for the cluster marker. If
+ *   <code>title</code> is not defined, the tooltip is set to the value of the <code>title</code>
+ *   property for the MarkerClusterer.
+ * @property {string} [clusterClass="cluster"] The name of the CSS class defining general styles
+ *  for the cluster markers. Use this class to define CSS styles that are not set up by the code
+ *  that processes the <code>styles</code> array.
+ * @property {Array} [styles] An array of {@link ClusterIconStyle} elements defining the styles
+ *  of the cluster markers to be used. The element to be used to style a given cluster marker
+ *  is determined by the function defined by the <code>calculator</code> property.
+ *  The default is an array of {@link ClusterIconStyle} elements whose properties are derived
+ *  from the values for <code>imagePath</code>, <code>imageExtension</code>, and
+ *  <code>imageSizes</code>.
+ * @property {boolean} [enableRetinaIcons=false] Whether to allow the use of cluster icons that
+ * have sizes that are some multiple (typically double) of their actual display size. Icons such
+ * as these look better when viewed on high-resolution monitors such as Apple's Retina displays.
+ * Note: if this property is <code>true</code>, sprites cannot be used as cluster icons.
+ * @property {number} [batchSize=MarkerClusterer.BATCH_SIZE] Set this property to the
+ *  number of markers to be processed in a single batch when using a browser other than
+ *  Internet Explorer (for Internet Explorer, use the batchSizeIE property instead).
+ * @property {number} [batchSizeIE=MarkerClusterer.BATCH_SIZE_IE] When Internet Explorer is
+ *  being used, markers are processed in several batches with a small delay inserted between
+ *  each batch in an attempt to avoid Javascript timeout errors. Set this property to the
+ *  number of markers to be processed in a single batch; select as high a number as you can
+ *  without causing a timeout error in the browser. This number might need to be as low as 100
+ *  if 15,000 markers are being managed, for example.
+ * @property {string} [imagePath=MarkerClusterer.IMAGE_PATH]
+ *  The full URL of the root name of the group of image files to use for cluster icons.
+ *  The complete file name is of the form <code>imagePath</code>n.<code>imageExtension</code>
+ *  where n is the image file number (1, 2, etc.).
+ * @property {string} [imageExtension=MarkerClusterer.IMAGE_EXTENSION]
+ *  The extension name for the cluster icon image files (e.g., <code>"png"</code> or
+ *  <code>"jpg"</code>).
+ * @property {Array} [imageSizes=MarkerClusterer.IMAGE_SIZES]
+ *  An array of numbers containing the widths of the group of
+ *  <code>imagePath</code>n.<code>imageExtension</code> image files.
+ *  (The images are assumed to be square.)
+ */
+/**
+ * Creates a MarkerClusterer object with the options specified in {@link MarkerClustererOptions}.
+ * @constructor
+ * @extends google.maps.OverlayView
+ * @param {google.maps.Map} map The Google map to attach to.
+ * @param {Array.<google.maps.Marker>} [opt_markers] The markers to be added to the cluster.
+ * @param {MarkerClustererOptions} [opt_options] The optional parameters.
+ */
+function MarkerClusterer(map, opt_markers, opt_options) {
+  // MarkerClusterer implements google.maps.OverlayView interface. We use the
+  // extend function to extend MarkerClusterer with google.maps.OverlayView
+  // because it might not always be available when the code is defined so we
+  // look for it at the last possible moment. If it doesn't exist now then
+  // there is no point going ahead :)
+  this.extend(MarkerClusterer, google.maps.OverlayView);
+
+  opt_markers = opt_markers || [];
+  opt_options = opt_options || {};
+
+  this.markers_ = [];
+  this.clusters_ = [];
+  this.listeners_ = [];
+  this.activeMap_ = null;
+  this.ready_ = false;
+
+  this.gridSize_ = opt_options.gridSize || 60;
+  this.minClusterSize_ = opt_options.minimumClusterSize || 2;
+  this.maxZoom_ = opt_options.maxZoom || null;
+  this.styles_ = opt_options.styles || [];
+  this.title_ = opt_options.title || "";
+  this.zoomOnClick_ = true;
+  if (opt_options.zoomOnClick !== undefined) {
+    this.zoomOnClick_ = opt_options.zoomOnClick;
+  }
+  this.averageCenter_ = false;
+  if (opt_options.averageCenter !== undefined) {
+    this.averageCenter_ = opt_options.averageCenter;
+  }
+  this.ignoreHidden_ = false;
+  if (opt_options.ignoreHidden !== undefined) {
+    this.ignoreHidden_ = opt_options.ignoreHidden;
+  }
+  this.enableRetinaIcons_ = false;
+  if (opt_options.enableRetinaIcons !== undefined) {
+    this.enableRetinaIcons_ = opt_options.enableRetinaIcons;
+  }
+  this.imagePath_ = opt_options.imagePath || MarkerClusterer.IMAGE_PATH;
+  this.imageExtension_ = opt_options.imageExtension || MarkerClusterer.IMAGE_EXTENSION;
+  this.imageSizes_ = opt_options.imageSizes || MarkerClusterer.IMAGE_SIZES;
+  this.calculator_ = opt_options.calculator || MarkerClusterer.CALCULATOR;
+  this.batchSize_ = opt_options.batchSize || MarkerClusterer.BATCH_SIZE;
+  this.batchSizeIE_ = opt_options.batchSizeIE || MarkerClusterer.BATCH_SIZE_IE;
+  this.clusterClass_ = opt_options.clusterClass || "cluster";
+
+  if (navigator.userAgent.toLowerCase().indexOf("msie") !== -1) {
+    // Try to avoid IE timeout when processing a huge number of markers:
+    this.batchSize_ = this.batchSizeIE_;
+  }
+
+  this.setupStyles_();
+
+  this.addMarkers(opt_markers, true);
+  this.setMap(map); // Note: this causes onAdd to be called
+}
+
+
+/**
+ * Implementation of the onAdd interface method.
+ * @ignore
+ */
+MarkerClusterer.prototype.onAdd = function () {
+  var cMarkerClusterer = this;
+
+  this.activeMap_ = this.getMap();
+  this.ready_ = true;
+
+  this.repaint();
+
+  // Add the map event listeners
+  this.listeners_ = [
+    google.maps.event.addListener(this.getMap(), "zoom_changed", function () {
+      cMarkerClusterer.resetViewport_(false);
+      // Workaround for this Google bug: when map is at level 0 and "-" of
+      // zoom slider is clicked, a "zoom_changed" event is fired even though
+      // the map doesn't zoom out any further. In this situation, no "idle"
+      // event is triggered so the cluster markers that have been removed
+      // do not get redrawn. Same goes for a zoom in at maxZoom.
+      if (this.getZoom() === (this.get("minZoom") || 0) || this.getZoom() === this.get("maxZoom")) {
+        google.maps.event.trigger(this, "idle");
+      }
+    }),
+    google.maps.event.addListener(this.getMap(), "idle", function () {
+      cMarkerClusterer.redraw_();
+    })
+  ];
+};
+
+
+/**
+ * Implementation of the onRemove interface method.
+ * Removes map event listeners and all cluster icons from the DOM.
+ * All managed markers are also put back on the map.
+ * @ignore
+ */
+MarkerClusterer.prototype.onRemove = function () {
+  var i;
+
+  // Put all the managed markers back on the map:
+  for (i = 0; i < this.markers_.length; i++) {
+    if (this.markers_[i].getMap() !== this.activeMap_) {
+      this.markers_[i].setMap(this.activeMap_);
+    }
+  }
+
+  // Remove all clusters:
+  for (i = 0; i < this.clusters_.length; i++) {
+    this.clusters_[i].remove();
+  }
+  this.clusters_ = [];
+
+  // Remove map event listeners:
+  for (i = 0; i < this.listeners_.length; i++) {
+    google.maps.event.removeListener(this.listeners_[i]);
+  }
+  this.listeners_ = [];
+
+  this.activeMap_ = null;
+  this.ready_ = false;
+};
+
+
+/**
+ * Implementation of the draw interface method.
+ * @ignore
+ */
+MarkerClusterer.prototype.draw = function () {};
+
+
+/**
+ * Sets up the styles object.
+ */
+MarkerClusterer.prototype.setupStyles_ = function () {
+  var i, size;
+  if (this.styles_.length > 0) {
+    return;
+  }
+
+  for (i = 0; i < this.imageSizes_.length; i++) {
+    size = this.imageSizes_[i];
+    this.styles_.push({
+      url: this.imagePath_ + (i + 1) + "." + this.imageExtension_,
+      height: size,
+      width: size
+    });
+  }
+};
+
+
+/**
+ *  Fits the map to the bounds of the markers managed by the clusterer.
+ */
+MarkerClusterer.prototype.fitMapToMarkers = function () {
+  var i;
+  var markers = this.getMarkers();
+  var bounds = new google.maps.LatLngBounds();
+  for (i = 0; i < markers.length; i++) {
+    bounds.extend(markers[i].getPosition());
+  }
+
+  this.getMap().fitBounds(bounds);
+};
+
+
+/**
+ * Returns the value of the <code>gridSize</code> property.
+ *
+ * @return {number} The grid size.
+ */
+MarkerClusterer.prototype.getGridSize = function () {
+  return this.gridSize_;
+};
+
+
+/**
+ * Sets the value of the <code>gridSize</code> property.
+ *
+ * @param {number} gridSize The grid size.
+ */
+MarkerClusterer.prototype.setGridSize = function (gridSize) {
+  this.gridSize_ = gridSize;
+};
+
+
+/**
+ * Returns the value of the <code>minimumClusterSize</code> property.
+ *
+ * @return {number} The minimum cluster size.
+ */
+MarkerClusterer.prototype.getMinimumClusterSize = function () {
+  return this.minClusterSize_;
+};
+
+/**
+ * Sets the value of the <code>minimumClusterSize</code> property.
+ *
+ * @param {number} minimumClusterSize The minimum cluster size.
+ */
+MarkerClusterer.prototype.setMinimumClusterSize = function (minimumClusterSize) {
+  this.minClusterSize_ = minimumClusterSize;
+};
+
+
+/**
+ *  Returns the value of the <code>maxZoom</code> property.
+ *
+ *  @return {number} The maximum zoom level.
+ */
+MarkerClusterer.prototype.getMaxZoom = function () {
+  return this.maxZoom_;
+};
+
+
+/**
+ *  Sets the value of the <code>maxZoom</code> property.
+ *
+ *  @param {number} maxZoom The maximum zoom level.
+ */
+MarkerClusterer.prototype.setMaxZoom = function (maxZoom) {
+  this.maxZoom_ = maxZoom;
+};
+
+
+/**
+ *  Returns the value of the <code>styles</code> property.
+ *
+ *  @return {Array} The array of styles defining the cluster markers to be used.
+ */
+MarkerClusterer.prototype.getStyles = function () {
+  return this.styles_;
+};
+
+
+/**
+ *  Sets the value of the <code>styles</code> property.
+ *
+ *  @param {Array.<ClusterIconStyle>} styles The array of styles to use.
+ */
+MarkerClusterer.prototype.setStyles = function (styles) {
+  this.styles_ = styles;
+};
+
+
+/**
+ * Returns the value of the <code>title</code> property.
+ *
+ * @return {string} The content of the title text.
+ */
+MarkerClusterer.prototype.getTitle = function () {
+  return this.title_;
+};
+
+
+/**
+ *  Sets the value of the <code>title</code> property.
+ *
+ *  @param {string} title The value of the title property.
+ */
+MarkerClusterer.prototype.setTitle = function (title) {
+  this.title_ = title;
+};
+
+
+/**
+ * Returns the value of the <code>zoomOnClick</code> property.
+ *
+ * @return {boolean} True if zoomOnClick property is set.
+ */
+MarkerClusterer.prototype.getZoomOnClick = function () {
+  return this.zoomOnClick_;
+};
+
+
+/**
+ *  Sets the value of the <code>zoomOnClick</code> property.
+ *
+ *  @param {boolean} zoomOnClick The value of the zoomOnClick property.
+ */
+MarkerClusterer.prototype.setZoomOnClick = function (zoomOnClick) {
+  this.zoomOnClick_ = zoomOnClick;
+};
+
+
+/**
+ * Returns the value of the <code>averageCenter</code> property.
+ *
+ * @return {boolean} True if averageCenter property is set.
+ */
+MarkerClusterer.prototype.getAverageCenter = function () {
+  return this.averageCenter_;
+};
+
+
+/**
+ *  Sets the value of the <code>averageCenter</code> property.
+ *
+ *  @param {boolean} averageCenter The value of the averageCenter property.
+ */
+MarkerClusterer.prototype.setAverageCenter = function (averageCenter) {
+  this.averageCenter_ = averageCenter;
+};
+
+
+/**
+ * Returns the value of the <code>ignoreHidden</code> property.
+ *
+ * @return {boolean} True if ignoreHidden property is set.
+ */
+MarkerClusterer.prototype.getIgnoreHidden = function () {
+  return this.ignoreHidden_;
+};
+
+
+/**
+ *  Sets the value of the <code>ignoreHidden</code> property.
+ *
+ *  @param {boolean} ignoreHidden The value of the ignoreHidden property.
+ */
+MarkerClusterer.prototype.setIgnoreHidden = function (ignoreHidden) {
+  this.ignoreHidden_ = ignoreHidden;
+};
+
+
+/**
+ * Returns the value of the <code>enableRetinaIcons</code> property.
+ *
+ * @return {boolean} True if enableRetinaIcons property is set.
+ */
+MarkerClusterer.prototype.getEnableRetinaIcons = function () {
+  return this.enableRetinaIcons_;
+};
+
+
+/**
+ *  Sets the value of the <code>enableRetinaIcons</code> property.
+ *
+ *  @param {boolean} enableRetinaIcons The value of the enableRetinaIcons property.
+ */
+MarkerClusterer.prototype.setEnableRetinaIcons = function (enableRetinaIcons) {
+  this.enableRetinaIcons_ = enableRetinaIcons;
+};
+
+
+/**
+ * Returns the value of the <code>imageExtension</code> property.
+ *
+ * @return {string} The value of the imageExtension property.
+ */
+MarkerClusterer.prototype.getImageExtension = function () {
+  return this.imageExtension_;
+};
+
+
+/**
+ *  Sets the value of the <code>imageExtension</code> property.
+ *
+ *  @param {string} imageExtension The value of the imageExtension property.
+ */
+MarkerClusterer.prototype.setImageExtension = function (imageExtension) {
+  this.imageExtension_ = imageExtension;
+};
+
+
+/**
+ * Returns the value of the <code>imagePath</code> property.
+ *
+ * @return {string} The value of the imagePath property.
+ */
+MarkerClusterer.prototype.getImagePath = function () {
+  return this.imagePath_;
+};
+
+
+/**
+ *  Sets the value of the <code>imagePath</code> property.
+ *
+ *  @param {string} imagePath The value of the imagePath property.
+ */
+MarkerClusterer.prototype.setImagePath = function (imagePath) {
+  this.imagePath_ = imagePath;
+};
+
+
+/**
+ * Returns the value of the <code>imageSizes</code> property.
+ *
+ * @return {Array} The value of the imageSizes property.
+ */
+MarkerClusterer.prototype.getImageSizes = function () {
+  return this.imageSizes_;
+};
+
+
+/**
+ *  Sets the value of the <code>imageSizes</code> property.
+ *
+ *  @param {Array} imageSizes The value of the imageSizes property.
+ */
+MarkerClusterer.prototype.setImageSizes = function (imageSizes) {
+  this.imageSizes_ = imageSizes;
+};
+
+
+/**
+ * Returns the value of the <code>calculator</code> property.
+ *
+ * @return {function} the value of the calculator property.
+ */
+MarkerClusterer.prototype.getCalculator = function () {
+  return this.calculator_;
+};
+
+
+/**
+ * Sets the value of the <code>calculator</code> property.
+ *
+ * @param {function(Array.<google.maps.Marker>, number)} calculator The value
+ *  of the calculator property.
+ */
+MarkerClusterer.prototype.setCalculator = function (calculator) {
+  this.calculator_ = calculator;
+};
+
+
+/**
+ * Returns the value of the <code>batchSizeIE</code> property.
+ *
+ * @return {number} the value of the batchSizeIE property.
+ */
+MarkerClusterer.prototype.getBatchSizeIE = function () {
+  return this.batchSizeIE_;
+};
+
+
+/**
+ * Sets the value of the <code>batchSizeIE</code> property.
+ *
+ *  @param {number} batchSizeIE The value of the batchSizeIE property.
+ */
+MarkerClusterer.prototype.setBatchSizeIE = function (batchSizeIE) {
+  this.batchSizeIE_ = batchSizeIE;
+};
+
+
+/**
+ * Returns the value of the <code>clusterClass</code> property.
+ *
+ * @return {string} the value of the clusterClass property.
+ */
+MarkerClusterer.prototype.getClusterClass = function () {
+  return this.clusterClass_;
+};
+
+
+/**
+ * Sets the value of the <code>clusterClass</code> property.
+ *
+ *  @param {string} clusterClass The value of the clusterClass property.
+ */
+MarkerClusterer.prototype.setClusterClass = function (clusterClass) {
+  this.clusterClass_ = clusterClass;
+};
+
+
+/**
+ *  Returns the array of markers managed by the clusterer.
+ *
+ *  @return {Array} The array of markers managed by the clusterer.
+ */
+MarkerClusterer.prototype.getMarkers = function () {
+  return this.markers_;
+};
+
+
+/**
+ *  Returns the number of markers managed by the clusterer.
+ *
+ *  @return {number} The number of markers.
+ */
+MarkerClusterer.prototype.getTotalMarkers = function () {
+  return this.markers_.length;
+};
+
+
+/**
+ * Returns the current array of clusters formed by the clusterer.
+ *
+ * @return {Array} The array of clusters formed by the clusterer.
+ */
+MarkerClusterer.prototype.getClusters = function () {
+  return this.clusters_;
+};
+
+
+/**
+ * Returns the number of clusters formed by the clusterer.
+ *
+ * @return {number} The number of clusters formed by the clusterer.
+ */
+MarkerClusterer.prototype.getTotalClusters = function () {
+  return this.clusters_.length;
+};
+
+
+/**
+ * Adds a marker to the clusterer. The clusters are redrawn unless
+ *  <code>opt_nodraw</code> is set to <code>true</code>.
+ *
+ * @param {google.maps.Marker} marker The marker to add.
+ * @param {boolean} [opt_nodraw] Set to <code>true</code> to prevent redrawing.
+ */
+MarkerClusterer.prototype.addMarker = function (marker, opt_nodraw) {
+  this.pushMarkerTo_(marker);
+  if (!opt_nodraw) {
+    this.redraw_();
+  }
+};
+
+
+/**
+ * Adds an array of markers to the clusterer. The clusters are redrawn unless
+ *  <code>opt_nodraw</code> is set to <code>true</code>.
+ *
+ * @param {Array.<google.maps.Marker>} markers The markers to add.
+ * @param {boolean} [opt_nodraw] Set to <code>true</code> to prevent redrawing.
+ */
+MarkerClusterer.prototype.addMarkers = function (markers, opt_nodraw) {
+  var key;
+  for (key in markers) {
+    if (markers.hasOwnProperty(key)) {
+      this.pushMarkerTo_(markers[key]);
+    }
+  }  
+  if (!opt_nodraw) {
+    this.redraw_();
+  }
+};
+
+
+/**
+ * Pushes a marker to the clusterer.
+ *
+ * @param {google.maps.Marker} marker The marker to add.
+ */
+MarkerClusterer.prototype.pushMarkerTo_ = function (marker) {
+  // If the marker is draggable add a listener so we can update the clusters on the dragend:
+  if (marker.getDraggable()) {
+    var cMarkerClusterer = this;
+    google.maps.event.addListener(marker, "dragend", function () {
+      if (cMarkerClusterer.ready_) {
+        this.isAdded = false;
+        cMarkerClusterer.repaint();
+      }
+    });
+  }
+  marker.isAdded = false;
+  this.markers_.push(marker);
+};
+
+
+/**
+ * Removes a marker from the cluster.  The clusters are redrawn unless
+ *  <code>opt_nodraw</code> is set to <code>true</code>. Returns <code>true</code> if the
+ *  marker was removed from the clusterer.
+ *
+ * @param {google.maps.Marker} marker The marker to remove.
+ * @param {boolean} [opt_nodraw] Set to <code>true</code> to prevent redrawing.
+ * @return {boolean} True if the marker was removed from the clusterer.
+ */
+MarkerClusterer.prototype.removeMarker = function (marker, opt_nodraw) {
+  var removed = this.removeMarker_(marker);
+
+  if (!opt_nodraw && removed) {
+    this.repaint();
+  }
+
+  return removed;
+};
+
+
+/**
+ * Removes an array of markers from the cluster. The clusters are redrawn unless
+ *  <code>opt_nodraw</code> is set to <code>true</code>. Returns <code>true</code> if markers
+ *  were removed from the clusterer.
+ *
+ * @param {Array.<google.maps.Marker>} markers The markers to remove.
+ * @param {boolean} [opt_nodraw] Set to <code>true</code> to prevent redrawing.
+ * @return {boolean} True if markers were removed from the clusterer.
+ */
+MarkerClusterer.prototype.removeMarkers = function (markers, opt_nodraw) {
+  var i, r;
+  var removed = false;
+
+  for (i = 0; i < markers.length; i++) {
+    r = this.removeMarker_(markers[i]);
+    removed = removed || r;
+  }
+
+  if (!opt_nodraw && removed) {
+    this.repaint();
+  }
+
+  return removed;
+};
+
+
+/**
+ * Removes a marker and returns true if removed, false if not.
+ *
+ * @param {google.maps.Marker} marker The marker to remove
+ * @return {boolean} Whether the marker was removed or not
+ */
+MarkerClusterer.prototype.removeMarker_ = function (marker) {
+  var i;
+  var index = -1;
+  if (this.markers_.indexOf) {
+    index = this.markers_.indexOf(marker);
+  } else {
+    for (i = 0; i < this.markers_.length; i++) {
+      if (marker === this.markers_[i]) {
+        index = i;
+        break;
+      }
+    }
+  }
+
+  if (index === -1) {
+    // Marker is not in our list of markers, so do nothing:
+    return false;
+  }
+
+  marker.setMap(null);
+  this.markers_.splice(index, 1); // Remove the marker from the list of managed markers
+  return true;
+};
+
+
+/**
+ * Removes all clusters and markers from the map and also removes all markers
+ *  managed by the clusterer.
+ */
+MarkerClusterer.prototype.clearMarkers = function () {
+  this.resetViewport_(true);
+  this.markers_ = [];
+};
+
+
+/**
+ * Recalculates and redraws all the marker clusters from scratch.
+ *  Call this after changing any properties.
+ */
+MarkerClusterer.prototype.repaint = function () {
+  var oldClusters = this.clusters_.slice();
+  this.clusters_ = [];
+  this.resetViewport_(false);
+  this.redraw_();
+
+  // Remove the old clusters.
+  // Do it in a timeout to prevent blinking effect.
+  setTimeout(function () {
+    var i;
+    for (i = 0; i < oldClusters.length; i++) {
+      oldClusters[i].remove();
+    }
+  }, 0);
+};
+
+
+/**
+ * Returns the current bounds extended by the grid size.
+ *
+ * @param {google.maps.LatLngBounds} bounds The bounds to extend.
+ * @return {google.maps.LatLngBounds} The extended bounds.
+ * @ignore
+ */
+MarkerClusterer.prototype.getExtendedBounds = function (bounds) {
+  var projection = this.getProjection();
+
+  // Turn the bounds into latlng.
+  var tr = new google.maps.LatLng(bounds.getNorthEast().lat(),
+      bounds.getNorthEast().lng());
+  var bl = new google.maps.LatLng(bounds.getSouthWest().lat(),
+      bounds.getSouthWest().lng());
+
+  // Convert the points to pixels and the extend out by the grid size.
+  var trPix = projection.fromLatLngToDivPixel(tr);
+  trPix.x += this.gridSize_;
+  trPix.y -= this.gridSize_;
+
+  var blPix = projection.fromLatLngToDivPixel(bl);
+  blPix.x -= this.gridSize_;
+  blPix.y += this.gridSize_;
+
+  // Convert the pixel points back to LatLng
+  var ne = projection.fromDivPixelToLatLng(trPix);
+  var sw = projection.fromDivPixelToLatLng(blPix);
+
+  // Extend the bounds to contain the new bounds.
+  bounds.extend(ne);
+  bounds.extend(sw);
+
+  return bounds;
+};
+
+
+/**
+ * Redraws all the clusters.
+ */
+MarkerClusterer.prototype.redraw_ = function () {
+  this.createClusters_(0);
+};
+
+
+/**
+ * Removes all clusters from the map. The markers are also removed from the map
+ *  if <code>opt_hide</code> is set to <code>true</code>.
+ *
+ * @param {boolean} [opt_hide] Set to <code>true</code> to also remove the markers
+ *  from the map.
+ */
+MarkerClusterer.prototype.resetViewport_ = function (opt_hide) {
+  var i, marker;
+  // Remove all the clusters
+  for (i = 0; i < this.clusters_.length; i++) {
+    this.clusters_[i].remove();
+  }
+  this.clusters_ = [];
+
+  // Reset the markers to not be added and to be removed from the map.
+  for (i = 0; i < this.markers_.length; i++) {
+    marker = this.markers_[i];
+    marker.isAdded = false;
+    if (opt_hide) {
+      marker.setMap(null);
+    }
+  }
+};
+
+
+/**
+ * Calculates the distance between two latlng locations in km.
+ *
+ * @param {google.maps.LatLng} p1 The first lat lng point.
+ * @param {google.maps.LatLng} p2 The second lat lng point.
+ * @return {number} The distance between the two points in km.
+ * @see http://www.movable-type.co.uk/scripts/latlong.html
+*/
+MarkerClusterer.prototype.distanceBetweenPoints_ = function (p1, p2) {
+  var R = 6371; // Radius of the Earth in km
+  var dLat = (p2.lat() - p1.lat()) * Math.PI / 180;
+  var dLon = (p2.lng() - p1.lng()) * Math.PI / 180;
+  var a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+    Math.cos(p1.lat() * Math.PI / 180) * Math.cos(p2.lat() * Math.PI / 180) *
+    Math.sin(dLon / 2) * Math.sin(dLon / 2);
+  var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+  var d = R * c;
+  return d;
+};
+
+
+/**
+ * Determines if a marker is contained in a bounds.
+ *
+ * @param {google.maps.Marker} marker The marker to check.
+ * @param {google.maps.LatLngBounds} bounds The bounds to check against.
+ * @return {boolean} True if the marker is in the bounds.
+ */
+MarkerClusterer.prototype.isMarkerInBounds_ = function (marker, bounds) {
+  return bounds.contains(marker.getPosition());
+};
+
+
+/**
+ * Adds a marker to a cluster, or creates a new cluster.
+ *
+ * @param {google.maps.Marker} marker The marker to add.
+ */
+MarkerClusterer.prototype.addToClosestCluster_ = function (marker) {
+  var i, d, cluster, center;
+  var distance = 40000; // Some large number
+  var clusterToAddTo = null;
+  for (i = 0; i < this.clusters_.length; i++) {
+    cluster = this.clusters_[i];
+    center = cluster.getCenter();
+    if (center) {
+      d = this.distanceBetweenPoints_(center, marker.getPosition());
+      if (d < distance) {
+        distance = d;
+        clusterToAddTo = cluster;
+      }
+    }
+  }
+
+  if (clusterToAddTo && clusterToAddTo.isMarkerInClusterBounds(marker)) {
+    clusterToAddTo.addMarker(marker);
+  } else {
+    cluster = new Cluster(this);
+    cluster.addMarker(marker);
+    this.clusters_.push(cluster);
+  }
+};
+
+
+/**
+ * Creates the clusters. This is done in batches to avoid timeout errors
+ *  in some browsers when there is a huge number of markers.
+ *
+ * @param {number} iFirst The index of the first marker in the batch of
+ *  markers to be added to clusters.
+ */
+MarkerClusterer.prototype.createClusters_ = function (iFirst) {
+  var i, marker;
+  var mapBounds;
+  var cMarkerClusterer = this;
+  if (!this.ready_) {
+    return;
+  }
+
+  // Cancel previous batch processing if we're working on the first batch:
+  if (iFirst === 0) {
+    /**
+     * This event is fired when the <code>MarkerClusterer</code> begins
+     *  clustering markers.
+     * @name MarkerClusterer#clusteringbegin
+     * @param {MarkerClusterer} mc The MarkerClusterer whose markers are being clustered.
+     * @event
+     */
+    google.maps.event.trigger(this, "clusteringbegin", this);
+
+    if (typeof this.timerRefStatic !== "undefined") {
+      clearTimeout(this.timerRefStatic);
+      delete this.timerRefStatic;
+    }
+  }
+
+  // Get our current map view bounds.
+  // Create a new bounds object so we don't affect the map.
+  //
+  // See Comments 9 & 11 on Issue 3651 relating to this workaround for a Google Maps bug:
+  if (this.getMap().getZoom() > 3) {
+    mapBounds = new google.maps.LatLngBounds(this.getMap().getBounds().getSouthWest(),
+      this.getMap().getBounds().getNorthEast());
+  } else {
+    mapBounds = new google.maps.LatLngBounds(new google.maps.LatLng(85.02070771743472, -178.48388434375), new google.maps.LatLng(-85.08136444384544, 178.00048865625));
+  }
+  var bounds = this.getExtendedBounds(mapBounds);
+
+  var iLast = Math.min(iFirst + this.batchSize_, this.markers_.length);
+
+  for (i = iFirst; i < iLast; i++) {
+    marker = this.markers_[i];
+    if (!marker.isAdded && this.isMarkerInBounds_(marker, bounds)) {
+      if (!this.ignoreHidden_ || (this.ignoreHidden_ && marker.getVisible())) {
+        this.addToClosestCluster_(marker);
+      }
+    }
+  }
+
+  if (iLast < this.markers_.length) {
+    this.timerRefStatic = setTimeout(function () {
+      cMarkerClusterer.createClusters_(iLast);
+    }, 0);
+  } else {
+    delete this.timerRefStatic;
+
+    /**
+     * This event is fired when the <code>MarkerClusterer</code> stops
+     *  clustering markers.
+     * @name MarkerClusterer#clusteringend
+     * @param {MarkerClusterer} mc The MarkerClusterer whose markers are being clustered.
+     * @event
+     */
+    google.maps.event.trigger(this, "clusteringend", this);
+  }
+};
+
+
+/**
+ * Extends an object's prototype by another's.
+ *
+ * @param {Object} obj1 The object to be extended.
+ * @param {Object} obj2 The object to extend with.
+ * @return {Object} The new extended object.
+ * @ignore
+ */
+MarkerClusterer.prototype.extend = function (obj1, obj2) {
+  return (function (object) {
+    var property;
+    for (property in object.prototype) {
+      this.prototype[property] = object.prototype[property];
+    }
+    return this;
+  }).apply(obj1, [obj2]);
+};
+
+
+/**
+ * The default function for determining the label text and style
+ * for a cluster icon.
+ *
+ * @param {Array.<google.maps.Marker>} markers The array of markers represented by the cluster.
+ * @param {number} numStyles The number of marker styles available.
+ * @return {ClusterIconInfo} The information resource for the cluster.
+ * @constant
+ * @ignore
+ */
+MarkerClusterer.CALCULATOR = function (markers, numStyles) {
+  var index = 0;
+  var title = "";
+  var count = markers.length.toString();
+
+  var dv = count;
+  while (dv !== 0) {
+    dv = parseInt(dv / 10, 10);
+    index++;
+  }
+
+  index = Math.min(index, numStyles);
+  return {
+    text: count,
+    index: index,
+    title: title
+  };
+};
+
+
+/**
+ * The number of markers to process in one batch.
+ *
+ * @type {number}
+ * @constant
+ */
+MarkerClusterer.BATCH_SIZE = 2000;
+
+
+/**
+ * The number of markers to process in one batch (IE only).
+ *
+ * @type {number}
+ * @constant
+ */
+MarkerClusterer.BATCH_SIZE_IE = 500;
+
+
+/**
+ * The default root name for the marker cluster images.
+ *
+ * @type {string}
+ * @constant
+ */
+MarkerClusterer.IMAGE_PATH = "https://raw.githubusercontent.com/googlemaps/v3-utility-library/master/markerclustererplus/images/m";
+
+
+/**
+ * The default extension name for the marker cluster images.
+ *
+ * @type {string}
+ * @constant
+ */
+MarkerClusterer.IMAGE_EXTENSION = "png";
+
+
+/**
+ * The default array of sizes for the marker cluster images.
+ *
+ * @type {Array.<number>}
+ * @constant
+ */
+MarkerClusterer.IMAGE_SIZES = [53, 56, 66, 78, 90];
+
+module.exports = MarkerClusterer
+
+
+/***/ }),
+/* 641 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _clone2 = __webpack_require__(604);
+
+var _clone3 = _interopRequireDefault(_clone2);
+
+var _omit2 = __webpack_require__(608);
+
+var _omit3 = _interopRequireDefault(_omit2);
+
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
+var _eventsBinder = __webpack_require__(603);
+
+var _eventsBinder2 = _interopRequireDefault(_eventsBinder);
+
+var _propsBinder = __webpack_require__(600);
+
+var _propsBinder2 = _interopRequireDefault(_propsBinder);
+
+var _mapElementMixin = __webpack_require__(605);
+
+var _mapElementMixin2 = _interopRequireDefault(_mapElementMixin);
+
+var _getPropsValuesMixin = __webpack_require__(601);
+
+var _getPropsValuesMixin2 = _interopRequireDefault(_getPropsValuesMixin);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var props = {
+  draggable: {
+    type: Boolean
+  },
+  editable: {
+    type: Boolean
+  },
+  options: {
+    twoWay: false,
+    type: Object
+  },
+  path: {
+    type: Array,
+    twoWay: true
+  },
+  deepWatch: {
+    type: Boolean,
+    default: false
+  }
+};
+
+var events = ['click', 'dblclick', 'drag', 'dragend', 'dragstart', 'mousedown', 'mousemove', 'mouseout', 'mouseover', 'mouseup', 'rightclick'];
+
+exports.default = {
+  mixins: [_mapElementMixin2.default, _getPropsValuesMixin2.default],
+  props: props,
+
+  render: function render() {
+    return '';
+  },
+  destroyed: function destroyed() {
+    if (this.$polylineObject) {
+      this.$polylineObject.setMap(null);
+    }
+  },
+  deferredReady: function deferredReady() {
+    var _this = this;
+
+    var options = (0, _clone3.default)(this.getPropsValues());
+    delete options.options;
+    Object.assign(options, this.options);
+    this.$polylineObject = new google.maps.Polyline(options);
+    this.$polylineObject.setMap(this.$map);
+
+    (0, _propsBinder2.default)(this, this.$polylineObject, (0, _omit3.default)(props, ['deepWatch', 'path']));
+    (0, _eventsBinder2.default)(this, this.$polylineObject, events);
+
+    var clearEvents = function clearEvents() {};
+
+    this.$watch('path', function (path) {
+      if (path) {
+        clearEvents();
+
+        _this.$polylineObject.setPath(path);
+
+        var mvcPath = _this.$polylineObject.getPath();
+        var eventListeners = [];
+
+        var updatePaths = function updatePaths() {
+          _this.$emit('path_changed', _this.$polylineObject.getPath());
+        };
+
+        eventListeners.push([mvcPath, mvcPath.addListener('insert_at', updatePaths)]);
+        eventListeners.push([mvcPath, mvcPath.addListener('remove_at', updatePaths)]);
+        eventListeners.push([mvcPath, mvcPath.addListener('set_at', updatePaths)]);
+
+        clearEvents = function clearEvents() {
+          eventListeners.map(function (_ref) {
+            var _ref2 = _slicedToArray(_ref, 2),
+                obj = _ref2[0],
+                listenerHandle = _ref2[1];
+
+            return (// eslint-disable-line no-unused-vars
+              google.maps.event.removeListener(listenerHandle)
+            );
+          });
+        };
+      }
+    }, {
+      deep: this.deepWatch
+    });
+
+    // Display the map
+    this.$polylineObject.setMap(this.$map);
+  }
+};
+
+/***/ }),
+/* 642 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var castPath = __webpack_require__(98),
+    last = __webpack_require__(461),
+    parent = __webpack_require__(643),
+    toKey = __webpack_require__(47);
+
+/**
+ * The base implementation of `_.unset`.
+ *
+ * @private
+ * @param {Object} object The object to modify.
+ * @param {Array|string} path The property path to unset.
+ * @returns {boolean} Returns `true` if the property is deleted, else `false`.
+ */
+function baseUnset(object, path) {
+  path = castPath(path, object);
+  object = parent(object, path);
+  return object == null || delete object[toKey(last(path))];
+}
+
+module.exports = baseUnset;
+
+
+/***/ }),
+/* 643 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var baseGet = __webpack_require__(187),
+    baseSlice = __webpack_require__(644);
+
+/**
+ * Gets the parent value at `path` of `object`.
+ *
+ * @private
+ * @param {Object} object The object to query.
+ * @param {Array} path The path to get the parent value of.
+ * @returns {*} Returns the parent value.
+ */
+function parent(object, path) {
+  return path.length < 2 ? object : baseGet(object, baseSlice(path, 0, -1));
+}
+
+module.exports = parent;
+
+
+/***/ }),
+/* 644 */
+/***/ (function(module, exports) {
+
+/**
+ * The base implementation of `_.slice` without an iteratee call guard.
+ *
+ * @private
+ * @param {Array} array The array to slice.
+ * @param {number} [start=0] The start position.
+ * @param {number} [end=array.length] The end position.
+ * @returns {Array} Returns the slice of `array`.
+ */
+function baseSlice(array, start, end) {
+  var index = -1,
+      length = array.length;
+
+  if (start < 0) {
+    start = -start > length ? 0 : (length + start);
+  }
+  end = end > length ? length : end;
+  if (end < 0) {
+    end += length;
+  }
+  length = start > end ? 0 : ((end - start) >>> 0);
+  start >>>= 0;
+
+  var result = Array(length);
+  while (++index < length) {
+    result[index] = array[index + start];
+  }
+  return result;
+}
+
+module.exports = baseSlice;
+
+
+/***/ }),
+/* 645 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var isPlainObject = __webpack_require__(64);
+
+/**
+ * Used by `_.omit` to customize its `_.cloneDeep` use to only clone plain
+ * objects.
+ *
+ * @private
+ * @param {*} value The value to inspect.
+ * @param {string} key The key of the property to inspect.
+ * @returns {*} Returns the uncloned value or `undefined` to defer cloning to `_.cloneDeep`.
+ */
+function customOmitClone(value) {
+  return isPlainObject(value) ? undefined : value;
+}
+
+module.exports = customOmitClone;
+
+
+/***/ }),
+/* 646 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var flatten = __webpack_require__(647),
+    overRest = __webpack_require__(408),
+    setToString = __webpack_require__(410);
+
+/**
+ * A specialized version of `baseRest` which flattens the rest array.
+ *
+ * @private
+ * @param {Function} func The function to apply a rest parameter to.
+ * @returns {Function} Returns the new function.
+ */
+function flatRest(func) {
+  return setToString(overRest(func, undefined, flatten), func + '');
+}
+
+module.exports = flatRest;
+
+
+/***/ }),
+/* 647 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var baseFlatten = __webpack_require__(648);
+
+/**
+ * Flattens `array` a single level deep.
+ *
+ * @static
+ * @memberOf _
+ * @since 0.1.0
+ * @category Array
+ * @param {Array} array The array to flatten.
+ * @returns {Array} Returns the new flattened array.
+ * @example
+ *
+ * _.flatten([1, [2, [3, [4]], 5]]);
+ * // => [1, 2, [3, [4]], 5]
+ */
+function flatten(array) {
+  var length = array == null ? 0 : array.length;
+  return length ? baseFlatten(array, 1) : [];
+}
+
+module.exports = flatten;
+
+
+/***/ }),
+/* 648 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var arrayPush = __webpack_require__(171),
+    isFlattenable = __webpack_require__(649);
+
+/**
+ * The base implementation of `_.flatten` with support for restricting flattening.
+ *
+ * @private
+ * @param {Array} array The array to flatten.
+ * @param {number} depth The maximum recursion depth.
+ * @param {boolean} [predicate=isFlattenable] The function invoked per iteration.
+ * @param {boolean} [isStrict] Restrict to values that pass `predicate` checks.
+ * @param {Array} [result=[]] The initial result value.
+ * @returns {Array} Returns the new flattened array.
+ */
+function baseFlatten(array, depth, predicate, isStrict, result) {
+  var index = -1,
+      length = array.length;
+
+  predicate || (predicate = isFlattenable);
+  result || (result = []);
+
+  while (++index < length) {
+    var value = array[index];
+    if (depth > 0 && predicate(value)) {
+      if (depth > 1) {
+        // Recursively flatten arrays (susceptible to call stack limits).
+        baseFlatten(value, depth - 1, predicate, isStrict, result);
+      } else {
+        arrayPush(result, value);
+      }
+    } else if (!isStrict) {
+      result[result.length] = value;
+    }
+  }
+  return result;
+}
+
+module.exports = baseFlatten;
+
+
+/***/ }),
+/* 649 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var Symbol = __webpack_require__(43),
+    isArguments = __webpack_require__(63),
+    isArray = __webpack_require__(3);
+
+/** Built-in value references. */
+var spreadableSymbol = Symbol ? Symbol.isConcatSpreadable : undefined;
+
+/**
+ * Checks if `value` is a flattenable `arguments` object or array.
+ *
+ * @private
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is flattenable, else `false`.
+ */
+function isFlattenable(value) {
+  return isArray(value) || isArguments(value) ||
+    !!(spreadableSymbol && value && value[spreadableSymbol]);
+}
+
+module.exports = isFlattenable;
+
+
+/***/ }),
+/* 650 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _clone2 = __webpack_require__(604);
+
+var _clone3 = _interopRequireDefault(_clone2);
+
+var _omit2 = __webpack_require__(608);
+
+var _omit3 = _interopRequireDefault(_omit2);
+
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
+var _eventsBinder = __webpack_require__(603);
+
+var _eventsBinder2 = _interopRequireDefault(_eventsBinder);
+
+var _propsBinder = __webpack_require__(600);
+
+var _propsBinder2 = _interopRequireDefault(_propsBinder);
+
+var _mapElementMixin = __webpack_require__(605);
+
+var _mapElementMixin2 = _interopRequireDefault(_mapElementMixin);
+
+var _getPropsValuesMixin = __webpack_require__(601);
+
+var _getPropsValuesMixin2 = _interopRequireDefault(_getPropsValuesMixin);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var props = {
+  draggable: {
+    type: Boolean
+  },
+  editable: {
+    type: Boolean
+  },
+  options: {
+    type: Object
+  },
+  path: {
+    type: Array,
+    twoWay: true
+  },
+  paths: {
+    type: Array,
+    twoWay: true
+  },
+  deepWatch: {
+    type: Boolean,
+    default: false
+  }
+};
+
+var events = ['click', 'dblclick', 'drag', 'dragend', 'dragstart', 'mousedown', 'mousemove', 'mouseout', 'mouseover', 'mouseup', 'rightclick'];
+
+exports.default = {
+  mixins: [_mapElementMixin2.default, _getPropsValuesMixin2.default],
+  props: props,
+
+  render: function render() {
+    return '';
+  },
+  destroyed: function destroyed() {
+    if (this.$polygonObject) {
+      this.$polygonObject.setMap(null);
+    }
+  },
+  deferredReady: function deferredReady() {
+    var _this = this;
+
+    var options = (0, _clone3.default)(this.getPropsValues());
+    delete options.options;
+    Object.assign(options, this.options);
+    if (!options.path) {
+      delete options.path;
+    }
+    if (!options.paths) {
+      delete options.paths;
+    }
+    this.$polygonObject = new google.maps.Polygon(options);
+
+    (0, _propsBinder2.default)(this, this.$polygonObject, (0, _omit3.default)(props, ['path', 'paths', 'deepWatch']));
+    (0, _eventsBinder2.default)(this, this.$polygonObject, events);
+
+    var clearEvents = function clearEvents() {};
+
+    // Watch paths, on our own, because we do not want to set either when it is
+    // empty
+    this.$watch('paths', function (paths) {
+      if (paths) {
+        clearEvents();
+
+        _this.$polygonObject.setPaths(paths);
+
+        var updatePaths = function updatePaths() {
+          _this.$emit('paths_changed', _this.$polygonObject.getPaths());
+        };
+        var eventListeners = [];
+
+        var mvcArray = _this.$polygonObject.getPaths();
+        for (var i = 0; i < mvcArray.getLength(); i++) {
+          var mvcPath = mvcArray.getAt(i);
+          eventListeners.push([mvcPath, mvcPath.addListener('insert_at', updatePaths)]);
+          eventListeners.push([mvcPath, mvcPath.addListener('remove_at', updatePaths)]);
+          eventListeners.push([mvcPath, mvcPath.addListener('set_at', updatePaths)]);
+        }
+        eventListeners.push([mvcArray, mvcArray.addListener('insert_at', updatePaths)]);
+        eventListeners.push([mvcArray, mvcArray.addListener('remove_at', updatePaths)]);
+        eventListeners.push([mvcArray, mvcArray.addListener('set_at', updatePaths)]);
+
+        clearEvents = function clearEvents() {
+          eventListeners.map(function (_ref) {
+            var _ref2 = _slicedToArray(_ref, 2),
+                obj = _ref2[0],
+                listenerHandle = _ref2[1];
+
+            return (// eslint-disable-line no-unused-vars
+              google.maps.event.removeListener(listenerHandle)
+            );
+          });
+        };
+      }
+    }, {
+      deep: this.deepWatch,
+      immediate: true
+    });
+
+    this.$watch('path', function (path) {
+      if (path) {
+        clearEvents();
+
+        _this.$polygonObject.setPaths(path);
+
+        var mvcPath = _this.$polygonObject.getPath();
+        var eventListeners = [];
+
+        var updatePaths = function updatePaths() {
+          _this.$emit('path_changed', _this.$polygonObject.getPath());
+        };
+
+        eventListeners.push([mvcPath, mvcPath.addListener('insert_at', updatePaths)]);
+        eventListeners.push([mvcPath, mvcPath.addListener('remove_at', updatePaths)]);
+        eventListeners.push([mvcPath, mvcPath.addListener('set_at', updatePaths)]);
+
+        clearEvents = function clearEvents() {
+          eventListeners.map(function (_ref3) {
+            var _ref4 = _slicedToArray(_ref3, 2),
+                obj = _ref4[0],
+                listenerHandle = _ref4[1];
+
+            return (// eslint-disable-line no-unused-vars
+              google.maps.event.removeListener(listenerHandle)
+            );
+          });
+        };
+      }
+    }, {
+      deep: this.deepWatch,
+      immediate: true
+    });
+
+    // Display the map
+    this.$polygonObject.setMap(this.$map);
+  }
+};
+
+/***/ }),
+/* 651 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _clone2 = __webpack_require__(604);
+
+var _clone3 = _interopRequireDefault(_clone2);
+
+var _eventsBinder = __webpack_require__(603);
+
+var _eventsBinder2 = _interopRequireDefault(_eventsBinder);
+
+var _propsBinder = __webpack_require__(600);
+
+var _propsBinder2 = _interopRequireDefault(_propsBinder);
+
+var _mapElementMixin = __webpack_require__(605);
+
+var _mapElementMixin2 = _interopRequireDefault(_mapElementMixin);
+
+var _getPropsValuesMixin = __webpack_require__(601);
+
+var _getPropsValuesMixin2 = _interopRequireDefault(_getPropsValuesMixin);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var props = {
+  center: {
+    type: Object,
+    twoWay: true,
+    required: true
+  },
+  radius: {
+    type: Number,
+    default: 1000,
+    twoWay: true
+  },
+  draggable: {
+    type: Boolean,
+    default: false
+  },
+  editable: {
+    type: Boolean,
+    default: false
+  },
+  options: {
+    type: Object,
+    twoWay: false
+  }
+};
+
+var events = ['click', 'dblclick', 'drag', 'dragend', 'dragstart', 'mousedown', 'mousemove', 'mouseout', 'mouseover', 'mouseup', 'rightclick'];
+
+exports.default = {
+  mixins: [_mapElementMixin2.default, _getPropsValuesMixin2.default],
+  props: props,
+  version: 2,
+
+  render: function render() {
+    return '';
+  },
+  deferredReady: function deferredReady() {
+    var options = (0, _clone3.default)(this.getPropsValues());
+    options.map = this.$map;
+    delete options.bounds;
+    this.createCircle(options);
+  },
+
+
+  methods: {
+    createCircle: function createCircle(options) {
+      var _this = this;
+
+      this.$circleObject = new google.maps.Circle(options);
+      // we cant bind bounds because there is no `setBounds` method
+      // on the Circle object
+      var boundProps = (0, _clone3.default)(props);
+      delete boundProps.bounds;
+      (0, _propsBinder2.default)(this, this.$circleObject, boundProps);
+      (0, _eventsBinder2.default)(this, this.$circleObject, events);
+
+      var updateBounds = function updateBounds() {
+        _this.$emit('bounds_changed', _this.$circleObject.getBounds());
+      };
+
+      this.$on('radius_changed', updateBounds);
+      this.$on('center_changed', updateBounds);
+    }
+  },
+
+  destroyed: function destroyed() {
+    if (this.$circleObject) {
+      this.$circleObject.setMap(null);
+    }
+  }
+};
+
+/***/ }),
+/* 652 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _clone2 = __webpack_require__(604);
+
+var _clone3 = _interopRequireDefault(_clone2);
+
+var _eventsBinder = __webpack_require__(603);
+
+var _eventsBinder2 = _interopRequireDefault(_eventsBinder);
+
+var _propsBinder = __webpack_require__(600);
+
+var _propsBinder2 = _interopRequireDefault(_propsBinder);
+
+var _mapElementMixin = __webpack_require__(605);
+
+var _mapElementMixin2 = _interopRequireDefault(_mapElementMixin);
+
+var _getPropsValuesMixin = __webpack_require__(601);
+
+var _getPropsValuesMixin2 = _interopRequireDefault(_getPropsValuesMixin);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var props = {
+  bounds: {
+    type: Object,
+    twoWay: true
+  },
+  draggable: {
+    type: Boolean,
+    default: false
+  },
+  editable: {
+    type: Boolean,
+    default: false
+  },
+  options: {
+    type: Object,
+    twoWay: false
+  }
+};
+
+var events = ['click', 'dblclick', 'drag', 'dragend', 'dragstart', 'mousedown', 'mousemove', 'mouseout', 'mouseover', 'mouseup', 'rightclick'];
+
+exports.default = {
+  mixins: [_mapElementMixin2.default, _getPropsValuesMixin2.default],
+  props: props,
+
+  render: function render() {
+    return '';
+  },
+  deferredReady: function deferredReady() {
+    var options = (0, _clone3.default)(this.getPropsValues());
+    options.map = this.$map;
+    this.createRectangle(options);
+  },
+
+
+  methods: {
+    createRectangle: function createRectangle(options) {
+      this.$rectangleObject = new google.maps.Rectangle(options);
+      (0, _propsBinder2.default)(this, this.$rectangleObject, props);
+      (0, _eventsBinder2.default)(this, this.$rectangleObject, events);
+    }
+  },
+
+  destroyed: function destroyed() {
+    if (this.$rectangleObject) {
+      this.$rectangleObject.setMap(null);
+    }
+  }
+};
+
+/***/ }),
+/* 653 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(7)
+/* script */
+var __vue_script__ = __webpack_require__(654)
+/* template */
+var __vue_template__ = __webpack_require__(655)
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "node_modules/vue2-google-maps/dist/components/infoWindow.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] infoWindow.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-1161b454", Component.options)
+  } else {
+    hotAPI.reload("data-v-1161b454", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 654 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _clone2 = __webpack_require__(604);
+
+var _clone3 = _interopRequireDefault(_clone2);
+
+var _omit2 = __webpack_require__(608);
+
+var _omit3 = _interopRequireDefault(_omit2);
+
+var _propsBinder = __webpack_require__(600);
+
+var _propsBinder2 = _interopRequireDefault(_propsBinder);
+
+var _eventsBinder = __webpack_require__(603);
+
+var _eventsBinder2 = _interopRequireDefault(_eventsBinder);
+
+var _mapElementMixin = __webpack_require__(605);
+
+var _mapElementMixin2 = _interopRequireDefault(_mapElementMixin);
+
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : { default: obj };
+}
+
+var props = {
+  options: {
+    type: Object,
+    required: false,
+    default: function _default() {
+      return {};
+    }
+  },
+  opened: {
+    type: Boolean,
+    default: true
+  },
+  position: {
+    type: Object,
+    twoWay: true
+  },
+  zIndex: {
+    type: Number,
+    twoWay: true
+  }
+};
+
+var events = ['domready', 'closeclick', 'content_changed'];
+
+exports.default = {
+  mixins: [_mapElementMixin2.default],
+  replace: false,
+  props: props,
+
+  mounted: function mounted() {
+    var el = this.$refs.flyaway;
+    el.parentNode.removeChild(el);
+  },
+  deferredReady: function deferredReady() {
+    this.$markerObject = null;
+    this.$markerComponent = this.$findAncestor(function (ans) {
+      return ans.$markerObject;
+    });
+
+    if (this.$markerComponent) {
+      this.$markerObject = this.$markerComponent.$markerObject;
+    }
+    this.createInfoWindow();
+  },
+  destroyed: function destroyed() {
+    if (this.disconnect) {
+      this.disconnect();
+    }
+    if (this.$infoWindow) {
+      this.$infoWindow.setMap(null);
+    }
+  },
+
+  methods: {
+    openInfoWindow: function openInfoWindow() {
+      if (this.opened) {
+        if (this.$markerObject !== null) {
+          this.$infoWindow.open(this.$map, this.$markerObject);
+        } else {
+          this.$infoWindow.open(this.$map);
+        }
+      } else {
+        this.$infoWindow.close();
+      }
+    },
+    createInfoWindow: function createInfoWindow() {
+      var _this = this;
+
+      var options = (0, _clone3.default)(this.options);
+      options.content = this.$refs.flyaway;
+
+      if (this.$markerComponent === null) {
+        options.position = this.position;
+      }
+
+      this.$infoWindow = new google.maps.InfoWindow(options);
+
+      (0, _propsBinder2.default)(this, this.$infoWindow, (0, _omit3.default)(props, ['opened']));
+      (0, _eventsBinder2.default)(this, this.$infoWindow, events);
+
+      this.openInfoWindow();
+      this.$watch('opened', function () {
+        _this.openInfoWindow();
+      });
+    }
+  }
+};
+
+/***/ }),
+/* 655 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [_c("div", { ref: "flyaway" }, [_vm._t("default")], 2)])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-1161b454", module.exports)
+  }
+}
+
+/***/ }),
+/* 656 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(657)
+}
+var normalizeComponent = __webpack_require__(7)
+/* script */
+var __vue_script__ = __webpack_require__(659)
+/* template */
+var __vue_template__ = __webpack_require__(694)
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "node_modules/vue2-google-maps/dist/components/map.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] map.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-4ca19d36", Component.options)
+  } else {
+    hotAPI.reload("data-v-4ca19d36", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 657 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(658);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(11)("e6dd6d8a", content, false);
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../css-loader/index.js!../../../vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-4ca19d36\",\"scoped\":false,\"hasInlineConfig\":true}!../../../vue-loader/lib/selector.js?type=styles&index=0!./map.vue", function() {
+     var newContent = require("!!../../../css-loader/index.js!../../../vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-4ca19d36\",\"scoped\":false,\"hasInlineConfig\":true}!../../../vue-loader/lib/selector.js?type=styles&index=0!./map.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 658 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(10)(undefined);
+// imports
+
+
+// module
+exports.push([module.i, "\n.vue-map-container {\n  position: relative;\n}\n.vue-map-container .vue-map {\n  left: 0; right: 0; top: 0; bottom: 0;\n  position: absolute;\n}\n.vue-map-hidden {\n  display: none;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 659 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _promise = __webpack_require__(626);
+
+var _promise2 = _interopRequireDefault2(_promise);
+
+var _assign = __webpack_require__(623);
+
+var _assign2 = _interopRequireDefault2(_assign);
+
+function _interopRequireDefault2(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _clone2 = __webpack_require__(604);
+
+var _clone3 = _interopRequireDefault(_clone2);
+
+var _omit2 = __webpack_require__(608);
+
+var _omit3 = _interopRequireDefault(_omit2);
+
+var _manager = __webpack_require__(610);
+
+var _deferredReady = __webpack_require__(614);
+
+var _eventsBinder = __webpack_require__(603);
+
+var _eventsBinder2 = _interopRequireDefault(_eventsBinder);
+
+var _propsBinder = __webpack_require__(600);
+
+var _propsBinder2 = _interopRequireDefault(_propsBinder);
+
+var _getPropsValuesMixin = __webpack_require__(601);
+
+var _getPropsValuesMixin2 = _interopRequireDefault(_getPropsValuesMixin);
+
+var _mountableMixin = __webpack_require__(624);
+
+var _mountableMixin2 = _interopRequireDefault(_mountableMixin);
+
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : { default: obj };
+}
+
+var props = {
+  center: {
+    required: true,
+    twoWay: true,
+    type: Object
+  },
+  zoom: {
+    required: false,
+    twoWay: true,
+    type: Number
+  },
+  heading: {
+    type: Number,
+    twoWay: true
+  },
+  mapTypeId: {
+    twoWay: true,
+    type: String
+  },
+  bounds: {
+    twoWay: true,
+    type: Object
+  },
+  tilt: {
+    twoWay: true,
+    type: Number
+  },
+  options: {
+    type: Object,
+    default: function _default() {
+      return {};
+    }
+  }
+};
+
+var events = ['click', 'dblclick', 'drag', 'dragend', 'dragstart', 'idle', 'mousemove', 'mouseout', 'mouseover', 'resize', 'rightclick', 'tilesloaded'];
+
+var linkedMethods = ['panBy', 'panTo', 'panToBounds', 'fitBounds'].reduce(function (all, methodName) {
+  all[methodName] = function () {
+    if (this.$mapObject) this.$mapObject[methodName].apply(this.$mapObject, arguments);
+  };
+  return all;
+}, {});var customMethods = {
+  resize: function resize() {
+    if (this.$mapObject) {
+      google.maps.event.trigger(this.$mapObject, 'resize');
+    }
+  },
+  resizePreserveCenter: function resizePreserveCenter() {
+    if (!this.$mapObject) return;
+
+    var oldCenter = this.$mapObject.getCenter();
+    google.maps.event.trigger(this.$mapObject, 'resize');
+    this.$mapObject.setCenter(oldCenter);
+  },
+
+  _resizeCallback: function _resizeCallback() {
+    this.resizePreserveCenter();
+  }
+};
+
+var methods = (0, _assign2.default)({}, customMethods, linkedMethods);
+
+exports.default = {
+  mixins: [_getPropsValuesMixin2.default, _deferredReady.DeferredReadyMixin, _mountableMixin2.default],
+  props: props,
+  replace: false,
+
+  created: function created() {
+    var _this = this;
+
+    this.$mapCreated = new _promise2.default(function (resolve, reject) {
+      _this.$mapCreatedDeferred = { resolve: resolve, reject: reject };
+    });
+
+    var updateCenter = function updateCenter() {
+      if (!_this.$mapObject) return;
+
+      _this.$mapObject.setCenter({
+        lat: _this.finalLat,
+        lng: _this.finalLng
+      });
+    };
+    this.$watch('finalLat', updateCenter);
+    this.$watch('finalLng', updateCenter);
+  },
+
+  computed: {
+    finalLat: function finalLat() {
+      return this.center && typeof this.center.lat === 'function' ? this.center.lat() : this.center.lat;
+    },
+    finalLng: function finalLng() {
+      return this.center && typeof this.center.lng === 'function' ? this.center.lng() : this.center.lng;
+    }
+  },
+
+  watch: {
+    zoom: function zoom(_zoom) {
+      if (this.$mapObject) {
+        this.$mapObject.setZoom(_zoom);
+      }
+    }
+  },
+
+  deferredReady: function deferredReady() {
+    var _this2 = this;
+
+    return _manager.loaded.then(function () {
+      var element = _this2.$refs['vue-map'];
+
+      var copiedData = (0, _clone3.default)(_this2.getPropsValues());
+      delete copiedData.options;
+      var options = (0, _clone3.default)(_this2.options);
+      (0, _assign2.default)(options, copiedData);
+      _this2.$mapObject = new google.maps.Map(element, options);
+
+      (0, _propsBinder2.default)(_this2, _this2.$mapObject, (0, _omit3.default)(props, ['center', 'zoom', 'bounds']));
+
+      _this2.$mapObject.addListener('center_changed', function () {
+        _this2.$emit('center_changed', _this2.$mapObject.getCenter());
+      });
+      _this2.$mapObject.addListener('zoom_changed', function () {
+        _this2.$emit('zoom_changed', _this2.$mapObject.getZoom());
+      });
+      _this2.$mapObject.addListener('bounds_changed', function () {
+        _this2.$emit('bounds_changed', _this2.$mapObject.getBounds());
+      });
+
+      (0, _eventsBinder2.default)(_this2, _this2.$mapObject, events);
+
+      _this2.$mapCreatedDeferred.resolve(_this2.$mapObject);
+
+      return _this2.$mapCreated;
+    }).catch(function (error) {
+      throw error;
+    });
+  },
+
+  methods: methods
+};
+
+/***/ }),
+/* 660 */
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__(661);
+__webpack_require__(662);
+__webpack_require__(667);
+__webpack_require__(672);
+module.exports = __webpack_require__(609).Promise;
+
+/***/ }),
+/* 661 */
+/***/ (function(module, exports) {
+
+
+
+/***/ }),
+/* 662 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var $at  = __webpack_require__(663)(true);
+
+// 21.1.3.27 String.prototype[@@iterator]()
+__webpack_require__(628)(String, 'String', function(iterated){
+  this._t = String(iterated); // target
+  this._i = 0;                // next index
+// 21.1.5.2.1 %StringIteratorPrototype%.next()
+}, function(){
+  var O     = this._t
+    , index = this._i
+    , point;
+  if(index >= O.length)return {value: undefined, done: true};
+  point = $at(O, index);
+  this._i += point.length;
+  return {value: point, done: false};
+});
+
+/***/ }),
+/* 663 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var toInteger = __webpack_require__(627)
+  , defined   = __webpack_require__(617);
+// true  -> String#at
+// false -> String#codePointAt
+module.exports = function(TO_STRING){
+  return function(that, pos){
+    var s = String(defined(that))
+      , i = toInteger(pos)
+      , l = s.length
+      , a, b;
+    if(i < 0 || i >= l)return TO_STRING ? '' : undefined;
+    a = s.charCodeAt(i);
+    return a < 0xd800 || a > 0xdbff || i + 1 === l || (b = s.charCodeAt(i + 1)) < 0xdc00 || b > 0xdfff
+      ? TO_STRING ? s.charAt(i) : a
+      : TO_STRING ? s.slice(i, i + 2) : (a - 0xd800 << 10) + (b - 0xdc00) + 0x10000;
+  };
+};
+
+/***/ }),
+/* 664 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var $              = __webpack_require__(607)
+  , descriptor     = __webpack_require__(631)
+  , setToStringTag = __webpack_require__(622)
+  , IteratorPrototype = {};
+
+// 25.1.2.1.1 %IteratorPrototype%[@@iterator]()
+__webpack_require__(620)(IteratorPrototype, __webpack_require__(602)('iterator'), function(){ return this; });
+
+module.exports = function(Constructor, NAME, next){
+  Constructor.prototype = $.create(IteratorPrototype, {next: descriptor(1, next)});
+  setToStringTag(Constructor, NAME + ' Iterator');
+};
+
+/***/ }),
+/* 665 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var global = __webpack_require__(606)
+  , SHARED = '__core-js_shared__'
+  , store  = global[SHARED] || (global[SHARED] = {});
+module.exports = function(key){
+  return store[key] || (store[key] = {});
+};
+
+/***/ }),
+/* 666 */
+/***/ (function(module, exports) {
+
+var id = 0
+  , px = Math.random();
+module.exports = function(key){
+  return 'Symbol('.concat(key === undefined ? '' : key, ')_', (++id + px).toString(36));
+};
+
+/***/ }),
+/* 667 */
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__(668);
+var Iterators = __webpack_require__(612);
+Iterators.NodeList = Iterators.HTMLCollection = Iterators.Array;
+
+/***/ }),
+/* 668 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var addToUnscopables = __webpack_require__(669)
+  , step             = __webpack_require__(670)
+  , Iterators        = __webpack_require__(612)
+  , toIObject        = __webpack_require__(671);
+
+// 22.1.3.4 Array.prototype.entries()
+// 22.1.3.13 Array.prototype.keys()
+// 22.1.3.29 Array.prototype.values()
+// 22.1.3.30 Array.prototype[@@iterator]()
+module.exports = __webpack_require__(628)(Array, 'Array', function(iterated, kind){
+  this._t = toIObject(iterated); // target
+  this._i = 0;                   // next index
+  this._k = kind;                // kind
+// 22.1.5.2.1 %ArrayIteratorPrototype%.next()
+}, function(){
+  var O     = this._t
+    , kind  = this._k
+    , index = this._i++;
+  if(!O || index >= O.length){
+    this._t = undefined;
+    return step(1);
+  }
+  if(kind == 'keys'  )return step(0, index);
+  if(kind == 'values')return step(0, O[index]);
+  return step(0, [index, O[index]]);
+}, 'values');
+
+// argumentsList[@@iterator] is %ArrayProto_values% (9.4.4.6, 9.4.4.7)
+Iterators.Arguments = Iterators.Array;
+
+addToUnscopables('keys');
+addToUnscopables('values');
+addToUnscopables('entries');
+
+/***/ }),
+/* 669 */
+/***/ (function(module, exports) {
+
+module.exports = function(){ /* empty */ };
+
+/***/ }),
+/* 670 */
+/***/ (function(module, exports) {
+
+module.exports = function(done, value){
+  return {value: value, done: !!done};
+};
+
+/***/ }),
+/* 671 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// to indexed object, toObject with fallback for non-array-like ES3 strings
+var IObject = __webpack_require__(634)
+  , defined = __webpack_require__(617);
+module.exports = function(it){
+  return IObject(defined(it));
+};
+
+/***/ }),
+/* 672 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var $          = __webpack_require__(607)
+  , LIBRARY    = __webpack_require__(629)
+  , global     = __webpack_require__(606)
+  , ctx        = __webpack_require__(611)
+  , classof    = __webpack_require__(635)
+  , $export    = __webpack_require__(618)
+  , isObject   = __webpack_require__(616)
+  , anObject   = __webpack_require__(613)
+  , aFunction  = __webpack_require__(619)
+  , strictNew  = __webpack_require__(673)
+  , forOf      = __webpack_require__(674)
+  , setProto   = __webpack_require__(679).set
+  , same       = __webpack_require__(680)
+  , SPECIES    = __webpack_require__(602)('species')
+  , speciesConstructor = __webpack_require__(681)
+  , asap       = __webpack_require__(682)
+  , PROMISE    = 'Promise'
+  , process    = global.process
+  , isNode     = classof(process) == 'process'
+  , P          = global[PROMISE]
+  , empty      = function(){ /* empty */ }
+  , Wrapper;
+
+var testResolve = function(sub){
+  var test = new P(empty), promise;
+  if(sub)test.constructor = function(exec){
+    exec(empty, empty);
+  };
+  (promise = P.resolve(test))['catch'](empty);
+  return promise === test;
+};
+
+var USE_NATIVE = function(){
+  var works = false;
+  function P2(x){
+    var self = new P(x);
+    setProto(self, P2.prototype);
+    return self;
+  }
+  try {
+    works = P && P.resolve && testResolve();
+    setProto(P2, P);
+    P2.prototype = $.create(P.prototype, {constructor: {value: P2}});
+    // actual Firefox has broken subclass support, test that
+    if(!(P2.resolve(5).then(function(){}) instanceof P2)){
+      works = false;
+    }
+    // actual V8 bug, https://code.google.com/p/v8/issues/detail?id=4162
+    if(works && __webpack_require__(621)){
+      var thenableThenGotten = false;
+      P.resolve($.setDesc({}, 'then', {
+        get: function(){ thenableThenGotten = true; }
+      }));
+      works = thenableThenGotten;
+    }
+  } catch(e){ works = false; }
+  return works;
+}();
+
+// helpers
+var sameConstructor = function(a, b){
+  // library wrapper special case
+  if(LIBRARY && a === P && b === Wrapper)return true;
+  return same(a, b);
+};
+var getConstructor = function(C){
+  var S = anObject(C)[SPECIES];
+  return S != undefined ? S : C;
+};
+var isThenable = function(it){
+  var then;
+  return isObject(it) && typeof (then = it.then) == 'function' ? then : false;
+};
+var PromiseCapability = function(C){
+  var resolve, reject;
+  this.promise = new C(function($$resolve, $$reject){
+    if(resolve !== undefined || reject !== undefined)throw TypeError('Bad Promise constructor');
+    resolve = $$resolve;
+    reject  = $$reject;
+  });
+  this.resolve = aFunction(resolve),
+  this.reject  = aFunction(reject)
+};
+var perform = function(exec){
+  try {
+    exec();
+  } catch(e){
+    return {error: e};
+  }
+};
+var notify = function(record, isReject){
+  if(record.n)return;
+  record.n = true;
+  var chain = record.c;
+  asap(function(){
+    var value = record.v
+      , ok    = record.s == 1
+      , i     = 0;
+    var run = function(reaction){
+      var handler = ok ? reaction.ok : reaction.fail
+        , resolve = reaction.resolve
+        , reject  = reaction.reject
+        , result, then;
+      try {
+        if(handler){
+          if(!ok)record.h = true;
+          result = handler === true ? value : handler(value);
+          if(result === reaction.promise){
+            reject(TypeError('Promise-chain cycle'));
+          } else if(then = isThenable(result)){
+            then.call(result, resolve, reject);
+          } else resolve(result);
+        } else reject(value);
+      } catch(e){
+        reject(e);
+      }
+    };
+    while(chain.length > i)run(chain[i++]); // variable length - can't use forEach
+    chain.length = 0;
+    record.n = false;
+    if(isReject)setTimeout(function(){
+      var promise = record.p
+        , handler, console;
+      if(isUnhandled(promise)){
+        if(isNode){
+          process.emit('unhandledRejection', value, promise);
+        } else if(handler = global.onunhandledrejection){
+          handler({promise: promise, reason: value});
+        } else if((console = global.console) && console.error){
+          console.error('Unhandled promise rejection', value);
+        }
+      } record.a = undefined;
+    }, 1);
+  });
+};
+var isUnhandled = function(promise){
+  var record = promise._d
+    , chain  = record.a || record.c
+    , i      = 0
+    , reaction;
+  if(record.h)return false;
+  while(chain.length > i){
+    reaction = chain[i++];
+    if(reaction.fail || !isUnhandled(reaction.promise))return false;
+  } return true;
+};
+var $reject = function(value){
+  var record = this;
+  if(record.d)return;
+  record.d = true;
+  record = record.r || record; // unwrap
+  record.v = value;
+  record.s = 2;
+  record.a = record.c.slice();
+  notify(record, true);
+};
+var $resolve = function(value){
+  var record = this
+    , then;
+  if(record.d)return;
+  record.d = true;
+  record = record.r || record; // unwrap
+  try {
+    if(record.p === value)throw TypeError("Promise can't be resolved itself");
+    if(then = isThenable(value)){
+      asap(function(){
+        var wrapper = {r: record, d: false}; // wrap
+        try {
+          then.call(value, ctx($resolve, wrapper, 1), ctx($reject, wrapper, 1));
+        } catch(e){
+          $reject.call(wrapper, e);
+        }
+      });
+    } else {
+      record.v = value;
+      record.s = 1;
+      notify(record, false);
+    }
+  } catch(e){
+    $reject.call({r: record, d: false}, e); // wrap
+  }
+};
+
+// constructor polyfill
+if(!USE_NATIVE){
+  // 25.4.3.1 Promise(executor)
+  P = function Promise(executor){
+    aFunction(executor);
+    var record = this._d = {
+      p: strictNew(this, P, PROMISE),         // <- promise
+      c: [],                                  // <- awaiting reactions
+      a: undefined,                           // <- checked in isUnhandled reactions
+      s: 0,                                   // <- state
+      d: false,                               // <- done
+      v: undefined,                           // <- value
+      h: false,                               // <- handled rejection
+      n: false                                // <- notify
+    };
+    try {
+      executor(ctx($resolve, record, 1), ctx($reject, record, 1));
+    } catch(err){
+      $reject.call(record, err);
+    }
+  };
+  __webpack_require__(687)(P.prototype, {
+    // 25.4.5.3 Promise.prototype.then(onFulfilled, onRejected)
+    then: function then(onFulfilled, onRejected){
+      var reaction = new PromiseCapability(speciesConstructor(this, P))
+        , promise  = reaction.promise
+        , record   = this._d;
+      reaction.ok   = typeof onFulfilled == 'function' ? onFulfilled : true;
+      reaction.fail = typeof onRejected == 'function' && onRejected;
+      record.c.push(reaction);
+      if(record.a)record.a.push(reaction);
+      if(record.s)notify(record, false);
+      return promise;
+    },
+    // 25.4.5.1 Promise.prototype.catch(onRejected)
+    'catch': function(onRejected){
+      return this.then(undefined, onRejected);
+    }
+  });
+}
+
+$export($export.G + $export.W + $export.F * !USE_NATIVE, {Promise: P});
+__webpack_require__(622)(P, PROMISE);
+__webpack_require__(688)(PROMISE);
+Wrapper = __webpack_require__(609)[PROMISE];
+
+// statics
+$export($export.S + $export.F * !USE_NATIVE, PROMISE, {
+  // 25.4.4.5 Promise.reject(r)
+  reject: function reject(r){
+    var capability = new PromiseCapability(this)
+      , $$reject   = capability.reject;
+    $$reject(r);
+    return capability.promise;
+  }
+});
+$export($export.S + $export.F * (!USE_NATIVE || testResolve(true)), PROMISE, {
+  // 25.4.4.6 Promise.resolve(x)
+  resolve: function resolve(x){
+    // instanceof instead of internal slot check because we should fix it without replacement native Promise core
+    if(x instanceof P && sameConstructor(x.constructor, this))return x;
+    var capability = new PromiseCapability(this)
+      , $$resolve  = capability.resolve;
+    $$resolve(x);
+    return capability.promise;
+  }
+});
+$export($export.S + $export.F * !(USE_NATIVE && __webpack_require__(689)(function(iter){
+  P.all(iter)['catch'](function(){});
+})), PROMISE, {
+  // 25.4.4.1 Promise.all(iterable)
+  all: function all(iterable){
+    var C          = getConstructor(this)
+      , capability = new PromiseCapability(C)
+      , resolve    = capability.resolve
+      , reject     = capability.reject
+      , values     = [];
+    var abrupt = perform(function(){
+      forOf(iterable, false, values.push, values);
+      var remaining = values.length
+        , results   = Array(remaining);
+      if(remaining)$.each.call(values, function(promise, index){
+        var alreadyCalled = false;
+        C.resolve(promise).then(function(value){
+          if(alreadyCalled)return;
+          alreadyCalled = true;
+          results[index] = value;
+          --remaining || resolve(results);
+        }, reject);
+      });
+      else resolve(results);
+    });
+    if(abrupt)reject(abrupt.error);
+    return capability.promise;
+  },
+  // 25.4.4.4 Promise.race(iterable)
+  race: function race(iterable){
+    var C          = getConstructor(this)
+      , capability = new PromiseCapability(C)
+      , reject     = capability.reject;
+    var abrupt = perform(function(){
+      forOf(iterable, false, function(promise){
+        C.resolve(promise).then(capability.resolve, reject);
+      });
+    });
+    if(abrupt)reject(abrupt.error);
+    return capability.promise;
+  }
+});
+
+/***/ }),
+/* 673 */
+/***/ (function(module, exports) {
+
+module.exports = function(it, Constructor, name){
+  if(!(it instanceof Constructor))throw TypeError(name + ": use the 'new' operator!");
+  return it;
+};
+
+/***/ }),
+/* 674 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var ctx         = __webpack_require__(611)
+  , call        = __webpack_require__(675)
+  , isArrayIter = __webpack_require__(676)
+  , anObject    = __webpack_require__(613)
+  , toLength    = __webpack_require__(677)
+  , getIterFn   = __webpack_require__(678);
+module.exports = function(iterable, entries, fn, that){
+  var iterFn = getIterFn(iterable)
+    , f      = ctx(fn, that, entries ? 2 : 1)
+    , index  = 0
+    , length, step, iterator;
+  if(typeof iterFn != 'function')throw TypeError(iterable + ' is not iterable!');
+  // fast case for arrays with default iterator
+  if(isArrayIter(iterFn))for(length = toLength(iterable.length); length > index; index++){
+    entries ? f(anObject(step = iterable[index])[0], step[1]) : f(iterable[index]);
+  } else for(iterator = iterFn.call(iterable); !(step = iterator.next()).done; ){
+    call(iterator, f, step.value, entries);
+  }
+};
+
+/***/ }),
+/* 675 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// call something on iterator step with safe closing on error
+var anObject = __webpack_require__(613);
+module.exports = function(iterator, fn, value, entries){
+  try {
+    return entries ? fn(anObject(value)[0], value[1]) : fn(value);
+  // 7.4.6 IteratorClose(iterator, completion)
+  } catch(e){
+    var ret = iterator['return'];
+    if(ret !== undefined)anObject(ret.call(iterator));
+    throw e;
+  }
+};
+
+/***/ }),
+/* 676 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// check on default Array iterator
+var Iterators  = __webpack_require__(612)
+  , ITERATOR   = __webpack_require__(602)('iterator')
+  , ArrayProto = Array.prototype;
+
+module.exports = function(it){
+  return it !== undefined && (Iterators.Array === it || ArrayProto[ITERATOR] === it);
+};
+
+/***/ }),
+/* 677 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// 7.1.15 ToLength
+var toInteger = __webpack_require__(627)
+  , min       = Math.min;
+module.exports = function(it){
+  return it > 0 ? min(toInteger(it), 0x1fffffffffffff) : 0; // pow(2, 53) - 1 == 9007199254740991
+};
+
+/***/ }),
+/* 678 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var classof   = __webpack_require__(635)
+  , ITERATOR  = __webpack_require__(602)('iterator')
+  , Iterators = __webpack_require__(612);
+module.exports = __webpack_require__(609).getIteratorMethod = function(it){
+  if(it != undefined)return it[ITERATOR]
+    || it['@@iterator']
+    || Iterators[classof(it)];
+};
+
+/***/ }),
+/* 679 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// Works with __proto__ only. Old v8 can't work with null proto objects.
+/* eslint-disable no-proto */
+var getDesc  = __webpack_require__(607).getDesc
+  , isObject = __webpack_require__(616)
+  , anObject = __webpack_require__(613);
+var check = function(O, proto){
+  anObject(O);
+  if(!isObject(proto) && proto !== null)throw TypeError(proto + ": can't set as prototype!");
+};
+module.exports = {
+  set: Object.setPrototypeOf || ('__proto__' in {} ? // eslint-disable-line
+    function(test, buggy, set){
+      try {
+        set = __webpack_require__(611)(Function.call, getDesc(Object.prototype, '__proto__').set, 2);
+        set(test, []);
+        buggy = !(test instanceof Array);
+      } catch(e){ buggy = true; }
+      return function setPrototypeOf(O, proto){
+        check(O, proto);
+        if(buggy)O.__proto__ = proto;
+        else set(O, proto);
+        return O;
+      };
+    }({}, false) : undefined),
+  check: check
+};
+
+/***/ }),
+/* 680 */
+/***/ (function(module, exports) {
+
+// 7.2.9 SameValue(x, y)
+module.exports = Object.is || function is(x, y){
+  return x === y ? x !== 0 || 1 / x === 1 / y : x != x && y != y;
+};
+
+/***/ }),
+/* 681 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// 7.3.20 SpeciesConstructor(O, defaultConstructor)
+var anObject  = __webpack_require__(613)
+  , aFunction = __webpack_require__(619)
+  , SPECIES   = __webpack_require__(602)('species');
+module.exports = function(O, D){
+  var C = anObject(O).constructor, S;
+  return C === undefined || (S = anObject(C)[SPECIES]) == undefined ? D : aFunction(S);
+};
+
+/***/ }),
+/* 682 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var global    = __webpack_require__(606)
+  , macrotask = __webpack_require__(683).set
+  , Observer  = global.MutationObserver || global.WebKitMutationObserver
+  , process   = global.process
+  , Promise   = global.Promise
+  , isNode    = __webpack_require__(615)(process) == 'process'
+  , head, last, notify;
+
+var flush = function(){
+  var parent, domain, fn;
+  if(isNode && (parent = process.domain)){
+    process.domain = null;
+    parent.exit();
+  }
+  while(head){
+    domain = head.domain;
+    fn     = head.fn;
+    if(domain)domain.enter();
+    fn(); // <- currently we use it only for Promise - try / catch not required
+    if(domain)domain.exit();
+    head = head.next;
+  } last = undefined;
+  if(parent)parent.enter();
+};
+
+// Node.js
+if(isNode){
+  notify = function(){
+    process.nextTick(flush);
+  };
+// browsers with MutationObserver
+} else if(Observer){
+  var toggle = 1
+    , node   = document.createTextNode('');
+  new Observer(flush).observe(node, {characterData: true}); // eslint-disable-line no-new
+  notify = function(){
+    node.data = toggle = -toggle;
+  };
+// environments with maybe non-completely correct, but existent Promise
+} else if(Promise && Promise.resolve){
+  notify = function(){
+    Promise.resolve().then(flush);
+  };
+// for other environments - macrotask based on:
+// - setImmediate
+// - MessageChannel
+// - window.postMessag
+// - onreadystatechange
+// - setTimeout
+} else {
+  notify = function(){
+    // strange IE + webpack dev server bug - use .call(global)
+    macrotask.call(global, flush);
+  };
+}
+
+module.exports = function asap(fn){
+  var task = {fn: fn, next: undefined, domain: isNode && process.domain};
+  if(last)last.next = task;
+  if(!head){
+    head = task;
+    notify();
+  } last = task;
+};
+
+/***/ }),
+/* 683 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var ctx                = __webpack_require__(611)
+  , invoke             = __webpack_require__(684)
+  , html               = __webpack_require__(685)
+  , cel                = __webpack_require__(686)
+  , global             = __webpack_require__(606)
+  , process            = global.process
+  , setTask            = global.setImmediate
+  , clearTask          = global.clearImmediate
+  , MessageChannel     = global.MessageChannel
+  , counter            = 0
+  , queue              = {}
+  , ONREADYSTATECHANGE = 'onreadystatechange'
+  , defer, channel, port;
+var run = function(){
+  var id = +this;
+  if(queue.hasOwnProperty(id)){
+    var fn = queue[id];
+    delete queue[id];
+    fn();
+  }
+};
+var listner = function(event){
+  run.call(event.data);
+};
+// Node.js 0.9+ & IE10+ has setImmediate, otherwise:
+if(!setTask || !clearTask){
+  setTask = function setImmediate(fn){
+    var args = [], i = 1;
+    while(arguments.length > i)args.push(arguments[i++]);
+    queue[++counter] = function(){
+      invoke(typeof fn == 'function' ? fn : Function(fn), args);
+    };
+    defer(counter);
+    return counter;
+  };
+  clearTask = function clearImmediate(id){
+    delete queue[id];
+  };
+  // Node.js 0.8-
+  if(__webpack_require__(615)(process) == 'process'){
+    defer = function(id){
+      process.nextTick(ctx(run, id, 1));
+    };
+  // Browsers with MessageChannel, includes WebWorkers
+  } else if(MessageChannel){
+    channel = new MessageChannel;
+    port    = channel.port2;
+    channel.port1.onmessage = listner;
+    defer = ctx(port.postMessage, port, 1);
+  // Browsers with postMessage, skip WebWorkers
+  // IE8 has postMessage, but it's sync & typeof its postMessage is 'object'
+  } else if(global.addEventListener && typeof postMessage == 'function' && !global.importScripts){
+    defer = function(id){
+      global.postMessage(id + '', '*');
+    };
+    global.addEventListener('message', listner, false);
+  // IE8-
+  } else if(ONREADYSTATECHANGE in cel('script')){
+    defer = function(id){
+      html.appendChild(cel('script'))[ONREADYSTATECHANGE] = function(){
+        html.removeChild(this);
+        run.call(id);
+      };
+    };
+  // Rest old browsers
+  } else {
+    defer = function(id){
+      setTimeout(ctx(run, id, 1), 0);
+    };
+  }
+}
+module.exports = {
+  set:   setTask,
+  clear: clearTask
+};
+
+/***/ }),
+/* 684 */
+/***/ (function(module, exports) {
+
+// fast apply, http://jsperf.lnkit.com/fast-apply/5
+module.exports = function(fn, args, that){
+  var un = that === undefined;
+  switch(args.length){
+    case 0: return un ? fn()
+                      : fn.call(that);
+    case 1: return un ? fn(args[0])
+                      : fn.call(that, args[0]);
+    case 2: return un ? fn(args[0], args[1])
+                      : fn.call(that, args[0], args[1]);
+    case 3: return un ? fn(args[0], args[1], args[2])
+                      : fn.call(that, args[0], args[1], args[2]);
+    case 4: return un ? fn(args[0], args[1], args[2], args[3])
+                      : fn.call(that, args[0], args[1], args[2], args[3]);
+  } return              fn.apply(that, args);
+};
+
+/***/ }),
+/* 685 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(606).document && document.documentElement;
+
+/***/ }),
+/* 686 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var isObject = __webpack_require__(616)
+  , document = __webpack_require__(606).document
+  // in old IE typeof document.createElement is 'object'
+  , is = isObject(document) && isObject(document.createElement);
+module.exports = function(it){
+  return is ? document.createElement(it) : {};
+};
+
+/***/ }),
+/* 687 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var redefine = __webpack_require__(630);
+module.exports = function(target, src){
+  for(var key in src)redefine(target, key, src[key]);
+  return target;
+};
+
+/***/ }),
+/* 688 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var core        = __webpack_require__(609)
+  , $           = __webpack_require__(607)
+  , DESCRIPTORS = __webpack_require__(621)
+  , SPECIES     = __webpack_require__(602)('species');
+
+module.exports = function(KEY){
+  var C = core[KEY];
+  if(DESCRIPTORS && C && !C[SPECIES])$.setDesc(C, SPECIES, {
+    configurable: true,
+    get: function(){ return this; }
+  });
+};
+
+/***/ }),
+/* 689 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var ITERATOR     = __webpack_require__(602)('iterator')
+  , SAFE_CLOSING = false;
+
+try {
+  var riter = [7][ITERATOR]();
+  riter['return'] = function(){ SAFE_CLOSING = true; };
+  Array.from(riter, function(){ throw 2; });
+} catch(e){ /* empty */ }
+
+module.exports = function(exec, skipClosing){
+  if(!skipClosing && !SAFE_CLOSING)return false;
+  var safe = false;
+  try {
+    var arr  = [7]
+      , iter = arr[ITERATOR]();
+    iter.next = function(){ return {done: safe = true}; };
+    arr[ITERATOR] = function(){ return iter; };
+    exec(arr);
+  } catch(e){ /* empty */ }
+  return safe;
+};
+
+/***/ }),
+/* 690 */
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__(691);
+module.exports = __webpack_require__(609).Object.assign;
+
+/***/ }),
+/* 691 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// 19.1.3.1 Object.assign(target, source)
+var $export = __webpack_require__(618);
+
+$export($export.S + $export.F, 'Object', {assign: __webpack_require__(692)});
+
+/***/ }),
+/* 692 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// 19.1.2.1 Object.assign(target, source, ...)
+var $        = __webpack_require__(607)
+  , toObject = __webpack_require__(693)
+  , IObject  = __webpack_require__(634);
+
+// should work with symbols and should have deterministic property order (V8 bug)
+module.exports = __webpack_require__(632)(function(){
+  var a = Object.assign
+    , A = {}
+    , B = {}
+    , S = Symbol()
+    , K = 'abcdefghijklmnopqrst';
+  A[S] = 7;
+  K.split('').forEach(function(k){ B[k] = k; });
+  return a({}, A)[S] != 7 || Object.keys(a({}, B)).join('') != K;
+}) ? function assign(target, source){ // eslint-disable-line no-unused-vars
+  var T     = toObject(target)
+    , $$    = arguments
+    , $$len = $$.length
+    , index = 1
+    , getKeys    = $.getKeys
+    , getSymbols = $.getSymbols
+    , isEnum     = $.isEnum;
+  while($$len > index){
+    var S      = IObject($$[index++])
+      , keys   = getSymbols ? getKeys(S).concat(getSymbols(S)) : getKeys(S)
+      , length = keys.length
+      , j      = 0
+      , key;
+    while(length > j)if(isEnum.call(S, key = keys[j++]))T[key] = S[key];
+  }
+  return T;
+} : Object.assign;
+
+/***/ }),
+/* 693 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// 7.1.13 ToObject(argument)
+var defined = __webpack_require__(617);
+module.exports = function(it){
+  return Object(defined(it));
+};
+
+/***/ }),
+/* 694 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "vue-map-container" },
+    [
+      _c("div", { ref: "vue-map", staticClass: "vue-map" }),
+      _vm._v(" "),
+      _c("div", { staticClass: "vue-map-hidden" }, [_vm._t("default")], 2),
+      _vm._v(" "),
+      _vm._t("visible")
+    ],
+    2
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-4ca19d36", module.exports)
+  }
+}
+
+/***/ }),
+/* 695 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(696)
+}
+var normalizeComponent = __webpack_require__(7)
+/* script */
+var __vue_script__ = __webpack_require__(698)
+/* template */
+var __vue_template__ = __webpack_require__(699)
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "node_modules/vue2-google-maps/dist/components/streetViewPanorama.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] streetViewPanorama.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-3d488473", Component.options)
+  } else {
+    hotAPI.reload("data-v-3d488473", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 696 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(697);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(11)("d0d5f080", content, false);
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../css-loader/index.js!../../../vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-3d488473\",\"scoped\":false,\"hasInlineConfig\":true}!../../../vue-loader/lib/selector.js?type=styles&index=0!./streetViewPanorama.vue", function() {
+     var newContent = require("!!../../../css-loader/index.js!../../../vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-3d488473\",\"scoped\":false,\"hasInlineConfig\":true}!../../../vue-loader/lib/selector.js?type=styles&index=0!./streetViewPanorama.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 697 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(10)(undefined);
+// imports
+
+
+// module
+exports.push([module.i, "\n.vue-street-view-pano-container {\n  position: relative;\n}\n.vue-street-view-pano-container .vue-street-view-pano {\n  left: 0; right: 0; top: 0; bottom: 0;\n  position: absolute;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 698 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _promise = __webpack_require__(626);
+
+var _promise2 = _interopRequireDefault2(_promise);
+
+var _assign = __webpack_require__(623);
+
+var _assign2 = _interopRequireDefault2(_assign);
+
+function _interopRequireDefault2(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _omit2 = __webpack_require__(608);
+
+var _omit3 = _interopRequireDefault(_omit2);
+
+var _manager = __webpack_require__(610);
+
+var _deferredReady = __webpack_require__(614);
+
+var _eventsBinder = __webpack_require__(603);
+
+var _eventsBinder2 = _interopRequireDefault(_eventsBinder);
+
+var _propsBinder = __webpack_require__(600);
+
+var _propsBinder2 = _interopRequireDefault(_propsBinder);
+
+var _getPropsValuesMixin = __webpack_require__(601);
+
+var _getPropsValuesMixin2 = _interopRequireDefault(_getPropsValuesMixin);
+
+var _mountableMixin = __webpack_require__(624);
+
+var _mountableMixin2 = _interopRequireDefault(_mountableMixin);
+
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : { default: obj };
+}
+
+var props = {
+  zoom: {
+    twoWay: true,
+    type: Number
+  },
+  pov: {
+    twoWay: true,
+    type: Object,
+    trackProperties: ['pitch', 'heading']
+  },
+  position: {
+    twoWay: true,
+    type: Object
+  },
+  pano: {
+    twoWay: true,
+    type: String
+  },
+  motionTracking: {
+    twoWay: false,
+    type: Boolean
+  },
+  visible: {
+    twoWay: true,
+    type: Boolean,
+    default: true
+  },
+  options: {
+    twoWay: false,
+    type: Object,
+    default: function _default() {
+      return {};
+    }
+  }
+};
+
+var events = ['closeclick', 'status_changed'];
+
+var customMethods = {
+  resize: function resize() {
+    if (this.$panoObject) {
+      google.maps.event.trigger(this.$panoObject, 'resize');
+    }
+  }
+};
+
+var methods = (0, _assign2.default)({}, customMethods);
+
+exports.default = {
+  mixins: [_getPropsValuesMixin2.default, _deferredReady.DeferredReadyMixin, _mountableMixin2.default],
+  props: props,
+  replace: false,
+  methods: methods,
+
+  created: function created() {
+    var _this = this;
+
+    this.$panoCreated = new _promise2.default(function (resolve, reject) {
+      _this.$panoCreatedDeferred = { resolve: resolve, reject: reject };
+    });
+
+    var updateCenter = function updateCenter() {
+      if (!_this.panoObject) return;
+
+      _this.$panoObject.setPosition({
+        lat: _this.finalLat,
+        lng: _this.finalLng
+      });
+    };
+    this.$watch('finalLat', updateCenter);
+    this.$watch('finalLng', updateCenter);
+  },
+
+  computed: {
+    finalLat: function finalLat() {
+      return this.position && typeof this.position.lat === 'function' ? this.position.lat() : this.position.lat;
+    },
+    finalLng: function finalLng() {
+      return this.position && typeof this.position.lng === 'function' ? this.position.lng() : this.position.lng;
+    }
+  },
+
+  watch: {
+    zoom: function zoom(_zoom) {
+      if (this.$panoObject) {
+        this.$panoObject.setZoom(_zoom);
+      }
+    }
+  },
+
+  deferredReady: function deferredReady() {
+    var _this2 = this;
+
+    return _manager.loaded.then(function () {
+      var element = _this2.$refs['vue-street-view-pano'];
+
+      var options = (0, _assign2.default)({}, _this2.options, (0, _omit3.default)(_this2.getPropsValues(), ['options']));
+
+      _this2.$panoObject = new google.maps.StreetViewPanorama(element, options);
+
+      (0, _propsBinder2.default)(_this2, _this2.$panoObject, (0, _omit3.default)(props, ['position', 'zoom']));
+
+      (0, _eventsBinder2.default)(_this2, _this2.$panoObject, events);
+
+      _this2.$panoCreatedDeferred.resolve(_this2.$panoObject);
+
+      return _this2.$panoCreated;
+    }).catch(function (error) {
+      throw error;
+    });
+  }
+};
+
+/***/ }),
+/* 699 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "vue-street-view-pano-container" },
+    [
+      _c("div", {
+        ref: "vue-street-view-pano",
+        staticClass: "vue-street-view-pano"
+      }),
+      _vm._v(" "),
+      _vm._t("default")
+    ],
+    2
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-3d488473", module.exports)
+  }
+}
+
+/***/ }),
+/* 700 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(7)
+/* script */
+var __vue_script__ = __webpack_require__(701)
+/* template */
+var __vue_template__ = __webpack_require__(702)
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "node_modules/vue2-google-maps/dist/components/placeInput.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] placeInput.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-cee11ace", Component.options)
+  } else {
+    hotAPI.reload("data-v-cee11ace", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 701 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _clone2 = __webpack_require__(604);
+
+var _clone3 = _interopRequireDefault(_clone2);
+
+var _omit2 = __webpack_require__(608);
+
+var _omit3 = _interopRequireDefault(_omit2);
+
+var _propsBinder = __webpack_require__(600);
+
+var _propsBinder2 = _interopRequireDefault(_propsBinder);
+
+var _simulateArrowDown = __webpack_require__(636);
+
+var _simulateArrowDown2 = _interopRequireDefault(_simulateArrowDown);
+
+var _getPropsValuesMixin = __webpack_require__(601);
+
+var _getPropsValuesMixin2 = _interopRequireDefault(_getPropsValuesMixin);
+
+var _manager = __webpack_require__(610);
+
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : { default: obj };
+}
+
+var props = {
+  bounds: {
+    type: Object
+  },
+  defaultPlace: {
+    type: String,
+    default: ''
+  },
+  componentRestrictions: {
+    type: Object,
+    default: null
+  },
+  types: {
+    type: Array,
+    default: function _default() {
+      return [];
+    }
+  },
+  placeholder: {
+    required: false,
+    type: String
+  },
+  className: {
+    required: false,
+    type: String
+  },
+  label: {
+    required: false,
+    type: String,
+    default: null
+  },
+  selectFirstOnEnter: {
+    require: false,
+    type: Boolean,
+    default: false
+  }
+};
+
+exports.default = {
+  mixins: [_getPropsValuesMixin2.default],
+
+  mounted: function mounted() {
+    var _this = this;
+
+    var input = this.$refs.input;
+
+    input.value = this.defaultPlace;
+    this.$watch('defaultPlace', function () {
+      input.value = _this.defaultPlace;
+    });
+
+    _manager.loaded.then(function () {
+      var options = (0, _clone3.default)(_this.getPropsValues());
+      if (_this.selectFirstOnEnter) {
+        (0, _simulateArrowDown2.default)(_this.$refs.input);
+      }
+
+      if (typeof google.maps.places.Autocomplete !== 'function') {
+        throw new Error('google.maps.places.Autocomplete is undefined. Did you add \'places\' to libraries when loading Google Maps?');
+      }
+
+      _this.autoCompleter = new google.maps.places.Autocomplete(_this.$refs.input, options);
+      (0, _propsBinder2.default)(_this, _this.autoCompleter, (0, _omit3.default)(props, ['placeholder', 'place', 'selectFirstOnEnter', 'defaultPlace', 'className', 'label']));
+
+      _this.autoCompleter.addListener('place_changed', function () {
+        _this.$emit('place_changed', _this.autoCompleter.getPlace());
+      });
+    });
+  },
+  created: function created() {
+    console.warn('The PlaceInput class is deprecated! Please consider using the Autocomplete input instead');
+  },
+
+  props: props
+};
+
+/***/ }),
+/* 702 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("label", [
+    _c("span", { domProps: { textContent: _vm._s(_vm.label) } }),
+    _vm._v(" "),
+    _c("input", {
+      ref: "input",
+      class: _vm.className,
+      attrs: { type: "text", placeholder: _vm.placeholder }
+    })
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-cee11ace", module.exports)
+  }
+}
+
+/***/ }),
+/* 703 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(7)
+/* script */
+var __vue_script__ = __webpack_require__(704)
+/* template */
+var __vue_template__ = __webpack_require__(707)
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "node_modules/vue2-google-maps/dist/components/autocomplete.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] autocomplete.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-6183a57e", Component.options)
+  } else {
+    hotAPI.reload("data-v-6183a57e", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 704 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _assign = __webpack_require__(623);
+
+var _assign2 = _interopRequireDefault2(_assign);
+
+function _interopRequireDefault2(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _omit2 = __webpack_require__(608);
+
+var _omit3 = _interopRequireDefault(_omit2);
+
+var _pickBy2 = __webpack_require__(705);
+
+var _pickBy3 = _interopRequireDefault(_pickBy2);
+
+var _clone2 = __webpack_require__(604);
+
+var _clone3 = _interopRequireDefault(_clone2);
+
+var _propsBinder = __webpack_require__(600);
+
+var _propsBinder2 = _interopRequireDefault(_propsBinder);
+
+var _simulateArrowDown = __webpack_require__(636);
+
+var _simulateArrowDown2 = _interopRequireDefault(_simulateArrowDown);
+
+var _getPropsValuesMixin = __webpack_require__(601);
+
+var _getPropsValuesMixin2 = _interopRequireDefault(_getPropsValuesMixin);
+
+var _manager = __webpack_require__(610);
+
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : { default: obj };
+}
+
+var props = {
+  bounds: {
+    type: Object
+  },
+  componentRestrictions: {
+    type: Object
+  },
+  types: {
+    type: Array,
+    default: function _default() {
+      return [];
+    }
+  },
+  placeholder: {
+    required: false,
+    type: String
+  },
+  selectFirstOnEnter: {
+    require: false,
+    type: Boolean,
+    default: false
+  },
+  value: {
+    type: String,
+    default: ''
+  },
+  options: {
+    type: Object
+  }
+};
+
+exports.default = {
+  mixins: [_getPropsValuesMixin2.default],
+
+  mounted: function mounted() {
+    var _this = this;
+
+    _manager.loaded.then(function () {
+      var options = (0, _clone3.default)(_this.getPropsValues());
+      if (_this.selectFirstOnEnter) {
+        (0, _simulateArrowDown2.default)(_this.$refs.input);
+      }
+
+      if (typeof google.maps.places.Autocomplete !== 'function') {
+        throw new Error('google.maps.places.Autocomplete is undefined. Did you add \'places\' to libraries when loading Google Maps?');
+      }
+
+      var finalOptions = (0, _pickBy3.default)((0, _assign2.default)({}, (0, _omit3.default)(options, ['options', 'selectFirstOnEnter', 'value', 'place', 'placeholder']), options.options), function (v, k) {
+        return v !== undefined;
+      });_this.$watch('componentRestrictions', function (v) {
+        if (v !== undefined) {
+          _this.$autocomplete.setComponentRestrictions(v);
+        }
+      });
+
+      _this.$autocomplete = new google.maps.places.Autocomplete(_this.$refs.input, finalOptions);
+      (0, _propsBinder2.default)(_this, _this.$autocomplete, (0, _omit3.default)(props, ['placeholder', 'place', 'selectFirstOnEnter', 'value', 'componentRestrictions']));
+
+      _this.$autocomplete.addListener('place_changed', function () {
+        _this.$emit('place_changed', _this.$autocomplete.getPlace());
+      });
+    });
+  },
+
+  props: props
+};
+
+/***/ }),
+/* 705 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var arrayMap = __webpack_require__(167),
+    baseIteratee = __webpack_require__(182),
+    basePickBy = __webpack_require__(706),
+    getAllKeysIn = __webpack_require__(435);
+
+/**
+ * Creates an object composed of the `object` properties `predicate` returns
+ * truthy for. The predicate is invoked with two arguments: (value, key).
+ *
+ * @static
+ * @memberOf _
+ * @since 4.0.0
+ * @category Object
+ * @param {Object} object The source object.
+ * @param {Function} [predicate=_.identity] The function invoked per property.
+ * @returns {Object} Returns the new object.
+ * @example
+ *
+ * var object = { 'a': 1, 'b': '2', 'c': 3 };
+ *
+ * _.pickBy(object, _.isNumber);
+ * // => { 'a': 1, 'c': 3 }
+ */
+function pickBy(object, predicate) {
+  if (object == null) {
+    return {};
+  }
+  var props = arrayMap(getAllKeysIn(object), function(prop) {
+    return [prop];
+  });
+  predicate = baseIteratee(predicate);
+  return basePickBy(object, props, function(value, path) {
+    return predicate(value, path[0]);
+  });
+}
+
+module.exports = pickBy;
+
+
+/***/ }),
+/* 706 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var baseGet = __webpack_require__(187),
+    baseSet = __webpack_require__(416),
+    castPath = __webpack_require__(98);
+
+/**
+ * The base implementation of  `_.pickBy` without support for iteratee shorthands.
+ *
+ * @private
+ * @param {Object} object The source object.
+ * @param {string[]} paths The property paths to pick.
+ * @param {Function} predicate The function invoked per property.
+ * @returns {Object} Returns the new object.
+ */
+function basePickBy(object, paths, predicate) {
+  var index = -1,
+      length = paths.length,
+      result = {};
+
+  while (++index < length) {
+    var path = paths[index],
+        value = baseGet(object, path);
+
+    if (predicate(value, path)) {
+      baseSet(result, castPath(path, object), value);
+    }
+  }
+  return result;
+}
+
+module.exports = basePickBy;
+
+
+/***/ }),
+/* 707 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("input", {
+    ref: "input",
+    attrs: { type: "text", placeholder: _vm.placeholder },
+    domProps: { value: _vm.value }
+  })
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-6183a57e", module.exports)
+  }
+}
+
+/***/ }),
+/* 708 */,
+/* 709 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(710);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(11)("2bb8e5da", content, false);
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-e311c288\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/sass-loader/lib/loader.js!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Map.vue", function() {
+     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-e311c288\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/sass-loader/lib/loader.js!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Map.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 710 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(10)(undefined);
+// imports
+
+
+// module
+exports.push([module.i, "\n#map {\n  height: 400px;\n  width: 100%;\n  cursor: pointer;\n}\n#locQuery {\n  position: absolute;\n  left: 200px;\n  background-color: white;\n  border-radius: 4px;\n  padding: 10px;\n  z-index: 1000;\n}\n#locQuery input {\n    width: 400px;\n    height: 36px;\n    padding: 3px 10px;\n    border: 1px solid darkgrey;\n    line-height: 1;\n}\n", ""]);
+
+// exports
 
 
 /***/ })

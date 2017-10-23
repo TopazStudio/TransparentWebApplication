@@ -12,17 +12,27 @@ export default new Router({
       {
           path: '/',
           name: 'landing-page',
-          component: require('@/components/LandingPage.vue')
+          component: require('@/Pages/LandingPage.vue')
       },
       {
-          path: '/register/company',
-          name: 'company-registration',
-          component: require('@/components/Registration.vue')
-      },
-      {
-          path: '/register/user',
-          name: 'normal-registration',
-          component: require('@/components/Registration.vue')
+          path: '/register',
+          component: require('@/Pages/Registration.vue'),
+          children: [
+              {
+                  path:'',
+                  component: require('@/components/Registration/UserForm'),
+              },
+              {
+                  path: '/register/user',
+                  name: 'user-registration',
+                  component: require('@/components/Registration/UserForm')
+              },
+              {
+                  path: '/register/company',
+                  name: 'company-registration',
+                  component: require('@/components/Registration/CompanyForm')
+              }
+          ]
       }
   ],
     mode: 'history'

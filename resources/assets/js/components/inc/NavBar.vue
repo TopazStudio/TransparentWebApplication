@@ -87,6 +87,7 @@
         background-color: $fly-navbar-color;
         transition: 1s all ease-out;
         z-index: 1;
+        border-bottom: 1px solid black;
         .el-menu-item{
             height: $fly-navbar-height;
             line-height: $fly-navbar-height;

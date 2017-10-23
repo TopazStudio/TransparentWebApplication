@@ -6,10 +6,13 @@
 @import "variables";
 
 //Element UI
-@import "./plugins/element/index.css";
+@import "./modules/element/index.css";
 
 //bourbon
 @import "~bourbon/app/assets/stylesheets/bourbon";
+
+//Modules
+@import "modules/fly-card";
 
 html, body {
   background: $body-background-color url("../img/hypnotize.png");
@@ -24,6 +27,11 @@ html, body {
   @include position(absolute,0);
 }
 
+.workspace{
+  @include position(absolute,$fly-navbar-height 0 0 0);
+}
+
+//PICTURE ZOOM
 .item {
   position: relative;
 

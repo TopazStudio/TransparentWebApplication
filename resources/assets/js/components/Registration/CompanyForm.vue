@@ -69,7 +69,7 @@
             }
         },
         methods:{
-            ...mapActions('Auth',[
+            ...mapActions('Company',[
                 'attemptRegistry',
             ]),
 
@@ -117,7 +117,7 @@
 
     .company-reg-card{
         @include size(900px null);
-        margin: auto;
+        margin: 80px auto;
         .fly-card-content form{
             display: grid;
             grid-template-columns: 1fr 1fr;

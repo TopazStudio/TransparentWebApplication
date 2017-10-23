@@ -127,6 +127,7 @@ trait HandlesCRUD
         //Handle images
         if ($this->fromSettings('hasPicture')){
             if($request->hasFile('image')){
+                //TODO: ability to work with temp images and files.
                 $this->handleImage($request,$model->id);
             } else {
                 $this->defaultImage($model->id);

@@ -11,13 +11,14 @@ namespace App\Services\User;
 
 use App\Util\CRUD\CRUDService;
 use App\Util\CRUD\HandlesCRUD;
+use App\Util\CRUD\HandlesGraphQLCRUD;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class UserService implements CRUDService
 {
-    use HandlesCRUD;
+    use HandlesCRUD,HandlesGraphQLCRUD;
 
     /**
      * Initialize pic-path and pic-type

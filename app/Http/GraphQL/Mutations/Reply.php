@@ -13,7 +13,7 @@ use Nuwave\Lighthouse\Support\Definition\GraphQLMutation;
 
 class Reply extends GraphQLMutation
 {
-    use HandlesGraphQLCRUDRequest,DoesGraphqlResponse;
+    use HandlesGraphQLCRUDRequest;
 
     protected $request;
 

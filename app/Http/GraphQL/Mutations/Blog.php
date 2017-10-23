@@ -13,7 +13,7 @@ use Nuwave\Lighthouse\Support\Definition\GraphQLMutation;
 
 class Blog extends GraphQLMutation
 {
-    use HandlesGraphQLCRUDRequest,DoesGraphqlResponse;
+    use HandlesGraphQLCRUDRequest;
 
     protected $request;
 

@@ -15,7 +15,7 @@ use Nuwave\Lighthouse\Support\Definition\GraphQLMutation;
 
 class Company extends GraphQLMutation
 {
-    use HandlesGraphQLCRUDRequest,DoesGraphqlResponse;
+    use HandlesGraphQLCRUDRequest;
 
     protected $request;
 

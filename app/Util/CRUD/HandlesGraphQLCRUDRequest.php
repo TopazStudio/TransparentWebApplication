@@ -1,71 +1,93 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: erick
- * Date: 10/23/17
- * Time: 2:21 PM
- */
 
 namespace App\Util\CRUD;
 
-
+use Exception;
+use GraphQL\Type\Definition\Type;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 
 trait HandlesGraphQLCRUDRequest
 {
     protected $CRUDService;
 
-    //TODO: make dynamic adding and updating validation rules
-    protected $addValidationRules;
-    protected $updateValidationRules;
-
     /**
      * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\JsonResponse
+     * @return Model
+     * @throws Exception
      */
-    public function gqlAdd(Request $request){
-//        $this->validate($request,$this->addValidationRules);
-
-        if($this->CRUDService->gqlAdd($request)){
-            return $this->CRUDService->info;
+    public function Add(){
+        if($this->CRUDService->gqlAdd($this->request)){
+            return $this->CRUDService->info['Add']['Successful'];
         }else{
-            return $this->CRUDService->errors;
+            throw new Exception(json_encode($this->CRUDService->errors));
         }
     }
 
     /**
      * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\JsonResponse
+     * @return Exception|Model
+     * @throws Exception
      */
-    public function gqlUpdate(Request $request, $id)
-    {
-//        $this->validate($request,$this->updateValidationRules);
-
-        if($this->CRUDService->gqlUpdate($request,$id)){
-            return $this->CRUDService->info;
+    public function Update(){
+        if($this->CRUDService->gqlUpdate($this->request,$this->request->id)){
+            return $this->CRUDService->info['Update']['Successful'];
         }else{
-            return $this->CRUDService->errors;
+            throw new Exception(json_encode($this->CRUDService->errors));
         }
     }
 
     /**
      * Remove the specified resource from storage.
-     *
-     * @param Request $request
-     * @param  int $id
-     * @return \Illuminate\Http\JsonResponse
+     * @return Exception|Model
+     * @throws Exception
      */
-    public function gqlDelete(Request $request,$id){
-        if($this->CRUDService->gqlDelete($request, $id)){
-            return $this->CRUDService->info;
+    public function Delete(){
+        if($this->CRUDService->gqlDelete($this->request,$this->request->id)){
+            return $this->CRUDService->info['Delete']['Successful'];
         }else{
-            return $this->CRUDService->errors;
+            throw new Exception(json_encode($this->CRUDService->errors));
         }
+    }
+
+    /**
+     * Available arguments on mutation.
+     *
+     * @return array
+     */
+    public function args()
+    {
+        return [
+            'type' => [
+                'type' => Type::string()
+            ],
+            'raw' => [
+                'type' => Type::string()
+            ]
+        ];
+    }
+
+    /**
+     * Resolve the mutation.
+     *
+     * @param  mixed $root
+     * @param  array  $args
+     * @return mixed
+     */
+    public function resolve($root, array $args)
+    {
+        $raw = json_decode($args['raw'],true);
+
+        $this->request->merge($raw);
+
+        $fn = $args['type'];
+
+        try{
+            return $this->$fn();
+        }catch (Exception $e){
+            return $e;
+        }
+
     }
 
 }

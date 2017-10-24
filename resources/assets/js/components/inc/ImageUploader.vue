@@ -52,7 +52,7 @@
              * @param file - file object being uploaded.
              * */
             beforeUpload(file) {
-                this.startLoading(this.$refs['avatar-uploader-icon'].$el);
+                this.startLoading(this.$refs['image-uploader-icon'].$el);
 
                 const isJPG = file.type === 'image/jpeg' || file.type === 'image/png';
                 const isLt2M = file.size / 1024 / 1024 < 2;

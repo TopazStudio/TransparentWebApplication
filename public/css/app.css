@@ -9,6 +9,10 @@
   padding: 10px;
 }
 
+.fly-card .fly-card-footer {
+  margin-top: 20px;
+}
+
 html, body {
   background: #b0b3b5 url("../img/hypnotize.png");
   font-family: "Raleway", sans-serif;

@@ -1,6 +1,5 @@
 <template>
     <div style="position: relative;">
-        <p>Just to get a clear view of where you are.</p>
         <div id="locQuery">
             <gmap-autocomplete
                     v-model="address"
@@ -44,8 +43,6 @@
                 center: {lat: 0, lng: 0},
                 zoom: 7,
                 address: '',
-                currentLatitude: '',
-                currentLongitude: '',
                 markerPosition: {lat: 0, lng: 0},
             }
         },
@@ -59,8 +56,7 @@
         methods:{
             setLocation(LatLng,pan){
                 this.markerPosition = LatLng;
-                this.currentLatitude = LatLng.lat;
-                this.currentLongitude = LatLng.lng;
+                this.$emit('location_changed',LatLng);
 
                 if(pan){
                     this.$refs.map.panTo(LatLng);

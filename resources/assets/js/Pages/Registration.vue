@@ -2,9 +2,8 @@
     <main id="registration" class="workspace">
         <el-row type="flex" class="formRow">
             <!--<transition
-                    v-on:enter="enterWorkArea"
-                    v-on:leave="leaveWorkArea"
-                    appear>
+                    v-on:enter="slideUpEnter"
+                    v-on:leave="slideUpLeave">
                 <router-view></router-view>
             </transition>-->
             <router-view></router-view>

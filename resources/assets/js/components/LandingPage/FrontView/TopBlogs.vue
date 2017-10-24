@@ -17,6 +17,7 @@
         position:relative;
         border: 2px solid $brand-accent;
         border-radius: 0px;
+        margin-bottom: 20px;
         .content {
             padding: 10px;
         }

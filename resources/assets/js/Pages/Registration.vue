@@ -13,10 +13,8 @@
 </template>
 <style lang="scss">
     #registration {
-        display: flex;
         .formRow {
-            flex: 1 0;
-            margin: auto;
+            width: 100%;
         }
     }
 </style>

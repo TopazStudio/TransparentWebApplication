@@ -4,5 +4,5 @@
     "env",
     "stage-0"
   ],
-  "plugins": ["transform-runtime"]
+  "plugins": ["transform-runtime","syntax-dynamic-import"]
 }

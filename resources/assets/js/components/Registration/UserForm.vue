@@ -3,6 +3,7 @@
             position: relative;
             width: 100%;
             height: 100%;
+            margin: 80px auto;
         ">
         <el-col :xs="24" :sm="24" :md="12" :lg="12">
             <div class="reg-promotion">

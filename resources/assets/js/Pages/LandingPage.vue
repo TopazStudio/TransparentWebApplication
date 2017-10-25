@@ -1,5 +1,11 @@
 <template>
     <main id="landingPage" class="workspace">
+        <!--<transition-group
+                v-on:enter="slideUpEnter"
+                v-on:leave="slideDownExit">
+            <search-pane :key="1"></search-pane>
+            <front-view :key="2"></front-view>
+        </transition-group>-->
         <search-pane></search-pane>
         <front-view></front-view>
     </main>

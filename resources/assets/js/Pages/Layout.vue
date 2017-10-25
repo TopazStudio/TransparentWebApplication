@@ -1,7 +1,15 @@
 <template>
     <div id="app">
+        <!--NAV-->
         <nav-bar></nav-bar>
-        <router-view></router-view>
+        <!--PAGE-->
+        <transition
+                v-on:enter="slideUpEnter"
+                v-on:leave="slideDownExit">
+            <router-view></router-view>
+        </transition>
+
+         <!--FOOTER-->
         <fly-footer></fly-footer>
     </div>
 </template>

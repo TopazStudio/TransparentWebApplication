@@ -1,13 +1,12 @@
 <template>
     <main id="registration" class="workspace">
         <el-row type="flex" class="formRow">
-            <!--<transition
+            <transition
                     v-on:enter="slideUpEnter"
-                    v-on:leave="slideUpLeave">
+                    v-on:leave="slideDownExit"
+                    appear>
                 <router-view></router-view>
-            </transition>-->
-            <router-view></router-view>
-
+            </transition>
         </el-row>
     </main>
 </template>

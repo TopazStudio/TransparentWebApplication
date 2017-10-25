@@ -1,7 +1,7 @@
 <template>
     <el-menu theme="dark" class="fly-nav"  mode="horizontal">
         <el-menu-item index="1" class="fly-brand">
-            <div class="fly-brand-content">TRANSPARENT</div>
+            <router-link class="fly-brand-content" to="/">TRANSPARENT</router-link>
         </el-menu-item>
         <div class="right-nav">
             <el-dropdown v-if="!Authenticated" trigger="click" class="fly-nav-dropdown">
@@ -104,6 +104,7 @@
                 line-height: 100px;
                 font-size: 40px;
                 z-index: 10;
+                text-decoration: none;
             }
             &:hover{
                 background-color: #000 !important;

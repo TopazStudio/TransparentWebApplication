@@ -68,34 +68,6 @@ Vue.mixin({
                 ease: Power4.easeOut
             });
         },
-        slideUpEnter(el, done) {
-            var tl = new TimelineMax({
-                onComplete: done
-            });
-
-            tl.set(el, {
-                y: window.innerWidth * 1.5,
-                scale: 0.8,
-                transformOrigin: '50% 50%'
-            });
-
-            tl.to(el, 0.5, {
-                y: 0,
-                ease: Power4.easeOut
-            });
-
-            tl.to(el, 1, {
-                scale: 1,
-                ease: Power4.easeOut
-            });
-        },
-        slideUpLeave(el, done) {
-            TweenMax.to(el, 1, {
-                y: window.innerHeight * -1.5,
-                ease: Power4.easeOut,
-                onComplete: done
-            });
-        },
         zoomEnter(el, done) {
             var tl = new TimelineMax({
                 onComplete: done
@@ -200,6 +172,46 @@ Vue.mixin({
                 x: $(el).attr('index') == 1? 0 : +(window.innerWidth * 1.5),
                 ease: Power4.easeOut
             });
+        },
+        slideUpEnter(el, done) {
+            var tl = new TimelineMax({
+                onComplete: done
+            });
+
+            tl.set(el, {
+                y: window.innerWidth * 1.5,
+                scale: 0.5,
+                opacity: 0,
+                transformOrigin: '50% 50%'
+            });
+
+
+            tl.to(el, 0.8, {
+                y: 0,
+                scale: 1,
+                opacity: 1,
+                ease: Power4.easeOut
+            });
+
+
+        },
+        slideDownExit(el, done) {
+            var tl = new TimelineMax({
+                onComplete: done
+            });
+
+            tl.set(el, {
+                transformOrigin: '50% 50%'
+            });
+
+            tl.to(el, 0.2, {
+                y: window.innerWidth * 1.5,
+                scale: 0.5,
+                opacity: 0,
+                ease: Power4.easeOut
+            });
+
+
         },
 
         //Form Utils

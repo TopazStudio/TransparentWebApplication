@@ -6,11 +6,14 @@ use App\Util\CRUD\CRUDable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Nuwave\Lighthouse\Support\Traits\RelayConnection;
+use Sleimanx2\Plastic\Facades\Plastic;
+use Sleimanx2\Plastic\Searchable;
 
 class User extends Authenticatable implements CRUDable
 {
-    use Notifiable,RelayConnection;
+    use Notifiable,RelayConnection,Searchable;
 
+//CRUD
     /**
      * The attributes that are mass assignable.
      *
@@ -47,8 +50,38 @@ class User extends Authenticatable implements CRUDable
         ];
     }
 
-    //RELATIONSHIPS
+//INDEXING
 
+    public $documentIndex =  'users';
+
+    //TODO: make this its own table then create a relationship
+    public static $types = [
+        'normal',
+        'manager',
+        'agent',
+    ];
+
+    public static function index(){
+        if (self::$types)
+            foreach (self::$types as $type){
+                $models = self::where('role','=',$type)->get();
+                if(!empty($models)){
+                    foreach ($models as $model){
+                        $model->documentType = $type;
+                        $model->document()->save();
+                    }
+                }
+            }
+        else{
+            foreach (static::all() as $model){
+                $model->document()->save();
+            }
+        }
+        return true;
+    }
+
+
+//RELATIONSHIPS
     //review
     public function review(){
         return $this->hasOne('App\Model\Review','userId');

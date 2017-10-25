@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: erick
- * Date: 10/3/17
- * Time: 7:29 PM
- */
 
 namespace App\Services\Blog;
 
@@ -13,11 +7,12 @@ use App\Model\CompanyRelatedBlog;
 use App\Model\Taggable;
 use App\Util\CRUD\CRUDService;
 use App\Util\CRUD\HandlesCRUD;
+use App\Util\CRUD\HandlesGraphQLCRUD;
 use Illuminate\Http\Request;
 
 class BlogService implements CRUDService
 {
-    use HandlesCRUD;
+    use HandlesCRUD,HandlesGraphQLCRUD;
 
     public function getModelType()
     {

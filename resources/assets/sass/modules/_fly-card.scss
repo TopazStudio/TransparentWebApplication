@@ -1,0 +1,12 @@
+.fly-card{
+  position:relative;
+  border-bottom-color: darkgrey;
+  border-width: 1px;
+  border-radius: 4px;
+  .fly-card-Content {
+    padding: 10px;
+  }
+  .fly-card-footer{
+    margin-top: 20px;
+  }
+}

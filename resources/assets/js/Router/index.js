@@ -3,6 +3,12 @@ import Router from 'vue-router';
 
 Vue.use(Router);
 
+const LandingPage = () => import(/* webpackChunkName: "landing-page" */'@/Pages/LandingPage.vue');
+const UserForm = () => import(/* webpackChunkName: "registration" */'@/components/Registration/UserForm');
+
+//Imports google maps
+const CompanyForm = () => import(/* webpackChunkName: "registration" */'@/components/Registration/CompanyForm');
+
 export default new Router({
   routes: [
       {
@@ -12,17 +18,27 @@ export default new Router({
       {
           path: '/',
           name: 'landing-page',
-          component: require('@/components/LandingPage.vue')
+          component: LandingPage,
       },
       {
-          path: '/register/company',
-          name: 'company-registration',
-          component: require('@/components/Registration.vue')
-      },
-      {
-          path: '/register/user',
-          name: 'normal-registration',
-          component: require('@/components/Registration.vue')
+          path: '/register',
+          component: require('@/Pages/Registration.vue'),
+          children: [
+              {
+                  path:'',
+                  component: UserForm,
+              },
+              {
+                  path: '/register/user',
+                  name: 'user-registration',
+                  component: UserForm,
+              },
+              {
+                  path: '/register/company',
+                  name: 'company-registration',
+                  component: CompanyForm,
+              }
+          ]
       }
   ],
     mode: 'history'

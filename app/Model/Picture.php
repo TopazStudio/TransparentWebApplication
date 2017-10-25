@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Picture extends Model
 {
+//CRUD
     /**
      * The attributes that are mass assignable.
      *

@@ -32,6 +32,21 @@ Route::group(['prefix'=>'/auth', 'middleware'=>['web']],function () {
 Route::post('/temp/image',[
     'uses' => 'TempController@storeTempPic',
 ]);
+
+Route::group(['prefix'=>'/search', 'middleware'=>['web']],function () {
+    Route::get('/{entity}/index',[
+        'uses'=>'SearchController@index'
+    ]);
+
+    Route::post('/{entity}/complex',[
+        'uses'=>'SearchController@complex'
+    ]);
+
+    Route::get('/{entity}/simple/{term}',[
+        'uses'=>'SearchController@simple'
+    ]);
+
+});
 //\App\Util\CRUD\RouteUtils::dynamicAddRoutes('/user','Blog\BlogController',['auth.jwt']);
 \App\Util\CRUD\RouteUtils::dynamicAddRoutes('/blog','Blog\BlogController',['auth.jwt']);
 \App\Util\CRUD\RouteUtils::dynamicAddRoutes('/topic','Topic\TopicController',['auth.jwt']);

@@ -4,13 +4,13 @@ namespace App\Model;
 
 use App\Util\CRUD\CRUDable;
 use Illuminate\Database\Eloquent\Model;
-use Nuwave\Lighthouse\Support\Traits\RelayConnection;
-
+use Sleimanx2\Plastic\Searchable;
 
 class Comment extends Model implements CRUDable
 {
-    use RelayConnection;
+    use Searchable;
 
+//CRUD
     protected $fillable = [
         'content',
         'likes',
@@ -40,8 +40,32 @@ class Comment extends Model implements CRUDable
         ];
     }
 
-    //RELATIONSHIPS
+//INDEXING
 
+    public $documentIndex =  'comments';
+
+    public static $types = null;
+
+    public static function index(){
+        if (self::$types)
+            foreach (self::$types as $type){
+                $models = self::where('type','=',$type)->get();
+                if(!empty($models)){
+                    foreach ($models as $model){
+                        $model->documentType = $type;
+                        $model->document()->save();
+                    }
+                }
+            }
+        else{
+            foreach (static::all() as $model){
+                $model->document()->save();
+            }
+        }
+        return true;
+    }
+
+//RELATIONSHIPS
     //User
     public function user(){
         return $this->belongsTo('App\Model\User','userId');

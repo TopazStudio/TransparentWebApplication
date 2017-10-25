@@ -68,37 +68,6 @@ Vue.mixin({
                 ease: Power4.easeOut
             });
         },
-        twoPartSlideLeft(el, done, id){
-            let tl = new TimelineMax({
-                onComplete: done
-            });
-
-            tl.set(el, {
-                transformOrigin: '50% 50%',
-                x: $(el).attr('index') == 2? +(window.innerWidth * 1.5) : 0,
-                'z-index': $(el).attr('index') == 2? 10 : 0
-            });
-
-            tl.to(el, 0.5, {
-                x: $(el).attr('index') == 2? 0 : -(window.innerWidth * 1.5),
-                ease: Power4.easeOut
-            });
-        },
-        twoPartSlideRight(el, done, id){
-            let tl = new TimelineMax({
-                onComplete: done
-            });
-
-            tl.set(el, {
-                transformOrigin: '50% 50%',
-                x: $(el).attr('index') == 1? -(window.innerWidth * 1.5) : 0,
-            });
-
-            tl.to(el, 0.5, {
-                x: $(el).attr('index') == 1? 0 : +(window.innerWidth * 1.5),
-                ease: Power4.easeOut
-            });
-        },
         slideUpEnter(el, done) {
             var tl = new TimelineMax({
                 onComplete: done
@@ -200,6 +169,39 @@ Vue.mixin({
             });
         },
 
+        //CUSTOM TRANSITIONS
+        twoPartSlideLeft(el, done, id){
+            let tl = new TimelineMax({
+                onComplete: done
+            });
+
+            tl.set(el, {
+                transformOrigin: '50% 50%',
+                x: $(el).attr('index') == 2? +(window.innerWidth * 1.5) : 0,
+                'z-index': $(el).attr('index') == 2? 10 : 0
+            });
+
+            tl.to(el, 0.5, {
+                x: $(el).attr('index') == 2? 0 : -(window.innerWidth * 1.5),
+                ease: Power4.easeOut
+            });
+        },
+        twoPartSlideRight(el, done, id){
+            let tl = new TimelineMax({
+                onComplete: done
+            });
+
+            tl.set(el, {
+                transformOrigin: '50% 50%',
+                x: $(el).attr('index') == 1? -(window.innerWidth * 1.5) : 0,
+            });
+
+            tl.to(el, 0.5, {
+                x: $(el).attr('index') == 1? 0 : +(window.innerWidth * 1.5),
+                ease: Power4.easeOut
+            });
+        },
+
         //Form Utils
         notifyError(error,excuse){
             if (error.response){
@@ -211,7 +213,7 @@ Vue.mixin({
             }else {
                 this.$notify.error({
                         title: 'AN ERROR OCCURED',
-                        message: excuse,
+                        message: excuse? excuse : error.toString(),
                         duration: 0
                 });
             }

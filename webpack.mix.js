@@ -38,6 +38,9 @@ mix.js('resources/assets/js/app.js', 'public/js')
                 'img': path.resolve(__dirname, './resources/assets/img'),
                 'sass': path.resolve(__dirname, './resources/assets/sass'),
             }
+        },
+        output: {
+            publicPath: '/'
         }
 
     })

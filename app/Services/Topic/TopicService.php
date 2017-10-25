@@ -12,11 +12,12 @@ use App\Model\CompanyRelatedTopic;
 use App\Model\Taggable;
 use App\Util\CRUD\CRUDService;
 use App\Util\CRUD\HandlesCRUD;
+use App\Util\CRUD\HandlesGraphQLCRUD;
 use Illuminate\Http\Request;
 
 class TopicService implements CRUDService
 {
-    use HandlesCRUD;
+    use HandlesCRUD,HandlesGraphQLCRUD;
 
     public function getModelType()
     {

@@ -51,10 +51,10 @@
                 'logout',
             ]),
             normalRegistration(){
-                this.$router.replace({path: '/register/user'});
+                this.$router.push({path: '/register/user'});
             },
             companyRegistration(){
-                this.$router.replace({path: '/register/company'});
+                this.$router.push({path: '/register/company'});
             },
             handleCommand(command){
                 this.executeFunctionByName(command,this);
@@ -87,6 +87,7 @@
         background-color: $fly-navbar-color;
         transition: 1s all ease-out;
         z-index: 1;
+        border-bottom: 1px solid black;
         .el-menu-item{
             height: $fly-navbar-height;
             line-height: $fly-navbar-height;
@@ -119,6 +120,7 @@
             }
         }
         .right-nav{
+            @include position(relative,0 20px 0 0);
             float: right;
             display: flex;
             @include size(null 100%);

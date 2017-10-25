@@ -11,6 +11,7 @@ namespace App\Services\Company;
 
 use App\Model\Document;
 use App\Util\CRUD\HandlesCRUD;
+use App\Util\CRUD\HandlesGraphQLCRUD;
 use Illuminate\Http\Request;
 use Storage;
 

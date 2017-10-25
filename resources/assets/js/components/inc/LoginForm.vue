@@ -40,7 +40,6 @@
         },
         methods:{
             ...mapActions('Auth',[
-                'storeAuth',
                 'attemptLogin'
             ]),
             async login(){

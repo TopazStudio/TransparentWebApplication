@@ -4,10 +4,13 @@ namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Util\CRUD\CRUDable;
+use Sleimanx2\Plastic\Searchable;
 
 
 class Topic extends Model implements CRUDable
 {
+    use Searchable;
+//CRUD
     protected $fillable = [
         'name',
         'description',
@@ -37,8 +40,33 @@ class Topic extends Model implements CRUDable
         ];
     }
 
-    //RELATIONSHIP
+//INDEXING
 
+    public $documentIndex =  'topics';
+
+    public static $types = null;
+
+    public static function index(){
+        if (self::$types)
+            foreach (self::$types as $type){
+                $models = self::where('type','=',$type)->get();
+                if(!empty($models)){
+                    foreach ($models as $model){
+                        $model->documentType = $type;
+                        $model->document()->save();
+                    }
+                }
+            }
+        else{
+            foreach (static::all() as $model){
+                $model->document()->save();
+            }
+        }
+        return true;
+    }
+
+
+//RELATIONSHIP
     //user
     public function owner(){
         return $this->belongsTo('App\Model\User','ownerId');

@@ -27,9 +27,28 @@ const vuexCookiePersistence = new VuexPersist({
     modules: ['Auth'],
 });
 
-export default new Vuex.Store({
+/**
+ * Vuex Store
+ * */
+let store = new Vuex.Store({
   modules,
   strict: process.env.NODE_ENV !== 'production',
   plugins: [vuexCookiePersistence.plugin]
-})
+});
+
+/**
+ * lazy load modules
+ * */
+/*require.context('.', false, /\.js$/).keys().forEach(key => {
+    console.log(key);
+
+    if (key === './modules/index.js') return;
+
+    import(key).then(m => {
+        store.registerModule(key.replace(/(\.\/|\.js|modules)/g, ''), m)
+    });
+
+});*/
+
+export default store;
 

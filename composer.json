@@ -9,12 +9,13 @@
         "fideloper/proxy": "~3.3",
         "laravel/framework": "5.5.*",
         "laravel/tinker": "~1.0",
+        "nuwave/lighthouse": "^1.0",
         "pda/pheanstalk": "^3.1",
         "predis/predis": "^1.1",
         "simplepie/simplepie": "1.4.*",
+        "sleimanx2/plastic": "^0.5.0",
         "tymon/jwt-auth": "^0.5.12",
         "webonyx/graphql-php": "^0.9",
-        "nuwave/lighthouse": "^1.0",
         "willvincent/feeds": "1.1.*"
     },
     "require-dev": {

@@ -170,6 +170,8 @@ return [
         willvincent\Feeds\FeedsServiceProvider::class,
         Tymon\JWTAuth\Providers\JWTAuthServiceProvider::class,
         Nuwave\Lighthouse\LaravelServiceProvider::class,
+//        Elasticquent\ElasticquentServiceProvider::class,
+        Sleimanx2\Plastic\PlasticServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -233,6 +235,7 @@ return [
         'JWTAuth' => Tymon\JWTAuth\Facades\JWTAuth::class,
         'JWTFactory' => Tymon\JWTAuth\Facades\JWTFactory::class,
         'GraphQL' => Nuwave\Lighthouse\Support\Facades\GraphQLFacade::class,
+//        'Es' => Elasticquent\ElasticquentElasticsearchFacade::class,
     ],
 
 ];

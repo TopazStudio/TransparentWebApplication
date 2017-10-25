@@ -1,5 +1,5 @@
 import {networkInterface,apolloClient} from "@/Apollo/index";
-import {LOGIN_VIEWER_QUERY} from '@/Apollo/constants';
+import {LOGIN_VIEWER_QUERY} from '@/Apollo/queries';
 
 const state = {
     Token: '',
@@ -49,7 +49,7 @@ const actions = {
                                 query: LOGIN_VIEWER_QUERY,
                                 variables: form,
                             });
-        await dispatch('storeAuth',response.data.viewerLogin);
+        await dispatch('storeAuth',response.data.login);
     },
     async attemptRegistry({dispatch},form){
         //TODO: allow registration to return a token instead of doing to steps when registering

@@ -4,9 +4,13 @@ namespace App\Model;
 
 use App\Util\CRUD\CRUDable;
 use Illuminate\Database\Eloquent\Model;
+use Sleimanx2\Plastic\Searchable;
 
-class
-Tag extends Model implements CRUDable{
+class Tag extends Model implements CRUDable{
+
+    use Searchable;
+
+//CRUD
     //TODO:avoid orphaning of tags
     protected $fillable = [
         'name'
@@ -24,6 +28,20 @@ Tag extends Model implements CRUDable{
             'parentRel' => []
         ];
     }
+
+//INDEXING
+
+    public $documentIndex =  'tags';
+
+    public static $types = null;
+
+    public static function index(){
+        foreach (static::all() as $model){
+            $model->document()->save();
+        }
+        return true;
+    }
+
 //RELATIONSHIPS
     //topics
     public function topics()

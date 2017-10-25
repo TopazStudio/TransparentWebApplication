@@ -8,22 +8,12 @@ use Nuwave\Lighthouse\Support\Definition\GraphQLType;
 
 class Paginator extends GraphQLType
 {
-    /**
-     * Attributes of type.
-     *
-     * @var array
-     */
-    protected $attributes = [
-        'name' => 'paginator',
-        'description' => 'Retrieve paginated data'
-    ];
+    protected $paginatedType;
 
-    /**
-     * Type of the items being paginated.
-     *
-     * @var array
-     */
-    protected $type = 'comment';
+    protected $attributes = [
+            'name' => 'paginator',
+            'description' => 'Paginate types'
+        ];
 
     /**
      * Type fields.
@@ -67,7 +57,17 @@ class Paginator extends GraphQLType
         ];
     }
 
+    /**
+     * Get the type of items being paginated.
+     *
+     */
     protected function itemsType(){
-        return Type::listOf(GraphQL::type($this->type));
+        return Type::listOf(GraphQL::type($this->paginatedType));
+    }
+
+    public static function WithType($type){
+        $instance = new static;
+        $instance->paginatedType = $type;
+        return $instance;
     }
 }

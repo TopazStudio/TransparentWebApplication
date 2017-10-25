@@ -4,9 +4,13 @@ namespace App\Model;
 
 use App\Util\CRUD\CRUDable;
 use Illuminate\Database\Eloquent\Model;
+use Sleimanx2\Plastic\Searchable;
 
 class Company extends Model implements CRUDable
 {
+    use Searchable;
+//CRUD
+
     protected $fillable = [
         'name',
         'businessNo',
@@ -31,6 +35,31 @@ class Company extends Model implements CRUDable
         ];
     }
 
+//INDEXING
+
+    public $documentIndex =  'companies';
+
+    public static $types = null;
+
+    public static function index(){
+        if (self::$types)
+            foreach (self::$types as $type){
+                $models = self::where('type','=',$type)->get();
+                if(!empty($models)){
+                    foreach ($models as $model){
+                        $model->documentType = $type;
+                        $model->document()->save();
+                    }
+                }
+            }
+        else{
+            foreach (static::all() as $model){
+                $model->document()->save();
+            }
+        }
+        return true;
+    }
+
 //RELATIONSHIPS
 
     //review
@@ -40,7 +69,7 @@ class Company extends Model implements CRUDable
 
     //picture
     public function pictures(){
-        return $this->morphMany('App\Model\Picture','pic');
+        return $this->morphMany('App\Model\Picture','picturable');
     }
 
     //document

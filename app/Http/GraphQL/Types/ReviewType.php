@@ -42,6 +42,10 @@ class ReviewType extends GraphQLType implements RelayType
     public function fields()
     {
         return [
+            'id' => [
+                'type' => Type::int(),
+                'description' => 'Id of the review.',
+            ],
             'content' => [
                 'type' => Type::string(),
                 'description' => 'Review content.',

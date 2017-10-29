@@ -3,8 +3,10 @@ import Router from 'vue-router';
 
 Vue.use(Router);
 
-const LandingPage = () => import(/* webpackChunkName: "landing-page" */'@/Pages/LandingPage.vue');
 const UserForm = () => import(/* webpackChunkName: "registration" */'@/components/Registration/UserForm');
+const LandingPage = () => import(/* webpackChunkName: "landing-page" */'@/Pages/LandingPage.vue');
+const CompanyPage = () => import(/* webpackChunkName: "companypage" */'@/Pages/CompanyPage');
+const ReviewPage = () => import(/* webpackChunkName: "reviewpage" */'@/Pages/ReviewPage');
 
 //Imports google maps
 const CompanyForm = () => import(/* webpackChunkName: "registration" */'@/components/Registration/CompanyForm');
@@ -39,7 +41,17 @@ export default new Router({
                   component: CompanyForm,
               }
           ]
-      }
+      },
+      {
+          path: '/company/:companyId',
+          name: 'company-page',
+          component: CompanyPage,
+      },
+      {
+          path: '/company/:companyId/review',
+          name: 'review-page',
+          component: ReviewPage,
+      },
   ],
     mode: 'history'
 })

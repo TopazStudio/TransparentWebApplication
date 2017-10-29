@@ -42,6 +42,10 @@ class ReplyType extends GraphQLType implements RelayType
     public function fields()
     {
         return [
+            'id' => [
+                'type' => Type::int(),
+                'description' => 'Id of the reply.',
+            ],
             'content' => [
                 'type' => Type::string(),
                 'description' => 'Reply content.',

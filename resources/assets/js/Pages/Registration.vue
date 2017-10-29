@@ -1,5 +1,5 @@
 <template>
-    <main id="registration" class="workspace">
+    <main id="registration" class="page">
         <el-row type="flex" class="formRow">
             <transition
                     v-on:enter="slideUpEnter"
@@ -11,9 +11,5 @@
     </main>
 </template>
 <style lang="scss">
-    #registration {
-        .formRow {
-            width: 100%;
-        }
-    }
+
 </style>

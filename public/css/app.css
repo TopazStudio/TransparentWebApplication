@@ -13,6 +13,12 @@
   margin-top: 20px;
 }
 
+.fly-info-Card {
+  border: 2px solid rgba(24, 0, 255, 0.41);
+  border-radius: 0px;
+  margin-bottom: 20px;
+}
+
 html {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
@@ -43,9 +49,22 @@ html, body {
   left: 0;
 }
 
-/*.workspace{
-  @include position(absolute,$fly-navbar-height 0 0 0);
-}*/
+.page {
+  width: 100%;
+}
+
+.fly-twoPane-view {
+  position: relative;
+  padding: 40px 80px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.fly-twoPane-view .el-col {
+  padding: 0 10px;
+}
+
 .clearfix:before,
 .clearfix:after {
   display: table;

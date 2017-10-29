@@ -42,6 +42,10 @@ class BlogType extends GraphQLType implements RelayType
     public function fields()
     {
         return [
+            'id' => [
+                'type' => Type::int(),
+                'description' => 'Id of the Blog.',
+            ],
             'url' => [
                 'type' => Type::string(),
                 'description' => 'Blog url.',

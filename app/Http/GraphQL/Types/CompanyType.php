@@ -42,6 +42,10 @@ class CompanyType extends GraphQLType implements RelayType
     public function fields()
     {
         return [
+            'id' => [
+                'type' => Type::int(),
+                'description' => 'Id of the company.',
+            ],
             'name' => [
                 'type' => Type::string(),
             ],

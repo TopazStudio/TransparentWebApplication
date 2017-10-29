@@ -24,7 +24,7 @@ const vuexCookiePersistence = new VuexPersist({
     saveState: (key, state, storage) => Cookies.set(key, state, {
         expires: 3
     }),
-    modules: ['Auth'],
+    modules: ['Auth','Company','User'],
 });
 
 /**

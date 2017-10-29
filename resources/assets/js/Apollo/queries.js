@@ -2,7 +2,8 @@ import gql from 'graphql-tag';
 
 export const GET_USER_QUERY = gql`
 query GET_USER_QUERY($id: Int) {
-  viewer(id: $id) {
+  user(id: $id) {
+    id
     name
     role
     email
@@ -13,11 +14,26 @@ query GET_USER_QUERY($id: Int) {
 }`
 ;
 
+export const GET_USER_REVIEWS = gql`
+query GET_USER_REVIEWS {
+  viewer {
+    review{
+      id
+      content
+      company{
+        id 
+      }
+    }
+  }
+}`
+;
+
 export const LOGIN_VIEWER_QUERY = gql`
 query LOGIN_VIEWER_QUERY($email: String,$password: String) {
   login(email: $email,password: $password) {
     token
     user{
+      id
       name
       email
       role
@@ -69,3 +85,40 @@ export function RESULTS_WANTED_OF(type) {
 
 }
 
+export const GET_COMPANY = gql(`
+query GET_COMPANY($id: Int) {
+    company(id: $id) {
+        id
+        name
+        businessNo
+        description
+        latitude
+        longitude
+        pictures{
+            location
+        }    
+        reviews{
+            content
+            user{
+                id
+                name
+            }
+        }    
+    }
+}
+`);
+
+export const GET_REVIEWS = gql(`
+query GET_COMPANY($id: Int) {
+  company(id: $id) {
+    id
+    reviews{
+        content
+        user{
+            id
+            name
+        }
+    }    
+  }
+}
+`);

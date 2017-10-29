@@ -14,9 +14,19 @@
     </div>
 </template>
 <script>
+    import { mapActions } from 'vuex';
     import NavBar from '../components/inc/NavBar.vue';
     import Footer from '../components/inc/Footer.vue';
+
     export default {
+        created(){
+            this.setAuthorizationHeader();
+        },
+        methods:{
+            ...mapActions('Auth',[
+                'setAuthorizationHeader',
+            ]),
+        },
         components:{
             NavBar,
             "fly-footer":Footer

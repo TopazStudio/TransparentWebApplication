@@ -1,5 +1,5 @@
 <template>
-    <main id="landingPage" class="workspace">
+    <main id="landingPage">
         <!--<transition-group
                 v-on:enter="slideUpEnter"
                 v-on:leave="slideDownExit">

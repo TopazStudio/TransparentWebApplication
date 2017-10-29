@@ -1,5 +1,6 @@
 <template>
     <el-upload
+            ref="image-uploader"
             name="tempImage"
             class="image-uploader"
             action="http://laravel.dev/api/temp/image"
@@ -8,7 +9,7 @@
             :on-success="handleSuccess"
             :before-upload="beforeUpload">
         <img v-if="tempImageUrl" :src="tempImageUrl" class="image-preview">
-        <i ref="image-uploader-icon" class="el-icon-plus image-uploader-icon" v-else></i>
+        <i class="el-icon-plus image-uploader-icon" v-else></i>
         <div slot="tip" class="el-upload__tip">jpg/png files with a size less than 2mb</div>
     </el-upload>
 </template>
@@ -52,7 +53,7 @@
              * @param file - file object being uploaded.
              * */
             beforeUpload(file) {
-                this.startLoading(this.$refs['image-uploader-icon'].$el);
+                this.startLoading(this.$refs['image-uploader'].$el);
 
                 const isJPG = file.type === 'image/jpeg' || file.type === 'image/png';
                 const isLt2M = file.size / 1024 / 1024 < 2;
@@ -81,6 +82,7 @@
         border-color: #20a0ff;
     }
     .image-uploader-icon {
+        position: relative;
         font-size: 28px;
         color: #8c939d;
         width: 200px;

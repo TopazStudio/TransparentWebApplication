@@ -42,6 +42,10 @@ class TopicType extends GraphQLType implements RelayType
     public function fields()
     {
         return [
+            'id' => [
+                'type' => Type::int(),
+                'description' => 'Id of the topic.',
+            ],
             'name' => [
                 'type' => Type::string(),
                 'description' => 'Name of the topic.',

@@ -19,6 +19,8 @@ GraphQL::schema()->group(['namespace' => 'App\\Http\\GraphQL'], function (){
     //QUERIES
     GraphQL::schema()->query('viewer', 'Queries\\ViewerQuery');
     GraphQL::schema()->query('search', 'Queries\\SearchQuery');
+    GraphQL::schema()->query('company', 'Queries\\Company');
+    GraphQL::schema()->query('user', 'Queries\\User');
 
     //TODO: make login a mutation
     GraphQL::schema()->query('login', 'Queries\\ViewerLogin');

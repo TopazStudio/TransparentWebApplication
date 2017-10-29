@@ -40,6 +40,7 @@ trait HandlesCRUD
         foreach ($this->fromSettings('parentRel') as $key => $value){
             //If request has the parent relationship get it from there
             if ($request->has($key)){
+                //TODO: check on dynamic calling of request attribute
                 $model->where($key,'=',$request->{$key});
             }else{
                 $model->where($key,'=',$value);
@@ -68,6 +69,7 @@ trait HandlesCRUD
         foreach ($this->fromSettings('relationships') as $key => $value) {
             //1. Look in request
             if ($request->has($key)){
+                //TODO: check on dynamic calling of request attribute
                 $rels[$key] = $request->{$key};
                 continue;
             }

@@ -45,6 +45,10 @@ class UserType extends GraphQLType implements RelayType
     public function fields()
     {
         return [
+            'id' => [
+                'type' => Type::int(),
+                'description' => 'Id of the user.',
+            ],
             'name' => [
                 'type' => Type::string(),
                 'description' => 'Name of the user.',

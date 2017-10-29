@@ -43,6 +43,8 @@
         computed:{
             ...mapState('Auth',[
                 'Authenticated',
+            ]),
+            ...mapState('User',[
                 'User'
             ])
         },
@@ -97,7 +99,7 @@
         .fly-brand{
             background-color: $brand-primary;
             color: white;
-            position: relative;
+            position: absolute;
             height: 100px;
             .fly-brand-content{
                 font-family: monoton,sans-serif;

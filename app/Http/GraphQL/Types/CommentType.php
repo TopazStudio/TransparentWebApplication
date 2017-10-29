@@ -43,6 +43,10 @@ class CommentType extends GraphQLType implements RelayType
     public function fields()
     {
         return [
+            'id' => [
+                'type' => Type::int(),
+                'description' => 'Id of the comment.',
+            ],
             'content' => [
                 'type' => Type::string(),
                 'description' => 'Comment content.',

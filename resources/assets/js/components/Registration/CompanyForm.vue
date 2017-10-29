@@ -101,9 +101,9 @@
                 this.validateForm(this.$refs.companyRegForm)
                     .then(()=>{
                         this.attemptRegistry(this.form)
-                            .then(()=>{
+                            .then(({id})=>{
                                 this.stopLoading();
-                                this.$router.replace({ path: 'landing-page' });
+                                this.$router.replace({ name: 'company-page', params: { id } });
                             })
                             .catch((error)=>{
                                 this.cancel();
@@ -134,6 +134,7 @@
         @include size(900px null);
         margin: 80px auto;
         .fly-card-content form{
+            position: relative;
             display: grid;
             grid-template-columns: 1fr 1fr;
             grid-gap: 20px;

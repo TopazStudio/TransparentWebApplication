@@ -42,6 +42,10 @@ class PictureType extends GraphQLType implements RelayType
     public function fields()
     {
         return [
+            'id' => [
+                'type' => Type::int(),
+                'description' => 'Id of the picture.',
+            ],
             'location' => [
                 'type' => Type::string(),
             ],

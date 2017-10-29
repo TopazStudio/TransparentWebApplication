@@ -49,7 +49,8 @@
                         this.attemptLogin(this.form)
                             .then(()=>{
                                 this.stopLoading();
-                                this.$router.replace({ path: 'landing-page' });
+                                //TODO: reload once logged in.
+                                this.$router.push({ path: this.$route.path });
                             })
                             .catch((error)=>{
                                 this.cancel();

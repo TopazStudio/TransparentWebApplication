@@ -42,6 +42,10 @@ class DocumentType extends GraphQLType implements RelayType
     public function fields()
     {
         return [
+            'id' => [
+                'type' => Type::int(),
+                'description' => 'Id of the document.',
+            ],
             'location' => [
                 'type' => Type::string(),
             ],

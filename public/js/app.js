@@ -13690,7 +13690,7 @@ var GET_COMPANY = exports.GET_COMPANY = (0, _graphqlTag2.default)('\nquery GET_C
 
 var GET_COMPANY_REVIEWS = exports.GET_COMPANY_REVIEWS = (0, _graphqlTag2.default)('\nquery GET_COMPANY($id: Int) {\n  company(id: $id) {\n    id\n    reviews{\n        content\n        user{\n            id\n            name\n        }\n    }    \n  }\n}\n');
 
-var GET_COMPANY_DOCUMENTS = exports.GET_COMPANY_DOCUMENTS = (0, _graphqlTag2.default)('\nquery GET_COMPANY_DOCUMENTS($id: Int){\n  company(id: $id){\n    id\n    documents{\n      id\n      name\n      description\n      type\n      size\n    }\n  }\n}\n');
+var GET_COMPANY_DOCUMENTS = exports.GET_COMPANY_DOCUMENTS = (0, _graphqlTag2.default)('\nquery GET_COMPANY_DOCUMENTS($id: Int){\n  company(id: $id){\n    id\n    documents{\n      id\n      name\n      location\n      description\n      type\n      size\n    }\n  }\n}\n');
 
 /***/ }),
 /* 54 */

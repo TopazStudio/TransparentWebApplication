@@ -135,6 +135,7 @@ query GET_COMPANY_DOCUMENTS($id: Int){
     documents{
       id
       name
+      location
       description
       type
       size

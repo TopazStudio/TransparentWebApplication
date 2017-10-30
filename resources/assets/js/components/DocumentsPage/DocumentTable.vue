@@ -83,8 +83,13 @@
             ]),
         },
         methods:{
+            getViewerSrc(docLoc){
+                return '/Util/ViewerJS/#../../storage/' + docLoc;
+            },
             handleCurrentChange(currentRow, oldCurrentRow){
                 this.currentRow = currentRow;
+                //redirect
+                window.location.assign(this.getViewerSrc(currentRow.location));
             },
             onTagType(scope){
                 if (scope.row.tag === 'new'){

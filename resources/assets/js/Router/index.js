@@ -7,6 +7,7 @@ const UserForm = () => import(/* webpackChunkName: "registration" */'@/component
 const LandingPage = () => import(/* webpackChunkName: "landing-page" */'@/Pages/LandingPage.vue');
 const CompanyPage = () => import(/* webpackChunkName: "companypage" */'@/Pages/CompanyPage');
 const ReviewPage = () => import(/* webpackChunkName: "reviewpage" */'@/Pages/ReviewPage');
+const DocumentsPage = () => import(/* webpackChunkName: "documentsPage" */'@/Pages/DocumentsPage');
 
 //Imports google maps
 const CompanyForm = () => import(/* webpackChunkName: "registration" */'@/components/Registration/CompanyForm');
@@ -51,6 +52,11 @@ export default new Router({
           path: '/company/:companyId/review',
           name: 'review-page',
           component: ReviewPage,
+      },
+      {
+          path: '/company/:companyId/documents',
+          name: 'documents-page',
+          component: DocumentsPage,
       },
   ],
     mode: 'history'

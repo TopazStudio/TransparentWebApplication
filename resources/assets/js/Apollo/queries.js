@@ -1,5 +1,6 @@
 import gql from 'graphql-tag';
 
+//################## USER/VIEWER #####################//
 export const GET_USER_QUERY = gql`
 query GET_USER_QUERY($id: Int) {
   user(id: $id) {
@@ -44,7 +45,10 @@ query LOGIN_VIEWER_QUERY($email: String,$password: String) {
   }
 }
 `;
+//######################################################//
 
+
+//###################  SEARCH  #########################//
 /**
  * Return predefined set of attributes of the type, being searched,
  * that are needed in the result list.
@@ -82,9 +86,10 @@ export function RESULTS_WANTED_OF(type) {
             break;
 
     }
-
 }
+//######################################################//
 
+//###################  COMPANY  ########################//
 export const GET_COMPANY = gql(`
 query GET_COMPANY($id: Int) {
     company(id: $id) {
@@ -108,7 +113,7 @@ query GET_COMPANY($id: Int) {
 }
 `);
 
-export const GET_REVIEWS = gql(`
+export const GET_COMPANY_REVIEWS = gql(`
 query GET_COMPANY($id: Int) {
   company(id: $id) {
     id
@@ -122,3 +127,19 @@ query GET_COMPANY($id: Int) {
   }
 }
 `);
+
+export const GET_COMPANY_DOCUMENTS = gql(`
+query GET_COMPANY_DOCUMENTS($id: Int){
+  company(id: $id){
+    id
+    documents{
+      id
+      name
+      description
+      type
+      size
+    }
+  }
+}
+`);
+//######################################################//

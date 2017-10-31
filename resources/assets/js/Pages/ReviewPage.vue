@@ -52,6 +52,19 @@
                         if (el) return el.company.id === this.company.id;
                     });
                 }
+            },
+            /**
+             * Get id of company supposed to be fetched. If none is
+             * found then its a 404.
+             *
+             * */
+            companyId(){
+                try{
+                    return this.$route.params.companyId;
+                }catch (e){
+                    this.notifyError(e);
+                    this.$router.push('/404');
+                }
             }
         },
         components:{
@@ -67,21 +80,15 @@
             ...mapActions('User',[
                 'fetchReviews',
             ]),
-            getCompany(id){
-                let companyId = null;
-
-                if(id) companyId = id;
-                else {
-                    try{
-                        companyId = this.$route.params.companyId;
-                    }catch (e){
-                        this.$router.push('/404');
-                    }
-                }
-
+            /**
+             * Fetch the company requested for viewing if
+             * it wasn't already fetched.
+             *
+             * */
+            getCompany(){
                 try{
-                    if(!(this.company.id === companyId))
-                        this.fetchCompany(companyId);
+                    if(this.company.id !== this.companyId)
+                        this.fetchCompany(this.companyId);
                 }catch (e){
                     this.notifyError(e);
                     this.$router.push('/404');

@@ -42668,6 +42668,10 @@ var _SearchService2 = _interopRequireDefault(_SearchService);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+var state = {
+    Results: ''
+};
+
 var actions = {
     searchOnType: function searchOnType(_ref, _ref2) {
         var _this = this;
@@ -42710,6 +42714,7 @@ var actions = {
 
 exports.default = {
     namespaced: true,
+    state: state,
     actions: actions
 };
 

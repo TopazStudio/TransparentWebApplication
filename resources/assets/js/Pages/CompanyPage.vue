@@ -56,10 +56,10 @@
              * it wasn't already fetched.
              *
              * */
-            async getCompany(id){
+            getCompany(){
                 try{
-                    if(this.company.id !== id ? id : this.companyId)
-                        this.fetchCompany(companyId);
+                    if(this.company.id !== this.companyId)
+                        this.fetchCompany(this.companyId);
                 }catch (e){
                     this.notifyError(e);
                     this.$router.push('/404');

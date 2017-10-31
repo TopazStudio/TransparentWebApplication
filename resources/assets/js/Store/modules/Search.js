@@ -1,5 +1,9 @@
 import SearchService from '@/Services/SearchService';
 
+const state = {
+    Results: ''
+};
+
 const actions = {
     async searchOnType({commit},{queryString,searchType,cb}){
         let results = await SearchService.search(queryString, searchType);
@@ -19,5 +23,6 @@ const actions = {
 
 export default {
     namespaced: true,
+    state,
     actions
 }

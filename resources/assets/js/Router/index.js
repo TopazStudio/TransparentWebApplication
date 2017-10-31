@@ -7,17 +7,14 @@ const UserForm = () => import(/* webpackChunkName: "registration" */'@/component
 const LandingPage = () => import(/* webpackChunkName: "landing-page" */'@/Pages/LandingPage.vue');
 const CompanyPage = () => import(/* webpackChunkName: "companypage" */'@/Pages/CompanyPage');
 const ReviewPage = () => import(/* webpackChunkName: "reviewpage" */'@/Pages/ReviewPage');
-const DocumentsPage = () => import(/* webpackChunkName: "documentsPage" */'@/Pages/DocumentsPage');
+const DocumentsPage = () => import(/* webpackChunkName: "documentspage" */'@/Pages/DocumentsPage');
+const NotFoundPage = () => import(/* webpackChunkName: "notfoundpage" */'@/Pages/NotFoundPage.vue');
 
 //Imports google maps
 const CompanyForm = () => import(/* webpackChunkName: "registration" */'@/components/Registration/CompanyForm');
 
 export default new Router({
   routes: [
-      {
-          path: '*',
-          redirect: '/'
-      },
       {
           path: '/',
           name: 'landing-page',
@@ -57,6 +54,17 @@ export default new Router({
           path: '/company/:companyId/documents',
           name: 'documents-page',
           component: DocumentsPage,
+      },
+
+      //404s
+      {
+          path: '/404',
+          name: 'notFound-page',
+          component: NotFoundPage,
+      },
+      {
+          path: '*',
+          component: NotFoundPage,
       },
   ],
     mode: 'history'

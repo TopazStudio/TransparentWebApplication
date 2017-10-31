@@ -29,7 +29,7 @@
 /******/
 /******/ 	// objects to store loaded and loading chunks
 /******/ 	var installedChunks = {
-/******/ 		6: 0
+/******/ 		7: 0
 /******/ 	};
 /******/
 /******/ 	// The require function
@@ -13673,13 +13673,13 @@ var LOGIN_VIEWER_QUERY = exports.LOGIN_VIEWER_QUERY = (0, _graphqlTag2.default)(
 function RESULTS_WANTED_OF(type) {
     switch (type) {
         case 'company':
-            return '\n                    name\n                    description\n                    pictures{\n                        location\n                    }\n                ';
+            return '\n                    id\n                    name\n                    description\n                    pictures{\n                        location\n                    }\n                ';
             break;
         case 'document':
-            return '\n                    name\n                    location\n                    description\n                ';
+            return '\n                    id\n                    name\n                    location\n                    description\n                ';
             break;
         case 'topic':
-            return '\n                    name\n                    description\n                    tags{\n                        name\n                    }\n                ';
+            return '\n                    id\n                    name\n                    description\n                    tags{\n                        name\n                    }\n                ';
             break;
         default:
             break;
@@ -24946,10 +24946,10 @@ var UserForm = function UserForm() {
     return __webpack_require__.e/* import() */(4).then(__webpack_require__.bind(null, 549));
 };
 var LandingPage = function LandingPage() {
-    return __webpack_require__.e/* import() */(2).then(__webpack_require__.bind(null, 550));
+    return __webpack_require__.e/* import() */(3).then(__webpack_require__.bind(null, 550));
 };
 var CompanyPage = function CompanyPage() {
-    return __webpack_require__.e/* import() */(3).then(__webpack_require__.bind(null, 551));
+    return __webpack_require__.e/* import() */(2).then(__webpack_require__.bind(null, 551));
 };
 var ReviewPage = function ReviewPage() {
     return __webpack_require__.e/* import() */(1).then(__webpack_require__.bind(null, 552));
@@ -24957,16 +24957,16 @@ var ReviewPage = function ReviewPage() {
 var DocumentsPage = function DocumentsPage() {
     return __webpack_require__.e/* import() */(5).then(__webpack_require__.bind(null, 553));
 };
+var NotFoundPage = function NotFoundPage() {
+    return __webpack_require__.e/* import() */(6).then(__webpack_require__.bind(null, 784));
+};
 
 var CompanyForm = function CompanyForm() {
-    return __webpack_require__.e/* import() */(0).then(__webpack_require__.bind(null, 554));
+    return __webpack_require__.e/* import() */(0).then(__webpack_require__.bind(null, 555));
 };
 
 exports.default = new _vueRouter2.default({
     routes: [{
-        path: '*',
-        redirect: '/'
-    }, {
         path: '/',
         name: 'landing-page',
         component: LandingPage
@@ -24997,6 +24997,13 @@ exports.default = new _vueRouter2.default({
         path: '/company/:companyId/documents',
         name: 'documents-page',
         component: DocumentsPage
+    }, {
+        path: '/404',
+        name: 'notFound-page',
+        component: NotFoundPage
+    }, {
+        path: '*',
+        component: NotFoundPage
     }],
     mode: 'history'
 });
@@ -32076,6 +32083,7 @@ exports.default = {
 
     methods: {
         onclick: function onclick() {
+            this.$router.push('/company/' + this.item.id);
             console.log('COMING SOON');
         },
         getImage: function getImage() {

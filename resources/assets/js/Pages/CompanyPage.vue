@@ -6,7 +6,7 @@
             <company-reviews></company-reviews>
         </el-col>
         <el-col :xs="24" :sm="24" :md="12" :lg="12" >
-            <company-documents></company-documents>
+            <company-documents :companyId="companyId"></company-documents>
             <company-related-blogs></company-related-blogs>
         </el-col>
     </main>
@@ -21,7 +21,7 @@
     import CompanyControl from '@/components/CompanyPage/CompanyControl.vue';
 
     export default {
-        mounted(){
+        created(){
             this.getCompany();
         },
         data(){
@@ -32,31 +32,38 @@
         computed:{
             ...mapState('Company',[
                 'company',
-            ])
+            ]),
+            /**
+             * Get id of company supposed to be fetched. If none is
+             * found then its a 404.
+             *
+             * */
+            companyId(){
+                try{
+                    return this.$route.params.companyId;
+                }catch (e){
+                    this.notifyError(e);
+                    this.$router.push('/404');
+                }
+            }
         },
         methods:{
             ...mapActions('Company',[
                 'fetchCompany',
             ]),
+            /**
+             * Fetch the company requested for viewing if
+             * it wasn't already fetched.
+             *
+             * */
             async getCompany(id){
-                let companyId = null;
-
-                if(id) companyId = id;
-                else {
-                    try{
-                        companyId = this.$route.params.companyId;
-                    }catch (e){
-                        this.$router.push('/');
-                    }
-                }
-
                 try{
-                    if(this.company.id !== companyId)
+                    if(this.company.id !== id ? id : this.companyId)
                         this.fetchCompany(companyId);
                 }catch (e){
-                    this.$router.push('/');
+                    this.notifyError(e);
+                    this.$router.push('/404');
                 }
-
             }
         },
         components:{
@@ -66,10 +73,6 @@
             CompanyStats,
             CompanyControl,
         },
-        beforeRouteUpdate (to, from, next) {
-            this.checkCompany(to.params.companyId);
-            next();
-        }
     }
 </script>
 <style lang="scss">

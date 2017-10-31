@@ -28,6 +28,7 @@
         },
         methods:{
             onclick(){
+                this.$router.push(`/company/${this.item.id}`);
                 console.log('COMING SOON')
             },
             getImage(){

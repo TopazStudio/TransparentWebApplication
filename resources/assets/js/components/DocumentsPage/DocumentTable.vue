@@ -13,7 +13,6 @@
                 empty-text="No Documents Available"
                 @current-change="handleCurrentChange">
             <el-table-column
-                    label="DOCUMENTS"
                     width="100%">
                 <el-table-column
                         v-if="onDetails"

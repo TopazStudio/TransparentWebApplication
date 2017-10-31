@@ -22,16 +22,27 @@
         },
         data(){
             return{
-                /**
-                 * The current company being viewed
-                 * */
-                companyId: ''
+
             }
         },
         computed:{
             ...mapState('Company',[
                 'company'
             ]),
+            /**
+             * Get id of company supposed to be fetched. If none is
+             * found then its a 404.
+             *
+             * */
+            companyId(){
+                try{
+                    return this.$route.params.companyId;
+                }catch (e){
+                    this.notifyError(e);
+                    //TODO: make 404 page.
+                    this.$router.push('/404');
+                }
+            }
         },
         methods:{
             ...mapActions('Company',[
@@ -45,33 +56,23 @@
              * Get current company.
              * */
             async getCompany(id){
-                if(id) this.companyId = id;
-                else {
-                    try{
-                        this.companyId = this.$route.params.companyId;
-                    }catch (e){
-                        this.$router.push('/');
-                    }
-                }
-
                 try{
-                    if(this.company.id !== this.companyId)
-                        this.fetchCompany(this.companyId);
+                    if(this.company.id !== id ? id : this.companyId)
+                        this.fetchCompany(companyId);
                 }catch (e){
                     this.notifyError(e);
-                    this.$router.push('/');
+                    this.$router.push('/404');
                 }
-
             },
             /**
              * Get documents of the current company.
              * */
-            async getDocuments(id){
+            async getDocuments(){
                 try{
                     this.fetchDocuments(this.companyId);
                 }catch (e){
                     this.notifyError(e);
-                    this.$router.push('/');
+                    this.$router.push('/404');
                 }
             }
         },

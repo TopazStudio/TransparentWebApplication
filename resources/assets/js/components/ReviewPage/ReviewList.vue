@@ -1,5 +1,5 @@
 <template>
-    <el-card class="fly-card fly-info-Card" ref="companyRelatedBlogsCard">
+    <el-card class="fly-card fly-info-Card" ref="reviewList">
         <div slot="header" class="clearfix">
             <span style="line-height: 36px;">Reviews</span>
         </div>

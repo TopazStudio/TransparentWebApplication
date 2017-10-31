@@ -14,7 +14,7 @@
             <div class="company-links">
                 <ul>
                    <li><a href="#" @click="makeReview">Reviews</a></li>
-                   <li><a href="#">Second</a></li>
+                   <li><a href="#" @click="$router.push({name: 'documents-page'})">Documents</a></li>
                    <li><a href="#">Third</a></li>
                    <li><a href="#">Fourth</a></li>
                 </ul>

@@ -59,6 +59,7 @@ export function RESULTS_WANTED_OF(type) {
     switch (type){
         case 'company':
             return `
+                    id
                     name
                     description
                     pictures{
@@ -68,6 +69,7 @@ export function RESULTS_WANTED_OF(type) {
             break;
         case 'document':
             return `
+                    id
                     name
                     location
                     description
@@ -75,6 +77,7 @@ export function RESULTS_WANTED_OF(type) {
             break;
         case 'topic':
             return `
+                    id
                     name
                     description
                     tags{

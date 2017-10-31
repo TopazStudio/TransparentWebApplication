@@ -75,7 +75,7 @@
                     try{
                         companyId = this.$route.params.companyId;
                     }catch (e){
-                        this.$router.push('/');
+                        this.$router.push('/404');
                     }
                 }
 
@@ -84,7 +84,7 @@
                         this.fetchCompany(companyId);
                 }catch (e){
                     this.notifyError(e);
-                    this.$router.push('/');
+                    this.$router.push('/404');
                 }
             },
             getReviews(){

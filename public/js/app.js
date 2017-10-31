@@ -27885,7 +27885,7 @@ exports = module.exports = __webpack_require__(35)(undefined);
 
 
 // module
-exports.push([module.i, "\n.fly-nav {\n  height: 60px !important;\n  background-color: #f5f5f5;\n  transition: 1s all ease-out;\n  z-index: 1;\n  border-bottom: 1px solid black;\n}\n.fly-nav .el-menu-item {\n    height: 60px;\n    line-height: 60px;\n    color: black;\n    border-bottom: 0;\n}\n.fly-nav .fly-brand {\n    background-color: #101010;\n    color: white;\n    position: absolute;\n    height: 100px;\n}\n.fly-nav .fly-brand .fly-brand-content {\n      font-family: monoton,sans-serif;\n      line-height: 100px;\n      font-size: 40px;\n      z-index: 10;\n      text-decoration: none;\n}\n.fly-nav .fly-brand:hover {\n      background-color: #000 !important;\n      border-bottom: 0;\n}\n.fly-nav .fly-brand:before {\n      position: absolute;\n      top: 0;\n      right: 0;\n      bottom: 0;\n      left: 0;\n      height: 100%;\n      width: 100%;\n      content: '';\n      z-index: -1;\n      background-color: inherit;\n      transform-origin: bottom right;\n      transform: sKewX(-10deg);\n}\n.fly-nav .right-nav {\n    position: relative;\n    top: 0;\n    right: 20px;\n    bottom: 0;\n    left: 0;\n    float: right;\n    display: flex;\n    height: 100%;\n}\n.fly-nav .right-nav .fly-nav-dropdown {\n      margin: auto;\n}\n.fly-nav .right-nav .fly-nav-link {\n      cursor: pointer;\n      margin: 0 10px;\n}\n.fly-nav .right-nav .fly-nav-link:hover {\n        border-bottom: 5px black;\n}\n.fly-nav .nav-avatar {\n    position: relative;\n    border-radius: 50px;\n    height: 50px;\n    width: 50px;\n    margin-left: 10px;\n}\n", ""]);
+exports.push([module.i, "\n.fly-nav {\n  height: 60px !important;\n  background-color: #f5f5f5;\n  transition: 1s all ease-out;\n  z-index: 1;\n  border-bottom: 1px solid black;\n}\n.fly-nav .el-menu-item {\n    height: 60px;\n    line-height: 60px;\n    color: black;\n    border-bottom: 0;\n}\n.fly-nav .fly-brand {\n    background-color: #101010;\n    color: white;\n    position: absolute;\n    height: 100px;\n}\n.fly-nav .fly-brand .fly-brand-content {\n      font-family: monoton,sans-serif;\n      line-height: 100px;\n      font-size: 40px;\n      z-index: 10;\n      text-decoration: none;\n}\n.fly-nav .fly-brand:hover {\n      background-color: #000 !important;\n      border-bottom: 0;\n}\n.fly-nav .fly-brand:before {\n      position: absolute;\n      top: 0;\n      right: 0;\n      bottom: 0;\n      left: 0;\n      height: 100%;\n      width: 100%;\n      content: '';\n      z-index: -1;\n      background-color: inherit;\n      transform-origin: bottom right;\n      transform: sKewX(-10deg);\n}\n.fly-nav .right-nav {\n    position: relative;\n    top: 0;\n    right: 20px;\n    bottom: 0;\n    left: 0;\n    float: right;\n    display: flex;\n    height: 100%;\n}\n.fly-nav .right-nav .nav-search {\n      margin: auto;\n}\n.fly-nav .right-nav .nav-search .el-input--large {\n        font-size: 15px;\n}\n.fly-nav .right-nav .fly-nav-dropdown {\n      margin: auto;\n}\n.fly-nav .right-nav .fly-nav-link {\n      cursor: pointer;\n      margin: 0 10px;\n}\n.fly-nav .right-nav .fly-nav-link:hover {\n        border-bottom: 5px black;\n}\n.fly-nav .nav-avatar {\n    position: relative;\n    border-radius: 50px;\n    height: 50px;\n    width: 50px;\n    margin-left: 10px;\n}\n", ""]);
 
 // exports
 
@@ -27911,9 +27911,9 @@ var _LoginForm = __webpack_require__(242);
 
 var _LoginForm2 = _interopRequireDefault(_LoginForm);
 
-var _button = __webpack_require__(285);
+var _SearchInput = __webpack_require__(620);
 
-var _button2 = _interopRequireDefault(_button);
+var _SearchInput2 = _interopRequireDefault(_SearchInput);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -27922,7 +27922,11 @@ exports.default = {
         return {};
     },
 
-    computed: (0, _extends3.default)({}, (0, _vuex.mapState)('Auth', ['Authenticated']), (0, _vuex.mapState)('User', ['User'])),
+    computed: (0, _extends3.default)({}, (0, _vuex.mapState)('Auth', ['Authenticated']), (0, _vuex.mapState)('User', ['User']), {
+        showSearch: function showSearch() {
+            if (this.$route.path === '/') return false;else return true;
+        }
+    }),
     methods: (0, _extends3.default)({}, (0, _vuex.mapActions)('Auth', ['logout']), {
         normalRegistration: function normalRegistration() {
             this.$router.push({ path: '/register/user' });
@@ -27945,8 +27949,8 @@ exports.default = {
         }
     }),
     components: {
-        ElButton: _button2.default,
-        'app-loginForm': _LoginForm2.default
+        LoginForm: _LoginForm2.default,
+        SearchInput: _SearchInput2.default
     }
 };
 
@@ -31729,161 +31733,9 @@ if (false) {
 }
 
 /***/ }),
-/* 285 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-var normalizeComponent = __webpack_require__(17)
-/* script */
-var __vue_script__ = __webpack_require__(286)
-/* template */
-var __vue_template__ = __webpack_require__(287)
-/* styles */
-var __vue_styles__ = null
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "node_modules/element-ui/packages/button/src/button.vue"
-if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
-if (Component.options.functional) {console.error("[vue-loader] button.vue: functional components are not supported with templates, they should use render functions.")}
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-5b367963", Component.options)
-  } else {
-    hotAPI.reload("data-v-5b367963", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 286 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = {
-  name: 'ElButton',
-
-  props: {
-    type: {
-      type: String,
-      default: 'default'
-    },
-    size: String,
-    icon: {
-      type: String,
-      default: ''
-    },
-    nativeType: {
-      type: String,
-      default: 'button'
-    },
-    loading: Boolean,
-    disabled: Boolean,
-    plain: Boolean,
-    autofocus: Boolean
-  },
-
-  methods: {
-    handleClick: function handleClick(evt) {
-      this.$emit('click', evt);
-    },
-    handleInnerClick: function handleInnerClick(evt) {
-      if (this.disabled) {
-        evt.stopPropagation();
-      }
-    }
-  }
-};
-
-/***/ }),
-/* 287 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "button",
-    {
-      staticClass: "el-button",
-      class: [
-        _vm.type ? "el-button--" + _vm.type : "",
-        _vm.size ? "el-button--" + _vm.size : "",
-        {
-          "is-disabled": _vm.disabled,
-          "is-loading": _vm.loading,
-          "is-plain": _vm.plain
-        }
-      ],
-      attrs: {
-        disabled: _vm.disabled,
-        autofocus: _vm.autofocus,
-        type: _vm.nativeType
-      },
-      on: { click: _vm.handleClick }
-    },
-    [
-      _vm.loading
-        ? _c("i", {
-            staticClass: "el-icon-loading",
-            on: { click: _vm.handleInnerClick }
-          })
-        : _vm._e(),
-      _vm._v(" "),
-      _vm.icon && !_vm.loading
-        ? _c("i", {
-            class: "el-icon-" + _vm.icon,
-            on: { click: _vm.handleInnerClick }
-          })
-        : _vm._e(),
-      _vm._v(" "),
-      _vm.$slots.default
-        ? _c(
-            "span",
-            { on: { click: _vm.handleInnerClick } },
-            [_vm._t("default")],
-            2
-          )
-        : _vm._e()
-    ]
-  )
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-5b367963", module.exports)
-  }
-}
-
-/***/ }),
+/* 285 */,
+/* 286 */,
+/* 287 */,
 /* 288 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -31912,6 +31764,10 @@ var render = function() {
         "div",
         { staticClass: "right-nav" },
         [
+          _vm.showSearch
+            ? _c("search-input", { staticClass: "nav-search" })
+            : _vm._e(),
+          _vm._v(" "),
           !_vm.Authenticated
             ? _c(
                 "el-dropdown",
@@ -31925,7 +31781,7 @@ var render = function() {
                   _c(
                     "el-dropdown-menu",
                     { attrs: { slot: "dropdown" }, slot: "dropdown" },
-                    [_c("app-loginForm")],
+                    [_c("login-Form")],
                     1
                   )
                 ],
@@ -100650,6 +100506,327 @@ _vue2.default.component('search-list-item', _SearchListItem2.default);
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 548 */,
+/* 549 */,
+/* 550 */,
+/* 551 */,
+/* 552 */,
+/* 553 */,
+/* 554 */,
+/* 555 */,
+/* 556 */,
+/* 557 */,
+/* 558 */,
+/* 559 */,
+/* 560 */,
+/* 561 */,
+/* 562 */,
+/* 563 */,
+/* 564 */,
+/* 565 */,
+/* 566 */,
+/* 567 */,
+/* 568 */,
+/* 569 */,
+/* 570 */,
+/* 571 */,
+/* 572 */,
+/* 573 */,
+/* 574 */,
+/* 575 */,
+/* 576 */,
+/* 577 */,
+/* 578 */,
+/* 579 */,
+/* 580 */,
+/* 581 */,
+/* 582 */,
+/* 583 */,
+/* 584 */,
+/* 585 */,
+/* 586 */,
+/* 587 */,
+/* 588 */,
+/* 589 */,
+/* 590 */,
+/* 591 */,
+/* 592 */,
+/* 593 */,
+/* 594 */,
+/* 595 */,
+/* 596 */,
+/* 597 */,
+/* 598 */,
+/* 599 */,
+/* 600 */,
+/* 601 */,
+/* 602 */,
+/* 603 */,
+/* 604 */,
+/* 605 */,
+/* 606 */,
+/* 607 */,
+/* 608 */,
+/* 609 */,
+/* 610 */,
+/* 611 */,
+/* 612 */,
+/* 613 */,
+/* 614 */,
+/* 615 */,
+/* 616 */,
+/* 617 */,
+/* 618 */,
+/* 619 */,
+/* 620 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(621)
+}
+var normalizeComponent = __webpack_require__(17)
+/* script */
+var __vue_script__ = __webpack_require__(623)
+/* template */
+var __vue_template__ = __webpack_require__(624)
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/inc/SearchInput.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] SearchInput.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-a7778d3c", Component.options)
+  } else {
+    hotAPI.reload("data-v-a7778d3c", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 621 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(622);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(36)("28418cff", content, false);
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-a7778d3c\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/sass-loader/lib/loader.js!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./SearchInput.vue", function() {
+     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-a7778d3c\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/sass-loader/lib/loader.js!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./SearchInput.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 622 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(35)(undefined);
+// imports
+
+
+// module
+exports.push([module.i, "\n.fly-search .search-input {\n  width: 100%;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 623 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _regenerator = __webpack_require__(18);
+
+var _regenerator2 = _interopRequireDefault(_regenerator);
+
+var _asyncToGenerator2 = __webpack_require__(19);
+
+var _asyncToGenerator3 = _interopRequireDefault(_asyncToGenerator2);
+
+var _extends2 = __webpack_require__(37);
+
+var _extends3 = _interopRequireDefault(_extends2);
+
+var _vuex = __webpack_require__(54);
+
+var _SearchListItem = __webpack_require__(214);
+
+var _SearchListItem2 = _interopRequireDefault(_SearchListItem);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = {
+    data: function data() {
+        return {
+            searchTerm: '',
+            searchType: '',
+            searchOptions: [{
+                value: 'company',
+                label: 'Companies'
+            }, {
+                value: 'document',
+                label: 'Documents'
+            }, {
+                value: 'topic',
+                label: 'Topics'
+            }]
+        };
+    },
+
+    methods: (0, _extends3.default)({}, (0, _vuex.mapActions)('Search', ['searchOnType']), {
+        querySearchAsync: function querySearchAsync(queryString, cb) {
+            var _this = this;
+
+            return (0, _asyncToGenerator3.default)(_regenerator2.default.mark(function _callee() {
+                return _regenerator2.default.wrap(function _callee$(_context) {
+                    while (1) {
+                        switch (_context.prev = _context.next) {
+                            case 0:
+                                try {
+                                    _this.searchOnType({ queryString: queryString, searchType: _this.searchType, cb: cb });
+                                } catch (error) {
+                                    _this.notifyError(error);
+                                }
+
+                            case 1:
+                            case 'end':
+                                return _context.stop();
+                        }
+                    }
+                }, _callee, _this);
+            }))();
+        },
+        handleSelect: function handleSelect(item) {
+            console.log(item);
+        }
+    })
+};
+
+/***/ }),
+/* 624 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "fly-search" },
+    [
+      _c(
+        "el-autocomplete",
+        {
+          staticClass: "search-input",
+          attrs: {
+            placeholder: "Search Documents,Companies,Topics and more",
+            "custom-item": "search-list-item",
+            "fetch-suggestions": _vm.querySearchAsync,
+            "trigger-on-focus": false,
+            size: "large"
+          },
+          on: { select: _vm.handleSelect },
+          model: {
+            value: _vm.searchTerm,
+            callback: function($$v) {
+              _vm.searchTerm = $$v
+            },
+            expression: "searchTerm"
+          }
+        },
+        [
+          _c(
+            "el-select",
+            {
+              staticStyle: { width: "110px" },
+              attrs: {
+                slot: "prepend",
+                placeholder: "Select",
+                filterable: "",
+                clearable: ""
+              },
+              slot: "prepend",
+              model: {
+                value: _vm.searchType,
+                callback: function($$v) {
+                  _vm.searchType = $$v
+                },
+                expression: "searchType"
+              }
+            },
+            _vm._l(_vm.searchOptions, function(item) {
+              return _c("el-option", {
+                key: item.value,
+                attrs: { label: item.label, value: item.value }
+              })
+            })
+          ),
+          _vm._v(" "),
+          _c("el-button", {
+            attrs: { slot: "append", icon: "search" },
+            slot: "append"
+          })
+        ],
+        1
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-a7778d3c", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);

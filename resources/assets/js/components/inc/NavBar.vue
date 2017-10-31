@@ -4,10 +4,14 @@
             <router-link class="fly-brand-content" to="/">TRANSPARENT</router-link>
         </el-menu-item>
         <div class="right-nav">
+            <search-input
+                    v-if="showSearch"
+                    class="nav-search">
+            </search-input>
             <el-dropdown v-if="!Authenticated" trigger="click" class="fly-nav-dropdown">
                 <a class="fly-nav-link">Login</a>
                 <el-dropdown-menu slot="dropdown">
-                    <app-loginForm></app-loginForm>
+                    <login-Form></login-Form>
                 </el-dropdown-menu>
             </el-dropdown>
             <el-dropdown v-if="!Authenticated" trigger="click" :hide-on-click="true" @command="handleCommand" class="fly-nav-dropdown">
@@ -32,7 +36,7 @@
     import { mapState } from 'vuex';
     import { mapActions } from 'vuex';
     import LoginForm from './LoginForm.vue';
-    import ElButton from "../../../../../node_modules/element-ui/packages/button/src/button.vue";
+    import SearchInput from './SearchInput.vue';
 
     export default {
         data(){
@@ -46,7 +50,11 @@
             ]),
             ...mapState('User',[
                 'User'
-            ])
+            ]),
+            showSearch(){
+                if(this.$route.path === '/') return false;
+                else return true;
+            }
         },
         methods: {
             ...mapActions('Auth',[
@@ -74,8 +82,8 @@
 
         },
         components:{
-            ElButton,
-            'app-loginForm': LoginForm
+            LoginForm,
+            SearchInput
         }
     }
 </script>
@@ -127,6 +135,12 @@
             float: right;
             display: flex;
             @include size(null 100%);
+            .nav-search{
+                margin: auto;
+                .el-input--large{
+                    font-size: 15px;
+                }
+            }
             .fly-nav-dropdown{
                 margin: auto;
             }

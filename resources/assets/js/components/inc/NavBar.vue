@@ -97,7 +97,8 @@
         background-color: $fly-navbar-color;
         transition: 1s all ease-out;
         z-index: 1;
-        border-bottom: 1px solid black;
+        -webkit-box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.38);
+        box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.38);
         .el-menu-item{
             height: $fly-navbar-height;
             line-height: $fly-navbar-height;
@@ -128,6 +129,8 @@
                 background-color: inherit;
                 transform-origin: bottom right;
                 transform: sKewX(-10deg);
+                -webkit-box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.38);
+                box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.38);
             }
         }
         .right-nav{

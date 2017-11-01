@@ -1,0 +1,25 @@
+@mixin slanted-left(){
+  &:before{
+    @include position(absolute,0);
+    @include size(100%);
+    content: '';
+    z-index: -1;
+    background-color: inherit;
+    transform-origin: bottom right;
+    transform: sKewX(-10deg);
+  }
+}
+
+@mixin slanted-left-shadowed(){
+  &:before{
+    @include position(absolute,0);
+    @include size(100%);
+    content: '';
+    z-index: -1;
+    background-color: inherit;
+    transform-origin: bottom right;
+    transform: sKewX(-10deg);
+    -webkit-box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.38);
+    box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.38);
+  }
+}

@@ -2,10 +2,6 @@
 // Fonts
 @import url('https://fonts.googleapis.com/css?family=Libre+Barcode+39+Text|Megrim|Monoton|Playfair+Display+SC|Raleway:300,400,600');
 
-@font-face {
-
-}
-
 // Variables
 @import "variables";
 
@@ -17,6 +13,9 @@
 
 //Modules
 @import "modules/fly-card";
+
+//Mixins
+@import "mixins";
 
 html {
   box-sizing: border-box;

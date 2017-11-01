@@ -1,30 +1,33 @@
 <template>
-    <div class="fly-blog-item">
-        <img :src="getBlogPic()" alt="Blog Pic" class="blog-pic">
+    <div class="fly-document-item">
+        <div class="doc-pic">
+            <icon :name="getIconType()" scale="6" style="margin:0 10px;"></icon>
+        </div>
+        <!--<img :src="getDocPic()" alt="Document Pic" class="doc-pic">-->
         <div class="details">
             <div class="details-upper">
                 <span style="color: black;
                             font-weight: 700;
                             font-size: 20px;">
-                    {{blog.heading}}</span>
+                    {{document.name}}</span>
                 <div style="position: absolute;
                             float: right;
                             top: 0px;
                             right: 10px;">
                     <span style="font-size: 14px;">
-                        uploaded on {{blog.createdAt}}20/17/2017</span>
+                        uploaded on {{document.createdAt}}20/17/2017</span>
 
-                    <el-button class="navigation-btn" @click="goToBlog">
+                    <el-button class="navigation-btn" @click="goToDoc">
                         <icon name="external-link"></icon>
                     </el-button>
                 </div>
 
-                <p style="margin: 0;">{{blog.content}}</p>
+                <p style="margin: 0;">{{document.description}}</p>
 
                 <div class="analytics">
-                    <span @click="goToBlog"><icon name="eye"></icon> {{getViews()}}1,749</span>
-                    <span @click="likeBlog"><icon name="thumbs-o-up"></icon> {{blog.likes}}100</span>
-                    <span @click="dislikeBlog"><icon name="thumbs-o-down"></icon> {{blog.dislikes}}10</span>
+                    <span @click="goToDoc"><icon name="eye"></icon> {{getViews()}}1,749</span>
+                    <span @click="likeDoc"><icon name="thumbs-o-up"></icon> {{document.likes}}100</span>
+                    <span @click="dislikeDoc"><icon name="thumbs-o-down"></icon> {{document.dislikes}}10</span>
                 </div>
             </div>
             <div class="details-lower">
@@ -34,7 +37,7 @@
                 <el-tag>Crisis</el-tag>
 
                 <el-tag
-                        v-for="(tag,index) in blog.tags"
+                        v-for="(tag,index) in document.tags"
                         :key="index">
                     {{tag.name}}
                 </el-tag>
@@ -47,30 +50,65 @@
 <script>
     import { mapState,mapActions } from 'vuex';
 
+    import 'vue-awesome/icons/file-excel-o';
+    import 'vue-awesome/icons/file-word-o';
+    import 'vue-awesome/icons/file-text-o';
+    import 'vue-awesome/icons/file-powerpoint-o';
+    import 'vue-awesome/icons/file-picture-o';
+    import 'vue-awesome/icons/file-code-o';
+    import 'vue-awesome/icons/file-pdf-o';
     import 'vue-awesome/icons/eye';
     import 'vue-awesome/icons/thumbs-o-down';
     import 'vue-awesome/icons/thumbs-o-up';
     import 'vue-awesome/icons/external-link';
+
+
     import Icon from 'vue-awesome/components/Icon';
 
     export default {
-        name: 'BlogItem',
-        props: ['blog'],
+        props:['document'],
+        created(){
+
+        },
+        data(){
+            return{
+
+            }
+        },
+        computed:{
+            ...mapState('Document',[
+                'Documents',
+            ]),
+        },
         methods:{
-            getBlogPic(){
-                return 'http://laravel.dev/storage/userPics/placeholder.png';
-            },
             getViews(){
 
             },
-            goToBlog(){
-                window.open(this.blog.url, '_blank');
+            getViewerSrc(docLoc){
+                return '/Util/ViewerJS/#../../storage/' + docLoc;
             },
-            likeBlog(){
-
+            goToDoc(){
+                window.location.assign(this.getViewerSrc(this.document.location));
             },
-            dislikeBlog(){
+            getIconType(){
+                switch (this.document.type){
+                    case 'pdf':
+                        return 'file-pdf-o';
+                        break;
 
+                    case 'txt':
+                        return 'file-text-o';
+                        break;
+
+                    case 'doc':
+                        return 'file-word-o';
+                        break;
+
+                    default:
+                        return 'file-text-o';
+                        break;
+
+                }
             }
         },
         components:{
@@ -83,7 +121,7 @@
     @import "~bourbon/app/assets/stylesheets/bourbon";
     @import "~sass/variables";
 
-    .fly-blog-item{
+    .fly-document-item{
         position: relative;
         width: 100%;
         min-height: 150px;

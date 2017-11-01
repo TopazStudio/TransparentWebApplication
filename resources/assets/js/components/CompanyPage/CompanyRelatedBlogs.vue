@@ -1,13 +1,12 @@
 <template>
-    <el-card class="fly-card fly-info-Card" ref="companyRelatedBlogsCard">
-        <div slot="header" class="clearfix">
-            <span style="line-height: 36px;">Related Blogs</span>
-        </div>
-        <div class="fly-card-Content">
+    <el-card class="fly-card fly-card-plain related-blog-card" ref="companyRelatedBlogsCard">
+        <span class="header" style="background-color: #301AA0;">Related Blogs</span>
+        <div class="fly-card-Content" style="background: #e2e2e2;">
             <blog-item v-for="(item,index) in companyRelatedBlogs"
                     :key="index"
                     :blog="item">
             </blog-item>
+            <span v-if="companyRelatedBlogs.length === 0" class="no-docs">NO DOCUMENTS</span>
         </div>
     </el-card>
 </template>
@@ -62,3 +61,28 @@
         }
     }
 </script>
+<style lang="scss">
+    //noinspection CssUnknownTarget
+    @import "~bourbon/app/assets/stylesheets/bourbon";
+    @import "~sass/variables";
+    @import "~sass/mixins";
+    .related-blog-card{
+        .header{
+            padding: 10px;
+            display: block;
+            position: relative;
+            color: white;
+            width: 200px;
+            text-align: left;
+            z-index: 0;
+            @include slanted-left();
+        }
+        .no-blogs{
+            padding: 50px;
+            text-align: center;
+            margin: auto;
+            display: block;
+        }
+    }
+
+</style>

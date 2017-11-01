@@ -32,6 +32,8 @@
         z-index: 0;
         padding: 20px;
         @include size(100% 300px);
+        -webkit-box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.38);
+        box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.38);
         .content{
             font-family: Megrim,sans-serif;
             font-weight: 400;

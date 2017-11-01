@@ -1,36 +1,39 @@
 <template>
-    <el-menu theme="dark" class="fly-nav"  mode="horizontal">
-        <el-menu-item index="1" class="fly-brand">
-            <router-link class="fly-brand-content" to="/">TRANSPARENT</router-link>
-        </el-menu-item>
-        <div class="right-nav">
-            <search-input
-                    v-if="showSearch"
-                    class="nav-search">
-            </search-input>
-            <el-dropdown v-if="!Authenticated" trigger="click" class="fly-nav-dropdown">
-                <a class="fly-nav-link">Login</a>
-                <el-dropdown-menu slot="dropdown">
-                    <login-Form></login-Form>
-                </el-dropdown-menu>
-            </el-dropdown>
-            <el-dropdown v-if="!Authenticated" trigger="click" :hide-on-click="true" @command="handleCommand" class="fly-nav-dropdown">
-                <a class="fly-nav-link">Register</a>
-                <el-dropdown-menu slot="dropdown">
-                    <el-dropdown-item command="normalRegistration">Become a member</el-dropdown-item>
-                    <el-dropdown-item command="companyRegistration">Sign up a business or company</el-dropdown-item>
-                </el-dropdown-menu>
-            </el-dropdown>
-            <el-dropdown v-else trigger="click" :hide-on-click="true" @command="handleCommand" class="fly-nav-dropdown">
-                <div class="el-dropdown-link fly-menu-item-link">
-                    <img :src="getImage()" alt="avatar" class="nav-avatar">
-                </div>
-                <el-dropdown-menu slot="dropdown">
-                    <el-dropdown-item command="logout">Logout</el-dropdown-item>
-                </el-dropdown-menu>
-            </el-dropdown>
-        </div>
-    </el-menu>
+    <div class="fly-nav-wrapper">
+        <el-menu theme="dark" class="fly-nav"  mode="horizontal">
+            <el-menu-item index="1" class="fly-brand">
+                <router-link class="fly-brand-content" to="/">TRANSPARENT</router-link>
+            </el-menu-item>
+            <div class="right-nav">
+                <search-input
+                        v-if="showSearch"
+                        class="nav-search">
+                </search-input>
+                <el-dropdown v-if="!Authenticated" trigger="click" class="fly-nav-dropdown">
+                    <a class="fly-nav-link">Login</a>
+                    <el-dropdown-menu slot="dropdown">
+                        <login-Form></login-Form>
+                    </el-dropdown-menu>
+                </el-dropdown>
+                <el-dropdown v-if="!Authenticated" trigger="click" :hide-on-click="true" @command="handleCommand" class="fly-nav-dropdown">
+                    <a class="fly-nav-link">Register</a>
+                    <el-dropdown-menu slot="dropdown">
+                        <el-dropdown-item command="normalRegistration">Become a member</el-dropdown-item>
+                        <el-dropdown-item command="companyRegistration">Sign up a business or company</el-dropdown-item>
+                    </el-dropdown-menu>
+                </el-dropdown>
+                <el-dropdown v-else trigger="click" :hide-on-click="true" @command="handleCommand" class="fly-nav-dropdown">
+                    <div class="el-dropdown-link fly-menu-item-link">
+                        <img :src="getImage()" alt="avatar" class="nav-avatar">
+                    </div>
+                    <el-dropdown-menu slot="dropdown">
+                        <el-dropdown-item command="logout">Logout</el-dropdown-item>
+                    </el-dropdown-menu>
+                </el-dropdown>
+            </div>
+        </el-menu>
+        <div class="fly-nav-lower"></div>
+    </div>
 </template>
 <script>
     import { mapState } from 'vuex';
@@ -92,9 +95,17 @@
     @import "~sass/variables";
     @import "~bourbon/app/assets/stylesheets/bourbon";
 
+    .fly-nav-lower{
+        position: relative;
+        margin: 0;
+        height: 20px;
+        background-color: #292929;
+        -webkit-box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.38);
+        box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.38);
+    }
     .fly-nav{
         height: $fly-navbar-height !important;
-        background-color: $fly-navbar-color;
+        @include nav-bar-gradient();
         transition: 1s all ease-out;
         z-index: 1;
         -webkit-box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.38);

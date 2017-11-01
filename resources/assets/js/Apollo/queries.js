@@ -147,3 +147,34 @@ query GET_COMPANY_DOCUMENTS($id: Int){
 }
 `);
 //######################################################//
+
+//###################     BLOGS   ######################//
+
+export const GET_COMPANY_RELATED_BLOGS = gql(`
+query GET_COMPANY_RELATED_BLOGS($id: Int){
+  company(id: $id){
+    id
+    relatedBlogs{
+      id
+      heading
+      content
+      url
+    }
+  }
+}
+`);
+//######################################################//
+
+//#######################  TOPICS   ####################//
+export const GET_COMPANY_RELATED_TOPICS = gql(`
+query GET_COMPANY_RELATED_TOPICS($id: Int){
+  company(id: $id){
+    id
+    relatedTopics{
+      id
+      name
+    }
+  }
+}
+`);
+//######################################################//

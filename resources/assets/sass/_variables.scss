@@ -4,6 +4,14 @@ $body-font: 'Raleway',sans-serif;
 $body-font-color: #636b6f;
 $body-background-color: #b0b3b5;
 
+@mixin nav-bar-gradient() {
+  background: #301AA0;
+  background: -moz-linear-gradient(left, #301AA0 0%, #301AA0 59%, #9E1664 100%);
+  background: -webkit-linear-gradient(left, #301AA0 0%, #301AA0 59%, #9E1664 100%);
+  background: linear-gradient(to right, #301AA0 0%, #301AA0 59%, #9E1664 100%);
+}
+
+
 // Borders
 $border-color: darken($body-background-color, 10%);
 $list-group-border: $border-color;
@@ -17,7 +25,10 @@ $brand-info: #8eb4cb;
 $brand-success: #2ab27b;
 $brand-warning: #cbb956;
 $brand-danger: #bf5329;
+
 $brand-accent: rgba(24, 0, 255, 0.41);
+$brand-darkblue: #301AA0;
+$brand-purple: #9E1664;
 
 // Typography
 $icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";

@@ -18,7 +18,7 @@
                             <el-input type="textarea" placeholder="Message" v-model="form.message" auto-complete="off"></el-input>
                         </el-form-item>
                         <div class="contact-footer">
-                            <el-button :plain="true" type="success"  @click="login">SEND</el-button>
+                            <el-button :plain="true" type="success"  @click="sendMessage">SEND</el-button>
                         </div>
                     </div>
                 </el-form>
@@ -66,6 +66,11 @@
                 rules:{
 
                 }
+            }
+        },
+        methods:{
+            sendMessage(){
+                console.log('coming soon');
             }
         }
     }

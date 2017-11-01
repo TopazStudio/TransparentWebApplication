@@ -1,33 +1,33 @@
 <template>
     <el-card class="fly-card fly-info-Card" ref="companyRelatedBlogsCard">
         <div slot="header" class="clearfix">
-            <span style="line-height: 36px;">Related Blogs</span>
+            <span style="line-height: 36px;">Related Topics</span>
         </div>
         <div class="fly-card-Content">
-            <blog-item v-for="(item,index) in companyRelatedBlogs"
-                    :key="index"
-                    :blog="item">
-            </blog-item>
+            <topic-list-item v-for="(item,index) in companyRelatedTopics"
+                       :key="index"
+                       :topic="item">
+            </topic-list-item>
         </div>
     </el-card>
 </template>
 <script>
     import { mapActions,mapState } from 'vuex';
 
-    import BlogItem from '@/components/inc/BlogItem.vue';
+    import TopicListItem from '@/components/inc/TopicListItem.vue';
 
     export default {
-        name: 'CompanyRelatedBlogs',
+        name: 'CompanyRelatedTopics',
 
         created(){
-            this.getCompanyRelatedBlogs();
+            this.getCompanyRelatedTopics();
         },
         computed:{
             ...mapState('Company',[
                 'company',
             ]),
-            ...mapState('Blog',[
-                'companyRelatedBlogs',
+            ...mapState('Topic',[
+                'companyRelatedTopics',
             ]),
             /**
              * Get id of company supposed to be fetched. If none is
@@ -44,13 +44,13 @@
             }
         },
         methods:{
-            ...mapActions('Blog',[
-                'fetchCompanyRelatedBlogs',
+            ...mapActions('Topic',[
+                'fetchCompanyRelatedTopics',
             ]),
-            getCompanyRelatedBlogs(){
+            getCompanyRelatedTopics(){
                 try{
                     if(this.company.id !== this.companyId)
-                        this.fetchCompanyRelatedBlogs(this.companyId);
+                        this.fetchCompanyRelatedTopics(this.companyId);
                 }catch (e){
                     this.notifyError(e);
                     this.$router.push('/404');
@@ -58,7 +58,8 @@
             }
         },
         components:{
-            BlogItem
+            TopicListItem
         }
     }
+
 </script>

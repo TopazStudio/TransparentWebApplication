@@ -14556,9 +14556,9 @@ function isNetworkRequestInFlight(networkStatus) {
 
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
-exports.GET_COMPANY_DOCUMENTS = exports.GET_COMPANY_REVIEWS = exports.GET_COMPANY = exports.LOGIN_VIEWER_QUERY = exports.GET_USER_REVIEWS = exports.GET_USER_QUERY = undefined;
+exports.GET_COMPANY_RELATED_TOPICS = exports.GET_COMPANY_RELATED_BLOGS = exports.GET_COMPANY_DOCUMENTS = exports.GET_COMPANY_REVIEWS = exports.GET_COMPANY = exports.LOGIN_VIEWER_QUERY = exports.GET_USER_REVIEWS = exports.GET_USER_QUERY = undefined;
 
 var _taggedTemplateLiteral2 = __webpack_require__(90);
 
@@ -14582,26 +14582,28 @@ var GET_USER_REVIEWS = exports.GET_USER_REVIEWS = (0, _graphqlTag2.default)(_tem
 
 var LOGIN_VIEWER_QUERY = exports.LOGIN_VIEWER_QUERY = (0, _graphqlTag2.default)(_templateObject3);
 function RESULTS_WANTED_OF(type) {
-    switch (type) {
-        case 'company':
-            return '\n                    id\n                    name\n                    description\n                    pictures{\n                        location\n                    }\n                ';
-            break;
-        case 'document':
-            return '\n                    id\n                    name\n                    location\n                    description\n                ';
-            break;
-        case 'topic':
-            return '\n                    id\n                    name\n                    description\n                    tags{\n                        name\n                    }\n                ';
-            break;
-        default:
-            break;
+  switch (type) {
+    case 'company':
+      return '\n                    id\n                    name\n                    description\n                    pictures{\n                        location\n                    }\n                ';
+      break;
+    case 'document':
+      return '\n                    id\n                    name\n                    location\n                    description\n                ';
+      break;
+    case 'topic':
+      return '\n                    id\n                    name\n                    description\n                    tags{\n                        name\n                    }\n                ';
+      break;
+    default:
+      break;
 
-    }
+  }
 }
 var GET_COMPANY = exports.GET_COMPANY = (0, _graphqlTag2.default)('\nquery GET_COMPANY($id: Int) {\n    company(id: $id) {\n        id\n        name\n        businessNo\n        description\n        latitude\n        longitude\n        pictures{\n            location\n        }    \n        reviews{\n            content\n            user{\n                id\n                name\n            }\n        }    \n    }\n}\n');
 
 var GET_COMPANY_REVIEWS = exports.GET_COMPANY_REVIEWS = (0, _graphqlTag2.default)('\nquery GET_COMPANY($id: Int) {\n  company(id: $id) {\n    id\n    reviews{\n        content\n        user{\n            id\n            name\n        }\n    }    \n  }\n}\n');
 
 var GET_COMPANY_DOCUMENTS = exports.GET_COMPANY_DOCUMENTS = (0, _graphqlTag2.default)('\nquery GET_COMPANY_DOCUMENTS($id: Int){\n  company(id: $id){\n    id\n    documents{\n      id\n      name\n      location\n      description\n      type\n      size\n    }\n  }\n}\n');
+var GET_COMPANY_RELATED_BLOGS = exports.GET_COMPANY_RELATED_BLOGS = (0, _graphqlTag2.default)('\nquery GET_COMPANY_RELATED_BLOGS($id: Int){\n  company(id: $id){\n    id\n    relatedBlogs{\n      id\n      heading\n      content\n      url\n    }\n  }\n}\n');
+var GET_COMPANY_RELATED_TOPICS = exports.GET_COMPANY_RELATED_TOPICS = (0, _graphqlTag2.default)('\nquery GET_COMPANY_RELATED_TOPICS($id: Int){\n  company(id: $id){\n    id\n    relatedTopics{\n      id\n      name\n    }\n  }\n}\n');
 
 /***/ }),
 /* 55 */
@@ -27935,7 +27937,7 @@ exports = module.exports = __webpack_require__(27)(undefined);
 
 
 // module
-exports.push([module.i, "\n.fly-nav {\n  height: 60px !important;\n  background-color: #f5f5f5;\n  transition: 1s all ease-out;\n  z-index: 1;\n  -webkit-box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.38);\n  box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.38);\n}\n.fly-nav .el-menu-item {\n    height: 60px;\n    line-height: 60px;\n    color: black;\n    border-bottom: 0;\n}\n.fly-nav .fly-brand {\n    background-color: #101010;\n    color: white;\n    position: absolute;\n    height: 100px;\n}\n.fly-nav .fly-brand .fly-brand-content {\n      font-family: monoton,sans-serif;\n      line-height: 100px;\n      font-size: 40px;\n      z-index: 10;\n      text-decoration: none;\n}\n.fly-nav .fly-brand:hover {\n      background-color: #000 !important;\n      border-bottom: 0;\n}\n.fly-nav .fly-brand:before {\n      position: absolute;\n      top: 0;\n      right: 0;\n      bottom: 0;\n      left: 0;\n      height: 100%;\n      width: 100%;\n      content: '';\n      z-index: -1;\n      background-color: inherit;\n      transform-origin: bottom right;\n      transform: sKewX(-10deg);\n      -webkit-box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.38);\n      box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.38);\n}\n.fly-nav .right-nav {\n    position: relative;\n    top: 0;\n    right: 20px;\n    bottom: 0;\n    left: 0;\n    float: right;\n    display: flex;\n    height: 100%;\n}\n.fly-nav .right-nav .nav-search {\n      margin: auto;\n}\n.fly-nav .right-nav .nav-search .el-input--large {\n        font-size: 15px;\n}\n.fly-nav .right-nav .fly-nav-dropdown {\n      margin: auto;\n}\n.fly-nav .right-nav .fly-nav-link {\n      cursor: pointer;\n      margin: 0 10px;\n}\n.fly-nav .right-nav .fly-nav-link:hover {\n        border-bottom: 5px black;\n}\n.fly-nav .nav-avatar {\n    position: relative;\n    border-radius: 50px;\n    height: 50px;\n    width: 50px;\n    margin-left: 10px;\n}\n", ""]);
+exports.push([module.i, "\n.fly-nav-lower {\n  position: relative;\n  margin: 0;\n  height: 20px;\n  background-color: #292929;\n  -webkit-box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.38);\n  box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.38);\n}\n.fly-nav {\n  height: 60px !important;\n  background: #301AA0;\n  background: -moz-linear-gradient(left, #301AA0 0%, #301AA0 59%, #9E1664 100%);\n  background: -webkit-linear-gradient(left, #301AA0 0%, #301AA0 59%, #9E1664 100%);\n  background: linear-gradient(to right, #301AA0 0%, #301AA0 59%, #9E1664 100%);\n  transition: 1s all ease-out;\n  z-index: 1;\n  -webkit-box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.38);\n  box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.38);\n}\n.fly-nav .el-menu-item {\n    height: 60px;\n    line-height: 60px;\n    color: black;\n    border-bottom: 0;\n}\n.fly-nav .fly-brand {\n    background-color: #101010;\n    color: white;\n    position: absolute;\n    height: 100px;\n}\n.fly-nav .fly-brand .fly-brand-content {\n      font-family: monoton,sans-serif;\n      line-height: 100px;\n      font-size: 40px;\n      z-index: 10;\n      text-decoration: none;\n}\n.fly-nav .fly-brand:hover {\n      background-color: #000 !important;\n      border-bottom: 0;\n}\n.fly-nav .fly-brand:before {\n      position: absolute;\n      top: 0;\n      right: 0;\n      bottom: 0;\n      left: 0;\n      height: 100%;\n      width: 100%;\n      content: '';\n      z-index: -1;\n      background-color: inherit;\n      transform-origin: bottom right;\n      transform: sKewX(-10deg);\n      -webkit-box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.38);\n      box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.38);\n}\n.fly-nav .right-nav {\n    position: relative;\n    top: 0;\n    right: 20px;\n    bottom: 0;\n    left: 0;\n    float: right;\n    display: flex;\n    height: 100%;\n}\n.fly-nav .right-nav .nav-search {\n      margin: auto;\n}\n.fly-nav .right-nav .nav-search .el-input--large {\n        font-size: 15px;\n}\n.fly-nav .right-nav .fly-nav-dropdown {\n      margin: auto;\n}\n.fly-nav .right-nav .fly-nav-link {\n      cursor: pointer;\n      margin: 0 10px;\n}\n.fly-nav .right-nav .fly-nav-link:hover {\n        border-bottom: 5px black;\n}\n.fly-nav .nav-avatar {\n    position: relative;\n    border-radius: 50px;\n    height: 50px;\n    width: 50px;\n    margin-left: 10px;\n}\n", ""]);
 
 // exports
 
@@ -32115,120 +32117,136 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c(
-    "el-menu",
-    { staticClass: "fly-nav", attrs: { theme: "dark", mode: "horizontal" } },
+    "div",
+    { staticClass: "fly-nav-wrapper" },
     [
       _c(
-        "el-menu-item",
-        { staticClass: "fly-brand", attrs: { index: "1" } },
+        "el-menu",
+        {
+          staticClass: "fly-nav",
+          attrs: { theme: "dark", mode: "horizontal" }
+        },
         [
           _c(
-            "router-link",
-            { staticClass: "fly-brand-content", attrs: { to: "/" } },
-            [_vm._v("TRANSPARENT")]
+            "el-menu-item",
+            { staticClass: "fly-brand", attrs: { index: "1" } },
+            [
+              _c(
+                "router-link",
+                { staticClass: "fly-brand-content", attrs: { to: "/" } },
+                [_vm._v("TRANSPARENT")]
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "right-nav" },
+            [
+              _vm.showSearch
+                ? _c("search-input", { staticClass: "nav-search" })
+                : _vm._e(),
+              _vm._v(" "),
+              !_vm.Authenticated
+                ? _c(
+                    "el-dropdown",
+                    {
+                      staticClass: "fly-nav-dropdown",
+                      attrs: { trigger: "click" }
+                    },
+                    [
+                      _c("a", { staticClass: "fly-nav-link" }, [
+                        _vm._v("Login")
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "el-dropdown-menu",
+                        { attrs: { slot: "dropdown" }, slot: "dropdown" },
+                        [_c("login-Form")],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                : _vm._e(),
+              _vm._v(" "),
+              !_vm.Authenticated
+                ? _c(
+                    "el-dropdown",
+                    {
+                      staticClass: "fly-nav-dropdown",
+                      attrs: { trigger: "click", "hide-on-click": true },
+                      on: { command: _vm.handleCommand }
+                    },
+                    [
+                      _c("a", { staticClass: "fly-nav-link" }, [
+                        _vm._v("Register")
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "el-dropdown-menu",
+                        { attrs: { slot: "dropdown" }, slot: "dropdown" },
+                        [
+                          _c(
+                            "el-dropdown-item",
+                            { attrs: { command: "normalRegistration" } },
+                            [_vm._v("Become a member")]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "el-dropdown-item",
+                            { attrs: { command: "companyRegistration" } },
+                            [_vm._v("Sign up a business or company")]
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                : _c(
+                    "el-dropdown",
+                    {
+                      staticClass: "fly-nav-dropdown",
+                      attrs: { trigger: "click", "hide-on-click": true },
+                      on: { command: _vm.handleCommand }
+                    },
+                    [
+                      _c(
+                        "div",
+                        { staticClass: "el-dropdown-link fly-menu-item-link" },
+                        [
+                          _c("img", {
+                            staticClass: "nav-avatar",
+                            attrs: { src: _vm.getImage(), alt: "avatar" }
+                          })
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "el-dropdown-menu",
+                        { attrs: { slot: "dropdown" }, slot: "dropdown" },
+                        [
+                          _c(
+                            "el-dropdown-item",
+                            { attrs: { command: "logout" } },
+                            [_vm._v("Logout")]
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+            ],
+            1
           )
         ],
         1
       ),
       _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "right-nav" },
-        [
-          _vm.showSearch
-            ? _c("search-input", { staticClass: "nav-search" })
-            : _vm._e(),
-          _vm._v(" "),
-          !_vm.Authenticated
-            ? _c(
-                "el-dropdown",
-                {
-                  staticClass: "fly-nav-dropdown",
-                  attrs: { trigger: "click" }
-                },
-                [
-                  _c("a", { staticClass: "fly-nav-link" }, [_vm._v("Login")]),
-                  _vm._v(" "),
-                  _c(
-                    "el-dropdown-menu",
-                    { attrs: { slot: "dropdown" }, slot: "dropdown" },
-                    [_c("login-Form")],
-                    1
-                  )
-                ],
-                1
-              )
-            : _vm._e(),
-          _vm._v(" "),
-          !_vm.Authenticated
-            ? _c(
-                "el-dropdown",
-                {
-                  staticClass: "fly-nav-dropdown",
-                  attrs: { trigger: "click", "hide-on-click": true },
-                  on: { command: _vm.handleCommand }
-                },
-                [
-                  _c("a", { staticClass: "fly-nav-link" }, [
-                    _vm._v("Register")
-                  ]),
-                  _vm._v(" "),
-                  _c(
-                    "el-dropdown-menu",
-                    { attrs: { slot: "dropdown" }, slot: "dropdown" },
-                    [
-                      _c(
-                        "el-dropdown-item",
-                        { attrs: { command: "normalRegistration" } },
-                        [_vm._v("Become a member")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "el-dropdown-item",
-                        { attrs: { command: "companyRegistration" } },
-                        [_vm._v("Sign up a business or company")]
-                      )
-                    ],
-                    1
-                  )
-                ],
-                1
-              )
-            : _c(
-                "el-dropdown",
-                {
-                  staticClass: "fly-nav-dropdown",
-                  attrs: { trigger: "click", "hide-on-click": true },
-                  on: { command: _vm.handleCommand }
-                },
-                [
-                  _c(
-                    "div",
-                    { staticClass: "el-dropdown-link fly-menu-item-link" },
-                    [
-                      _c("img", {
-                        staticClass: "nav-avatar",
-                        attrs: { src: _vm.getImage(), alt: "avatar" }
-                      })
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "el-dropdown-menu",
-                    { attrs: { slot: "dropdown" }, slot: "dropdown" },
-                    [
-                      _c("el-dropdown-item", { attrs: { command: "logout" } }, [
-                        _vm._v("Logout")
-                      ])
-                    ],
-                    1
-                  )
-                ],
-                1
-              )
-        ],
-        1
-      )
+      _c("div", { staticClass: "fly-nav-lower" })
     ],
     1
   )
@@ -35360,9 +35378,11 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
 
 var map = {
 	"./Auth.js": 388,
+	"./Blog.js": 779,
 	"./Company.js": 425,
 	"./Document.js": 430,
 	"./Search.js": 431,
+	"./Topic.js": 786,
 	"./User.js": 476,
 	"./index.js": 172
 };
@@ -81377,7 +81397,7 @@ var render = function() {
                         "el-button",
                         {
                           attrs: { plain: true, type: "success" },
-                          on: { click: _vm.login }
+                          on: { click: _vm.sendMessage }
                         },
                         [_vm._v("SEND")]
                       )
@@ -101182,7 +101202,181 @@ exports.default = {
             },
             rules: {}
         };
+    },
+
+    methods: {
+        sendMessage: function sendMessage() {
+            console.log('coming soon');
+        }
     }
+};
+
+/***/ }),
+/* 779 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _regenerator = __webpack_require__(12);
+
+var _regenerator2 = _interopRequireDefault(_regenerator);
+
+var _asyncToGenerator2 = __webpack_require__(13);
+
+var _asyncToGenerator3 = _interopRequireDefault(_asyncToGenerator2);
+
+var _index = __webpack_require__(32);
+
+var _queries = __webpack_require__(54);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var state = {
+    companyRelatedBlogs: []
+};
+
+var mutations = {
+    SET_COMPANY_RELATED_BLOGS: function SET_COMPANY_RELATED_BLOGS(state, _ref) {
+        var payload = _ref.payload;
+
+        state.companyRelatedBlogs = payload;
+    }
+};
+
+var actions = {
+    fetchCompanyRelatedBlogs: function fetchCompanyRelatedBlogs(_ref2, id) {
+        var _this = this;
+
+        var commit = _ref2.commit;
+        return (0, _asyncToGenerator3.default)(_regenerator2.default.mark(function _callee() {
+            var response;
+            return _regenerator2.default.wrap(function _callee$(_context) {
+                while (1) {
+                    switch (_context.prev = _context.next) {
+                        case 0:
+                            _context.next = 2;
+                            return _index.apolloClient.query({
+                                query: _queries.GET_COMPANY_RELATED_BLOGS,
+                                variables: {
+                                    id: id
+                                }
+                            });
+
+                        case 2:
+                            response = _context.sent;
+
+                            commit({
+                                type: 'SET_COMPANY_RELATED_BLOGS',
+                                payload: response.data.company.relatedBlogs
+                            });
+
+                        case 4:
+                        case 'end':
+                            return _context.stop();
+                    }
+                }
+            }, _callee, _this);
+        }))();
+    }
+};
+
+exports.default = {
+    namespaced: true,
+    state: state,
+    mutations: mutations,
+    actions: actions
+};
+
+/***/ }),
+/* 780 */,
+/* 781 */,
+/* 782 */,
+/* 783 */,
+/* 784 */,
+/* 785 */,
+/* 786 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _regenerator = __webpack_require__(12);
+
+var _regenerator2 = _interopRequireDefault(_regenerator);
+
+var _asyncToGenerator2 = __webpack_require__(13);
+
+var _asyncToGenerator3 = _interopRequireDefault(_asyncToGenerator2);
+
+var _index = __webpack_require__(32);
+
+var _queries = __webpack_require__(54);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var state = {
+    companyRelatedTopics: []
+};
+
+var mutations = {
+    SET_COMPANY_RELATED_TOPICS: function SET_COMPANY_RELATED_TOPICS(state, _ref) {
+        var payload = _ref.payload;
+
+        state.companyRelatedTopics = payload;
+    }
+};
+
+var actions = {
+    fetchCompanyRelatedTopics: function fetchCompanyRelatedTopics(_ref2, id) {
+        var _this = this;
+
+        var commit = _ref2.commit;
+        return (0, _asyncToGenerator3.default)(_regenerator2.default.mark(function _callee() {
+            var response;
+            return _regenerator2.default.wrap(function _callee$(_context) {
+                while (1) {
+                    switch (_context.prev = _context.next) {
+                        case 0:
+                            _context.next = 2;
+                            return _index.apolloClient.query({
+                                query: _queries.GET_COMPANY_RELATED_TOPICS,
+                                variables: {
+                                    id: id
+                                }
+                            });
+
+                        case 2:
+                            response = _context.sent;
+
+                            commit({
+                                type: 'SET_COMPANY_RELATED_TOPICS',
+                                payload: response.data.company.relatedTopics
+                            });
+
+                        case 4:
+                        case 'end':
+                            return _context.stop();
+                    }
+                }
+            }, _callee, _this);
+        }))();
+    }
+};
+
+exports.default = {
+    namespaced: true,
+    state: state,
+    mutations: mutations,
+    actions: actions
 };
 
 /***/ })

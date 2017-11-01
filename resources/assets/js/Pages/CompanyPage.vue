@@ -4,6 +4,7 @@
             <company-control></company-control>
             <company-stats></company-stats>
             <company-reviews></company-reviews>
+            <company-related-topics></company-related-topics>
         </el-col>
         <el-col :xs="24" :sm="24" :md="12" :lg="12" >
             <company-documents :companyId="companyId"></company-documents>
@@ -16,6 +17,7 @@
 
     import CompanyDocuments from '@/components/CompanyPage/CompanyDocuments.vue';
     import CompanyRelatedBlogs from '@/components/CompanyPage/CompanyRelatedBlogs.vue';
+    import CompanyRelatedTopics from '@/components/CompanyPage/CompanyRelatedTopics.vue';
     import CompanyReviews from '@/components/CompanyPage/CompanyReviews.vue';
     import CompanyStats from '@/components/CompanyPage/CompanyStats.vue';
     import CompanyControl from '@/components/CompanyPage/CompanyControl.vue';
@@ -69,6 +71,7 @@
         components:{
             CompanyDocuments,
             CompanyRelatedBlogs,
+            CompanyRelatedTopics,
             CompanyReviews,
             CompanyStats,
             CompanyControl,

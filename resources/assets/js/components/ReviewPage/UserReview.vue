@@ -1,21 +1,20 @@
 <template>
-    <el-card class="fly-card fly-info-Card" ref="companyRelatedBlogsCard">
-        <div slot="header" class="clearfix">
-            <span style="line-height: 36px;">UserReview</span>
-        </div>
-        <div class="fly-card-Content">
+    <el-card class="fly-card fly-card-plain" ref="userReview">
+        <span class="header" style="background-color: #301AA0;">Your Review</span>
+        <div class="fly-card-Content" style="background: #e2e2e2;">
             <div v-if="notLoggedIn || noReview" class="review-error" style="position: absolute;">
                 <p v-if="notLoggedIn" style="margin: auto;">Please Log In to manage your review</p>
                 <p v-else-if="noReview" style="margin: auto;">You have not reviewed this company yet.
                 <br/>Click <a href="#" @click="makeReview">here</a> to make make a review below.</p>
             </div>
             <review v-else :review="userReview"></review>
-            <div class="userReview-links">
-                <ul>
-                    <li><a href="#" @click="updateReview">Update</a></li>
-                    <li><a href="#" @click="delReview">Remove</a></li>
-                </ul>
-            </div>
+
+        </div>
+        <div class="userReview-links">
+            <ul>
+                <li><a href="#" @click="updateReview">Update</a></li>
+                <li><a href="#" @click="delReview">Remove</a></li>
+            </ul>
         </div>
     </el-card>
 </template>
@@ -45,8 +44,8 @@
             },
             userReview(){
                 if(this.User){
-                    return this.User.reviews.find((el)=>{
-                        if (el) return el.company.id === this.company.id;
+                    return this.company.reviews.find((el)=>{
+                        if (el) return el.user.id === this.User.id;
                     });
                 }
             }

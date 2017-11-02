@@ -1,32 +1,26 @@
 <template>
-    <el-card class="fly-card viewerjs-card" ref="companyRegCard">
-        <div class="fly-card-content">
-            <iframe
-                    class="fly-viewer-js"
-                    :src="getSrc()"
-                    :width="width"
-                    :height="height"
-                    allowfullscreen
-                    webkitallowfullscreen>
-            </iframe>
-        </div>
-    </el-card>
+    <iframe
+            v-if="onReady"
+            class="fly-viewer-js"
+            :src="'/Util/ViewerJS/#../../storage/' + docLoc"
+            allowfullscreen
+            webkitallowfullscreen>
+    </iframe>
 </template>
 <script>
     export default {
         props:['docLoc'],
         data(){
             return{
-                width: 300,
-                height: 400
+                onReady: true
             }
         },
-        methods:{
-            getSrc(){
-                return this.getViewerLoc() + this.docLoc;
-            },
-            getViewerLoc(){
-                return '/Util/ViewerJS/#../../storage/';
+        watch:{
+            docLoc(val,oldVal){
+                this.onReady = false;
+                this.$nextTick(() => {
+                    this.onReady = true;
+                });
             }
         }
         //DOC SIZES
@@ -51,11 +45,8 @@
     }
 </script>
 <style lang="scss">
-
-    .viewerjs-card{
-        .fly-viewer-js{
-
-        }
+    .fly-viewer-js{
+        height: 100%;
+        width: 100%;
     }
-
 </style>

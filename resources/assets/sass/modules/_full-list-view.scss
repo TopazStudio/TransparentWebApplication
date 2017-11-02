@@ -1,0 +1,51 @@
+.fly-full-list-view{
+  position: relative;
+  display: flex;
+  padding: 0;
+  .el-col{
+    padding: 0 10px;
+  }
+  .full-list{
+    width: 60%;
+    padding: 0;
+    height: 600px;
+    margin-top: 10px;
+    .fly-list-card{
+      height: 100%;
+      border: 1px solid darkgray;
+      .fly-card-Content{
+        overflow-y: scroll;
+        max-height: 500px;
+        &::-webkit-scrollbar-track
+        {
+          background-color: #F5F5F5;
+        }
+
+        &::-webkit-scrollbar
+        {
+          width: 12px;
+          background-color: #F5F5F5;
+        }
+
+        &::-webkit-scrollbar-thumb
+        {
+          background-color: #292929;;
+        }
+      }
+      .searchbar{
+        position: relative;
+        width: 100%;
+        padding: 5px 0;
+        border-bottom: 1px solid darkgray;
+        .fly-search{
+          width: 600px;
+          margin: auto;
+        }
+      }
+    }
+  }
+  .side-controls{
+    margin-top: 40px;
+    width: 40%;
+  }
+}

@@ -1,24 +1,25 @@
 <template>
-    <main id="companyPage" class="page fly-twoPane-view" style="background-color: rgba(245, 245, 245, 0.84);">
-        <el-col :xs="24" :sm="24" :md="12" :lg="12">
-            <review-summary></review-summary>
-            <review-list></review-list>
-        </el-col>
-        <el-col :xs="24" :sm="24" :md="12" :lg="12" >
-            <user-review
-                    @makeReview="showReviewPane = true"
-                    @updateReview="showReviewPane = isUpdateReview = true;">
-            </user-review>
-            <review-pane
-                    :isUpdateReview="isUpdateReview"
-                    @finished="showReviewPane = false;"
-                    @canceled="showReviewPane = false;"
-                    v-if="showReviewPane">
-            </review-pane>
-        </el-col>
+    <main id="reviewPage" class="page " style="background-color: rgba(245, 245, 245, 0.84);">
+        <company-header></company-header>
+        <div class="fly-full-list-view">
+            <el-col :xs="24" :sm="24" :md="12" :lg="12" class="full-list">
+                <review-list></review-list>
+            </el-col>
+            <el-col :xs="24" :sm="24" :md="12" :lg="12" class="side-controls">
+                <user-review
+                        @makeReview="showReviewPane = true"
+                        @updateReview="showReviewPane = isUpdateReview = true;">
+                </user-review>
+                <review-pane
+                        :isUpdateReview="isUpdateReview"
+                        @finished="showReviewPane = false;"
+                        @canceled="showReviewPane = false;"
+                        v-if="showReviewPane">
+                </review-pane>
+            </el-col>
+        </div>
     </main>
 </template>
-
 <script>
     import { mapState,mapActions } from 'vuex';
 
@@ -27,6 +28,7 @@
     import ReviewList from '@/components/ReviewPage/ReviewList.vue';
     import UserReview from '@/components/ReviewPage/UserReview.vue';
     import ReviewPane from '@/components/ReviewPage/ReviewPane.vue';
+    import CompanyHeader from '@/components/CompanyPage/CompanyHeader.vue';
 
     export default {
         created(){
@@ -71,7 +73,8 @@
             ReviewSummary,
             ReviewList,
             UserReview,
-            ReviewPane
+            ReviewPane,
+            CompanyHeader
         },
         methods:{
             ...mapActions('Company',[
@@ -104,6 +107,4 @@
         }
     }
 </script>
-<style lang="scss">
 
-</style>

@@ -1,16 +1,22 @@
 <template>
-    <el-card class="fly-card documents-card" ref="companyRegCard">
-        <div slot="header" class="clearfix">
-            <span style="line-height: 36px;">COMPANY DOCUMENTS</span>
+    <main id="documentPage" class="page " style="background-color: rgba(245, 245, 245, 0.84);">
+        <company-header></company-header>
+        <div class="fly-full-list-view">
+            <el-col :xs="24" :sm="24" :md="12" :lg="12" class="full-list">
+                <document-list @handleSelect="handleSelect"></document-list>
+            </el-col>
+            <el-col :xs="24" :sm="24" :md="12" :lg="12" class="side-controls">
+                <document-preview ref="documentPreview" style="height: 100%;"></document-preview>
+            </el-col>
         </div>
-        <div class="fly-card-content">
-            <document-table></document-table>
-        </div>
-    </el-card>
+    </main>
 </template>
 <script>
     import { mapState,mapActions } from 'vuex';
-    import DocumentTable from '@/components/DocumentsPage/DocumentTable.vue';
+    import DocumentList from '@/components/DocumentsPage/DocumentList.vue';
+    import DocumentPreview from '@/components/DocumentsPage/DocumentPreview.vue';
+    import CompanyHeader from '@/components/CompanyPage/CompanyHeader.vue';
+
     export default {
         /**
          * Initialize the page by getting the company and
@@ -51,6 +57,9 @@
                 'fetchDocuments'
             ]),
 
+            handleSelect(payload){
+                this.$refs.documentPreview.setDocument(payload);
+            },
             /**
              * Get current company.
              * */
@@ -76,7 +85,9 @@
             }
         },
         components:{
-            DocumentTable
+            CompanyHeader,
+            DocumentList,
+            DocumentPreview
         },
     }
 </script>

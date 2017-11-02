@@ -5,28 +5,30 @@
             <search-input style="width: 600px;margin: auto;"></search-input>
         </div>
         <div class="fly-card-Content" style="background: #e2e2e2;">
-            <review v-for="(item,index) in company.reviews"
-                    :key="index"
-                    :review="item">
-            </review>
-            <span v-if="company.reviews.length === 0" class="no-data">NO BLOGS YET</span>
+            <template v-for="(item,index) in Documents">
+                <document-item :key="index"
+                               :document="item"
+                               @handleSelect="$emit('handleSelect',item)">
+                </document-item>
+            </template>
+            <span v-if="Documents.length === 0" class="no-data">NO DOCUMENTS YET</span>
 
         </div>
     </el-card>
 </template>
 <script>
     import { mapState } from 'vuex';
-    import Review from './inc/Review.vue';
+    import DocumentItem from './inc/DocumentItem.vue';
     import SearchInput from '@/components/inc/SearchInput.vue';
 
     export default {
         computed:{
-            ...mapState('Company',[
-                'company',
+            ...mapState('Document',[
+                'Documents',
             ]),
         },
         components:{
-            Review,
+            DocumentItem,
             SearchInput
         }
     }

@@ -1,5 +1,5 @@
 <template>
-    <div class="fly-document-item list-item">
+    <div class="fly-document-item list-item" @click="$emit('handleSelect')">
         <div class="list-pic">
             <icon :name="getIconType()" scale="6" style="margin:0 10px;"></icon>
         </div>

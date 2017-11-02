@@ -1,13 +1,6 @@
 <template>
     <main id="companyPage" class="page" style="background-color: rgba(218, 218, 218, 0.84);">
-        <div class="fly-twoPane-view companyPage-upper" :style="`background: url(${getCoverImage()}) no-repeat center;`">
-            <el-col :xs="24" :sm="24" :md="12" :lg="12" style="position: relative;padding: 0;">
-                <company-intro></company-intro>
-            </el-col>
-            <el-col :xs="24" :sm="24" :md="12" :lg="12" style="position: relative;padding: 0;">
-                <company-contribute></company-contribute>
-            </el-col>
-        </div>
+        <company-header></company-header>
         <div class="fly-twoPane-view">
             <el-col :xs="24" :sm="24" :md="12" :lg="12">
                 <company-details></company-details>
@@ -27,8 +20,7 @@
     import CompanyRelatedBlogs from '@/components/CompanyPage/CompanyRelatedBlogs.vue';
     import CompanyRelatedTopics from '@/components/CompanyPage/CompanyRelatedTopics.vue';
     import CompanyDetails from '@/components/CompanyPage/CompanyDetails.vue';
-    import CompanyIntro from '@/components/CompanyPage/CompanyIntro.vue';
-    import CompanyContribute from '@/components/CompanyPage/CompanyContribute.vue';
+    import CompanyHeader from '@/components/CompanyPage/CompanyHeader.vue';
 
     export default {
         created(){
@@ -90,22 +82,11 @@
             }
         },
         components:{
-            CompanyIntro,
             CompanyDocuments,
             CompanyRelatedBlogs,
             CompanyRelatedTopics,
             CompanyDetails,
-            CompanyContribute
+            CompanyHeader
         },
     }
 </script>
-<style lang="scss">
-    //noinspection CssUnknownTarget
-    @import "~bourbon/app/assets/stylesheets/bourbon";
-
-    .companyPage-upper{
-        position: relative;
-        @include size(100% 200px);
-        padding: 0 80px;
-    }
-</style>

@@ -1,5 +1,5 @@
 <template>
-    <main id="companyPage" class="page" style="background-color: rgba(245, 245, 245, 0.84);">
+    <main id="companyPage" class="page" style="background-color: rgba(218, 218, 218, 0.84);">
         <div class="fly-twoPane-view companyPage-upper" :style="`background: url(${getCoverImage()}) no-repeat center;`">
             <el-col :xs="24" :sm="24" :md="12" :lg="12" style="position: relative;padding: 0;">
                 <company-intro></company-intro>

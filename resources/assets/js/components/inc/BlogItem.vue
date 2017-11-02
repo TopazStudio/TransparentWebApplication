@@ -1,34 +1,23 @@
 <template>
-    <div class="fly-blog-item">
-        <img :src="getBlogPic()" alt="Blog Pic" class="blog-pic">
-        <div class="details">
-            <div class="details-upper">
-                <span style="color: black;
-                            font-weight: 700;
-                            font-size: 20px;">
-                    {{blog.heading}}</span>
-                <div style="position: absolute;
-                            float: right;
-                            top: 0px;
-                            right: 10px;">
-                    <span style="font-size: 14px;">
-                        uploaded on {{blog.createdAt}}20/17/2017</span>
-
-                    <el-button class="navigation-btn" @click="goToBlog">
-                        <icon name="external-link"></icon>
-                    </el-button>
+    <div class="fly-blog-item list-item">
+        <img :src="getBlogPic()" alt="Blog Pic" class="list-pic">
+        <div class="content">
+            <div class="details">
+                <span class="item-header">{{blog.heading}}</span>
+                <p>{{blog.content}}</p>
+            </div>
+            <div class="analytics">
+                <div style="float: left;">
+                        <span style="font-size: 14px;">
+                        created on {{blog.createdAt}}20/17/2017</span>
                 </div>
-
-                <p style="margin: 0;">{{blog.content}}</p>
-
-                <div class="analytics">
+                <div style="float:right;">
                     <span @click="goToBlog"><icon name="eye"></icon> {{getViews()}}1,749</span>
                     <span @click="likeBlog"><icon name="thumbs-o-up"></icon> {{blog.likes}}100</span>
                     <span @click="dislikeBlog"><icon name="thumbs-o-down"></icon> {{blog.dislikes}}10</span>
                 </div>
             </div>
-            <div class="details-lower">
-                <span class="tag-heading">Tags</span>
+            <div class="tags">
                 <el-tag>New</el-tag>
                 <el-tag>Financial</el-tag>
                 <el-tag>Crisis</el-tag>
@@ -41,6 +30,10 @@
             </div>
 
         </div>
+        <el-button class="external-link-btn"
+                   @click="goToBlog">
+            <icon name="external-link"></icon>
+        </el-button>
         <span class="right-decor" style="background-color: #301AA0;"></span>
     </div>
 </template>
@@ -84,63 +77,7 @@
     @import "~sass/variables";
 
     .fly-blog-item{
-        position: relative;
-        width: 100%;
-        min-height: 150px;
-        text-align: left;
-        background-color: #fff;
-        margin: 10px 0;
-
-        @include transition(all 0.4s ease-in-out);
-
         display: grid;
         grid-template-columns: 1fr 4fr;
-        .details{
-            display: grid;
-            grid-template-rows: 2fr 1fr;
-            .details-upper{
-                position: relative;
-                padding: 10px;
-                .navigation-btn{
-                    right: 0;
-                    color: white;
-                    background: $brand-darkblue;
-                    border-radius: 0;
-                    border: none;
-                }
-                .analytics{
-                    position: absolute;
-                    bottom: 0;
-                    right: 20px;
-                    span{
-                        padding: 0 10px;
-                    }
-                }
-            }
-            .details-lower{
-                border-top: 1px solid darkgray;
-                padding: 10px;
-                position: relative;
-                .tag-heading{
-                    position: absolute;
-                    display: block;
-                    float: left;
-                    margin-left: -20px;
-                    margin-top: -20px;
-                    background: white;
-                }
-            }
-        }
-        .doc-pic{
-            @include size(100px);
-        }
-        .right-decor{
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 10px;
-            height: 100%;
-            opacity: 1;
-        }
     }
 </style>

@@ -1,5 +1,5 @@
 <template>
-    <section class="fly-twoPane-view" style="background-color: rgba(245, 245, 245, 0.84);">
+    <section class="fly-twoPane-view" style="background-color: rgba(218, 218, 218, 0.84);">
         <el-col :xs="24" :sm="24" :md="12" :lg="12">
             <top-blogs></top-blogs>
             <top-blogs></top-blogs>

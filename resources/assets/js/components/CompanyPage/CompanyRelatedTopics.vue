@@ -1,13 +1,12 @@
 <template>
-    <el-card class="fly-card fly-info-Card" ref="companyRelatedBlogsCard">
-        <div slot="header" class="clearfix">
-            <span style="line-height: 36px;">Related Topics</span>
-        </div>
-        <div class="fly-card-Content">
+    <el-card class="fly-card fly-card-plain" ref="companyRelatedBlogsCard">
+        <span class="header" style="background-color: #301AA0;">Related Topics</span>
+        <div class="fly-card-Content" style="background: #e2e2e2;">
             <topic-list-item v-for="(item,index) in companyRelatedTopics"
                        :key="index"
                        :topic="item">
             </topic-list-item>
+            <span v-if="companyRelatedTopics.length === 0" class="no-data">NO TOPICS YET</span>
         </div>
     </el-card>
 </template>

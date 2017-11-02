@@ -6,7 +6,7 @@
                     :key="index"
                     :document="doc">
             </document-item>
-            <span v-if="Documents.length === 0" class="no-docs">NO DOCUMENTS</span>
+            <span v-if="Documents.length === 0" class="no-data">NO DOCUMENTS</span>
         </div>
     </el-card>
 </template>
@@ -54,21 +54,6 @@
     @import "~sass/mixins";
 
     .company-doc-card{
-        .header{
-            padding: 10px;
-            display: block;
-            position: relative;
-            color: white;
-            width: 200px;
-            text-align: left;
-            z-index: 0;
-            @include slanted-left();
-        }
-        .no-docs{
-            padding: 50px;
-            text-align: center;
-            margin: auto;
-            display: block;
-        }
+
     }
 </style>

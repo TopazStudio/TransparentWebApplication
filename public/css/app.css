@@ -26,8 +26,120 @@
   border-radius: 0;
 }
 
+.fly-card-plain .header {
+  padding: 10px;
+  display: block;
+  position: relative;
+  color: white;
+  width: 200px;
+  text-align: left;
+  z-index: 0;
+}
+
+.fly-card-plain .header:before {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  content: '';
+  z-index: -1;
+  background-color: inherit;
+  -webkit-transform-origin: bottom right;
+          transform-origin: bottom right;
+  -webkit-transform: sKewX(-10deg);
+          transform: sKewX(-10deg);
+}
+
+.fly-card-plain .no-data {
+  padding: 50px;
+  text-align: center;
+  margin: auto;
+  display: block;
+}
+
 .fly-card-plain .el-card__body {
   padding: 0;
+}
+
+.list-item {
+  position: relative;
+  width: 100%;
+  min-height: 100px;
+  text-align: left;
+  background-color: #fff;
+  margin: 10px 0;
+  -webkit-transition: all 0.4s ease-in-out;
+  transition: all 0.4s ease-in-out;
+}
+
+.list-item .list-pic {
+  height: 100px;
+  width: 100px;
+}
+
+.list-item .content {
+  display: grid;
+  grid-template-rows: 4fr 1fr 2fr;
+}
+
+.list-item .details {
+  position: relative;
+  padding: 10px;
+}
+
+.list-item .details p {
+  margin: 0;
+}
+
+.list-item .analytics span {
+  padding: 0 10px;
+}
+
+.list-item .tags {
+  border-top: 1px solid darkgray;
+  padding: 10px 10px 10px 20px;
+  position: relative;
+}
+
+.list-item .tags .tag-heading {
+  position: absolute;
+  display: block;
+  float: left;
+  margin-left: -20px;
+  margin-top: -20px;
+  background: white;
+}
+
+.list-item .item-header {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 800;
+  display: block;
+  color: black;
+  padding: 10px 0;
+}
+
+.list-item .right-decor {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 10px;
+  height: 100%;
+  opacity: 1;
+}
+
+.list-item .external-link-btn {
+  position: absolute;
+  float: right;
+  top: 0;
+  right: 10px;
+  color: white;
+  background: #301AA0;
+  border-radius: 0;
+  border: none;
 }
 
 html {
@@ -46,7 +158,6 @@ html, body {
   background: #b0b3b5 url("../img/hypnotize.png");
   font-family: "Raleway", sans-serif;
   color: #636b6f;
-  font-weight: 100;
   min-height: 100%;
   height: 100%;
   margin: 0;

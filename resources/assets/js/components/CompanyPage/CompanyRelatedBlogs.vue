@@ -6,7 +6,7 @@
                     :key="index"
                     :blog="item">
             </blog-item>
-            <span v-if="companyRelatedBlogs.length === 0" class="no-docs">NO DOCUMENTS</span>
+            <span v-if="companyRelatedBlogs.length === 0" class="no-data">NO BLOGS YET</span>
         </div>
     </el-card>
 </template>
@@ -67,22 +67,7 @@
     @import "~sass/variables";
     @import "~sass/mixins";
     .related-blog-card{
-        .header{
-            padding: 10px;
-            display: block;
-            position: relative;
-            color: white;
-            width: 200px;
-            text-align: left;
-            z-index: 0;
-            @include slanted-left();
-        }
-        .no-blogs{
-            padding: 50px;
-            text-align: center;
-            margin: auto;
-            display: block;
-        }
+
     }
 
 </style>

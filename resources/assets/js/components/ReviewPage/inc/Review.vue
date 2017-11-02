@@ -1,10 +1,16 @@
 <template>
-    <div class="fly-review">
-        <img :src="getReviewerPic()" alt="Reviewer Pic" class="review-pic">
-        <div class="details">
-            <span>{{review.user.name}}</span>
-            <span>{{review.createdAt}}</span>
-            <p>{{review.content}}</p>
+    <div class="list-item fly-review ">
+        <img :src="getReviewerPic()" alt="Reviewer Pic" class="list-pic">
+        <div class="content">
+            <div class="details">
+                <span class="item-header">{{review.user.name}}</span>
+                <p>{{review.content}}</p>
+            </div>
+            <div class="analytics">
+                <div style="float: left;">
+                    <span style="font-size: 14px;">created on {{review.createdAt}}20/17/2017</span>
+                </div>
+            </div>
         </div>
         <span class="right-decor" style="background-color: #301AA0;"></span>
     </div>
@@ -31,30 +37,11 @@
     @import "~bourbon/app/assets/stylesheets/bourbon";
 
     .fly-review{
-        position: relative;
-        @include size(100% 100px);
-        text-align: left;
-        background-color: #fff;
-        padding: 0 10px;
-
-        @include transition(all 0.4s ease-in-out);
-
         display: grid;
         grid-template-columns: 1fr 4fr;
-        .review-pic{
-            @include size(100px);
-        }
-        .right-decor{
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 10px;
-            height: 100%;
-            opacity: 0;
-        }
-
-        &:hover ~ .right-decor{
-            opacity: 1;
+        .content{
+            display: grid;
+            grid-template-rows: 3fr 1fr;
         }
     }
 </style>

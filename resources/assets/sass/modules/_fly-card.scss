@@ -1,3 +1,4 @@
+@import "../mixins";
 .fly-card{
   position:relative;
   border-bottom-color: darkgrey;
@@ -18,6 +19,22 @@
 }
 
 .fly-card-plain{
+  .header{
+    padding: 10px;
+    display: block;
+    position: relative;
+    color: white;
+    width: 200px;
+    text-align: left;
+    z-index: 0;
+    @include slanted-left();
+  }
+  .no-data{
+    padding: 50px;
+    text-align: center;
+    margin: auto;
+    display: block;
+  }
   .el-card__body{
     padding: 0;
   }
@@ -25,4 +42,72 @@
   margin-bottom: 20px;
   border: none;
   border-radius: 0;
+}
+
+.list-item{
+  position: relative;
+  width: 100%;
+  min-height: 100px;
+  text-align: left;
+  background-color: #fff;
+  margin: 10px 0;
+  @include transition(all 0.4s ease-in-out);
+  .list-pic{
+    @include size(100px);
+  }
+  .content{
+    display: grid;
+    grid-template-rows: 4fr 1fr 2fr;
+  }
+  .details{
+    position: relative;
+    padding: 10px;
+    p{
+      margin: 0;
+    }
+  }
+  .analytics{
+    span{
+      padding: 0 10px;
+    }
+  }
+  .tags{
+    border-top: 1px solid darkgray;
+    padding: 10px 10px 10px 20px;
+    position: relative;
+    .tag-heading{
+      position: absolute;
+      display: block;
+      float: left;
+      margin-left: -20px;
+      margin-top: -20px;
+      background: white;
+    }
+  }
+  .item-header{
+    margin: 0;
+    font-size: 20px;
+    font-weight: 800;
+    display: block;
+    color: black;
+    padding: 10px 0;
+  }
+  .right-decor{
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 10px;
+    height: 100%;
+    opacity: 1;
+  }
+  .external-link-btn{
+    position: absolute;
+    float: right;
+    top: 0;
+    right: 10px;
+    color: white;
+    background: $brand-darkblue;
+    border-radius: 0;
+    border: none;
+  }
 }

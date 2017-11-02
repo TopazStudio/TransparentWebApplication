@@ -8,7 +8,7 @@
         <div class="company-reviews">
             <span class="left-decor" style="background-color: #101010;"></span>
             <span class="header" style="background-color: #101010;">Reviews</span>
-            <span v-if="company.reviews.length === 0" class="no-reviews">No Reviews Yet</span>
+            <span v-if="company.reviews.length === 0" class="no-reviews">NO REVIEWS YET</span>
             <review v-for="(item,index) in company.reviews"
                     :key="index"
                     :review="item">
@@ -111,6 +111,7 @@
             position: relative;
             text-align: center;
             max-height: 300px;
+            padding: 0 10px;
             .no-reviews{
                 padding: 50px;
                 text-align: center;
